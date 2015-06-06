@@ -1,5 +1,5 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+%\include "util.ly"
 \header {
     title = "While Shepherds Watched Their Flocks"
     poet = "Nahum Tate (1652–1715)"
@@ -7,11 +7,10 @@
   }
 
 global = {
-  \key d \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key d \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 95
 }
 
 sopMusic = \relative c' {
@@ -20,19 +19,14 @@ sopMusic = \relative c' {
   a d,8.[ e16] fis4 fis8.[ g16] |
   a4 a a g8[ fis] |
   
-  \partial 4*3 fis4( e) b'\rest \bar "||"
-  \partial 4 cis8[ d] | \break
-  e4 a, \bar"" g g |
+  fis4( e -) b' \rest cis8[ d] | 
+  e4 a, g g |
   g fis8[ e] fis4 d'8[ cis] |
   
   b4 a g fis |
-  \partial 4*3 b( a) b\rest \bar "||"
-  \partial 4 e |
+  b( a -) b \rest e |
   a, d fis, e |
-  \partial 4*3 d2. \bar "|."
-}
-sopWords = \lyricmode {
-  
+  d2. \bar "|."
 }
 
 altoMusic = \relative c' {
@@ -41,19 +35,16 @@ altoMusic = \relative c' {
   fis d8.[ cis16] d4 d |
   d fis d e8[ d] |
   
-  d4( cis) s |
-  e |
+  d4( cis -) s e |
   e fis d cis |
   e d d d |
   
   d d d d |
-  d2 s4 |
-  g |
+  d2 s4 g |
   a fis d4 cis |
   d2. \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsXI
   \set stanza = #"1. "
   While shep -- herds watch’d their flocks by night;
     All seat -- ed on the ground;
@@ -62,7 +53,6 @@ altoWords = \lyricmode {
     And glo -- ry shone a -- round.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsXI
   \set stanza = #"2. "
   “To you, in Da -- vid’s town, this day
     Is born of Da -- vid’s line,
@@ -71,7 +61,6 @@ altoWordsII = \lyricmode {
     And this shall be the sign:
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsXI
   \set stanza = #"3. "
   The heav’n -- ly Babe you there shall find,
     To hu -- man view dis -- play’d,
@@ -80,7 +69,6 @@ altoWordsIII = \lyricmode {
     And in a man -- ger laid.”
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsXI
   \set stanza = #"4. "
   “All glo -- ry be to God on high,
     And to the earth be peace;
@@ -95,19 +83,14 @@ tenorMusic = \relative c' {
   d4 a a a |
   a a a b |
   
-  a2 s4 |
-  a |
+  a2 s4 a |
   a fis b a |
   a a8[ g] a4 fis8[ a] |
   
   g4 fis b a |
-  g( fis) s |
-  b8[ cis] |
+  g( fis-) s b8[ cis] |
   d4 a a g |
   fis2. \bar "|."
-}
-tenorWords = \lyricmode {
-
 }
 
 bassMusic = \relative c {
@@ -116,61 +99,39 @@ bassMusic = \relative c {
   fis fis8.[ e16] d4 d8.[ e16] |
   fis4 d fis g |
   
-  a2 d,4\rest |
-  a8[ b] |
+  a2 d,4\rest a8[ b] |
   cis4 d e a, |
   d d d d |
   
   d d d d |
-  d2 d4\rest |
-  g4 |
+  d2 d4\rest g4 |
   fis d a'4 a, |
   d2. \bar "|."
 }
-bassWords = \lyricmode {
-
-}
 
 \score {
-  <<
-   \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
-    \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+    <<
+        \new ChoirStaff <<
+            \new Staff = women <<
+                \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
+                \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+            >>
+            \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+            \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+            \new Lyrics = "altosIII"  \lyricsto "sopranos" \altoWordsIII
+            \new Lyrics = "altosIV"   \lyricsto "sopranos" \altoWordsIV
+            \new Staff = men <<
+                \clef bass
+                \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
+                \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
+            >>
+        >>
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.9)) } \lyricsto "sopranos" \altoWords
-   \new Staff = men <<
-      \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
-  >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
-  >>
-  \layout {
-    %#(layout-set-staff-size 14.6)
-    #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 14 20)))
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 4)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-  }
+    \layout { }
   
-  \midi {
-    \tempo 4 = 95
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context { \Voice \remove "Dynamic_performer" }
     }
-  }
 }
+

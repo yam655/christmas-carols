@@ -1,59 +1,16 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #18 \smallCapsOldStyle"Cradle Hymn"}}
+  title = "Cradle Hymn"
   poet = "Isaac Watts (1674–1748)"
-  composer = \markup\oldStyleNum\concat{"from " \italic"Repository of Sacred Music, Part Second" ", 1813"}
+  composer = \markup{from \italic{Repository of Sacred Music, Part Second}, 1813}
   tagline = ""
 }
-\paper {
-  %print-all-headers = ##f
-  paper-height = 11\in
-  paper-width = 8.5\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  system-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -3)
-       (stretchability . 100))
-  top-markup-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0)
-       (stretchability . 0))
-  ragged-last-bottom = ##f
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 1\in
-  outer-margin = 0.75\in
-  top-margin = 0.26\in
-  bottom-margin = 0.25\in
-  first-page-number = #103
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 18) \paper{ #(define fonts (make-pango-font-tree "Garamond Premier Pro" "Garamond Premier Pro" "Garamond Premier Pro" (/ 18 20))) }
+
 global = {
   \key d \major
   \time 3/4
   \dynamicUp
-  %\set crescendoSpanner = #'dashed-line
   %\set midiInstrument = "recorder"
   \autoBeamOff
   \override DynamicTextSpanner #'style = #'none
@@ -329,10 +286,6 @@ pianoLH = \relative c' {
          (minimum-distance . 0)
          (padding . -1)
          (stretchability . 2))
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
     }
   }
   \midi {

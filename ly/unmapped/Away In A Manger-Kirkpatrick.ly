@@ -1,103 +1,11 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  tagline = ""%\markup { "from" \italic {ChristmasCarolMusic.org}}
-
-    title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"Away In A Manger"}}
-    poet = \markup\oldStyleNum"Anonymous"
-    composer = \markup\oldStyleNum"William Kirkpatrick (1838–1921)"
+    %tagline = ""%\markup { "from" \italic {ChristmasCarolMusic.org}} 
+    title = "Away In A Manger"
+    poet = "Anonymous"
+    composer = "William Kirkpatrick (1838–1921)"
   }
-\paper {
-  print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  score-markup-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0)
-       (stretchability . 80))
-  system-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -10)
-       (stretchability . 100))
-  markup-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0)
-       (stretchability . 0))
-  last-bottom-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0)
-       (stretchability . 0))
-%{IF_LESSER
-  markup-system-spacing #'stretchability = 50
-  top-markup-spacing #'stretchability = 30
-  last-bottom-spacing #'stretchability = 60
-%}%END_IF_LESSER
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #028
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 13.6) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 13.6 20))) }
-%8.5x11 #(set-global-staff-size 17.8) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 17.8 20))) }
-%{IF_LESSER
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
-%}%END_IF_LESSER
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 global = {
   \key f \major
@@ -261,27 +169,10 @@ bassWords = \lyricmode {
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout {
-    %#(layout-set-staff-size 13)
-    #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 13.2 20)))
-    %8.5x11 #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 17.8 20)))
-%{IF_LESSER
-#(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20)))
-%}%END_IF_LESSER
     \context {
       \Score
       \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
       \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-%8.5x11g    \context {\Lyrics \override LyricText #'font-size = #0.7 }
-%6.14g    \context {\Lyrics \override LyricText #'font-size = #0.7 }
-%6x9 \context {\Lyrics\override LyricText #'font-size = #1.2 }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
     }
   }
   

@@ -86,23 +86,6 @@ raiseLyrics = {
         (helper chars pred (list '()) )
 )
            
-#(define-markup-command (fakeCaps layout props str) (markup?)
- "Fake small-caps by turning (sequences of) lower-case letters into upper-case and changing the fontsize"
-      (let*
-           ((chars (string->list str))
-            (lists (splitUp chars 
-                (lambda (x) (and
-                    (< (char->integer x) 128) 
-                    (char-lower-case? x) ))))
-            (strings (map
-                       (lambda (s)
-                               (if (char-lower-case? (car s))
-                                   (markup #:fontsize -2 (list->string (map char-upcase s)))
-                                   (list->string s) ) )
-                       lists))
-           (mu (markup #:override '(word-space . 0) (make-line-markup strings))) )
-          (interpret-markup layout props mu)) )
- 
 %% UTF-8 utilities
 #(define (list->utf-8 l) (apply string-append (map ly:wide-char->utf-8 l)))
            
@@ -295,41 +278,4 @@ doHlig = ##t
 					     (markup #:addBLigs text)
 					     text))))
 
-#(define space-set (list->char-set (string->list ".?-;,:“”‘’–— */()[]{}|<>!`~&")))
-#(define (width grob text-string)
-  (let*
-    ((layout (ly:grob-layout grob))
-      (props (ly:grob-alist-chain grob (ly:output-def-lookup layout
-        'text-font-defaults))
-      )
-    )
-    (if (eq? 0 (string-length text-string))
-        0
-        (cdr (ly:stencil-extent (ly:text-interface::interpret-markup layout
-          props (markup text-string)) X)
-        )
-    )
-  )
-)
 
-#(define (center-on-word grob)
-  (let* (
-      (text (ly:grob-property-data grob 'text))
-      (syllable (if (string? text) text ""))
-      (word-position (if (integer? (string-skip syllable space-set)) (string-skip syllable space-set) 0))
-      (word-end (if (integer? (string-skip-right syllable space-set)) (+ (string-skip-right syllable space-set) 1) (string-length syllable)))
-      (preword (substring syllable 0 word-position))
-      (word (substring syllable word-position word-end ))
-      (preword-width (if (string? text) (width grob preword) 0))
-      (word-width (if (string? text) (width grob word) (width grob text)))
-      (notehead (ly:grob-parent grob X))
-      (refp (ly:grob-common-refpoint notehead grob X))
-      (note-extent (ly:grob-extent notehead refp X))
-      (note-width (- (cdr note-extent) (car note-extent)))
-    )
-    (if (= -1 (ly:grob-property-data grob 'self-alignment-X))
-      (- 0 preword-width)
-      (- (/ (- note-width word-width) 2) preword-width)
-    )
-  )
-)

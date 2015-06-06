@@ -1,58 +1,22 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"Joy to the World!"}}
-  poet = \markup\oldStyleNum"Isaac Watts (1674–1748)"
-  composer = \markup\oldStyleNum"Lowell Mason (1792–1872)"
-  tagline = \markup { "from" \concat{\italic "Hymns of the Kingdom of God" \oldStyleNum", 1910, via " \italic"HymnsAndCarolsOfChristmas.com"}}
+  title = "Joy to the World!"
+  poet = "Isaac Watts (1674–1748)"
+  composer = "Lowell Mason (1792–1872)"
+  %tagline = \markup { "from" \concat{\italic "Hymns of the Kingdom of God" ", 1910, via " \italic"HymnsAndCarolsOfChristmas.com"}}
 }
-\paper {
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  system-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -5)
-       (stretchability . 100))
-  ragged-last-bottom = ##f
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #014
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
+
 global = {
   \key d \major
   \time 2/4
   \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(0.5 . 1)
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(0.5 . 1)
+  \tempo 4 = 70
 }
 
 sopMusic = \relative c'' {
-  \tempo 4 = 70
   d4 cis8.\noBeam b16 |
   a4. g8 |
   fis4 e |
@@ -247,21 +211,7 @@ bassWordsIII = \lyricmode {
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
-    }
-  }
+  \layout { }
   \midi {
     \tempo 4 = 70
     \set Staff.midiInstrument = "flute"

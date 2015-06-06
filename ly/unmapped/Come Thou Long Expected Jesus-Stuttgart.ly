@@ -1,89 +1,13 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  tagline = \markup { "from" \italic {CyberHymnal.org}}
-
-    title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"Come Thou Long Expected Jesus"}}
-    poet = \markup\oldStyleNum"Charles Wesley (1707–1788)"
-    composer = \markup\concat{\italic"Stuttgart" \oldStyleNum", Christian F. Witt (c. 1660–1716)"}
-    arranger = \markup\oldStyleNum"Adapted by Henry J. Gauntlett (1805–1876)"
-    tagline = \markup { "from" \italic "CyberHymnal.org"}
+    title = "Come Thou Long Expected Jesus"
+    poet = "Charles Wesley (1707–1788)"
+    composer = \markup{\italic{Stuttgart}, Christian F. Witt (c. 1660–1716)}
+    arranger = "Adapted by Henry J. Gauntlett (1805–1876)"
+    %tagline = \markup { "from" \italic "CyberHymnal.org"}
+    %\markup{from \italic{The Church Hymnary}, 1902, via \italic{HymnsAndCarolsOfChristmas.com}}
   }
-\paper {
-  print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  system-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -10)
-       (stretchability . 100))
-  score-markup-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0)
-       (stretchability . 0))
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #004
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCaps advent}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
-
-\markup\fill-line \center-align {\concat{"from "\italic"The Church Hymnary" \oldStyleNum", 1902, via " \italic"HymnsAndCarolsOfChristmas.com"}}
-\markup \vspace #1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 global = {
   \key g \major
@@ -212,21 +136,7 @@ pianoLH = \relative c' {
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
-    }
-  }
+  \layout { }
   
   \midi {
     \tempo 4 = 105

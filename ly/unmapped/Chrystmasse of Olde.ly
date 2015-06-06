@@ -1,61 +1,19 @@
 ﻿\version "2.14.2"
 \include "util.ly"
-\version "2.14.2"
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
+
 \header {
-  title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"Chrystmasse of Olde"}}
-  poet = \markup\oldStyleNum"Eugene Field (1850–1895)"
-  composer = \markup\italic "Swiss Air"
-  tagline = \markup \concat{ "from " \italic "Favorite Songs and Hymns for School and Home" \oldStyleNum", 1899, via " \italic"books.google.com"}
+  title = "Chrystmasse of Olde"
+  poet = "Eugene Field (1850–1895)"
+  composer = \markup{\italic {Swiss Air}}
+  %tagline = \markup \concat{ "from " \italic "Favorite Songs and Hymns for School and Home" ", 1899, via " \italic"books.google.com"}
 }
-\paper {
-  %print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  system-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -5)
-       (stretchability . 100))
-  markup-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -0.5)
-       (stretchability . 0))
-  ragged-last-bottom = ##f
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #144
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
+
 global = {
   \key d \major
   \time 3/4
   \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
 }
 
 sopMusic = \relative c' {
@@ -257,21 +215,7 @@ pianoLH = \relative c' {
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
-    }
-  }
+  \layout { }
   \midi {
     \tempo 4 = 80
     \set Staff.midiInstrument = "flute"

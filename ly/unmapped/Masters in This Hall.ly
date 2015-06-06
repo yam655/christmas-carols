@@ -1,59 +1,23 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"Masters in This Hall"}}
-  poet = \markup\oldStyleNum"William Morris (1834–1896)"
-  composer = \markup\concat{\italic"Marche pour les Matelots" \oldStyleNum", by Marin Marais (1656–1728)"}
-  arranger = \markup\oldStyleNum"Arranged by Edmund Sedding (1836–1868)"
-  tagline = \markup\concat{"from " \italic\oldStyleNum"The Musical times and singing-class circular, Volume 52" \oldStyleNum", November 1, 1911, via " \italic"books.google.com"}
+  title = "Masters in This Hall"
+  poet = "William Morris (1834–1896)"
+  composer = \markup{\italic{Marche pour les Matelots}, by Marin Marais (1656–1728)}
+  arranger = "Arranged by Edmund Sedding (1836–1868)"
+  %tagline = \markup{from \italic{The Musical times and singing-class circular, Volume 52}, November 1, 1911}
 }
-\paper {
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  system-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -5)
-       (stretchability . 100))
-  ragged-last-bottom = ##f
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #023
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
+
 global = {
   \key f \major
   \time 6/8
   \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-0.2 . 0.2)
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(-0.2 . 0.2)
+  \tempo \markup\italic"Andante"
 }
 
 sopMusic = \relative c' {
-  \tempo \markup\italic"Andante"
   d4 a'8 a4 g8 |
   f4.( g) |
   a4 g8 f4 e8 |
@@ -256,21 +220,7 @@ bassMusic = \relative c{
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
   >>
   >>
-  \layout {
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
-    }
-  }
+  \layout { }
   \midi {
     \tempo 4 = 120
     \set Staff.midiInstrument = "flute"

@@ -1,82 +1,18 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-    %title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"Unto us is born a Son"}}
-    subtitle = \markup{\override #'(font-name . "Garamond Premier Pro"){ \abs-fontsize #10.5 "(The same, in English)"}}
-    %poet = \markup{\oldStyleNum"Words and tune (14th cent.) from" \italic"Piæ Cantiones," 1582}
-    %composer = \markup\oldStyleNum"Arranged by G.H. Palmer"
-  }\paper {
-  print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  system-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -10)
-       (stretchability . 100))
-  score-markup-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0)
-       (stretchability . 75))
-  markup-system-spacing = 
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0)
-       (stretchability . 0))
-  last-bottom-spacing = 
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -0.5)
-       (stretchability . 0))
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #158
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
+    title = "Unto us is born a Son"
+    subtitle = "(The same, in English)"
+    poet = \markup{Words and tune (14th cent.) from \italic{Piæ Cantiones,} 1582}
+    composer = "Arranged by G.H. Palmer"
   }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 14.8) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 14.8 20))) }
-
-
-
-
-
-
-
-
-
-
-
-
 
 global = {
   \key d \major
   \time 4/4
   \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
 }
 
 sopMusic = \relative c' {
@@ -225,25 +161,8 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-%6.14 \context {\Lyrics\override LyricText #'font-size = #0.9 }
-    #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 14.5 20)))
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
-    }
-  }
+  \layout { }
   
   \midi {
     \tempo 4 = 120

@@ -1,71 +1,22 @@
 ﻿\version "2.14.2"
 \include "util.ly"
-\header {
-  tagline = \markup \concat{ "from " \italic "The English Hymnal" \oldStyleNum", 1906"}
+\header { 
+    title = "On Jordan’s Bank"
+    poet = \markup{\italic{Jordanis oras prævia}, by Charles Coffin (1676–1749)}
+    meter = \markup"Translated by John Chandler (1806–1876)"
+    composer = \markup{ tune is \italic{Winchester New}}
+    arranger = \markup{"Adapted from Chorale in " \italic"Musikalisches Hand-Buch" ", 1690"}
+    %tagline = \markup \concat{ "from " \italic "The English Hymnal" ", 1906"}
+  }
 
-    title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"On Jordan’s Bank"}}
-    poet = \markup\concat{\italic"Jordanis oras prævia" \oldStyleNum", by Charles Coffin (1676–1749)"}
-    meter = \markup\oldStyleNum"Translated by John Chandler (1806–1876)"
-    composer = \markup\italic"Winchester New"
-    arranger = \markup\concat{"Adapted from Chorale in " \italic"Musikalisches Hand-Buch" \oldStyleNum", 1690"}
-    tagline = \markup \concat{ "from " \italic "The English Hymnal" \oldStyleNum", 1906"}
-  }
-\paper {
-  print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  score-markup-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0)
-       (stretchability . 50))
-  system-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -5)
-       (stretchability . 70))
-  last-bottom-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -0.5)
-       (stretchability . 0))
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #006
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCaps advent}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 14.5) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 14.5 20))) }
 global = {
   \key bes \major
   \time 4/4
   \autoBeamOff
+  %\tempo 4 = 56
 }
 
 sopMusic = \relative c' {
-  %\tempo 4 = 56
   \partial 4 f4 |
   bes f g g |
   f ees d d |
@@ -205,21 +156,7 @@ pianoLH = \relative c' {
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
-    }
-  }
+  \layout { }
   
   \midi {
     \tempo 4 = 112

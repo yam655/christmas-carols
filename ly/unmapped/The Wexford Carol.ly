@@ -1,50 +1,12 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"The Wexford Carol"}}
-  poet = \markup\oldStyleNum"Traditional, 16th Century or earlier"
-  composer = \markup\oldStyleNum"Traditional"
-  %arranger = \markup\oldStyleNum"Edited by Benjamin Bloomfield (1984–)"
-  tagline = \markup { \center-column { \concat{"from "\italic"free-scores.com" ", with additional verses from"} \concat{\italic"Some Ancient Christmas Carols with the Tunes To Which They Were Formerly Sung in the West of England" \oldStyleNum", 1822,"} \concat{"via "\italic"books.google.com"}}}
+  title = "The Wexford Carol"
+  poet = "Traditional, 16th Century or earlier"
+  composer = "Traditional"
+  tagline = \markup { from \italic{free-scores.com}, with additional verses from \italic{Some Ancient Christmas Carols with the Tunes To Which They Were Formerly Sung in the West of England}, 1822}
 }
-\paper {
-  %print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  %system-system-spacing =
-  %  #'((basic-distance . 0)
-  %     (minimum-distance . 0)
-  %     (padding . -0.35)
-  %     (stretchability . 100))
-  ragged-last-bottom = ##f
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #056
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
+
 global = {
   \key g \major
   \time 3/4
@@ -387,21 +349,7 @@ pianoLH = \relative c' {
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
-    }
-  }
+  \layout { }
   \midi {
     \tempo 4 = 65
     \set Staff.midiInstrument = "flute"

@@ -1,78 +1,28 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"O Holy Night"}}
-  subtitle = \markup{\override #'(font-name . "Garamond Premier Pro"){ \abs-fontsize #10.5 "(Cantique de Noël)"}}
-  composer = \markup\oldStyleNum"Adolphe Adam (1803–1856)"
-  tagline = \markup { "from" \concat{\italic "Christmas Carols and Hymns for School and Choir" \oldStyleNum", 1910"}}
-  poet = \markup\oldStyleNum"Placide Cappeau (1808–1877)"
-  meter = \markup\oldStyleNum"Translated by John Sullivan Dwight (1813–1893)"
+  title = "O Holy Night"
+  subtitle = "(Cantique de Noël)"
+  composer = "Adolphe Adam (1803–1856)"
+  %tagline = \markup { "from" \concat{\italic "Christmas Carols and Hymns for School and Choir" ", 1910"}}
+  poet = "Placide Cappeau (1808–1877)"
+  meter = "Translated by John Sullivan Dwight (1813–1893)"
 }
-\paper {
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  system-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -15)
-       (stretchability . 100))
-  markup-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 1)
-       (stretchability . 0))
-  top-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0)
-       (stretchability . 0))
-%8.5x11  system-system-spacing #'stretchability = 100
-%8.5x11  markup-system-spacing #'stretchability = 100
-%8.5x11  top-system-spacing #'stretchability = 80
-%8.5x11  last-bottom-spacing #'stretchability = 80
-  ragged-last-bottom = ##f
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #080
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
+
 global = {
   \key des \major
   \time 4/4
   \autoBeamOff
-  #'line-break-system-details #'((alignment-distances . (-100)))
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+  %#'line-break-system-details #'((alignment-distances . (-100)))
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
 }
 globalNoTime = {
   \key des \major
   \autoBeamOff
-  #'line-break-system-details #'((alignment-distances . (-100)))
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+  %#'line-break-system-details #'((alignment-distances . (-100)))
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
 }
 
 sopMusicPre = \relative c' {
@@ -560,10 +510,6 @@ pianoLH = \relative c {
          (minimum-distance . 1)
          (padding . 1)
          (stretchability . 2))
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
     }
   }
   \midi {

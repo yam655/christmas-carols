@@ -1,106 +1,19 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  tagline = \markup \concat{ "from " \italic"The Wartburg Hymnal" \oldStyleNum", 1918, via " \italic"HymnsAndCarolsOfChristmas.com"}
 
-    title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"O Du Fröhliche"}}
-    poet = \markup\oldStyleNum"Johannes Daniel Falk (1768–1826)"
-    composer = \markup\oldStyleNum"Sicilian Hymn"
-    tagline = \markup \concat{ "from " \italic"The Wartburg Hymnal" \oldStyleNum", 1918, via " \italic"HymnsAndCarolsOfChristmas.com"}
+    title = "O Du Fröhliche"
+    poet = "Johannes Daniel Falk (1768–1826)"
+    composer = "Sicilian Hymn"
+    %tagline = \markup \concat{ "from " \italic"The Wartburg Hymnal" ", 1918, via " \italic"HymnsAndCarolsOfChristmas.com"}
+    %\markup{from \italic{The English Carol Book, Second Series}, 1913, via \italic{HymnsAndCarolsOfChristmas.com}}
   }
-\paper {
-  print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  score-markup-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0)
-       (stretchability . 0))
-  system-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -5)
-       (stretchability . 100))
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #088
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
-
-\markup\fill-line{\concat{"from " \italic"The English Carol Book, Second Series" \oldStyleNum", 1913, via " \italic"HymnsAndCarolsOfChristmas.com"}}
-\markup\vspace#2
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 global = {
   \key f \major
   \time 4/4
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(1 . 1)
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(1 . 1)
 }
 
 sopMusic = \relative c'' {
@@ -262,24 +175,7 @@ pianoLH = \relative c' {
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-
-%6.14 \context {\Lyrics\override LyricText #'font-size = #0.6 }
-    #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 14.5 20)))
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
-    }
-  }
+  \layout { }
   
   \midi {
     \tempo 4 = 90

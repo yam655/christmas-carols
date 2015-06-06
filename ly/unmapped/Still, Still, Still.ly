@@ -1,89 +1,19 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-    title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"Still, Still, Still"}}
-    poet = \markup\oldStyleNum"Traditional Austrian"
-    composer = \markup\oldStyleNum"Salzburg Melody, c. 1819"
-    tagline = \markup\concat{ "from " \italic "Salzburgische Volks-Lieder" \oldStyleNum", 1865"}
-  }\paper {
-  print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  system-system-spacing =
-    #'((basic-distance . 2)
-       (minimum-distance . 0)
-       (padding . -5)
-       (stretchability . 100))
-  score-markup-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0.5)
-       (stretchability . 0))
-%{IF_LESSER
-  markup-system-spacing #'stretchability = 50
-  top-markup-spacing #'stretchability = 30
-  last-bottom-spacing #'stretchability = 60
-%}%END_IF_LESSER
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #170
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
+    title = "Still, Still, Still"
+    poet = "Traditional Austrian"
+    composer = "Salzburg Melody, c. 1819"
+    %tagline = \markup{ from \italic {Salzburgische Volks-Lieder}, 1865}
+    %\markup\fill-line{\concat { "from " \italic "The Cowley Carol Book" ", 1919"}}
   }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
-%IF_NOT_LESSER
-
-\markup\fill-line{\concat { "from " \italic "The Cowley Carol Book" \oldStyleNum", 1919"}}
-\markup\vspace#4
-%END_IF_NOT_LESSER
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 global = {
   \key ees \major
   \time 4/4
   \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
 }
 
 sopMusic = \relative c'' {
@@ -242,21 +172,7 @@ pianoLH = \relative c' {
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
-    }
-  }
+  \layout { }
   
   \midi {
     \tempo 4 = 77

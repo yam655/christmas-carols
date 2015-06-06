@@ -1,49 +1,18 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"Rise Up, Shepherds, and Follow"}}
-  poet = \markup\oldStyleNum"Traditional"
-  composer = \markup\oldStyleNum"Spiritual"
-  arranger = \markup\oldStyleNum"Arranged by Allen L. Richardson"
+  title = "Rise Up, Shepherds, and Follow"
+  poet = "Traditional"
+  composer = "Spiritual"
+  arranger = "Arranged by Allen L. Richardson"
   tagline = ""
 }
-\paper {
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  ragged-last-bottom = ##f
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #100
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 14.7) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 14.7 20))) }
+
 global = {
   \key ees \major
   \time 4/4
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-0.5 . 0.5)
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(-0.5 . 0.5)
 }
 
 sopMusic = \relative c'' {
@@ -281,10 +250,6 @@ pianoLH = \relative c' {
       % can be closer to the staff
       \Staff
       \override VerticalAxisGroup #'minimum-Y-extent = #'(-3 . 3)
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
     }
   }
   \midi {

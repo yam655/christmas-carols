@@ -1,56 +1,20 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"Carol of the Bells"}}
-  subtitle = \markup{\override #'(font-name . "Garamond Premier Pro"){ \abs-fontsize #10.5 "(Ukrainian Carol)"}}
-  poet = \markup\oldStyleNum"Peter J. Wilhousky (1902–1978)"
-  composer = \markup\oldStyleNum"Mikola Dmytrovitch Leontovych (1877–1921)"
-  tagline = \markup { "from" \italic {HymnsAndCarolsOfChristmas.com}}
+  title = "Carol of the Lala (Schedryck)"
+  % The lyrics for "Carol of the Bells" is under Copyright in the United States
+
+  poet = "S.W. Black"
+  composer = \markup{tune is \italic{Schedryck}, Mikola Dmytrovitch Leontovych (1877–1921)}
+  %tagline = \markup { "from" \italic {HymnsAndCarolsOfChristmas.com}}
 }
-\paper {
-  %print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  %system-system-spacing =
-  %  #'((basic-distance . 0)
-  %     (minimum-distance . 0)
-  %     (padding . -0.35)
-  %     (stretchability . 100))
-  ragged-last-bottom = ##f
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #108
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
+
 global = {
   \key bes \major
   \time 3/4
   \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-0.5 . 0.5)
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(-0.5 . 0.5)
 }
 
 sopMusic = \relative c'' {
@@ -117,27 +81,27 @@ sopMusic = \relative c'' {
   }
 }
 sopWordsBelow = \lyricmode {
-  Hark! how the bells, sweet sil -- ver bells,
-  All seem to say, throw cares a -- way.
+  La! la  la  la, la la -- la la,
+  la la la la, la la la -- la.
   
 }
 sopWords = \lyricmode {
   \repeat unfold 16 { \skip 1 }
-  Christ -- mas is here, bring -- ing good cheer,
-  To young and old, meek and the bold,
+  La -- la la la, la -- la la la,
+  la la la la, la la la la,
   
-  Ding, dong, ding, dong, that is their song.
-  With joy -- ful ring, all ca -- rol -- ing.
+  Bing, Bong, Bing, Bong, la la la la.
+  La la -- la la, la la -- la -- la.
   
   \repeat unfold 48 { \skip 1}
-  Mer -- ry, mer -- ry, mer -- ry, mer -- ry Christ -- mas!
-  Mer -- ry, mer -- ry, mer -- ry, mer -- ry Christ -- mas!
+  La -- la, la -- la, la -- la, la -- la la -- la!
+  La -- la, la -- la, la -- la, la -- la la -- la!
   
-  On, on they send, on with -- out end
-  Their joy -- ful tone to ev -- ’ry home!
+  La, la la la, la la -- la la
+  la la -- la la la la -- ’la la!
   
-  Hark! how the bells, sweet sil -- ver bells
-  All seems to say throw cares a -- way.
+  La! la la la, la la -- la la
+  la la la la la la la -- la.
 }
 
 altoMusic = \relative c'' {
@@ -203,39 +167,40 @@ altoMusic = \relative c'' {
 }
 altoWords = {
   \lyricmode {
-    Ding! Dong! Ding! Dong!
+    Bing! Bong! Bing! Bong!
     \dropLyricsV
-    Ding! Dong! Ding! Dong!
+    Bing! Bong! Bing! Bong!
     
     \set associatedVoice = "sopranos"
-    One seems to hear words of good cheer,
-    From ev -- ’ry -- where fill -- ing the air.
+    La la la la la la la la,
+    la la -- ’la -- la la -- la la la.
     
-    Oh, how they pound, rais -- ing the sound
-    O’er hill and dale, tell -- ing their tale.
+    La, la la la, la -- la la la
+    la la la la, la -- la la la.
     \unset associatedVoice
   }
   \set stanza = \markup\dynamic"f "
   \lyricmode{
-    Gai -- ly they ring while peo -- ple sing
-    Songs of good cheer, Christ -- mas is \set associatedVoice = "tenors"
-    here.
+    La -- la la la la la -- la la
+    la la la la, la -- la la
+    \set associatedVoice = "tenors"
+    la.
     
-    Ding, dong, ding, dong,
-    Ding, dong, ding, dong,
-    Ding, dong, ding, dong,
-    Ding, dong, ding, dong,
+    Bing, bong, bing, bong,
+    bing, bong, bing, bong,
+    bing, bong, bing, bong,
+    bing, bong, bing, bong,
     \unset associatedVoice
-    Ding! Dong!
-    Ding! Dong!
+    Bing! Bong!
+    Bing! Bong!
     
-    Ding! Dong!
-    Ding! Dong!
+    Bing! Bong!
+    Bing! Bong!
     
     \raiseLyrics
-    Ding! Dong!
-    Ding! Dong!
-    Ding, dong, ding dong! __
+    Bing! Bong!
+    Bing! Bong!
+    Bing, bong, bing bong! __
   }
 }
 tenorMusic = \relative c' {
@@ -297,10 +262,10 @@ tenorMusic = \relative c' {
 }
 tenorWords = \lyricmode {
   \repeat unfold 76 {\skip 1}
-  On, on they send on with -- out end
-  Their joy -- ful tone to ev -- ’ry home.
+  La, la la la la la -- la la
+  la la -- la la la la -- ’la la.
   
-  Dong!
+  Bong!
 }
 
 bassMusic = \relative c {
@@ -389,17 +354,8 @@ pianoLH = \relative c' {
   >>
   \layout {
     \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
       % Remove all empty staves
       \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
     }
   }
   

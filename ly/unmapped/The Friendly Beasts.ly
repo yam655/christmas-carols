@@ -1,53 +1,12 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-    title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"The Friendly Beasts"}}
-    poet = \markup\oldStyleNum"Robert Davis (1881–1950)"
-    composer = \markup\concat{"Adapted from "\italic"Orientis Partibus" \oldStyleNum", 12th Century French"}
-    tagline = \markup { "from" \italic {HymnsAndCarolsOfChristmas.com}}
-  }\paper {
-  print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  system-system-spacing =
-    #'((basic-distance . 10)
-       (minimum-distance . 10)
-       (padding . 1.5)
-       (stretchability . 100))
-  score-markup-spacing = 
-    #'((basic-distance . 5)
-       (minimum-distance . 5)
-       (padding . 1)
-       (stretchability . 0))
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #078
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
+    title = "The Friendly Beasts"
+    poet = "Robert Davis (1881–1950)"
+    composer = \markup{Adapted from \italic{Orientis Partibus}, 12th Century French}
+    %tagline = \markup { "from" \italic {HymnsAndCarolsOfChristmas.com}}
   }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
+
 global = {
   \key f \major
   \time 3/4
@@ -340,26 +299,10 @@ bassWords = \lyricmode {
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout {
-%{IF_LESSER
-\context {
-  \Lyrics
-  \override LyricText #'font-size = #1.2
-}
-%}%END_IF_LESSER
-%6.14 \context {\Lyrics\override LyricText #'font-size = #0.8 }
-    #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 14.4 20)))
     \context {
       \Score
       \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
       \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
     }
   }
   

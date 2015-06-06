@@ -1,86 +1,20 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-    tagline = \markup { "from" \italic {ChristmasCarolMusic.org}}
-
-    title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"Quem Pastores"}}
-%    poet = \markup\oldStyleNum"Anonymous, 14th Century"
-%    composer = \markup\oldStyleNum"14th Century German"
-    composer = \markup\oldStyleNum"Arranged by Ralph Vaughan Williams (1872–1958)"
-    tagline = \markup { "from" \italic {ChristmasCarolMusic.org}}
+    title = "Quem Pastores"
+    poet = \markup"Anonymous, 14th Century"
+    composer = \markup"14th Century German"
+    arranger = \markup"Arranged by Ralph Vaughan Williams (1872–1958)"
+    %tagline = \markup { "from" \italic {ChristmasCarolMusic.org}}
+    %\concat{ "Music from " \italic "The Cowley Carol Book" ", 1919, Words from " \italic "HymnsAndCarolsOfChristmas.com"}}}
   }
-\paper {
-  print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  system-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . -15)
-       (stretchability . 100))
-  score-markup-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0)
-       (stretchability . 0))
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #163
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
-  }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 15) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20))) }
-
-\markup \fill-line {\center-column{
-  \concat{ "Music from " \italic "The Cowley Carol Book" \oldStyleNum", 1919, Words from " \italic "HymnsAndCarolsOfChristmas.com"}}}
-\markup\vspace#1
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 global = {
   \key f \major
   \time 3/4
   \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
 }
 
 sopMusic = \relative c' {
@@ -247,21 +181,7 @@ pianoLH = \relative c' {
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
-    }
-  }
+  \layout { }
   
   \midi {
     \tempo 4 = 120

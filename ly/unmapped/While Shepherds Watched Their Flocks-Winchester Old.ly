@@ -1,88 +1,22 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-    title = \markup{\override #'(font-name . "Garamond Premier Pro Semibold"){ \abs-fontsize #15 \smallCapsOldStyle"While Shepherds Watched Their Flocks"}}
-    poet = \markup\oldStyleNum"Nahum Tate (1652–1715)"
-    composer = \markup\concat{\italic"Winchester Old" \oldStyleNum", by George Kirbye (c. 1565–1634)"}
-  }\paper {
-  print-all-headers = ##f
-  paper-height = 9\in
-  paper-width = 6\in
-  indent = 0\in
-  %system-system-spacing = #'((basic-distance . 10) (padding . 0))
-  system-system-spacing =
-    #'((basic-distance . 35)
-       (minimum-distance . 0)
-       (padding . -2)
-       (stretchability . 200))
-  markup-system-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0.5)
-       (stretchability . 0))
-  system-markup-spacing =
-    #'((basic-distance . 0)
-       (minimum-distance . 0)
-       (padding . 0.5)
-       (stretchability . 0))
-  
-  ragged-last-bottom = ##t
-  ragged-bottom = ##f
-  two-sided = ##t
-  inner-margin = 0.5\in
-  outer-margin = 0.25\in
-  top-margin = 0.25\in
-  bottom-margin = 0.25\in
-  first-page-number = #055
-  print-first-page-number = ##t
-  headerLine = \markup{\override #'(font-name . "Garamond Premier Pro") \smallCapsOldStyle"christmas"}
-  oddHeaderMarkup = \markup\fill-line{
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine 
-        \fill-line{"" \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        }
-        \fill-line{\headerLine}
+    title = "While Shepherds Watched Their Flocks"
+    poet = "Nahum Tate (1652–1715)"
+    composer = \markup{tune is \italic{Winchester Old}, by George Kirbye (c. 1565–1634)}
+    %tagline = \markup{ from \italic {Church Sunday School Hymn-Book}, 1892, via \italic{HymnsAndCarolsOfChristmas.com}}
   }
-  evenHeaderMarkup = \markup {
-     \override #'(font-name . "Garamond Premier Pro")\abs-fontsize #8.5
-     \combine
-        \on-the-fly #print-page-number-check-first
-        \oldStylePageNum""
-        \fill-line{\headerLine}
-  }
-}
-#(set-global-staff-size 14.6) \paper{ #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 14.6 20))) }
 
-\markup \fill-line \center-align { \concat { "from " \italic\oldStyleNum "Sunday School Hymns No. 1" \oldStyleNum", 1903, via " \italic"HymnsAndCarolsOfChristmas.com"}}
-\markup\vspace#0.5
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\header {
-  tagline = \markup\concat { "from " \italic "Church Sunday School Hymn-Book" \oldStyleNum", 1892, via " \italic"HymnsAndCarolsOfChristmas.com"}
-}
 global = {
   \key g \major
   \time 4/4
   \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+  %\override DynamicLineSpanner #'staff-padding = #0.0
+  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+  \tempo 4 = 92
 }
 
 sopMusic = \relative c' {
-  \tempo 4 = 92
   \partial 4 g'4 |
   b4. b8 a4 g |
   c c b \bar"||"
@@ -236,23 +170,7 @@ bassWords = \lyricmode {
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    %#(layout-set-staff-size 15)
-    #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 15 20)))
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-    \context {
-      % Remove all empty staves
-      % \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
-    }
-    \context {
-      \Lyrics
-      \override LyricText #'X-offset = #center-on-word
-    }
-  }
+  \layout { }
   
   \midi {
     \tempo 4 = 92

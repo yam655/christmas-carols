@@ -19,14 +19,16 @@
   bottom-margin = 0.25\in
   first-page-number = #1
   print-first-page-number = ##t
-  headerLine = \markup{\smallCaps "Christmas"}
+  headerMarkup = \markup\fromproperty #'header:section
   oddHeaderMarkup = \markup\fill-line{
+        ""
         \on-the-fly #print-page-number-check-first
-        \fill-line{\headerLine}
+        \headerMarkup
   }
-  evenHeaderMarkup = \markup {
+  evenHeaderMarkup = \markup\fill-line{
+        \headerMarkup
         \on-the-fly #print-page-number-check-first
-        \fill-line{\headerLine}
+        ""
   }
 }
 
@@ -47,7 +49,7 @@
 \include "unmapped/O_Come_All_Ye_Faithful.ly"
 \include "unmapped/Joy_to_the_World.ly"
 \include "unmapped/A_Child_this_day_is_born.ly"
-\include "unmapped/The_First_Noël.ly"
+\include "unmapped/The_First_Nowell.ly"
 \include "unmapped/When_Christ_was_born_of_Mary_free.ly"
 \include "unmapped/Hark_the_Herald_Angels_Sing.ly"
 \include "unmapped/Jesus_the_Light_of_the_World.ly"
@@ -111,7 +113,7 @@
 \include "unmapped/As_Lately_We_Watched.ly"
 \include "unmapped/The_Virgin_and_Child.ly"
 \include "unmapped/This_Endris_Night.ly"
-\include "unmapped/O_Du_Fröhliche.ly"
+\include "unmapped/O_Du_Froehliche.ly"
 \include "unmapped/Carol_of_the_Birds.ly"
 \include "unmapped/I_Heard_the_Bells_on_Christmas_Day.ly"
 \include "unmapped/Congaudeat_turba_fidelium.ly"
@@ -161,7 +163,7 @@
 \include "unmapped/Carol_for_Christmas_Day.ly"
 \include "unmapped/The_Sans_Day_Carol.ly"
 \include "unmapped/Chrystmasse_of_Olde.ly"
-\include "unmapped/Ad_cantus_lætitiæ.ly"
+\include "unmapped/Ad_cantus_laetitiae.ly"
 \include "unmapped/Christmas_Time_is_Come_Again.ly"
 \include "unmapped/A_Day_a_Day_of_Glory.ly"
 \include "unmapped/Earth_Today_Rejoices.ly"
@@ -185,16 +187,16 @@
 \include "unmapped/The_Story_of_the_Shepherd.ly"
 \include "unmapped/Sweet_was_the_song_the_Virgin_sung.ly"
 \include "unmapped/Still_Still_Still.ly"
-\include "unmapped/Kling_Glöckchen.ly"
+\include "unmapped/Kling_Gloeckchen.ly"
 \include "unmapped/Infant_Holy_Infant_Lowly.ly"
-\include "unmapped/Il_est_né_le_divin_Enfant.ly"
-\include "unmapped/Noël_Nouvelet.ly"
+\include "unmapped/Il_est_ne_le_divin_Enfant.ly"
+\include "unmapped/Noel_Nouvelet.ly"
 \include "unmapped/Fum_Fum_Fum.ly"
-\include "unmapped/Hacia_Belén_va_una_burra.ly"
+\include "unmapped/Hacia_Belen_va_una_burra.ly"
 \include "unmapped/Riu_Riu_Chiu.ly"
 \include "unmapped/In_the_Bleak_Midwinter-Darke.ly"
 \include "unmapped/In_the_Bleak_Midwinter-Holst.ly"
-\include "unmapped/Lætentur_Cœli.ly"
+\include "unmapped/Laetentur_Coeli.ly"
 \include "unmapped/Shiloh.ly"
 \include "unmapped/Myn_Lyking.ly"
 \include "unmapped/In_Terra_Pax.ly"

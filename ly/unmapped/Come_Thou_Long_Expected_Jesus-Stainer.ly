@@ -5,12 +5,14 @@
     title = "Come Thou Long Expected Jesus"
     poet = "Charles Wesley (1707–1788)"
     composer = \markup{\italic{Cross of Jesus}, Sir John Stainer (1840–1901)}
+    section = "Advent"
   }
 
 global = {
-  \key aes \major
-  \time 4/4
-  \autoBeamOff
+    \key aes \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -23,9 +25,6 @@ sopMusic = \relative c' {
   bes f' f ees |
   ees des c8[ bes] aes4 |
   aes g aes2 \bar "|."
-}
-sopWords = \lyricmode {
-  
 }
 
 altoMusic = \relative c' {
@@ -66,14 +65,6 @@ altoWordsIV = \lyricmode {
   By Thine own e -- ter -- nal Spi -- rit rule in all __ our hearts a -- lone;
   by Thy grace, help us to mer -- it life e -- ter -- nal at Thy throne.
 }
-altoWordsV = \lyricmode {
-  \set stanza = #"5. "
-  \set ignoreMelismata = ##t
-}
-altoWordsVI = \lyricmode {
-  \set stanza = #"6. "
-  \set ignoreMelismata = ##t
-}
 tenorMusic = \relative c' {
   aes4 aes bes bes |
   aes aes8[ bes] c4 bes |
@@ -84,9 +75,6 @@ tenorMusic = \relative c' {
   des bes c aes |
   aes bes8[ aes] g4 aes8[ bes] |
   c4 bes aes2 \bar "|."
-}
-tenorWords = \lyricmode {
-
 }
 
 bassMusic = \relative c {
@@ -100,16 +88,7 @@ bassMusic = \relative c {
   des bes c f |
   ees ees aes,2 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
 \score {
   <<
@@ -118,27 +97,20 @@ pianoLH = \relative c' {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women"  \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women"  \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women"  \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women"  \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women"  \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women"  \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altosII"  \lyricsto "sopranos" \altoWordsII
+    \new Lyrics = "altosIII" \lyricsto "sopranos" \altoWordsIII
+    \new Lyrics = "altosIV"  \lyricsto "sopranos" \altoWordsIV
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 105
     \set Staff.midiInstrument = "flute"
   
     \context {
@@ -147,3 +119,4 @@ pianoLH = \relative c' {
     }
   }
 }
+

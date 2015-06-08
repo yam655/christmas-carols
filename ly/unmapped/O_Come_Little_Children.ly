@@ -1,7 +1,7 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  title = "O Come, Little Children"}
+  title = "O Come, Little Children"
   poet = \markup{\italic{Ihr Kinderlein kommet}, by Christoph von Schmid (1768–1854)}
   composer = "Johann A. P. Schulz (1747–1800)"
   %tagline = \markup{from \italic"HymnsAndCarolsOfChristmas.com"}

@@ -1,7 +1,7 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  title = "The Coventry Carol"}
+  title = "The Coventry Carol"
   poet = "Robert Croo, 1534"
   composer = "16th Centry English Carol"
   arranger = "Arranged by Martin Fallas Shaw (1875–1958)"

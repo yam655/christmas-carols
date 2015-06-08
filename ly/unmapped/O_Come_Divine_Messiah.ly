@@ -2,19 +2,18 @@
 \include "util.ly"
 
 \header {
-  title = "O Come, Divine Messiah"
-  poet = "Abbé Simon J. Pellegrin (1663–1745)"
-  meter = "Translated by Sister Mary of St. Philip, SND (1825–1904)"
-  composer = "16th Century French Carol"
-  tagline = ""
+    title = "O Come, Divine Messiah"
+    poet = "Abbé Simon J. Pellegrin (1663–1745)"
+    meter = "Translated by Sister Mary of St. Philip, SND (1825–1904)"
+    composer = "16th Century French Carol"
+    section = "Advent"
 }
 
 global = {
-  \key g \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 6/8
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -27,7 +26,7 @@ sopMusic = \relative c' {
   
   c4. b4 d8 |
   b4 b8 a[ g] a |
-  g4.~ g4 b8\rest | \break
+  g4.~ g4 b8\rest | 
   a4. g4 fis8 |
   g4.~ g4. |
   a4. g4 fis8 |
@@ -48,9 +47,7 @@ sopMusic = \relative c' {
   b4 b8 a[ g] a |
   g2.^\fermata \bar "|."
 }
-sopWords = \lyricmode {
-  
-}
+
 
 altoMusic = \relative c' {
   d8 |
@@ -165,9 +162,6 @@ tenorMusic = \relative c {
   g4 g8 fis[ g] fis |
   b([ a8 fis] g4.)^\fermata \bar "|."
 }
-tenorWords = \lyricmode {
-
-}
 
 bassMusic = \relative c {
   d8 |
@@ -200,16 +194,7 @@ bassMusic = \relative c {
   g,8[ a] b d8[ e] d |
   g,2._\fermata \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
 \score {
   <<
@@ -218,26 +203,21 @@ pianoLH = \relative c' {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "altos" \altoWords
+    \new Lyrics = "altosVI"   \lyricsto "altos" \altoWordsVI
+    \new Lyrics = "altosV"   \lyricsto "altos" \altoWordsV
+    \new Lyrics = "altosIV"  \lyricsto "altos" \altoWordsIV
+    \new Lyrics = "altosIII"  \lyricsto "altos" \altoWordsIII
+    \new Lyrics = "altosII"   \lyricsto "altos" \altoWordsII
+    \new Lyrics = "altos"   \lyricsto "altos" \altoWords
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
     \set Staff.midiInstrument = "flute"
   
     \context {

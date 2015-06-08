@@ -3,7 +3,7 @@
 
 \header {
   title = "Infant Holy, Infant Lowly"
-  subtitle = "(W Żłobie Leży)"}}
+  subtitle = "(W Żłobie Leży)"
   poet = "Traditional Polish Carol"
   meter = "Translated by Edith M. G. Reed (1885–1933)"
   composer = "Traditional Polish Carol"

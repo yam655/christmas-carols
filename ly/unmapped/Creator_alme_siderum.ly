@@ -4,7 +4,8 @@
 \header {
     title = "Creator alme siderum"
     %subtitle = "(Vesper Hymn for Sundays in Advent)"
-    tagline = \markup { from \italic {Peters’ Sodality Hymn Book,} 1914}
+    %tagline = \markup { from \italic {Peters’ Sodality Hymn Book,} 1914}
+    section = "Advent"
 }
 
 global = {

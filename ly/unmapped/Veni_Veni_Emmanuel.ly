@@ -1,17 +1,16 @@
 ﻿\version "2.14.2"
 \include "util.ly"
 \header {
-  title = "Veni, Veni, Emmanuel"
-  composer = "Gregorian"
-  tagline = ""
+    title = "Veni, Veni, Emmanuel"
+    composer = "Gregorian"
+    section = "Advent"
 }
 
 global = {
-  \key g \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-0 . 0)
+    \key g \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 100
 }
 
 sopMusic = \relative c' {
@@ -23,48 +22,44 @@ sopMusic = \relative c' {
     b g e g |
     
     a( fis e) d |
-    e2. \bar""\break a4 |
+    e2. a4 |
     a e e fis |
     g2( fis4) e |
     
     d2. g4 |
     a b b b |
     a( c b) a |
-    \partial 2. g2. \bar "||" \break
+    g2. 
     
-    \partial 4 d'4 |
+    d'4 |
     d2. b4 |
     b2. b4 |
     a( c b) a |
     g2. a4 |
     b g e g |
     a( fis e) d |
-    \partial 2. <<e2. {s2^\> s8. s16\!}>>  \break
+    <<e2. {s2^\> s8. s16\!}>>  
   }
-  
-  
-  \partial 4 e4 |
+
+  e4 |
   g b b b |
   a( c b) a |
   g2. a4 |
   b g e g |
   
   a( fis e) d |
-  e2. \bar""\break a4 |
+  e2. a4 |
   a e e fis |
   g2( fis4) e |
   
   d2. g4 |
   a b b b |
   a( c b) a |
-  \partial 2. g2. \bar "||" \break
-}
-sopWords = \lyricmode {
-  
+  g2. \bar "||"
 }
 
 altoMusic = \relative c' {
-  b4 |
+  \partial 4 b4 |
   e b d g |
   g2. fis4 |
   g2. d4 |
@@ -74,12 +69,12 @@ altoMusic = \relative c' {
   b2. e8[ d] |
   c4 c e dis |
   e2( d4) cis |
-  
+
   d2. b4 |
   d d d g |
   g2. fis4 |
-  g2. |
-  
+  g2. 
+
   g4 |
   fis2. g4 |
   fis2. g4 |
@@ -88,9 +83,6 @@ altoMusic = \relative c' {
   g d e e |
   e( c b) b |
   b2.
-  
-  
-  
   
   b4 |
   e b d g |
@@ -164,12 +156,6 @@ altoWordsIV = \lyricmode {
   de spec -- tu tu -- os tar -- ta -- ri
   e -- duc et an -- tro ba -- ra -- thri.
 }
-altoWordsV = \lyricmode {
-}
-altoWordsVI = \lyricmode {
-}
-altoWordsVII = \lyricmode {
-}
 tenorMusic = \relative c' {
   g4 |
   b fis g d' |
@@ -195,10 +181,7 @@ tenorMusic = \relative c' {
   d d c b |
   a2( g4) fis |
   <<g2. {s2_\> s8. s16\!}>>
-  
-  
-  
-  
+
   g4 |
   b fis g d' |
   e2( d4) c |
@@ -215,12 +198,9 @@ tenorMusic = \relative c' {
   e2( d4) c |
   b2. |
 }
-tenorWords = \lyricmode {
-
-}
 
 bassMusic = \relative c {
-  e4 |
+  \partial 4 e4 |
   e d b g |
   c( a b) d |
   e2. d4 |
@@ -244,10 +224,7 @@ bassMusic = \relative c {
   g b, c e |
   c( a b) b |
   e2.
-  
-  
-  
-  
+
   e4 |
   e d b g |
   c( a b) d |
@@ -264,39 +241,27 @@ bassMusic = \relative c {
   c( a b) d |
   g,2. |
 }
-bassWords = \lyricmode {
-
-}
 
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "sopranos" \altoWordsVII
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "sopranos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+    \new Lyrics = "altosIII"   \lyricsto "sopranos" \altoWordsIII
+    \new Lyrics = "altosIV"   \lyricsto "sopranos" \altoWordsIV
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 100
     \set Staff.midiInstrument = "flute"
   
     \context {

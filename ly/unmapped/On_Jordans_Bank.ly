@@ -6,14 +6,15 @@
     meter = \markup"Translated by John Chandler (1806–1876)"
     composer = \markup{ tune is \italic{Winchester New}}
     arranger = \markup{"Adapted from Chorale in " \italic"Musikalisches Hand-Buch" ", 1690"}
-    %tagline = \markup \concat{ "from " \italic "The English Hymnal" ", 1906"}
+    section = "Advent"
   }
 
 global = {
-  \key bes \major
-  \time 4/4
-  \autoBeamOff
-  %\tempo 4 = 56
+    \key bes \major
+    \time 4/4
+    \autoBeamOff
+    %\tempo 4 = 56
+    \tempo 4 = 112
 }
 
 sopMusic = \relative c' {
@@ -28,9 +29,6 @@ sopMusic = \relative c' {
   
   bes g f bes |
   bes a bes\fermata \bar "|."
-}
-sopWords = \lyricmode {
-  
 }
 
 altoMusic = \relative c' {
@@ -87,10 +85,6 @@ altoWordsV = \lyricmode {
   Whom with the Fa -- ther, we a -- dore,
   And Ho -- ly Ghost, for ev -- er -- more.
 }
-altoWordsVI = \lyricmode {
-  \set stanza = #"6. "
-  \set ignoreMelismata = ##t
-}
 tenorMusic = \relative c' {
   bes4 |
   bes bes bes ees, |
@@ -103,9 +97,6 @@ tenorMusic = \relative c' {
   
   bes bes bes bes |
   c c d \bar "|."
-}
-tenorWords = \lyricmode {
-
 }
 
 bassMusic = \relative c {
@@ -121,16 +112,7 @@ bassMusic = \relative c {
   d ees d g |
   ees f bes, \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
 \score {
   <<
@@ -139,27 +121,21 @@ pianoLH = \relative c' {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "altos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "altos" \altoWordsII
+    \new Lyrics = "altosIII"  \lyricsto "altos" \altoWordsIII
+    \new Lyrics = "altosIV"  \lyricsto "altos" \altoWordsIV
+    \new Lyrics = "altosV"   \lyricsto "altos" \altoWordsV
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 112
     \set Staff.midiInstrument = "flute"
   
     \context {

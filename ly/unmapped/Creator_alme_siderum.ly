@@ -1,20 +1,19 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 
 \header {
     title = "Creator alme siderum"
     %subtitle = "(Vesper Hymn for Sundays in Advent)"
-    %tagline = \markup { from \italic {Peters’ Sodality Hymn Book,} 1914}
+    %source = \markup { from \italic {Peters’ Sodality Hymn Book,} 1914}
     section = "Advent"
 }
 
 global = {
-  \key f \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-  \set Score.timing = ##f
+    \key f \major
+    \time 6/8
+    \autoBeamOff
+    %\set Score.timing = ##f
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c'' {
@@ -60,7 +59,7 @@ altoAmen = \relative c' {
   f2. e2( f)
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1."
   Cre -- á -- tor al -- me sí -- de -- rum,
   Æ -- tér -- na lux cre -- dén -- ti -- um,
@@ -74,7 +73,7 @@ altoWords = \lyricmode {
   Tre -- mén -- te cur -- ván -- tur ge -- nu.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2."
   Qui dæ -- mo -- nis ne fráu -- di -- bus
@@ -91,7 +90,7 @@ altoWordsII = \lyricmode {
   A -- men.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3."
   Com -- mú -- ne qui mun -- di ne -- fas
   Ut ex -- pi -- á -- res, ad cru -- cem
@@ -105,17 +104,17 @@ altoWordsIII = \lyricmode {
   In sæ -- cu -- ló -- rum sæ -- cu -- la.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"4. "
   \set ignoreMelismata = ##t
 }
 altoWordsV = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"5. "
   \set ignoreMelismata = ##t
 }
 altoWordsVI = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"6. "
   \set ignoreMelismata = ##t
 }
@@ -137,9 +136,6 @@ tenorMusic = \relative c' {
 tenorAmen = \relative c' {
   c2. c1
 }
-tenorWords = \lyricmode {
-
-}
 
 bassMusic = \relative c {
   f4 f f
@@ -159,17 +155,9 @@ bassMusic = \relative c {
 bassAmen = \relative c {
   f2. c2( f)
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -189,18 +177,9 @@ pianoLH = \relative c' {
       \new Voice = "tenors" { \voiceOne << \global {\repeat unfold2  \tenorMusic \tenorAmen} >> }
       \new Voice = "basses" { \voiceTwo << \global {\repeat unfold2 \bassMusic \bassAmen} >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout {
-    #(define fonts (make-pango-font-tree "GoudyOlSt BT" "Garamond Premier Pro" "Garamond Premier Pro" (/ 14.9 20)))
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
     \context {
       % Remove all empty staves
       \Staff
@@ -210,12 +189,10 @@ pianoLH = \relative c' {
   }
   
   \midi {
-    \tempo 4 = 120
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+} 
 }
+

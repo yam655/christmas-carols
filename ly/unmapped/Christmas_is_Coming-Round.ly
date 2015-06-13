@@ -1,7 +1,7 @@
 ﻿\version "2.14.2"
-\include "util.ly"
 
-\header {tagline = ""
+
+\header {source = ""
     title = "Christmas is Coming"
     %subtitle = "(Three-part Round)"
     poet = "Traditional"
@@ -10,8 +10,9 @@
   }
 
 global = {
-  \key d \major
-  \time 4/4
+    \key d \major
+    \time 4/4
+    \tempo 4 = 240
 }
 
 sopMusic = \relative c'' {
@@ -31,25 +32,24 @@ sopMusic = \relative c'' {
   d,1 \bar "|."
 }
 sopWords = \lyricmode {
-  \dropLyricsIV
+  
   Christ -- mas is com -- ing! The goose is get -- ting fat;
   Please to put a pen -- ny in the old man’s hat,
   Please to put a pen -- ny in the old man’s hat.
 }
 
+\bookpart {
 \score {
-  \new Staff = women << \new Voice = sopranos { \global \sopMusic }
-    \new Lyrics \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
+  \new Staff = women <<
+    \new Voice { \global \sopMusic }
+    \new Lyrics \sopWords
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 240
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

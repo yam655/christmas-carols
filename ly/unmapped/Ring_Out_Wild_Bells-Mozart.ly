@@ -1,11 +1,11 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Ring Out, Wild Bells"
   poet = "Alfred Lord Tennyson (1809–1892)"
   composer = \markup{Adapted from \italic {Kyrie}, 12th Mass}
   arranger = "W.A. Mozart (1756–1791)"
-  %tagline = \markup { "from" \italic {HymnWiki.org}}
+  %source = \markup { "from" \italic {HymnWiki.org}}
 }
 
 global = {
@@ -14,12 +14,11 @@ global = {
     %\override Rest #'direction = #'0
     %\override MultiMeasureRest #'staff-position = #0
     \autoBeamOff
-    %\override DynamicLineSpanner #'staff-padding = #0.0
-    %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \tempo 4 = 120
 }
+
 sopWords = \lyricmode
-{
-  \dropLyricsV
+{ 
 	\set stanza = "1. "
 	%\set vocalName = "Men/Women/Unison/SATB"
   Ring out, wild bells, \set ignoreMelismata = ##t to the \unset ignoreMelismata wild sky,
@@ -36,7 +35,7 @@ sopWords = \lyricmode
 }
 sopWordsTwo = \lyricmode
 {
-  \dropLyricsV
+  
 	\set stanza = "2. "
   Ring out the old, ring in the new,
   Ring, hap -- py bells a -- cross the snow:
@@ -51,7 +50,7 @@ sopWordsTwo = \lyricmode
 }
 sopWordsThree = \lyricmode
 {
-  \dropLyricsV
+  
 	\set stanza = "3. "
   Ring out the grief that \set ignoreMelismata = ##t saps the \unset ignoreMelismata mind,
   For those that here we see no more:
@@ -67,7 +66,7 @@ sopWordsThree = \lyricmode
 }
 sopWordsFour = \lyricmode
 {
-  \dropLyricsV
+  
 	\set stanza = "4. "
   Ring out a slow -- ly \set ignoreMelismata = ##t dy -- ing \unset ignoreMelismata cause,
   And an -- cient forms of par -- ty strife:
@@ -82,10 +81,9 @@ sopWordsFour = \lyricmode
 }
 sopMusic = {
   \repeat volta 2 {
-    g'4 g' g' fis'2 d'4 c''2 c''4 b'2. \break d''4 d'' b'
-    d''4 (c'') a' g'2 b'8[ a'] a'2. \break g'4 g' g' fis'4. (e'8) d'4
-    c''2 c''4 b'2. \break d''4 d'' b' a' (c'') e'' g'2 fis'4 g'2.
-    \break
+    g'4 g' g' fis'2 d'4 c''2 c''4 b'2.  d''4 d'' b'
+    d''4 (c'') a' g'2 b'8[ a'] a'2.  g'4 g' g' fis'4. (e'8) d'4
+    c''2 c''4 b'2.  d''4 d'' b' a' (c'') e'' g'2 fis'4 g'2. 
   }
 }
 
@@ -95,29 +93,7 @@ altoMusic = {
   e'2 d'4 d'2 g'8[ fis'] fis'2. g'4 g' g' fis'4. (e'8) d'4
   d'2 d'4 d'2. d'4 g'4 f'4 e'2 e'4 d'2 c'4 b2.
 }
-altoWords = \lyricmode {
-}
-altoWordsII = \lyricmode {
-%\markup\italic
-  \set stanza = #"2. "
-  \set ignoreMelismata = ##t
-}
-altoWordsIII = \lyricmode {
-  \set stanza = #"3. "
-  \set ignoreMelismata = ##t
-}
-altoWordsIV = \lyricmode {
-  \set stanza = #"4. "
-  \set ignoreMelismata = ##t
-}
-altoWordsV = \lyricmode {
-  \set stanza = #"5. "
-  \set ignoreMelismata = ##t
-}
-altoWordsVI = \lyricmode {
-  \set stanza = #"6. "
-  \set ignoreMelismata = ##t
-}
+
 tenorMusic = {
   b4 b b a2 fis4 fis4 (a) d' d'2. b4 d' d'
   a2 c'4 b2 d'4 d'2. b4 d' b c'4. (b8) a8[ g]
@@ -136,13 +112,8 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -150,16 +121,10 @@ pianoLH = \relative c' {
       \new Voice = "sopranos" { \voiceOne << \global \repeat unfold2 \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \repeat unfold2 \altoMusic >> }
     >>
-    \new Lyrics \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWordsFour
-    \new Lyrics \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWordsThree
-    \new Lyrics \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWordsTwo
-    \new Lyrics \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "altos" \altoWords
+    \new Lyrics  \lyricsto "sopranos" \sopWords
+    \new Lyrics  \lyricsto "sopranos" \sopWordsTwo
+    \new Lyrics  \lyricsto "sopranos" \sopWordsThree
+    \new Lyrics  \lyricsto "sopranos" \sopWordsFour
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \repeat unfold2 \tenorMusic >> }
@@ -168,16 +133,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

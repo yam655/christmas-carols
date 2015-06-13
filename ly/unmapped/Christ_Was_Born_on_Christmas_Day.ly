@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "Christ Was Born on Christmas Day"
     poet = "John Mason Neale (1818–1866)"
     composer = \markup{14th Century German melody, \italic{Resonet in laudibus}}
     arranger = "Arranged chiefly by G. R. Woodward (1848–1934)"
-    %tagline = \markup { from \italic {The Cowley Carol Book}, 1919}
+    %source = \markup { from \italic {The Cowley Carol Book}, 1919}
   }
 
 global = {
-  \key f \major
-  \time 6/8
-  \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key f \major
+    \time 6/8
+    \autoBeamOff
+    \tempo 4 = 95
 }
 
 sopMusic = \relative c'' {
@@ -27,7 +26,7 @@ sopMusic = \relative c'' {
     bes4 a8 g4 a8 |
     c4 a8 f4 bes8 |
     a4 g8 g4 a8 |
-    f4. f\fermata \break
+    f4. f\fermata 
   }
   \repeat volta 2{
     c'4 a8 f4 a8 |
@@ -42,7 +41,7 @@ sopMusic = \relative c'' {
     
     %page2
     a4 g8 g4 a8 |
-    f4. f\fermata \break
+    f4. f\fermata 
   }
   
   f4 g8 a4 bes8 |
@@ -70,7 +69,7 @@ sopMusic = \relative c'' {
   
   %page3
   c4 d8 c4\fermata a8 |
-  c4\< d8\< c4\<\fermata f,8 |
+  c4\< d8 c4 \! \fermata f,8 |
   f4 g8 a4 bes8 |
   c4 bes8 a4 bes8 |
   
@@ -155,7 +154,7 @@ altoMusic = \relative c' {
   f[ d] e f4. \bar"|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #" 1."
   Christ was born on Christ -- mas Day,
   Wreathe the hol -- ly, twine the bay;
@@ -194,7 +193,7 @@ altoWords = \lyricmode {
   Ve -- ry ear -- ly, ve -- ry ear -- ly Christ was born.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #" 2."
   He is born to set us free,
   He is born our Lord to be,
@@ -355,21 +354,12 @@ bassMusic = \relative c {
   c4 d8 f4 bes,8 |
   c4 c8 f4.\fermata \bar"|."
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -387,13 +377,9 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout { }
-  
-  
+  \layout { } 
 }
 
 \score {
@@ -426,7 +412,6 @@ pianoLH = \relative c' {
   
   
   \midi {
-    \tempo 4 = 95
     \set Staff.midiInstrument = "flute"
   
     \context {
@@ -434,5 +419,6 @@ pianoLH = \relative c' {
       \remove "Dynamic_performer"
     }
   }
+} 
 }
 

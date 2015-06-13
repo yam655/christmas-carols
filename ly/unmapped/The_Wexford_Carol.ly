@@ -1,67 +1,69 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Wexford Carol"
   poet = "Traditional, 16th Century or earlier"
   composer = "Traditional"
-  tagline = \markup { from \italic{free-scores.com}, with additional verses from \italic{Some Ancient Christmas Carols with the Tunes To Which They Were Formerly Sung in the West of England}, 1822}
+  source = \markup { from \italic{free-scores.com}, with additional verses from \italic{Some Ancient Christmas Carols with the Tunes To Which They Were Formerly Sung in the West of England}, 1822}
 }
 
 global = {
-  \key g \major
-  \time 3/4
-  \autoBeamOff
-  \slurSolid
+    \key g \major
+    \time 3/4
+    \autoBeamOff
+    \slurSolid
+    \tempo 4 = 65
 }
 
 sopMusic = \relative c' {
+    \partial 8
   \repeat volta 3 {
-    \partial 8 d8 |
+    d8 |
     g8 g16[ fis] g4. a8 |
     b c d4 b8\rest d |
     c b g( d4) e8 |
     
-    f g f4 \bar"" \break b8\rest d, |
+    f g f4   b8\rest d, |
     g g16[ fis] g4. a8 |
     b c d4 b8\rest b |
     
     c d b( g4) a8 |
-    g g g4 \bar"" \break b8\rest g |
+    g g g4   b8\rest g |
     g8 f' d( c4) a8 |
     
     bes c bes4. d16[ c] |
     \times 2/3 {bes8[ a] g} g( d4) e8 |
-    f g f4 \bar"" \break b8\rest d, |
+    f g f4   b8\rest d, |
     
     g8 g16[ fis] g4. a8 |
     b c d4 b8\rest b |
     c d \slurDotted b8( g4) a8 |
-    \partial 8*5 g g g4. \break
+    g g g4. 
   }
   
   \repeat volta 3 {
     \slurSolid
-    \partial 8 d8 |
+    d8 |
     g8 g16[ fis] g4. a8 |
     b c d4 b8\rest d |
     c b g( d4) e8 |
     
-    f g f4 \bar"" \break b8\rest d, |
+    f g f4   b8\rest d, |
     g g16[ fis] g4. a8 |
     b c d4 b8\rest b |
     
     c d b( g4) a8 |
-    g g g4 \bar"" \break b8\rest g |
+    g g g4   b8\rest g |
     g8 f' d( c4) a8 |
     
     bes c bes4. d16[ c] |
     \times 2/3 {bes8[ a] g} g( d4) e8 |
-    f g f4 \bar"" \break b8\rest d, |
+    f g f4   b8\rest d, |
     
     g8 g16[ fis] g4. a8 |
     b c d4 b8\rest b |
     c d b8( g4) a8 |
-    \partial 8*5 g g g4.
+    g g g4.
   }
 }
 sopWords = \lyricmode {
@@ -79,7 +81,7 @@ altoMusic = \relative c' {
   g g fis4 s8 e |
   
   e8 d d( f4) e8 |
-  d c d4 s8 |
+  d c d4 s8 
   g |
   g a g( e4) f8 |
   
@@ -104,7 +106,7 @@ altoMusic = \relative c' {
   g g fis4 s8 e |
   
   e8 d d( f4) e8 |
-  d c d4 s8 |
+  d c d4 s8 
   g |
   g a g( e4) f8 |
   
@@ -118,7 +120,7 @@ altoMusic = \relative c' {
   e d b4.
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   \set associatedVoice = "tenors"
   Good peo -- ple all, __ this Christ -- mas time,
@@ -149,7 +151,7 @@ altoWords = \lyricmode {
   A prince -- ly babe sweet Je -- sus born.”
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   \set associatedVoice = "tenors"
@@ -176,7 +178,7 @@ altoWordsII = \lyricmode {
   Who came to earth to end all strife.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   \set associatedVoice = "tenors"
   Let all your songs __ and prais -- es be,
@@ -223,7 +225,7 @@ tenorMusic = \relative c {
   b g a4 s8 g |
   
   g g g4 c |
-  b8 c b4 s8 |
+  b8 c b4 s8 
   g |
   g c b( a4) c8 |
   
@@ -249,7 +251,7 @@ tenorMusic = \relative c {
   b g a4 s8 g |
   
   g g g4 c |
-  b8 c b4 s8 |
+  b8 c b4 s8 
   g |
   g c b( a4) c8 |
   
@@ -318,13 +320,9 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -347,16 +345,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 65
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

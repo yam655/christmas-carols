@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 
 \header {
   title = "Christmas Time is Come Again"
-  tagline = \markup { from \italic {Favorite Songs and Hymns for School and Home}, 1899}
+  source = \markup { from \italic {Favorite Songs and Hymns for School and Home}, 1899}
   composer = "Anonymous, 1863"
 }
 
 global = {
-  \key f \major
-  \time 3/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key f \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 95
 }
 
 sopMusic = \relative c' {
@@ -81,7 +80,7 @@ altoMusic = \relative c' {
 }
 
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
    Christ -- mas time is come a -- gain, \skip1
     Christ -- mas plea -- sures bring -- ing;
@@ -92,18 +91,18 @@ altoWords = \lyricmode {
   An -- gel bands o’er Beth -- lem’s plains,
     Sang the songs of heav -- en.
 
-  \dropLyricsVII
+  
   
   Glo -- ry be to God on high!
     Peace, good -- will to
     mor -- tals!
-  \dropLyricsV
+  
   Christ the Lord is born to -- night,
     Heav’n throws wide its por -- tals.
 
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   An -- gels sang; let men re -- ply,
@@ -195,17 +194,8 @@ bassMusic = \relative c {
   c8 c c4. c8 |
   f f4. d4\rest \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -226,18 +216,14 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 95
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }

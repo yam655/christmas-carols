@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Hail! Holy Child, Lain in an Oxen Manger"
   poet = "George Ratcliffe Woodward (1848–1934)"
   composer = \markup{Flemish, \italic{Quittez, pasteurs, vos brebis et houlette}}
   arranger = "Arranged by Charles Wood (1866–1926)"
-  %tagline = \markup { from  \italic {The Cambridge Carol Book}, 1924}
+  %source = \markup { from  \italic {The Cambridge Carol Book}, 1924}
 }
 
 global = {
-  \key f \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key f \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 180
 }
 
 sopMusic = \relative c' {
@@ -31,7 +30,7 @@ sopMusic = \relative c' {
   c,2. f4 |
   e f g e |
   
-  f( g) a \bar""\break g |
+  f( g) a  g |
   a g a b |
   c2. f4 |
   c2. f4 |
@@ -76,7 +75,7 @@ altoMusic = \relative c' {
   f2. \bar "|."
 }
 altoWords = \lyricmode {  
-  \dropLyricsV
+  
   \set stanza = #"1. "
   \set associatedVoice = "tenors"
   Hail! Ho -- ly Child,
@@ -92,7 +91,7 @@ altoWords = \lyricmode {
   a churl -- ish inn to dwell.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   \set associatedVoice = "tenors"
@@ -107,7 +106,7 @@ altoWordsII = \lyricmode {
   As -- say, as -- say my best, a lul -- la -- by.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   \set associatedVoice = "tenors"
   What if my flute
@@ -121,7 +120,7 @@ altoWordsIII = \lyricmode {
   Now flat, now flat, now sharp, be -- reft of grace.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   \set associatedVoice = "tenors"
   Thou wilt ac -- cept
@@ -202,17 +201,10 @@ bassMusic = \relative c {
   c,2 c |
   f2.\fermata \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -233,17 +225,13 @@ pianoLH = \relative c' {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "altos" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \midi {
-    \tempo 4 = 180
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

@@ -1,18 +1,19 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "How Great Our Joy!"
     poet = "German Carol"
-    meter = "Translated by Theodore Baker (1851–1934)"
+    translator = "Translated by Theodore Baker (1851–1934)"
     composer = "German Melody"
     arranger = "Arranged by Hugo Jüngst (1853–1923)"
-    %tagline = \markup { "from" \italic "CyberHymnal.org"}
+    %source = \markup { "from" \italic "CyberHymnal.org"}
   }
 
 global = {
-  \key bes \major
-  \time 2/4
-  \autoBeamOff
+    \key bes \major
+    \time 2/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
@@ -33,7 +34,7 @@ g2 |
 bes4 c |
 d2 |
 bes4 c |
-d2 | \break
+d2 | 
 d4 c8 bes |
 a4 g |
 
@@ -75,7 +76,7 @@ ees4 d8[ c] |
 bes2 \bar "|."
 }
 altoWords = {
-  \dropLyricsIX
+  
   \lyricmode {
     \set stanza = #"1. "
     While by the sheep we watched at night,
@@ -107,20 +108,20 @@ altoWords = {
   }
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
 There shall be born, so he did say,
 In Beth -- le -- hem a Child to -- day.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
 There shall the Child lie in a stall,
 This Child who shall re -- deem us all.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
 This gift of God we’ll cher -- ish well,
 That ev -- er joy our hearts shall fill.
@@ -142,8 +143,8 @@ d4 d8 bes |
 bes4. bes8 |
 
 bes4 f |
-\partial 4. f4. |\break
-\partial 8 g8 |
+f4. 
+g8 |
 fis4. fis8 |
 g2 |
 fis4. fis8 |
@@ -197,17 +198,10 @@ d'4 ees |
 c d |
 g,2 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -227,19 +221,15 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 120
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

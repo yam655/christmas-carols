@@ -1,21 +1,22 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Myn Lyking"
   poet = "15th Century"
   composer = "Richard R. Terry (1865–1938)"
-  tagline = \markup{ from \italic{Twelve Christmas Carols}, 1912}
+  source = \markup{ from \italic{Twelve Christmas Carols}, 1912}
 }
 
 global = {
-  \key g \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-0 . 0)
-  \mergeDifferentlyHeadedOn
-  \mergeDifferentlyDottedOn
+    \key g \major
+    \time 4/4
+    \autoBeamOff
+    \mergeDifferentlyHeadedOn
+    \mergeDifferentlyDottedOn
+    %\tempo 4 = 90
+    \tempo "Allegro moderato" 4 = 112
 }
+
 verseRests = { r1 | r1 | r1 | r2 r4 }
 verseRestsII = { r1 | r1 | r1 | r2 r4^\markup\italic"Fine." }
 verseMusic = \relative c'' {
@@ -24,7 +25,7 @@ verseMusic = \relative c'' {
   a8 a d4 c8[ b] a[ g] |
   a d,4 d8 d4. d8 |
   e[ fis] g d e fis g b |
-  d b e[ b] d2 \bar "||" \break
+  d b e[ b] d2 \bar "||" 
 }
 verseMusicII = \relative c'' {
   g4^\mf |
@@ -36,7 +37,7 @@ verseMusicII = \relative c'' {
   \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
   \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
   \mark "D.S. al Fine"
-  \break 
+   
   
   a8^\mf a d d c8 b a g |
   a4 d,8 d d2 |
@@ -45,7 +46,7 @@ verseMusicII = \relative c'' {
   \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
   \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
   \mark "D.S. al Fine"
-  \break 
+   
   
   a8^\mf a d4 c8[ b] a[ g] |
   a4 d,8 d d4. d8 |
@@ -61,7 +62,7 @@ sopMusic = \relative c'' {
   g4^\markup\italic"a tempo" g8 a b4 d8 b |
   a4 a8 g a4 b |
   g^\markup\italic"cresc. e rall." g8 a b4 c8 b^\markup\italic"dim." |
-  a^\markup\italic"rall." g a4 g2\fermata \break
+  a^\markup\italic"rall." g a4 g2\fermata 
 }
 verseWords = \lyricmode {
   \set stanza = #"1. "
@@ -236,13 +237,13 @@ pianoLH = \relative c' {
                   s1 |
                   b4. e8 s4 d,4 |
                   
-                  d4^\markup{\dynamic"pp" \italic "a tempo"} e d2 |
+                  d4 \pp ^\markup{"a tempo"} e d2 |
                   e2~ e8[ g fis e] |
                   d4^\markup\italic"rall."^\< g~ g c8[\! d] |
                   e[ b]^\> c4~ c\! b\fermata |
                   
                   
-                  b4^\markup{\dynamic"mf" \italic"a tempo"} g4 g c |
+                  b4 \mf ^\markup{\italic"a tempo"} g4 g c |
                   a d8[ a] c[ b a g] |
                   a4 c b s |
                   s2. s4 |
@@ -302,11 +303,13 @@ pianoLH = \relative c' {
   >>
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
     \new Staff = women <<
-      \new Voice = "sopranos" { \global \tempo "Allegro moderato" 4 = 112 \verseRests \verseMusic \voiceOne \sopMusic \oneVoice \verseRestsII \verseMusicII }
+      \new Voice = "sopranos" { \global 
+\verseRests \verseMusic \voiceOne \sopMusic \oneVoice \verseRestsII \verseMusicII }
       \new Voice = "altos" { \voiceTwo \global \chorusRests \altoMusic }
     >>
     \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
@@ -339,12 +342,9 @@ pianoLH = \relative c' {
     }
   }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

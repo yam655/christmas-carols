@@ -1,19 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
-  title = "Angels We Have Heard on High"
-  poet = \markup{\italic{Les Anges dans nos Campagnes}, 18th Century}
-  meter = "Translated by Bishop James Chadwick (1813–1882)"
-  composer = "18th Century French Carol"
-  %tagline = \markup \concat{ "from " \italic "Carols Old and Carols New" ", 1916, via " \italic"HymnsAndCarolsOfChristmas.com"}
-}
+
+songTitle = "Angels We Have Heard on High"
+songPoet = \markup{\italic{Les Anges dans nos Campagnes}, 18th Century}
+songTranslator = "Translated by Bishop James Chadwick (1813–1882)"
+tuneComposer = "18th Century French Carol"
+tuneSource = \markup{from \italic{Carols Old and Carols New}, 1916
+% via \italic{HymnsAndCarolsOfChristmas.com}}
 
 global = {
-  \key g \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(1 . -0.5)
+    \key g \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c'' {
@@ -27,14 +25,14 @@ sopMusic = \relative c'' {
   b4 a b d |
   b4. a8 g2 |
   
-  \break
+  
   d'2( e8[ d c b] |
   c2 d8[ c b a] |
   b2 c8[ b a g] |
   a4.) d,8 d2 |
   
   g4 a b c |
-  b2 a | \break
+  b2 a | 
   d2( e8[ d c b] |
   c2 d8[ c b a] |
   
@@ -44,9 +42,7 @@ sopMusic = \relative c'' {
   b2( a) |
   g2. b4\rest \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c'' {
   g4 g g g |
@@ -76,7 +72,7 @@ altoMusic = \relative c'' {
   d2. s4 \bar "|."
 }
 altoWords = {
-  \dropLyricsV
+  
   \lyricmode {
     \set stanza = #"1. "
     An -- gels we have heard on high,
@@ -84,7 +80,7 @@ altoWords = {
     And the moun -- tains in re -- ply
     Ech -- o -- ing their joy -- ous strains.
   }
-  \raiseLyrics
+  
   \set stanza = \markup\dynamic"mf  "
   \lyricmode {
     \markup\italic Glo -- \markup\italic ri -- \markup\italic a \markup\italic in \markup\italic ex -- \markup\italic cel -- \markup\italic sis \markup\italic De -- \markup\italic o, __
@@ -95,7 +91,7 @@ altoWords = {
   }
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   Shep -- herds, why this ju -- bi -- lee?
   Why your joy -- ous songs pro -- long?
@@ -103,7 +99,7 @@ altoWordsII = \lyricmode {
   Which in -- spire your heav’n -- ly song?
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Come to Beth -- le -- hem and see
   Him whose birth the an -- gels sing;
@@ -111,7 +107,7 @@ altoWordsIII = \lyricmode {
   Christ, the Lord, our new -- born King.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   See Him in a man -- ger laid,
   Whom the choirs of an -- gels praise;
@@ -146,9 +142,7 @@ tenorMusic = \relative c' {
   g( b d4. c8) |
   b2. s4 \bar "|."
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c' {
   g4 g g b |
@@ -177,14 +171,20 @@ bassMusic = \relative c' {
   d1 |
   g2. d4\rest \bar "|."
 }
-bassWords = \lyricmode {
 
+
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  translator = \songTranslator
+  composer = \tuneComposer
+  source = \tuneSource
 }
 
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -194,30 +194,17 @@ bassWords = \lyricmode {
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" } \lyricsto "tenors" \sopWords
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "tenors" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "tenors" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "tenors" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" } \lyricsto "tenors" \altoWords
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
+    \new Lyrics \with { alignBelowContext = #"women" } \lyricsto "tenors" \altoWords
+    \new Lyrics \with { alignBelowContext = #"women" } \lyricsto "tenors" \altoWordsII
+    \new Lyrics \with { alignBelowContext = #"women" } \lyricsto "tenors" \altoWordsIII
+    \new Lyrics \with { alignBelowContext = #"women" } \lyricsto "tenors" \altoWordsIV
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
-    }
-  }
+  \layout { }
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

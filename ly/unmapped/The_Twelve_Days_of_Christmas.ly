@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 
 \header {
   title = "The Twelve Days of Christmas"
   poet = "Traditional"
   composer = "Traditional"
-  tagline = ""
+  source = ""
 }
 
 global = {
-  \key g \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -21,15 +20,15 @@ sopMusic = \relative c' {
   d4 g8 g g4 fis8 g |
   a b c a b4. c8 |
   
-  d4 e8[ c] b g a4 | \break
+  d4 e8[ c] b g a4 | 
   g2~ g8 b\rest \bar "||"
   d,8 d |
   d8 g g g g4 fis8 g |
   
-  a b c a b2 | \break
+  a b c a b2 | 
   d4 a8 b c4 b8 c |
   d4 e8[ c] b g a4 |
-  g2~g8 b\rest | \break
+  g2~g8 b\rest | 
   
   \repeat volta 2 {
     d,8 d |
@@ -43,13 +42,13 @@ sopMusic = \relative c' {
     d4 e8[ c] b g a4 |
     g2~g8 b8\rest |
   }
-  \break
+  
   
   %5th verse
     \repeat volta 2 {
-    \partial 4 d,8 d |
+    d,8 d |
     d4 g8 g g4 fis8 g |
-    a b c a b2 | \break
+    a b c a b2 | 
     \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
     \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
     \mark\markup\italic"skip to appropriate measure"
@@ -69,7 +68,7 @@ sopMusic = \relative c' {
     d4 a8 b c a |
     \mark\markup\bold"6."
     d4 a8 b c a |
-    \break
+    
     \time 2/2
     \mark\markup\bold"5."    
     d2^\markup\italic"Slower" e8( cis4.) |
@@ -80,11 +79,8 @@ sopMusic = \relative c' {
     \time 4/4 a8[ g] fis e d4 b'8 c |
     
     d4^\markup\italic"(last time rall.)" e8[ c] b g a4 |
-    \partial 4*3 g2~g8 b8\rest
+    g2~g8 b8\rest
   }
-}
-sopWords = \lyricmode {
-  
 }
 
 altoMusic = \relative c' {
@@ -93,14 +89,14 @@ altoMusic = \relative c' {
   fis d d d d4. g8 |
   
   d4 g8[ e] d d fis4 |
-  d2~d8 s |
+  d2~d8 s 
   d d |
   d d d d d4 d8 d |
   
   fis d d d d2 |
   fis4 d8 d c4 g'8 e |
   d4 g8[ e] d d fis4 |
-  d2~d8 s |
+  d2~d8 s 
   
   d d |
   d4 d8 d d4 d8 d |
@@ -110,7 +106,7 @@ altoMusic = \relative c' {
   
   fis4 d8 d c4 g'8 e |
   d4 g8[ e] d d fis4 |
-  d2~d8 s |
+  d2~d8 s 
   
   
   %new stuff 5th verse
@@ -120,7 +116,7 @@ altoMusic = \relative c' {
   
   \repeat unfold 7 {fis4 d8 d c c |}
   
-  g'2 g |
+  g'2 g 
   fis1 |
   
   b8[ a] g fis e4 |
@@ -129,15 +125,9 @@ altoMusic = \relative c' {
   d4 g8[ e] d d fis4 |
   d2~d8 s |
 }
-dropLyrics =
-{
-    \override LyricText #'extra-offset = #'(0 . -1.4)
-    \override LyricHyphen #'extra-offset = #'(0 . -1.4)
-    \override LyricExtender #'extra-offset = #'(0 . -1.4)
-}
 
 altoWords = \lyricmode {
-  \dropLyricsIV
+  
   \set stanza = #"1. "
   On the first day of Christ -- mas my true love sent to me
   A par -- tridge in a pear tree. __
@@ -152,7 +142,7 @@ altoWords = \lyricmode {
   two tur -- tle -- doves, and a par -- tridge in a pear tree. __
   
   \set stanza = #"5."
-  On the fifth \dropLyrics day of Christ -- mas my true love sent to me \raiseLyrics
+  On the fifth  day of Christ -- mas my true love sent to me 
   
   Twelve drum -- mers drum -- ming,
   Elev’n pip -- ers pip -- ing,
@@ -170,7 +160,7 @@ altoWords = \lyricmode {
 
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIV
+  
 %\markup\italic
   \repeat unfold 46 \skip1
   \set stanza = #"4. "
@@ -205,14 +195,14 @@ tenorMusic = \relative c {
   a g a a g4. g8 |
   
   g4 g g8 b c4 |
-  b2~ b8 s |
+  b2~ b8 s 
   b8 b |
   b b b b b4 a8 b |
   
   a g a a g2 |
   a4 a8 a g4 g8 g |
   g4 g g8 b c4 |
-  b2~ b8 s |
+  b2~ b8 s 
   
   b8 b |
   b4 b8 b b4 a8 b |
@@ -222,7 +212,7 @@ tenorMusic = \relative c {
   
   a4 a8 a g4 g8 g |
   g4 g g8 b c4 |
-  b2~b8 s |
+  b2~b8 s 
   
   
   %5th verse
@@ -232,7 +222,7 @@ tenorMusic = \relative c {
   
   \repeat unfold 7 {a4 a8 a g fis |}
   
-  d'2 cis |
+  d'2 cis 
   c1 |
   
   g4 g8 a b4 |
@@ -240,9 +230,6 @@ tenorMusic = \relative c {
   c a8 g fis4 g8 g
   g4 g g8 b c4 |
   b2~b8 s |
-}
-tenorWords = \lyricmode {
-
 }
 
 bassMusic = \relative c {
@@ -286,49 +273,33 @@ bassMusic = \relative c {
   b4 c d8 d d4 |
   g,2~ g8 d'\rest |
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
-  <<
-   \new ChoirStaff <<
-    \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWords
-   \new Staff = men <<
-      \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
-  >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
+    <<
+        \new ChoirStaff <<
+            \new Staff = women <<
+                \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
+                \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+            >>
+            \new Lyrics = "altos"   \lyricsto "altos" \altoWords
+            \new Lyrics = "altosII"   \lyricsto "altos" \altoWordsII
+            \new Lyrics = "altosIII"  \lyricsto "altos" \altoWordsIII
+            \new Lyrics = "altosIV"   \lyricsto "altos" \altoWordsIV
+            \new Lyrics = "altosV"   \lyricsto "altos" \altoWordsV
+            \new Lyrics = "altosVI"   \lyricsto "altos" \altoWordsVI
+            \new Staff = men <<
+                \clef bass
+                \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
+                \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
+            >>
+        >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

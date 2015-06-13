@@ -1,25 +1,23 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Gloucestershire Wassail"
   poet = "18th Century English"
   composer = "18th Century English"
-  %arranger = "Arranged by BHB"
-  tagline = \markup ""
+  source = \markup ""
 }
 
 global = {
   \key g \major
   \time 3/4
   \autoBeamOff
-  \tempo"Allegro" 
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+  \tempo"Allegro" 4 = 170
 }
 
 sopMusic = \relative c' {
+    \partial 4
   \repeat volta 2 {
-    \partial 4 d4 |
+    d4 |
     \slurDotted g4( g) g |
     g( a) b |
     c b a |
@@ -38,12 +36,12 @@ sopMusic = \relative c' {
     b2 a8\noBeam b |
     c2 b4 |
     a g fis |
-    \partial 2 g2
+    g2
   }
   
   
   \repeat volta 2 {
-    \partial 4 d4 |
+    d4 |
     \slurDotted g4 g g |
     g a b |
     c b a |
@@ -62,7 +60,7 @@ sopMusic = \relative c' {
     b2 a8\noBeam( b) |
     c2 b4 |
     a( g) fis |
-    \partial 2 g2
+    g2
   }
 }
 sopWords = \lyricmode {
@@ -116,7 +114,7 @@ altoMusic = \relative c' {
   b2
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1."
   \set ignoreMelismata = ##t
   Was -- sail, __ _ was -- sail __ _ all o -- ver the town, _
@@ -134,7 +132,7 @@ altoWords = \lyricmode {
   With the was -- sail -- ing bowl we’ll drink un -- to thee.
 }
 altoWordsII = {
-  \dropLyricsIX
+  
   \set stanza = \markup{\dynamic"mf " "2."}
   \lyricmode {
   %\markup\italic
@@ -154,7 +152,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3."
   \set ignoreMelismata = ##t
   And here is to Dob -- bin and to his right eye, __ _
@@ -278,6 +276,7 @@ bassWords = \lyricmode {
 
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -301,16 +300,13 @@ bassWords = \lyricmode {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 170
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

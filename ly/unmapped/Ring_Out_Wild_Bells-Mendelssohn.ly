@@ -1,33 +1,32 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Ring Out, Wild Bells"
   poet = "Alfred Lord Tennyson (1809–1892)"
   composer = "Felix Mendelssohn (1809–1847)"
-  %tagline = \markup{ "from " \italic"The Life Hymnal" ", 1904"}
+  %source = \markup{ "from " \italic"The Life Hymnal" ", 1904"}
 }
 
 global = {
-  \key ees \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key ees \major
+    \time 6/8
+    \autoBeamOff
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c' {
   \partial 8 bes'8 |
   bes4 g8 ees4 f8 |
   g4 aes8 bes4 g8 |
-  g[ f] g ees4 bes'8 | \break
+  g[ f] g ees4 bes'8 | 
   
   bes[ aes] bes g4 bes8\rest |
   ees, g bes ees4 d8 |
-  c4 b8 c4 c8 | \break
+  c4 b8 c4 c8 | 
   
   ees[ c] aes f4 c'8 |
   bes4 aes8 g4 bes8\rest |
-  ees, g bes ees4 d8 | \break
+  ees, g bes ees4 d8 | 
   
   c4 b8 c4 c8 ees4.~ ees8[ c] aes |
   f4 g8 aes4 d,8 |
@@ -67,7 +66,7 @@ altoMusic = \relative c' {
   bes2. \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Ring out, wild bells, \set ignoreMelismata = ##t to the \unset ignoreMelismata wild sky,
   The fly -- ing cloud, the frost -- y light:
@@ -80,7 +79,7 @@ altoWords = \lyricmode {
   Ring out, wild bells, and let __ him __ die.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   Ring out the old, ring in the new,
@@ -94,7 +93,7 @@ altoWordsII = \lyricmode {
   Ring out the false, ring in __ the __ true.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Ring in the val -- iant man and free,
   The lar -- ger heart, the kind -- lier hand;
@@ -166,13 +165,7 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -197,16 +190,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

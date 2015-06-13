@@ -1,21 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Good King Wenceslas"
   poet = "John Mason Neale (1818–1866)"
   composer = \markup { \italic {Tempus adest floridum}, from \italic {Piæ Cantiones}, 1582}
   arranger = "Arranged by Sir John Stainer (1840–1901)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
   \key a \major
   \time 4/4
-  \tempo "Moderato"
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0.2 . -0.2)
-  %\override TextScript #'staff-padding = #0.0
-  %\override TextScript #'Y-extent = #'(0 . -0)
+  \tempo "Moderato" 4 = 120
 }
 
 sopMusic = \relative c'' {
@@ -67,7 +63,7 @@ altoMusic = \relative c' {
   e1 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   Good King Wen -- ces -- las look’d out
   On the Feast of Ste -- phen,
@@ -79,7 +75,7 @@ altoWords = \lyricmode {
   Gath -- ’ring win -- ter fu -- el.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"2. "
   “Hith -- er, page, and stand by me,
   If thou know’st it, tell -- ing;
@@ -91,7 +87,7 @@ altoWordsII = \lyricmode {
   By Saint Ag -- nes’ foun -- tain.
 }
 altoWordsIII = {
-  \dropLyricsIX
+  
   \set stanza = \markup{\dynamic"f  " "3. "}
   \lyricmode {
     “Bring me flesh, and bring me wine,
@@ -105,7 +101,7 @@ altoWordsIII = {
   }
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   “Sire, the night is dark -- er now,
   And the wind blows strong -- er;
@@ -117,7 +113,7 @@ altoWordsIV = \lyricmode {
   Freeze thy blood less cold -- ly.”
 }
 altoWordsV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"5. "
   In his mas -- ter’s steps he trod,
   Where the snow lay dint -- ed;
@@ -176,14 +172,12 @@ bassMusic = \relative c' {
   fis2( d) |
   a1 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -200,18 +194,14 @@ bassWords = \lyricmode {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

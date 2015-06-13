@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
-    %tagline = ""%\markup { "from" \italic {ChristmasCarolMusic.org}} 
-    title = "Away In A Manger"
-    poet = "Anonymous"
-    composer = "William Kirkpatrick (1838–1921)"
-  }
+
+songTitle = "Away In A Manger"
+songPoet = "Anonymous"
+tuneComposer = "William Kirkpatrick (1838–1921)"
+tuneSource = \markup \null % {from \italic {ChristmasCarolMusic.org}} 
 
 global = {
   \key f \major
@@ -59,7 +57,7 @@ altoMusic = \relative c' {
   c2 \bar"|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIV
+  
   \set stanza = #"1. "
   A -- way in a  man -- ger,
   No crib for His bed,
@@ -71,7 +69,7 @@ altoWords = \lyricmode {
   A -- sleep in the hay.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIV
+  
   \set stanza = #"2. "
   The cat -- tle are low -- ing,
   The poor ba -- by wakes,
@@ -83,7 +81,7 @@ altoWordsII = \lyricmode {
   Till mor -- ning is nigh.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIV
+  
   \set stanza = #"3. "
   Be near me, Lord Je -- sus,
   I __ ask Thee to stay
@@ -141,9 +139,15 @@ bassMusic = \relative c {
   g g g8[ c,] |
   f2 \bar"|."
 }
-bassWords = \lyricmode {
 
-}
+
+\bookpart { 
+\header {
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+    source = \tuneSource
+  }
 
 \score {
   <<
@@ -164,7 +168,6 @@ bassWords = \lyricmode {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
@@ -185,4 +188,5 @@ bassWords = \lyricmode {
       \remove "Dynamic_performer"
     }
   }
+}
 }

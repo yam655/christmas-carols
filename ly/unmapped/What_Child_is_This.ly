@@ -1,21 +1,20 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "What Child is This?"
   poet = "William C. Dix (1837–1898)"
   composer = "16th Century English Air"
   arranger = "Arranged by Sir John Stainer (1840–1901)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key g \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-  \mergeDifferentlyHeadedOn
-  \mergeDifferentlyDottedOn
+    \key g \major
+    \time 6/8
+    \autoBeamOff
+    \mergeDifferentlyHeadedOn
+    \mergeDifferentlyDottedOn
+    \tempo 4 = 60
 }
 
 sopMusic = \relative c' {
@@ -24,7 +23,7 @@ sopMusic = \relative c' {
   a4 fis8 d8.[ e16] fis8 |
   g4 e8 e8.[ dis16] e8 |
   
-  fis4. b,4 \bar""\break e8 |
+  fis4. b,4  e8 |
   g4 a8 b8.[ c16] b8 |
   a4 fis8 d8.[ e16] fis8 |
   g8.[ fis16] e8 dis8.[ cis16] dis8 |
@@ -38,7 +37,7 @@ sopMusic = \relative c' {
   d'4. d8.[ cis16] b8 |
   a4 fis8 d8.[ e16] fis8 |
   g8.[ fis16] e8 dis8.[ cis16] dis8 |
-  \partial 8*5 e4. e4 \bar "|."
+  e4. e4 \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -67,7 +66,7 @@ altoMusic = \relative c' {
   b4. b4 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1."
   What Child is this, Who, laid
   \set associatedVoice = "altos"
@@ -85,7 +84,7 @@ altoWords = \lyricmode {
   Christ the King;
   \unset associatedVoice
   Whom shep -- herds guard and an -- gels sing:
-  \raiseLyrics
+  
   Haste, haste __ to
   \set associatedVoice = "altos"
   bring Him laud,
@@ -93,7 +92,7 @@ altoWords = \lyricmode {
   The Babe, the Son __ of Ma -- ry!
 }
 altoWordsII = {
-  \dropLyricsV
+  
   \set stanza = \markup{\dynamic"  mf " "2."}
   \lyricmode {
     Why lies He in __ such
@@ -116,7 +115,7 @@ altoWordsII = {
     pierce Him through,
     \unset associatedVoice
     The Cross be borne, for me, for you:
-  \raiseLyrics
+  
     Hail, hail __ the
     \set associatedVoice = "altos"
     Word made flesh,
@@ -125,7 +124,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3."
   So bring Him in -- cense,
   \set associatedVoice = "altos"
@@ -145,7 +144,7 @@ altoWordsIII = \lyricmode {
   song on high
   \unset associatedVoice
   The Vir -- gin sings her lul -- la -- by:
-  \raiseLyrics
+  
   Joy, joy __ for
   \set associatedVoice = "altos"
   Christ is born,
@@ -210,17 +209,12 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -240,16 +234,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 60
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

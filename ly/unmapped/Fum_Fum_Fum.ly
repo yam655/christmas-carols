@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Fum, Fum, Fum"
   poet = "Catalonian"
   composer = "Arranged by Abel Di Marco, Pbro."
-  %tagline = \markup { from \italic "cpdl.org" "and" \italic"pucpr.edu"}
+  %source = \markup { from \italic "cpdl.org" "and" \italic"pucpr.edu"}
 }
 
 global = {
-  \key c \major
-  \time 3/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key c \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 88
 }
 
 sopMusic = \relative c' {
@@ -20,11 +19,11 @@ sopMusic = \relative c' {
   \tempo 4 = 88
   a'8. gis16 a8 c b a |
   gis( e) a b8\rest gis b\rest
-  \time 2/4 a2 \bar "||" \break
+  \time 2/4 a2 \bar "||" 
   
   \time 3/4 a8. gis16 a8 c b a |
   gis( e) a b8\rest gis b\rest
-  \time 2/4 a4. a16 b | \break
+  \time 2/4 a4. a16 b | 
   \repeat volta 2 {
     c8 c b b |
     
@@ -80,7 +79,7 @@ altoMusic = \relative c' {
   }
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set ignoreMelismata = ##t
   \set stanza = #"1. "
   Twen -- ty -- fifth day of De -- cem -- ber,
@@ -99,7 +98,7 @@ altoWords = \lyricmode {
   
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set ignoreMelismata = ##t
 %\markup\italic
   \set stanza = #"2. "
@@ -212,13 +211,7 @@ bassWords = \lyricmode {
   
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -241,7 +234,6 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 0) (padding . -0.5)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
@@ -271,17 +263,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 0) (padding . -0.5)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   
   \midi {
-    \tempo 4 = 88
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }
 

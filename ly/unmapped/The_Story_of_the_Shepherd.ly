@@ -1,17 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Story of the Shepherd"
   poet = \markup{\italic{Gongora}, a Spanish Carol}
-  meter = "Translated by Archdeacon Churton"
+  translator = "Translated by Archdeacon Churton"
   composer = "Joseph Barnby (1838–1896)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key f \major
-  \time 4/4
-  \autoBeamOff
+    \key f \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -19,7 +20,7 @@ sopMusic = \relative c' {
   a a f g |
   a4. bes8 a4 a |
   g f g gis |
-  a2. \bar"" a4 |
+  a2.  a4 |
   
   a a f g |
   a4. bes8 a4 d |
@@ -29,12 +30,12 @@ sopMusic = \relative c' {
   
   d4. d8 cis4 a |
   d cis b cis |
-  a2. \bar"" a4 |
+  a2.  a4 |
   d4. d8 cis4 a |
   d4. d8 cis4 b |
   
   e4 d b cis |
-  a2. \bar"" a4 |
+  a2.  a4 |
   b e a, a |
   g4. a8 fis4 fis |
   g g a a |
@@ -44,11 +45,11 @@ sopMusic = \relative c' {
   cis4. b8 a4 b |
   g fis fis e |
   
-  a2. \bar"" d4 |
+  a2.  d4 |
   cis4. b8 a4 d |
   cis b a b |
   a g8[ fis] e4. e8 |
-  d1 \bar ":|" \break
+  d1 \bar ":|" 
   \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
   \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
   \mark "Fine."
@@ -56,21 +57,21 @@ sopMusic = \relative c' {
   
   
   
-  \partial 4 a'4 |
+  a'4 |
   a a f g |
   a4. bes8 a4 a |
   g f g gis |
-  a2. \bar"" a4 |
+  a2.  a4 |
   
   a a f g |
   a4. bes8 a4 d |
   c f, g bes |
-  a2. \bar "|"\break \key d\major a4 |
+  a2. \bar "|" \key d\major a4 |
   d4. d8 cis4 a |
   
   d4. d8 cis4 a |
   d cis b cis |
-  a2. \bar"" a4 |
+  a2.  a4 |
   d4. d8 cis4 a |
   d4. d8 cis4 b |
   
@@ -154,11 +155,10 @@ altoMusic = \relative c' {
   
   g2.
 }
-dropLyrics = {
-  \dropLyricsXI
-}
+
+  
 altoWords = \lyricmode {
-  \dropLyrics
+  
   \set stanza = #"1. "
   It was the ve -- ry noon of night: the stars a -- bove the fold,
   More sure than clock or chim -- ing bell, the hour of mid -- night told:
@@ -179,7 +179,7 @@ altoWords = \lyricmode {
   Re -- veal -- ing where on earth the steps of Love Di -- vine had been;
 }
 altoWordsII = \lyricmode {
-  \dropLyrics
+  
 %\markup\italic
   \set stanza = #"2. "
   O ne’er could night -- in -- gale at dawn sa -- lute the ris -- ing day
@@ -202,7 +202,7 @@ altoWordsII = \lyricmode {
   That Love Di -- vine in child -- like form had God for -- ev -- er been:
 }
 altoWordsIII = \lyricmode {
-  \dropLyrics
+  
   \set stanza = #"3. "
   I roused me at the pier -- cing strain, but shrunk as from the ray
   Of sum -- mer light -- ning; all a -- round so bright the splen -- dor lay.
@@ -359,13 +359,9 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -389,16 +385,12 @@ pianoLH = \relative c' {
    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

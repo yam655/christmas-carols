@@ -1,35 +1,34 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Deck the Hall"
   poet = "Traditional"
   composer = "16th Century Welsh Tune"
-  tagline = \markup { from \italic {Favorite Songs and Hymns for School and Home}}
+  source = \markup { from \italic {Favorite Songs and Hymns for School and Home}}
 }
 
 global = {
-  \key f \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key f \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 180
 }
 
 sopMusic = \relative c'' {
   c4. bes8 a4 g |
   f g a f |
   g8\noBeam a\noBeam bes\noBeam g\noBeam a4. g8 |
-  f4 e f2 | \break
+  f4 e f2 | 
   
   c'4. bes8 a4 g |
   f g a f |
   g8\noBeam a\noBeam bes\noBeam g\noBeam a4. g8 |
-  f4 e f2 | \break
+  f4 e f2 | 
   
   g4. a8 bes4 g |
   a4. bes8 c4 g |
   a8 b c4 d8 e f4 |
-  e d c2 | \break
+  e d c2 | 
   
   c4. bes8 a4 g |
   f g a f |
@@ -62,7 +61,7 @@ altoMusic = \relative c' {
   f4 e f2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Deck the hall with boughs of hol -- ly, Fa la la la la, la la la la.
   ’Tis the sea -- son to be jol -- ly, Fa la la la la, la la la la.
@@ -70,7 +69,7 @@ altoWords = \lyricmode {
   Troll the an -- cient Yule -- tide car -- ol, Fa la la la la, la la la la.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   See the blaz -- ing Yule be -- fore us, Fa la la la la, la la la la.
   Strike the harp and join the cho -- rus, Fa la la la la, la la la la.
@@ -78,7 +77,7 @@ altoWordsII = \lyricmode {
   While I tell of Yule -- tide trea -- sure, Fa la la la la, la la la la.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Fast a -- way the old year pass -- es, Fa la la la la, la la la la.
   Hail the new, ye lads and lass -- es, Fa la la la la, la la la la.
@@ -139,10 +138,10 @@ bassWords = \lyricmode {
 
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -160,16 +159,13 @@ bassWords = \lyricmode {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 180
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

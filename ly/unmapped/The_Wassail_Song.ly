@@ -1,18 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Wassail Song"
   poet = "17th Century English"
   composer = "17th Century English"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key e \major
-  \time 6/8
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key e \major
+    \time 6/8
+    \tempo 4 = 180
 }
+
 
 sopMusic = \relative c' {
   \time 6/8
@@ -21,17 +21,16 @@ sopMusic = \relative c' {
   \slurDotted e4( fis8) gis4 fis8 |
   e4 b'8 b4 b8 |
   
-  \slurSolid b4.( b4) \bar""
+  \slurSolid b4.( b4) 
   b8 |
   cis4 cis8 b4 gis8 |
   b4.( a4) gis8 |
   \slurDotted fis4( e8) fis4 gis8 |
-  \partial 4. a4. \bar "||"
+  a4. 
   
   \time 2/2
-  \once \override Score.RehearsalMark #'self-alignment-X = #LEFT
-  \mark "Chorus"
-  \partial 2 gis4 a |
+  \set Timing.measurePosition = #(ly:make-moment 1/2)
+  gis4 a |
   b2 e4 cis |
   b2 gis4 a |
   b b e cis |
@@ -43,28 +42,10 @@ sopMusic = \relative c' {
   a2 gis4 a |
   b2 cis4 gis |
   a fis e( dis) |
-  \partial 2 e2 \bar ":|" 
-  
-  
-  
-  \time 6/8 
-  \once \override Score.RehearsalMark #'self-alignment-X = #LEFT
-  \mark "Additional Verses"
-  \partial 8 e8 |
-  e4 fis8 gis4 fis8 |
-  \slurDotted e4( fis8) gis4 fis8 |
-  e4 b'8 b4 b8 |
-  
-  \slurSolid b4.( \slurDotted b4) | \bar""
-  b8 |
-  cis4 cis8 b4 gis8 |
-  b4( b8)( a4) gis8 |
-  fis4 e8 fis4 gis8 |
-  \partial 4. a4. \bar "||"
+  e2 \bar ":|" 
+
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   \time 6/8
@@ -77,9 +58,11 @@ altoMusic = \relative c' {
   a4 e8 e4 e8 |
   \slurSolid fis4.( dis4) e8 |
   \slurDotted cis4( e8) dis4 e8 |
-  dis4. \bar "||"
+  dis4. 
   
-  
+
+  \time 2/2
+  \set Timing.measurePosition = #(ly:make-moment 1/2)
   e4 dis |
   e2 e4 fis |
   gis2 e4 dis |
@@ -92,107 +75,67 @@ altoMusic = \relative c' {
   cis( dis) e e |
   fis2 cis4 cis |
   cis cis b2 |
-  b2 \bar ":|"
-  
-  
-  
-  
-  \time 6/8 
-  e8 |
-  e4 e8 dis4 dis8 |
-  \slurDotted e4( e8) dis4 dis8 |
-  e4 e8 a4 gis8 |
-  
-  fis4.~ fis4 fis8 |
-  a4 e8 e4 e8 |
-  fis4( fis8)( dis4) e8 |
-  cis4 e8 dis4 e8 |
-  dis4. \bar "||"
-}
-dropLyrics =
-{
-    \override LyricText #'extra-offset = #'(0 . -1.8)
-    \override LyricHyphen #'extra-offset = #'(0 . -1.8)
-    \override LyricExtender #'extra-offset = #'(0 . -1.8)
+  b2 \bar ":|" 
 }
 
-raiseLyrics =
-{
-    \revert LyricText #'extra-offset
-    \revert LyricHyphen #'extra-offset
-    \revert LyricExtender #'extra-offset
-}
-altoWords = {
-  \dropLyricsIX
-  \lyricmode {
+altoWords = \lyricmode {
     \set stanza = #"1. "
     \set ignoreMelismata = ##t
     _ Here we come a -- was -- sail -- ing A -- mong the leaves so green, _ _
-    Here we come a -- wan -- d’ring, So fair __ _ to be seen.
-    
-    \unset ignoreMelismata
-    \repeat unfold 34\skip1
-    \set stanza = #"4. "
-    \set ignoreMelismata = ##t
-    We have a lit -- tle purse __ _ Made of ratch -- ing leath -- er skin; _
-    We want some of your small _ change To line it well with -- in.
-  }
+    Here we come a -- wan -- d’ring, So fair __ _ to be seen. 
+    \unset ignoreMelismata 
 }
-altoWordsII = {
-  \dropLyricsIX
-  \set stanza = \markup{\dynamic"mf  " "2. "}
-  \lyricmode {
+
+altoWordsII = \lyricmode {
+    \set stanza = \markup{\dynamic"mf  " "2. "}
     \set ignoreMelismata = ##t
     We are not dai -- ly beg -- _ gars That beg from door to door, _
     But we are neigh -- bors’ chil -- dren Whom you have seen be -- fore.
     \unset ignoreMelismata
-  }
-  \set stanza = \markup\dynamic"f "
-  \lyricmode {
+    \set stanza = \markup\dynamic"f "
+
     \set associatedVoice = "altos"
     Love and joy come to you, And to
-    \raiseLyrics
+    
     you your was -- sail too,
     And God bless you, and send you a hap -- py new
     year,
     \unset associatedVoice
-    And God
-    \dropLyrics
-    send you a hap -- py new year.
-    \dropLyricsIX
-    
-    \set stanza = #"5. "
-    \set ignoreMelismata = ##t
-    Call up the but -- ler of this house, Put on his gol -- den ring; _
-    Let him bring us a glass of beer, The bet -- ter we shall sing.
-  }
+    And God 
+    send you a hap -- py new year. 
 }
-altoWordsIII = \lyricmode {
-  \dropLyricsIX
+
+altoWordsIII = \lyricmode { 
   \set stanza = #"3. "
   \set ignoreMelismata = ##t
   Good Mas -- ter and good Mis -- _ tress, As you sit by the fire, __ _
-  Pray think of us poor chil -- dren Who wan -- der in the mire.
-  
-  \repeat unfold 37\skip1
+  Pray think of us poor chil -- dren Who wan -- der in the mire. 
+}
+
+altoWordsIV = \lyricmode { 
+    \set stanza = #"4. "
+    \set ignoreMelismata = ##t
+    We have a lit -- tle purse __ _ Made of ratch -- ing leath -- er skin; _
+    We want some of your small _ change To line it well with -- in. 
+}
+
+altoWordsV = \lyricmode { 
+    \set stanza = #"5. "
+    \set ignoreMelismata = ##t
+    Call up the but -- ler of this house, Put on his gol -- den ring; _
+    Let him bring us a glass of beer, The bet -- ter we shall sing. 
+}
+altoWordsVI = \lyricmode { 
   \set stanza = #"6. "
   \set ignoreMelismata = ##t
   \skip1 Bring us out a ta -- _ ble And spread it with a cloth; _ _
   Bring us out a cheese, __ _ _ And of your Christ -- mas loaf.
 }
-altoWordsIV = \lyricmode {
-  \dropLyricsIX
-  \repeat unfold 58\skip1
+altoWordsVII = \lyricmode { 
   \set stanza = #"7. "
   \set ignoreMelismata = ##t
   God bless the mas -- ter of this house, Like -- wise the mis -- tress too; __ _
   And all the lit -- tle chil -- _ dren That round the ta -- ble go.
-}
-altoWordsV = \lyricmode {
-}
-altoWordsVI = \lyricmode {
-}
-altoWordsVII = \lyricmode {
 }
 tenorMusic = \relative c' {
   \time 6/8
@@ -205,9 +148,10 @@ tenorMusic = \relative c' {
   e4 a,8 b4 b8 |
   b4.~ b4 b8 |
   cis4( b8) a4 gis8 |
-  fis4. \bar "||" 
+  fis4. \bar "||"
   
-  
+  \time 2/2
+  \set Timing.measurePosition = #(ly:make-moment 1/2)
   b4 b |
   b2 cis4 dis |
   e2 b4 b |
@@ -222,24 +166,8 @@ tenorMusic = \relative c' {
   a4 a gis( fis) |
   gis2 \bar ":|"
   
-  
-  
-  
-  \time 6/8 
-  gis8 |
-  gis4 a8 b4 a8 |
-  \slurDotted gis4( a8) b4 a8 |
-  gis4 b8 dis4 e8 |
-  
-  dis4.~ dis4 dis8 |
-  e4 a,8 b4 b8 |
-  b4( b8)( b4) b8 |
-  cis4 b8 a4 gis8 |
-  fis4. \bar "||" 
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   \time 6/8
@@ -252,8 +180,10 @@ bassMusic = \relative c {
   a4 a8 gis4 e8 |
   \slurSolid dis4.( fis4) e8 |
   \slurDotted a4( gis8) fis4 e8 |
-  b4. \bar "||"
+  b4. 
   
+  \time 2/2
+  \set Timing.measurePosition = #(ly:make-moment 1/2)
   e4 fis |
   gis2 a4 a |
   e2 e4 fis |
@@ -268,60 +198,36 @@ bassMusic = \relative c {
   fis4 a, b2 |
   e2 \bar ":|"
   
-  
-  
-  
-  
-  \time 6/8 
-  e8 |
-  e4 e8 b4 b8 |
-  \slurDotted e4( e8) b4 b8 |
-  e4 gis8 fis4 e8 |
-  
-  b'4.~ b4 b8 |
-  a4 a8 gis4 e8 |
-  dis4( dis8)( fis4) e8 |
-  a4 gis8 fis4 e8 |
-  b4. \bar "||"
-}
-bassWords = \lyricmode {
-
 }
 
+
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVII
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5)) } \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+    \new Lyrics = "altosIII"   \lyricsto "sopranos" \altoWordsIII
+    \new Lyrics = "altosIV"   \lyricsto "sopranos" \altoWordsIV
+    \new Lyrics = "altosV"   \lyricsto "sopranos" \altoWordsV
+    \new Lyrics = "altosVI"   \lyricsto "sopranos" \altoWordsVI
+    \new Lyrics = "altosVII"   \lyricsto "sopranos" \altoWordsVII
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 180
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

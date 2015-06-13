@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Come! Tune Your Heart"
   poet = \markup{\italic{Auf, schicke dich}, by Christian Fürchtegott Gellert (1715–1769)}
-  meter = "Translated by Frances E. Cox (1812–1897)"
+  translator = "Translated by Frances E. Cox (1812–1897)"
   composer = "Sir Frederick A. G. Ouseley (1825–1889)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key ees \major
-  \time 2/2
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-0.5 . 0.5)
+    \key ees \major
+    \time 2/2
+    \tempo 4 = 180
 }
 
 sopMusic = \relative c' {
@@ -20,8 +19,8 @@ sopMusic = \relative c' {
   g aes |
   bes g |
   aes c |
-  \partial 2 bes \bar "||"
-  \partial 2 bes |
+  bes 
+  bes |
   ees d4( c) |
   
   bes2 a4( g) |
@@ -30,14 +29,14 @@ sopMusic = \relative c' {
   f1 |
   d2 bes |
   c1 |
-  \partial 2 bes2 \bar "||" \break
+  bes2 
   
-  \partial 2 bes2 |
+  bes2 |
   g f |
   ees c' |
   aes g |
-  \partial 2 f2 \bar "||"
-  \partial 2 g2 |
+  f2 
+  g2 |
   aes bes |
   
   c c d ees4( c) |
@@ -45,10 +44,7 @@ sopMusic = \relative c' {
   c1 |
   bes2 bes |
   f1 |
-  \partial 2 ees2 \bar "|."
-}
-sopWords = \lyricmode {
-  
+  ees2 \bar "|."
 }
 
 altoMusic = \relative c' {
@@ -56,7 +52,7 @@ altoMusic = \relative c' {
   ees ees |
   d ees |
   ees ees |
-  ees |
+  ees 
   f |
   ees f |
   
@@ -66,13 +62,13 @@ altoMusic = \relative c' {
   bes( a) |
   bes bes |
   bes( a) |
-  bes |
+  bes 
   
   ees, |
   ees d |
   ees f |
   f e |
-  f |
+  f 
   ees |
   ees ees |
   
@@ -85,7 +81,7 @@ altoMusic = \relative c' {
   ees2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   Come! tune your heart, To bear its part,
   And ce -- le -- brate Mes -- si -- ah’s feast with prais -- es,
@@ -100,7 +96,7 @@ altoWords = \lyricmode {
   it rais -- es.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   Ex -- alt His Name; With joy pro -- claim,
@@ -116,7 +112,7 @@ altoWordsII = \lyricmode {
   to save __ us!
 }
 altoWordsIII = {
-  \dropLyricsIX
+  
   \set stanza = \markup{\dynamic"mf " "3. "}
   \lyricmode {
     Your ref -- uge place In His free grace,
@@ -132,7 +128,7 @@ altoWordsIII = {
   }
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   O Christ, to prove For Thee, my love,
   In breth -- ren Thee my hands shall clothe and cher -- ish, 
@@ -146,7 +142,7 @@ altoWordsIV = \lyricmode {
   to per -- ish.
 }
 altoWordsV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"5. "
   Come! praise the Lord; In Heav’n are stored
   Rich gifts for those who here His Name e -- steem -- ed, 
@@ -168,7 +164,7 @@ tenorMusic = \relative c' {
   g ees |
   f ees |
   aes aes |
-  g |
+  g 
   bes |
   c bes4( aes) |
   
@@ -178,13 +174,13 @@ tenorMusic = \relative c' {
   c1 |
   d2 e |
   f1 |
-  d2 |
+  d2 
   
   bes |
   c aes |
   g c |
   des bes |
-  aes |
+  aes 
   bes |
   aes g |
   
@@ -205,7 +201,7 @@ bassMusic = \relative c {
   d c |
   bes ees |
   c aes |
-  ees' |
+  ees' 
   d |
   c d |
   
@@ -215,13 +211,13 @@ bassMusic = \relative c {
   f1 |
   bes2 g |
   f1 |
-  bes2 |
+  bes2 
   
   g, |
   aes bes |
   c aes |
   bes c |
-  des! |
+  des! 
   des! |
   c bes |
   
@@ -237,17 +233,11 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -257,7 +247,6 @@ pianoLH = \relative c' {
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
      \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsVI
     \new Lyrics = "altosV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsV
     \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsIV
@@ -267,11 +256,9 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 180
     \set Staff.midiInstrument = "flute"
   
     \context {
@@ -280,3 +267,5 @@ pianoLH = \relative c' {
     }
   }
 }
+}
+

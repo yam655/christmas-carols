@@ -1,19 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "Sweet was the song the Virgin sung"
     poet = \markup{From William Ballet’s \italic{Lute Book}, c. 1600}
     composer = "Arranged by Charles Wood (1866–1926)"
-    %tagline = \markup{ from  \italic {The Cowley Carol Book}, 1919}
+    %source = \markup{ from  \italic {The Cowley Carol Book}, 1919}
   }
 
 global = {
   \key f \major
   \time 4/4
   \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-  \tempo \markup\medium\italic"At a moderate pace."
+  \tempo "At a moderate pace." 4 = 90
 }
 
 sopMusic = \relative c' {
@@ -105,14 +103,9 @@ altoMusic = \relative c' {
   e a,4 d |
   d1 \bar "|."
 }
-dropLyrics =
-{
-    \override LyricText #'extra-offset = #'(0 . -2.0)
-    \override LyricHyphen #'extra-offset = #'(0 . -2.0)
-    \override LyricExtender #'extra-offset = #'(0 . -2.0)
-}
+
 altoWords = {
-  \dropLyricsV
+  
   \set stanza = \markup\dynamic"mp "
   \lyricmode {
     Sweet was the song the Vir -- gin 
@@ -143,13 +136,13 @@ altoWords = {
   \set stanza = \markup\dynamic" f "
   \lyricmode{
     To vis -- it us
-    \dropLyrics
+    
     that were for -- lorn;
     \set associatedVoice = "tenors"
     La -- lu -- la, la -- lu --
     \unset associatedVoice
     la, la -- lu -- la --
-    \dropLyricsV
+    
     \set associatedVoice = "tenors"
     by,
   }
@@ -273,13 +266,8 @@ bassWords = \lyricmode {
   To vis -- it us
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -292,14 +280,9 @@ pianoLH = \relative c' {
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWords
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
+    \new Lyrics \with { alignAboveContext = #"women" } \lyricsto "sopranos" \sopWords
+    \new Lyrics = "altos"  \lyricsto "altos" \altoWords
+    \new Lyrics \with { alignAboveContext = #"men" } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" } \lyricsto "basses" \bassWords
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
@@ -307,12 +290,9 @@ pianoLH = \relative c' {
   \layout { }
   
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

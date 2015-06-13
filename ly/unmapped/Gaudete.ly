@@ -1,15 +1,16 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "Gaudete"
     composer = "15th Century"
-    %tagline = \markup{Chorus and text of verses from \italic{Piæ Cantiones}, 1582, via \italic{imslp.org}, Melody of verses from \italic {www.cpdl.org}}
+    %source = \markup{Chorus and text of verses from \italic{Piæ Cantiones}, 1582, via \italic{imslp.org}, Melody of verses from \italic {www.cpdl.org}}
   }
 
 global = {
-  \key f\major
-  \time 4/4
-  \autoBeamOff
+    \key f\major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 135
 }
 
 sopMusic = \relative c'' {
@@ -19,14 +20,7 @@ sopMusic = \relative c'' {
   
   f g a4. g8 |
   f4 g8 a4 g8 f4 |
-  \partial 2. g2. \bar "||" \break
-}
-
-verseMusic = \relative c'' {
-  
-}
-sopWords = \lyricmode {
-  
+  g2. \bar "||" 
 }
 
 altoMusic = \relative c' {
@@ -36,7 +30,7 @@ altoMusic = \relative c' {
   
   d d f4. d8 |
   d4 bes8 f'4 c8 d4 |
-  d2.
+  d2. |
   
   \slurDotted \oneVoice
   g8 d' d c bes( a) g4 |
@@ -46,12 +40,12 @@ altoMusic = \relative c' {
   bes8 g f a g4 g \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   Gau -- de -- te, gau -- de -- te,
   Chris -- tus est na -- tus
   ex Ma -- ri -- a Vir -- gi -- ne, Gau -- de -- te!
   
-  \dropLyricsIV
+  
   \set stanza = #"1. "
   \set ignoreMelismata = ##t
   Tem -- pus ad -- est gra -- ti -- æ
@@ -60,7 +54,7 @@ altoWords = \lyricmode {
   de -- vo -- te red -- da -- mus.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIV
+  
 %\markup\italic
   \repeat unfold 21 {\skip1}
   \set stanza = #"2. "
@@ -71,7 +65,7 @@ altoWordsII = \lyricmode {
   a Chris -- to re -- gnan -- te.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIV
+  
   \repeat unfold 21 {\skip1}
   \set stanza = #"3. "
   E -- ze -- chie -- lis por -- ta
@@ -80,7 +74,7 @@ altoWordsIII = \lyricmode {
   sa -- lus in -- ve -- ni -- tur.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIV
+  
   \repeat unfold 21 {\skip1}
   \set stanza = #"4. "
   \set ignoreMelismata = ##t
@@ -119,26 +113,15 @@ bassMusic = \relative c {
   d4 e8 f4 e8 d4 |
   g,2.
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
      \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsVI
     \new Lyrics = "altosV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsV
     \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsIV
@@ -151,19 +134,15 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 135
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

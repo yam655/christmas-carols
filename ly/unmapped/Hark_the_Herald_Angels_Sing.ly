@@ -1,19 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Hark! the Herald Angels Sing"
   poet = "Charles Wesley (1707–1788)"
   composer = "Felix Mendelssohn (1809–1847)"
-  %tagline = \markup { "from" \concat{\italic "Christmas Carols and Hymns for School and Choir" ", 1910"}}
+  %source = \markup { "from" \concat{\italic "Christmas Carols and Hymns for School and Choir" ", 1910"}}
 }
 
 global = {
-  \key g \major
-  \time 4/4
-  \autoBeamOff
-  \tempo 4 = 112
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-0.5 . 1)
+    \key g \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 112
 }
 
 sopMusic = \relative c' {
@@ -35,7 +33,7 @@ sopMusic = \relative c' {
   e' e e d |
   c b c2 |
   a4 b8[ c] d4. g,8 |
-  g4 a b2 | \break
+  g4 a b2 | 
   
   e4. e8 e4 d |
   c b c2 |
@@ -73,7 +71,7 @@ altoMusic = \relative c' {
   d4 fis d2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"1. "
   \set associatedVoice = "altos"
   Hark! the her -- ald an -- gels sing, __ “Glo -- ry to the new -- born King!
@@ -88,7 +86,7 @@ altoWords = \lyricmode {
   With th’an -- gel -- ic hosts pro -- claim,
   “Christ is born in Beth -- le -- hem.”
   
-  \dropLyricsV
+  
   \set associatedVoice = "basses"
   Hark the her -- ald
   an -- gels sing,
@@ -96,7 +94,7 @@ altoWords = \lyricmode {
   Glo -- ry to the new -- born King.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"2. "
   \set associatedVoice = "altos"
   Christ, by high -- est heav’n a -- dored; Christ, the ev -- er -- last -- ing Lord;
@@ -111,7 +109,7 @@ altoWordsII = \lyricmode {
   Pleased as Man with man to dwell, Je -- sus, our Em -- man -- u -- el!
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"3. "
   \set associatedVoice = "altos"
   Mild He lays His glo -- ry by, __
@@ -187,10 +185,9 @@ bassMusic = \relative c' {
   fis c' b g |
   d d g2 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -210,18 +207,14 @@ bassWords = \lyricmode {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 112
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

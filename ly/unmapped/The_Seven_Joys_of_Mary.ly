@@ -1,36 +1,36 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Seven Joys of Mary"
   poet = "Traditional"
   composer = "Old English"
   arranger = "Arranged by Sir John Stainer (1840–1901)"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key g \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0 . 0)
+    \key g \major
+    \time 6/8
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
   \partial 8 d8^\mf |
   g4 g8 g4 a8 |
   b4 a8 g4 g8 |
-  a4 a8 fis4 fis8 | \break
+  a4 a8 fis4 fis8 | 
   
   g4.~ g4 d8 |
   g4 g8 g4 a8 |
-  b4 a8 g4 | \bar""\break g8 |
+  b4 a8 g4 
+  g8 |
   
   \slurDotted a8( a) a8 fis8[ e] fis |
-  g4.~ g4 \bar "||"
+  g4.~ g4 
   g8^\f |
   a8( a) a8 a4 a8 |
-  a4 | \bar""\break
+  a4 
   
   \slurSolid
   b8 c[ b] a |
@@ -40,11 +40,9 @@ sopMusic = \relative c' {
   b4 a8 g4 c8 |
   b4 a8 g4 g8 |
   a4 a8 fis8[ e] fis |
-  \partial 8*5 g4. b4\rest \bar "|."
+  g4. b4\rest \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   d8 |
@@ -58,10 +56,10 @@ altoMusic = \relative c' {
   
   \slurDotted
   e8( e) e8 d4 d8 |
-  d4.~ d4 |
+  d4.~ d4 
   e8 |
   d8( d) d8 d4 cis8 |
-  d4 |
+  d4 
   
   \slurSolid
   d8 e4 fis8 |
@@ -73,14 +71,14 @@ altoMusic = \relative c' {
   e4 e8 d4 d8 |
   d4. s4 \bar "|."
 }
-altoWords = \lyricmode {
-  \dropLyricsVII
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
   The first good joy that Ma -- ry had, It was the joy of
-  \set stanza = "1. "
+  \set stanza = #"1. "
   one; __
   To see the bless -- ed Je -- sus Christ,
-  \set stanza = "1. "
+  \set stanza = #"1. "
   When He __ was first her Son. __
   When He __ was first her Son,
   
@@ -88,55 +86,55 @@ altoWords = \lyricmode {
   Praise Fa -- ther, Son, and Ho -- ly Ghost To all e -- ter -- ni -- ty.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"2–7. "
   The next good joy that Ma -- ry had, It was the joy of
-  \set stanza = "2. "
+  \set stanza = #"2. "
   two; __
   To see her own Son Je -- sus Christ,
-  \set stanza = "2. "
+  \set stanza = #"2. "
   \set ignoreMelismata = ##t
   "" Mak -- ing the lame _ to go. __ _
   "" Mak -- ing the lame to go,
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsVII
+  
   \repeat unfold 13 { \skip 1}
-  \set stanza = "3. "
+  \set stanza = #"3. "
   three; __ To see her own Son Je -- sus Christ,
-  \set stanza = "3. "
+  \set stanza = #"3. "
   \set ignoreMelismata = ##t
   "" Mak -- ing the blind _ to see. __ _
   "" Mak -- ing the blind to see,
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsVII
+  
   \repeat unfold 13 { \skip 1}
-  \set stanza = "4–7. " "four, five, etc.;" To see her own Son Je -- sus Christ,
-  \set stanza = "4. "
+  \set stanza = #"4–7. " "four, five, etc.;" To see her own Son Je -- sus Christ,
+  \set stanza = #"4. "
   \set ignoreMelismata = ##t
   "" Read -- ing the Bi -- _ ble o’er. __ _
   "" Read -- ing the Bi -- ble o’er,
 }
 altoWordsV = \lyricmode {
-  \dropLyricsVII
+  
   \repeat unfold 22 { \skip 1}
-  \set stanza = "5. "
+  \set stanza = #"5. "
   \set ignoreMelismata = ##t
   "" Rais -- ing the dead _ to life. __ _
   "" Rais -- ing the dead to life,
 }
 altoWordsVI = \lyricmode {
-  \dropLyricsVII
+  
   \repeat unfold 22 { \skip 1}
-  \set stanza = "6. "
+  \set stanza = #"6. "
   Up -- on __ the Cru -- ci -- fix. __
   Up -- on __ the Cru -- ci -- fix,
 }
 altoWordsVII = \lyricmode {
-  \dropLyricsVII
+  
   \repeat unfold 22 { \skip 1}
-  \set stanza = "7. "
+  \set stanza = #"7. "
   A -- scend -- ing in -- to heav’n. __
   A -- scend -- ing in -- to heav’n,
 }
@@ -152,10 +150,10 @@ tenorMusic = \relative c' {
   
   \slurDotted
   c8( c) c8 a4 a8 |
-  b4.~ b4 |
+  b4.~ b4 
   b8_\f |
   a8( a) a8 a4 g8 |
-  fis4 |
+  fis4 
   
   \slurSolid
   g8 g4 d'8 |
@@ -167,9 +165,7 @@ tenorMusic = \relative c' {
   c4 c8 a4 a8 |
   b4. s4 \bar "|."
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   d8 |
@@ -183,10 +179,10 @@ bassMusic = \relative c {
   
   \slurDotted
   c8( c) c8 d4 d8 |
-  g4.~ g4 |
+  g4.~ g4 
   e8 |
   fis8( fis) fis8 fis4 e8 |
-  d4 |
+  d4 
   
   \slurSolid
   g8 c,4 d8 |
@@ -198,44 +194,35 @@ bassMusic = \relative c {
   c4 c8 d4 d8 |
   g4. d4\rest \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsVII
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+    \new Lyrics = "altosIII"   \lyricsto "sopranos" \altoWordsIII
+    \new Lyrics = "altosIV"   \lyricsto "sopranos" \altoWordsIV
+    \new Lyrics = "altosV"   \lyricsto "sopranos" \altoWordsV
+    \new Lyrics = "altosVI"   \lyricsto "sopranos" \altoWordsVI
+    \new Lyrics = "altosVII"   \lyricsto "sopranos" \altoWordsVII
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

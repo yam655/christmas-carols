@@ -1,5 +1,5 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "Unto us is born a Son"
     subtitle = "(The same, in English)"
@@ -8,11 +8,10 @@
   }
 
 global = {
-  \key d \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key d \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
@@ -132,13 +131,9 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -165,12 +160,9 @@ pianoLH = \relative c' {
   \layout { }
   
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

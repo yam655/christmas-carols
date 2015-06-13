@@ -1,16 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "In natali Domini"
   poet = "14th Century"
   composer = "Melody from Nürnberg Gesangbuch, 1544"
   arranger = "Arranged by G.H. Palmer"
-  %tagline = \markup{ from \italic {The Cowley Carol Book}, 1919}
+  %source = \markup{ from \italic {The Cowley Carol Book}, 1919}
 }
 
 global = {
-  \key d \major
-  \time 3/4
+    \key d \major
+    \time 3/4
+    \tempo 4 = 180
 }
 
 sopMusic = \relative c' {
@@ -32,7 +33,7 @@ sopMusic = \relative c' {
     d2 cis4 |
 
     b2 a4 |
-    b2. \bar "||" \break \once \override Score.RehearsalMark #'self-alignment-X = #LEFT \mark "Chorus"
+    b2. \bar "||"  \once \override Score.RehearsalMark #'self-alignment-X = #LEFT \mark "Chorus"
     b2 b4 |
     a2 a4 |
     b2 g4 |
@@ -45,7 +46,7 @@ sopMusic = \relative c' {
     fis2 g4 |
     a2 b4 |
     g4 fis2 |
-    e2. \break
+    e2. 
   }
   
   \once \override Score.RehearsalMark #'self-alignment-X = #LEFT
@@ -127,7 +128,7 @@ altoMusic = \relative c' {
   d2. \bar "||"
 }
 altoWords = \lyricmode {
-  \dropLyricsIV
+  
   \set stanza = #"1. "
   In na -- tá -- li Dó -- mi -- ni,
   Gau -- dent om -- nes An -- ge -- li 
@@ -148,7 +149,7 @@ altoWords = \lyricmode {
   A Pa -- tre pro -- cés -- _ sit.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIV
+  
   \set stanza = #"2. "
   Nun -- ti -- á -- vit An -- ge -- lus
   Gáu -- di -- um pas -- tó -- ri -- bus, 
@@ -294,13 +295,9 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -323,16 +320,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 0) (padding . -1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 0)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 180
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

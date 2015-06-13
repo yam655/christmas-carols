@@ -1,15 +1,16 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "There’s a Song in the Air!"
   poet = "Josiah G. Holland (1819–1881)"
   composer = "Karl P. Harrington (1861–1953)"
-  %tagline = \markup { from \italic {HymnsAndCarolsOfChristmas.com}}
+  %source = \markup { from \italic {HymnsAndCarolsOfChristmas.com}}
 }
 
 global = {
-  \key g \major
-  \time 3/4
+    \key g \major
+    \time 3/4
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -17,21 +18,21 @@ sopMusic = \relative c' {
   d4 g e |
   fis2 d8.\noBeam d16 |
   d4 g b |
-  d2 \bar""\break d,8.\noBeam e16 |
+  d2  d,8.\noBeam e16 |
   d4 g e | 
   
   fis2 fis8.\noBeam fis16 |
   g4 fis e |
-  d2 \bar""\break d'8.\noBeam d16 |
+  d2  d'8.\noBeam d16 |
   e4 d b |
   a g e | 
   
   d fis a |
-  d2 \bar""\break d8.\noBeam d16 |
+  d2  d8.\noBeam d16 |
   e4 d b |
   a g c\fermata |
   b a d, |
-  \partial 2 g2 \bar "|."
+  g2 \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -59,7 +60,7 @@ altoMusic = \relative c' {
   d2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   There’s a song in the air!
   There’s a star in the sky!
@@ -69,7 +70,7 @@ altoWords = \lyricmode {
   For the man -- ger of Beth -- le -- hem cra -- dles a King!
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   There’s a tu -- mult of joy
   O’er the won -- der -- ful birth,
@@ -79,7 +80,7 @@ altoWordsII = \lyricmode {
   For the man -- ger of Beth -- le -- hem cra -- dles a King!
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   In the light of that star
   Lie the a -- ges im -- pearled,
@@ -89,7 +90,7 @@ altoWordsIII = \lyricmode {
   In the homes of the na -- tions that Je -- sus is King!
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   We re -- joice in the light,
   And we ech -- o the song
@@ -152,17 +153,11 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -182,16 +177,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

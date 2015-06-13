@@ -1,19 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
 
+\header { 
     title = "O Du Fröhliche"
     poet = "Johannes Daniel Falk (1768–1826)"
     composer = "Sicilian Hymn"
-    %tagline = \markup \concat{ "from " \italic"The Wartburg Hymnal" ", 1918, via " \italic"HymnsAndCarolsOfChristmas.com"}
+    %source = \markup \concat{ "from " \italic"The Wartburg Hymnal" ", 1918, via " \italic"HymnsAndCarolsOfChristmas.com"}
     %\markup{from \italic{The English Carol Book, Second Series}, 1913, via \italic{HymnsAndCarolsOfChristmas.com}}
-  }
+}
 
 global = {
-  \key f \major
-  \time 4/4
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(1 . 1)
+    \key f \major
+    \time 4/4
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c'' {
@@ -61,7 +59,7 @@ altoMusic = \relative c' {
   f2. s4 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   O du fröh -- li -- che, o du se -- li -- ge,
   Gna -- den -- bring -- en -- de Weih -- nachts -- zeit!
@@ -70,7 +68,7 @@ altoWords = \lyricmode {
   Freu -- e, freu -- e dich, o Christ -- en -- heit!
 }
 altoWordsII = {
-  \dropLyricsIX
+  
   \set stanza = \markup{\dynamic"f  " "2. "}
   \lyricmode {
     O du fröh -- li -- che, o du se -- li -- ge,
@@ -81,7 +79,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   O du fröh -- li -- che, o du se -- li -- ge,
   Gna -- den -- bring -- en -- de Weih -- nachts -- zeit!
@@ -139,21 +137,12 @@ bassMusic = \relative c {
   c2 c |
   f2. d4\rest \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -171,19 +160,14 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

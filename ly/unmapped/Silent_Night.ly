@@ -1,33 +1,32 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Silent Night"
   poet = "Translated by John Freeman Young (1820–1885)"
   composer = "Franz Gruber (1787–1863)"
-  %tagline = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
+  %source = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
 }
 
 global = {
-  \key bes \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-  \tempo \markup\italic"Tranquillo" 8 = 90
+    \key bes \major
+    \time 6/8
+    \autoBeamOff
+    \tempo \markup\italic"Tranquillo" 8 = 90
+    %\tempo 8 = 112
 }
 
 sopMusic = \relative c' {
   f8.[ g16] f8 d4. |
   f8.[ g16] f8 d4. |
-  c'8.[ b16] c8 a4. | \break
+  c'8.[ b16] c8 a4. | 
   bes8.[ a16] bes8 f4. |
   
   g4 g8 bes8.[ a16] g8 |
-  f8.\noBeam g16\noBeam f8 d4 bes'8\rest | \break
+  f8.\noBeam g16\noBeam f8 d4 bes'8\rest | 
   \slurDotted g4 g8\noBeam bes8.\noBeam( a16\noBeam) g8 |
   f8.\noBeam( g16\noBeam) f8 d4 bes'8\rest |
   
-  \slurSolid c4 c8\noBeam ees8.\noBeam c16\noBeam a8 | \break
+  \slurSolid c4 c8\noBeam ees8.\noBeam c16\noBeam a8 | 
   bes4.( d4) bes8\rest |
   bes8[ f] d8 f8.\noBeam ees16\noBeam c8 |
   bes4.~bes4 bes'8\rest \bar "|."
@@ -138,6 +137,7 @@ bassWords = \lyricmode {
 
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -163,12 +163,9 @@ bassWords = \lyricmode {
   >>
   \layout { }
   \midi {
-    \tempo 8 = 112
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

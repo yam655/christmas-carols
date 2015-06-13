@@ -1,17 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Come Ye Lofty"
   poet = "Rev. Archer Gurney (1820–1887)"
   composer = "G.J. Elvey (1816–1893)"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key d \major
-  \time 4/4
-  \mergeDifferentlyDottedOn
-  \mergeDifferentlyHeadedOn
+    \key d \major
+    \time 4/4
+    %\mergeDifferentlyDottedOn
+    %\mergeDifferentlyHeadedOn
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -61,7 +62,7 @@ altoMusic = \relative c' {
   d cis d2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   Come ye lof -- ty, come ye low -- ly,
   Let your songs of glad -- ness ring;
@@ -73,7 +74,7 @@ altoWords = \lyricmode {
   Pi -- ous hearts that love the Lord.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   Come ye poor, no pomp of sta -- tion
@@ -86,7 +87,7 @@ altoWordsII = \lyricmode {
   That the Prince of Life lies there.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   Come ye chil -- dren blithe and mer -- ry,
   This one Child your mod -- el make;
@@ -98,7 +99,7 @@ altoWordsIII = \lyricmode {
   Weak and might -- y, young and old.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   High a -- bove a star is shin -- ing,
   And the wise men haste from far: __
@@ -110,7 +111,7 @@ altoWordsIV = \lyricmode {
   All in all draw nigh to gaze.
 }
 altoWordsV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"5. "
   Hark the Heav’n of heav’ns is ring -- ing:
   Christ the Lord to man is born!
@@ -175,17 +176,11 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -205,16 +200,13 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

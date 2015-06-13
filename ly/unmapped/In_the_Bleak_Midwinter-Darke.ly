@@ -1,20 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 
 \header {
   title = "In the Bleak Midwinter"
   poet = "Christina Rosetti (1830–1894)"
   composer = "Harold Darke (1888–1976)"
-  %tagline = \markup { "from" \italic {cpdl.org}}
+  %source = \markup { "from" \italic {cpdl.org}}
 }
 
 global = {
   \key g \major
   \time 4/4
   \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-  \tempo "Moderato e tranquillo"
+  \tempo "Moderato e tranquillo" 4 = 90
 }
 
 sopMusic = \relative c'' {
@@ -40,12 +38,12 @@ sopMusic = \relative c'' {
   g\!( a) b( c) |
   << d1~ {s2. s4^\>}>> |
   d4( d2) b4\! |
-  g1 \bar "||" \break
+  g1 \bar "||" 
   \slurSolid
   
   %second verse
   \voiceOne
-  \partial 4 b4^\f |
+  b4^\f |
   b4. a8 d4 b |
   g2 fis |
   e4.( fis8) g4 e |
@@ -64,9 +62,9 @@ sopMusic = \relative c'' {
   g( a) b( c) |
   d1~^\> |
   d2. b4\! |
-  \partial 2. g2.
+  g2.
   \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
-  \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT \mark "D.C." \bar "||" \break
+  \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT \mark "D.C." \bar "||" 
   
   %Verse 4
   b2^\markup{\dynamic"mp" \italic"semplice"} d4 b |
@@ -145,7 +143,7 @@ altoMusic = \relative c' {
   <d g>1^\pp |
 }
 altoWords = {
-  \dropLyricsV
+  
   \set stanza = \markup {\normal-text\italic "Soprano Solo" "1. "}
   \lyricmode {
     _ In the bleak mid -- win -- ter,
@@ -195,7 +193,7 @@ altoWordsII = \lyricmode {
   
 }
 altoWordsIII = {
-  \dropLyricsIV
+  
   \set stanza = \markup {\normal-text\italic "Tenor Solo" "3. "}
   \lyricmode {
     \set ignoreMelismata = ##t
@@ -267,9 +265,7 @@ tenorMusic = \relative c' {
   d2.) c4 |
   b1^\pp
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   s1*19 |
@@ -319,12 +315,10 @@ bassMusic = \relative c {
   << g1 \\
     {\oneVoice<d g,>1~_\markup\italic"accomp." | q | <g g,>~ | q} >> \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
 pianoRH = \relative c'' {
-  \set Staff.midiInstrument = "piano"
+  \set Staff.midiInstrument = "acoustic grand"
   <b d,>4\(_\p <g e> <fis d'> <b fis d> |
   <g b,> <e c> <fis a,> <d c>\) |
   << {<g b,>\( <e c> <fis a,> <d c> |
@@ -358,7 +352,7 @@ pianoRH = \relative c'' {
 }
 
 pianoLH = \relative c' {
-  \set Staff.midiInstrument = "piano"
+  \set Staff.midiInstrument = "acoustic grand"
   << {b4 c a s | s1} \\
      {<d, g,>1~ | q} >> |
   << {d1~ | d2 s2 | g2. s4 } \\
@@ -381,6 +375,7 @@ pianoLH = \relative c' {
   <g d g,>1 \bar "||"
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -399,30 +394,19 @@ pianoLH = \relative c' {
     \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWords
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
     \new PianoStaff << \new Staff { \new Voice { \global \pianoRH } } \new Staff { \clef "bass" \global \pianoLH } >>
   >>
   \layout {
-%6.14 \context {\Lyrics\override LyricText #'font-size = #0.9 }
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 4)
-      %\override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
-    }
     \context {
       % Remove all empty staves
       \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
     }
   }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

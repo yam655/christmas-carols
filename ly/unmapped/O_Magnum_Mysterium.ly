@@ -1,18 +1,18 @@
 \version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "O Magnum Mysterium"
   composer = "Tomás Luis de Victoria (c. 1548–1611)"
-  tagline = ""
+  source = ""
 }
 
 global = {
   \key f \major
   \time 4/4
   \dynamicUp
-  %\set midiInstrument = "recorder"
   \autoBeamOff
-  \override DynamicTextSpanner #'style = #'none
+  %\override DynamicTextSpanner #'style = #'none
+    \tempo 4 = 100
 }
 
 sopMusic = \relative c' {
@@ -457,11 +457,7 @@ bassWords = \lyricmode {
   Al -- le -- lu -- ja. __
 }
 
-pianoRH = \relative c' {
-}
-pianoLH = \relative c' {
-}
-
+\bookpart {
 \score {
 <<
     \new ChoirStaff <<
@@ -505,13 +501,11 @@ pianoLH = \relative c' {
     }
   }
   \midi {
-    \tempo 4 = 100
     \set Staff.midiInstrument = "flute"
+    %\set Staff.midiInstrument = "recorder"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }
 

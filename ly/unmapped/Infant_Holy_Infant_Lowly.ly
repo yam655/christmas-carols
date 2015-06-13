@@ -1,40 +1,42 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 
 \header {
   title = "Infant Holy, Infant Lowly"
   subtitle = "(W Żłobie Leży)"
   poet = "Traditional Polish Carol"
-  meter = "Translated by Edith M. G. Reed (1885–1933)"
+  translator = "Translated by Edith M. G. Reed (1885–1933)"
   composer = "Traditional Polish Carol"
   arranger = "Arranged by Edith M. G. Reed (1885–1933)"
-  %tagline = \markup { "from" \italic "CyberHymnal.org"}
+  %source = \markup { "from" \italic "CyberHymnal.org"}
 }
 
 global = {
-  \key g \major
-  \time 3/4
-  \autoBeamOff
+    \key g \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 95
 }
 
 sopMusic = \relative c' {
+    \partial 4
 \repeat unfold 2 {
-  \partial 4 d8 d |
+  d8 d |
   g4 g fis8 g |
   a4 a b8 c |
   d4 c b8  a |
-  \partial 2 g2 | \break
+  g2 
 }
 
-\partial 4 g8 fis |
+g8 fis |
 e4 e a8 g |
 fis4 fis b8 a |
-\partial 2 g4 g | \break
+g4 g 
 
-\partial 4 c8 b |
+c8 b |
 a4 a b8 c |
 d4 c b8 a |
-\partial 2 g2 \bar "|."
+g2 \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -46,13 +48,13 @@ altoMusic = \relative c' {
   d4 d d8 e |
   fis4 fis g8 g |
   g4 g fis8 fis |
-  d2 |
+  d2 
 }
 
   d8 d |
   c4 c c8 c |
   d4 d d8 d |
-  e4 e |
+  e4 e 
 
   e8 e |
   fis4 fis e8 e |
@@ -60,7 +62,7 @@ altoMusic = \relative c' {
   d2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   In -- fant ho -- ly, in -- fant low -- ly
   For His bed a cat -- tle stall;
@@ -72,7 +74,7 @@ altoWords = \lyricmode {
   Christ the Babe is Lord of all.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
 Flocks were sleep -- ing, shep -- herds keep -- ing
@@ -105,7 +107,7 @@ tenorMusic = \relative c {
     b'4 b d,8 d |
     d'4 d d8 c |
     d4 e d8 c |
-    b2 |
+    b2 
   }
   g8 g |
   g4 g a8 a |
@@ -125,13 +127,13 @@ bassMusic = \relative c {
   g4 g d8 d |
   d'4 d g,8 e |
   b4 c d8 d |
-  g2 |
+  g2 
 }
 
   b,8 b |
   c4 c a8 a |
   d4 d b8 b |
-  e4 e |
+  e4 e 
 
   a,8 a |
   d4 d e8 c |
@@ -142,13 +144,9 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -171,16 +169,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 95
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

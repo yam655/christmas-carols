@@ -1,42 +1,42 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Cradle Hymn"
   poet = "Isaac Watts (1674–1748)"
   composer = \markup{from \italic{Repository of Sacred Music, Part Second}, 1813}
-  tagline = ""
+  source = ""
 }
 
 global = {
-  \key d \major
-  \time 3/4
-  \dynamicUp
-  %\set midiInstrument = "recorder"
-  \autoBeamOff
-  \override DynamicTextSpanner #'style = #'none
+    \key d \major
+    \time 3/4
+    \dynamicUp
+    \autoBeamOff
+    %\override DynamicTextSpanner #'style = #'none
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c' {
-	\partial 4
+    \partial 4
   \repeat unfold 2 {
     fis8 e |
     d4 d fis8 a |
     e4 e fis8 a |
     b4 a fis8 e |
-    d2 \bar""
+    d2 
   }
   
   a'8 b16[ cis] |
   d4 cis b8 a |
   b[ a] fis4 a8 b16[ cis] |
   d4 cis b8 a |
-  d2 \bar ""
+  d2 
 
   fis,8 e |
   d4 d fis8 a |
   e4 e fis8 a |
   b4 a fis8 e |
-  d2 \bar""
+  d2 
   
   \bar "|."
 }
@@ -138,14 +138,14 @@ altoMusic = \relative c' {
     d4 d d8 d |
     cis4 cis d8 d |
     d4 d d8 cis |
-    d2 \bar""
+    d2 
   }
   
   d8 g |
   fis4 a g8 fis |
   d4 d d8 g |
   fis4 a g8 fis |
-  fis2 \bar""
+  fis2 
   
   d8 cis |
   d4 d d8 d |
@@ -182,14 +182,14 @@ tenorMusic = \relative c' {
     fis4 fis a8 a |
     a4 a a8 a |
     g4 fis a8 g |
-    fis2 \bar""
+    fis2 
   }
   
   a8 g |
   a4 a d8 d |
   g,8[ fis] a4 a8 g |
   a4 a d8 d |
-  a2 \bar""
+  a2 
   
   a8 g |
   fis4 fis a8 a |
@@ -216,14 +216,14 @@ bassMusic = \relative c' {
     d4 d d8 fis, |
     a4 a d8 fis |
     g4 d a8 a |
-    d2 \bar""
+    d2 
   }
   
   fis8 e |
   d4 fis g8 d |
   d4 d fis8 e |
   d4 fis g8 d |
-  d2 \bar""
+  d2 
   
   d8 a |
   d4 d d8 fis, |
@@ -233,14 +233,9 @@ bassMusic = \relative c' {
   
   \bar "|."
 }
-bassWords = \lyricmode {
-}
 
-pianoRH = \relative c' {
-}
-pianoLH = \relative c' {
-}
 
+\bookpart {
 \score {
 <<
    \new ChoirStaff <<
@@ -264,19 +259,8 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"tenors" } \lyricsto "tenors" \tenorWordsII
     \new Lyrics \with { alignAboveContext = #"tenors" } \lyricsto "tenors" \tenorWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout {
-    \context {
-      \Lyrics
-      \override LyricText #'font-size = #1.3
-      \override VerticalAxisGroup #'staff-affinity = #0
-    }
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
     \context {
       % Remove all empty staves
       \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
@@ -289,11 +273,10 @@ pianoLH = \relative c' {
     }
   }
   \midi {
-    \tempo 4 = 90
+    %\set midiInstrument = "recorder"
     \set Staff.midiInstrument = "flute"
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

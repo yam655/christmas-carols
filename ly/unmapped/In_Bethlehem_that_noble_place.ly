@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "In Bethlehem, that noble place"
   poet = "James Ryman, 1492"
   composer = "Sir Frederick A. G. Ouseley (1825–1889)"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key d \major
-  \time 2/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key d \major
+    \time 2/4
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -25,7 +24,7 @@ sopMusic = \relative c' {
   
   fis[^\markup\italic"cresc." g] a4 |
   b8[ cis] d[ e] |
-  cis4 \bar""\break \slurDotted a8( a) |
+  cis4  \slurDotted a8( a) |
   b4 a |
   d4. a8 |
   b4 a |
@@ -34,7 +33,7 @@ sopMusic = \relative c' {
   cis a |
   d cis |
   b8[ a] b4 |
-  a2 | \break
+  a2 | 
   a8[ b] cis[ d] |
   
   e[ d] cis[ d] |
@@ -43,11 +42,11 @@ sopMusic = \relative c' {
   a4 d |
   e fis |
   e4. d8 |
-  \partial 4 d4 \bar ":|" \break
+  d4 \bar ":|" 
   
   
   
-  \partial 4 d,4 |
+  d,4 |
   d4. d8 |
   d4 d |
   fis a |
@@ -56,7 +55,7 @@ sopMusic = \relative c' {
   
   fis[^\markup\italic"cresc." g] a4 |
   b8[ cis] d[ e] |
-  cis4 \bar""\break a4 |
+  cis4  a4 |
   b4 a |
   d4. a8 |
   b4 a |
@@ -124,7 +123,7 @@ altoMusic = \relative c' {
   a2 |
 }
 altoWords = {
-  \dropLyricsV
+  
   \lyricmode {
     \set stanza = #"1. "
     In Beth -- le -- hem, that no -- ble place,
@@ -161,7 +160,7 @@ altoWords = {
   }
 }
 altoWordsII = {
-  \dropLyricsV
+  
   \set stanza = \markup{\dynamic"mf " "2. "}
   \lyricmode {
     On Christ -- mas night an An -- gel told
@@ -188,7 +187,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   The shep -- herds were en -- com -- passed right,
   A -- bout them shone a glo -- rious light,
@@ -318,13 +317,8 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -348,16 +342,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

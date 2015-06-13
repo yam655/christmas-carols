@@ -1,5 +1,5 @@
 ﻿\version "2.14.2"
-%\include "util.ly"
+
 \header {
     title = "While Shepherds Watched Their Flocks"
     poet = "Nahum Tate (1652–1715)"
@@ -109,6 +109,7 @@ bassMusic = \relative c {
   d2. \bar "|."
 }
 
+\bookpart {
 \score {
     <<
         \new ChoirStaff <<
@@ -131,7 +132,8 @@ bassMusic = \relative c {
   
     \midi {
         \set Staff.midiInstrument = "flute" 
-        \context { \Voice \remove "Dynamic_performer" }
+        %\context { \Voice \remove "Dynamic_performer" }
     }
+}
 }
 

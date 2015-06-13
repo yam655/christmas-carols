@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "God Loved the World"
   subtitle = "(Also hat Gott die Welt geliebt)"
   poet = "from the Trier Gesangbuch, 1871"
   composer = "Arranged by B. Luard Selby (1853–1918)"
-  %tagline = \markup { from \italic "The Cowley Carol Book" ", 1919"}
+  %source = \markup { from \italic "The Cowley Carol Book" ", 1919"}
 }
 
 global = {
-  \key c \major
-  \time 2/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key c \major
+    \time 2/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c'' {
@@ -26,7 +25,7 @@ sopMusic = \relative c'' {
   
   g4 g |
   a b |
-  c b\rest \bar "||" \break
+  c b\rest \bar "||" 
   \once \override Score.RehearsalMark #'self-alignment-X = #LEFT
   \mark "Chorus"
   c2 |
@@ -47,7 +46,7 @@ sopMusic = \relative c'' {
   a\fermata \bar "|."
   \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
   \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
-  \mark\markup\italic"Last verse." \break
+  \mark\markup\italic"Last verse." 
   
   
   \once\override DynamicText #'X-offset = #-5
@@ -60,7 +59,7 @@ sopMusic = \relative c'' {
   
   g4 g |
   a b |
-  c b\rest \bar "||" \break
+  c b\rest \bar "||" 
 }
 sopWords = \lyricmode {
   
@@ -106,7 +105,7 @@ altoMusic = \relative c' {
   e s \bar "||"
 }
 altoWords = {
-  \dropLyricsV
+  
   \lyricmode {
     \set stanza = #"1. "
     God loved the world so that He gave
@@ -136,7 +135,7 @@ altoWords = {
   }
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   Our Sav -- ior He, and chief -- est good,
@@ -148,7 +147,7 @@ altoWordsII = \lyricmode {
   Sure, this of love the ve -- ry height.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   The same that sit -- teth thron’d on high,
   A Babe in low -- ly crib doth lie.
@@ -159,7 +158,7 @@ altoWordsIII = \lyricmode {
   But now no need of Cher -- ub -- guard.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   See, the Al -- might -- y Lord of all
   Doth on the garb of com -- mon thrall.
@@ -262,17 +261,9 @@ bassMusic = \relative c {
   f8[ e] d4 |
   c d\rest |
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -293,18 +284,14 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

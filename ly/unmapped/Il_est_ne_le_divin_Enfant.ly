@@ -1,18 +1,19 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Il est né le divin Enfant"
   poet = "Anonymous"
   composer = "17th century French melody"
   arranger = "Arranged by Bernard Dewagtere"
-  %tagline = \markup { "from" \italic {www.free-scores.com}}
+  %source = \markup { "from" \italic {www.free-scores.com}}
 }
 
 global = {
-  \key a \major
-  \time 4/4
-  \autoBeamOff
-  \set Score.voltaSpannerDuration = #(ly:make-moment 4 4)
+    \key a \major
+    \time 4/4
+    \autoBeamOff
+    %\set Score.voltaSpannerDuration = #(ly:make-moment 4 4)
+    \tempo 4 = 125
 }
 
 sopMusic = \relative c' {
@@ -86,8 +87,8 @@ altoWords = \lyricmode {
   Jou -- ez haut -- bois, ré -- son -- nez mu -- set -- tes!
   Il est né le di -- vin En -- fant.
   Chan -- tons tous son a -- vè -- ne -- ment.
-  \break
-  \dropLyricsV
+  
+  
   \set stanza = #"1. "
   De -- puis plus de qua -- tre mille ans,
   Nous le pro -- met -- taient les pro -- phè -- tes,
@@ -96,7 +97,7 @@ altoWords = \lyricmode {
 
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \repeat unfold 34 ""
   \set stanza = #"2. "
   Une é -- tabl’ est son lo -- ge -- ment,
@@ -108,7 +109,7 @@ altoWordsII = \lyricmode {
   Chan -- tons tous son a -- vè -- ne -- ment.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \repeat unfold 34 ""
   \set stanza = #"3. "
   O Jé -- sus, ô roi tout puis -- sant,
@@ -161,6 +162,7 @@ bassWords = \lyricmode {
 
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -213,13 +215,9 @@ bassWords = \lyricmode {
   >>
   
   \midi {
-    \tempo 4 = 125
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }
 

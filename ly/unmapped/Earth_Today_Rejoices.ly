@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Earth Today Rejoices"
   poet = "John Mason Neale (1818–1866)"
   composer = \markup{\italic {Ave maris stella lucens}, from \italic {Piæ Cantiones}, 1582}
   arranger = "Arranged by George Ratcliffe Woodward (1848–1934)"
-  %tagline = \markup{ from \italic {The Cowley Carol Book}, 1919}
+  %source = \markup{ from \italic {The Cowley Carol Book}, 1919}
 }
 
 global = {
-  \key g \major
-  \time 2/2
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 2/2
+    \autoBeamOff
+    \tempo 4 = 135
 }
 
 sopMusic = \relative c'' {
@@ -87,7 +86,7 @@ altoMusic = \relative c' {
   d1 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Earth to -- day re -- joi -- ces,
   Al -- le -- lu -- ia,
@@ -106,7 +105,7 @@ altoWords = \lyricmode {
   God and man are one.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   Re -- con -- ci -- li -- a -- tion,
@@ -126,7 +125,7 @@ altoWordsII = \lyricmode {
   God and man are one.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Though the cold grows stron -- ger,
   Al -- le -- lu -- ia,
@@ -226,17 +225,9 @@ bassMusic = \relative c {
   e4 c d d |
   g,1 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -257,18 +248,14 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 135
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

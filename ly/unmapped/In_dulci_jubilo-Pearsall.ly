@@ -1,17 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "In dulci jubilo"
   poet = "Heinrich Seuse (1300–1366)"
-  meter = "Translated by Robert Lucas de Pearsall (1795–1856)"
+  translator = "Translated by Robert Lucas de Pearsall (1795–1856)"
   composer = "14th century German melody"
   arranger = "Arranged by Robert Lucas de Pearsall (1795–1856)"
-  %tagline = \markup { "from" \italic "CantateDomino.org" }
+  %source = \markup { "from" \italic "CantateDomino.org" }
 }
 
 global = {
-  \key f \major
-  \time 6/4
+    \key f \major
+    \time 6/4
+    \tempo 4 = 180
 }
 
 sopMusic = \relative c' {
@@ -19,28 +20,28 @@ sopMusic = \relative c' {
   f2 f4 a2 bes4 |
   c2( d4 c2) c4 |
   f,2 f4 a2 bes4 |
-  c2( d4 c2.) | \break
+  c2( d4 c2.) | 
 
   c2 d4 c2 bes4 |
   a2. f2 f4 |
   g2 g4 a2 g4 |
   f2( g4 a2) a4 |
   c2 d4 c2 bes4 |
-  a2. f2 \bar""\break f4 |
+  a2. f2  f4 |
 
   g2 g4 a2 g4 |
   f2( g4 a2.) |
   d,2 d4 e2 e4 |
   f2.( c'2.) |
   a2 bes4 g2 g4 |
-  f2.( f2) \bar""\break f4 |
+  f2.( f2)  f4 |
   
   g2 g4 a2 g4 |
   f2( g4 a2.) |
   d,2 d4 e2 e4 |
   f2.( c'2.) |
   a2 a4 g4( f) e4 |
-  \partial 4*5 f2.( f2) \bar "|."
+  f2.( f2) \bar "|."
 
 }
 sopWords = \lyricmode {
@@ -73,11 +74,11 @@ altoMusic = \relative c' {
   f,2 bes4 g2 g4 |
   d'2( f4 f2 e4) |
   f2 e4 d2 c4 |
-  \partial 4*5 c2.( c2)
+  c2.( c2)
 
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   \markup\italic In \markup\italic dul -- \markup\italic ci \markup\italic ju -- \markup\italic bi -- \markup\italic lo __ Let us our hom -- age show: __
   Our heart’s joy re -- clin -- eth "" \markup\italic In \markup\italic præ -- \markup\italic se -- \markup\italic pi -- \markup\italic o, __
@@ -91,7 +92,7 @@ altoWords = \lyricmode {
   \markup\italic Al -- \markup\italic pha \markup\italic es \markup\italic et \markup\italic O! __
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   \markup\italic O \markup\italic Je -- \markup\italic su, \markup\italic par -- \markup\italic vu -- \markup\italic le, __
   I yearn for Thee al -- way; __
@@ -106,7 +107,7 @@ altoWordsII = \lyricmode {
   \markup\italic Tra -- \markup\italic he \markup\italic me \markup\italic post \markup\italic Te! __
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   \markup\italic O \markup\italic Pa -- \markup\italic tris \markup\italic ca -- \markup\italic ri -- \markup\italic tas! __
   \markup\italic O \markup\italic na -- \markup\italic ti \markup\italic lem -- \markup\italic i -- \markup\italic tas! __
@@ -121,7 +122,7 @@ altoWordsIII = \lyricmode {
     \markup\italic Qua -- \markup\italic lis \markup\italic glo -- \markup\italic ri -- \markup\italic a! __
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   \markup\italic U -- \markup\italic bi \markup\italic sunt \markup\italic gau -- \markup\italic di -- \markup\italic a __
   "" If they be not there? __
@@ -160,7 +161,7 @@ tenorMusic = \relative c' {
   bes2 f4 c'2 c4 |
   a4.( g8 f4 g2.) |
   d'2 c4 bes4.( a8) g4 |
-  \partial 4*5 f2.( f2)
+  f2.( f2)
 }
 tenorWords = \lyricmode {
 
@@ -192,13 +193,14 @@ bassMusic = \relative c {
   bes,2 bes4 c2 c4 |
   d2.( c2.) |
   d2 a4 bes2 c4 |
-  \partial 4*5 f,2.( f2)
+  f,2.( f2)
 
 }
 bassWords = \lyricmode {
 
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -224,12 +226,9 @@ bassWords = \lyricmode {
   >>
   \layout { }
   \midi {
-    \tempo 4 = 180
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

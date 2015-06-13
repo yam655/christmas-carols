@@ -1,20 +1,20 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Bring a Torch, Jeanette, Isabella!"
   poet = \markup{\italic{Un flambeau, Jeannette, Isabelle}, by Émile Blémont (1839–1927)}
-  meter = "English by Edward Cuthbert Nunn (1868–1914)"
+  translator = "English by Edward Cuthbert Nunn (1868–1914)"
   composer = "16th Century French Carol"
   arranger = "Arranged by Edward Cuthbert Nunn (1868–1914)"
-  %tagline = \markup{from \italic{The Home and Community Song-Book}, 1922}
+  %source = \markup{from \italic{The Home and Community Song-Book}, 1922}
 }
 
 global = {
-  \key g \major
-  \time 3/8
-  \slurDotted
-  \tieDotted
-  \tempo "Brightly"
+    \key g \major
+    \time 3/8
+    \slurDotted
+    \tieDotted
+    \tempo "Brightly" 4 = 90
 }
 
 sopMusic = \relative c'' {
@@ -25,7 +25,7 @@ sopMusic = \relative c'' {
   b4 a8 |
   
   d4 g,8 |
-  \slurDotted g\noBeam( fis\noBeam)  g | \break
+  \slurDotted g\noBeam( fis\noBeam)  g | 
   a\noBeam( b\noBeam) a |
   g4 b8\rest |
   
@@ -33,7 +33,7 @@ sopMusic = \relative c'' {
   d4_\mf d8 |
   d8\noBeam( c\noBeam) b |
   b\noBeam a\noBeam g | 
-  \slurDotted g4( fis8) | \break
+  \slurDotted g4( fis8) | 
   
   \once\override DynamicText #'X-offset = #-3
   e_\f\noBeam( fis\noBeam) g |
@@ -43,7 +43,7 @@ sopMusic = \relative c'' {
   
   g4_\p b8\rest |
   a4 b8\rest | 
-  \slurDotted b8\noBeam( c\noBeam) b | \break
+  \slurDotted b8\noBeam( c\noBeam) b | 
   a4 d8 |
   b4 a8 |
   
@@ -100,7 +100,7 @@ altoMusic = \relative c'' {
   g8 s4 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   \set ignoreMelismata = ##t
   Bring a torch, __ _ Jean -- nette, Is -- a -- bel -- la!
@@ -111,7 +111,7 @@ altoWords = \lyricmode {
   Ah! ah! beau -- ti -- ful is her Son! __ _
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   \set ignoreMelismata = ##t
   Who goes there __ _ a -- knock -- ing so loud -- ly?
@@ -122,7 +122,7 @@ altoWordsII = \lyricmode {
   Toc! toc! Come let us make good cheer! __ _
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   \set ignoreMelismata = ##t
   It is wrong when the Child _ is sleep -- ing,
@@ -133,7 +133,7 @@ altoWordsIII = \lyricmode {
   Hush! hush! see __ _ how fast He sleeps! __ _
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   \set ignoreMelismata = ##t
   Soft -- ly to __ _ the lit -- _ tle sta -- ble,
@@ -188,9 +188,6 @@ tenorMusic = \relative c' {
   b8 s4 \bar "|."
   
 }
-tenorWords = \lyricmode {
-
-}
 
 bassMusic = \relative c' {
   g4 g8 |
@@ -232,10 +229,8 @@ bassMusic = \relative c' {
   g4.~ |
   g8 d\rest d\rest \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart{
 \score {
   <<
    \new ChoirStaff <<
@@ -262,19 +257,12 @@ bassWords = \lyricmode {
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }

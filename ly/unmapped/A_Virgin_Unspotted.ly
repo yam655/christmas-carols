@@ -1,19 +1,16 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
-  title = "A Virgin Unspotted"
-  poet = "Traditional"
-  composer = "English"
-  arranger = "Arranged by Sir John Stainer (1840–1901)"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
-}
+
+songTitle = "A Virgin Unspotted"
+songPoet = "Traditional"
+tuneComposer = "English"
+tuneArranger = "Arranged by Sir John Stainer (1840–1901)"
+tuneSource = \markup { "from" \italic {Christmas Carols, New and Old}}
 
 global = {
-  \autoBeamOff
-  \key f \major
-  \time 3/4
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \autoBeamOff
+    \key f \major
+    \time 3/4
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c'' {
@@ -23,36 +20,33 @@ sopMusic = \relative c'' {
     a4 g c8[ a] |
     bes[ c] d4 c |
     f,2 a8[ bes] |
-    c4 d c8[ bes] | \break
+    c4 d c8[ bes] | 
     
     a4 g c8[ a] |
     bes[ c] d4 c |
     f,2 f8[ g] |
     a4 g c |
-    bes8[ a] g4 d' | \break
+    bes8[ a] g4 d' | 
     
     c f8[ e] d4 |
     c2 a8[ bes] |
     c4 d c8[ bes] |
     a4 g c8[ a] |
     bes[ c] d4 c |
-    f,2 \bar "||" \break
+    f,2 \bar "||" 
     
     %chorus
-    f8\noBeam g8 |
+    f8\noBeam\ff g8 |
     a4 g c |
     bes8[ a] g4 d' |
     c f8[ e] d4 |
     
-    c2 \bar""\break a8[ bes] | 
+    c2  a8[ bes] | 
     c4 d c8[ bes] |
     a4 g c8[ a] |
     bes[ c] d4 c |
-    \partial 2 f,2 \break
+    f,2 
   }
-}
-sopWords = \lyricmode {
-  
 }
 
 altoMusic = \relative c' {
@@ -77,7 +71,7 @@ altoMusic = \relative c' {
   f2 \bar "||"
   
   %chorus
-  f8\noBeam f8 |
+  f8\noBeam\ff f8 |
   e[ f] g[ e] f4 |
   f e g |
   a a8[ g] f4 |
@@ -88,19 +82,14 @@ altoMusic = \relative c' {
   f d e |
   f2
 }
-altoWords = {
-    \dropLyricsIX
-  \lyricmode {
+
+altoWords = \lyricmode {
     \set stanza = #"1. "
-    %\set ignoreMelismata = ##t
-    %\unset ignoreMelismata
     A __ Vir -- gin un -- spot -- ted, the pro -- phet fore -- told,
     Should bring forth a __ Sav -- ior, which now we be -- hold,
     To __ be our Re -- deem -- er from death, hell __ and sin,
     Which Ad -- am’s trans -- gres -- sion had wrap -- ped us in.
-  }
-  \set stanza = \markup\dynamic"ff "
-  \lyricmode {
+    \set stanza = #"Ch."
     \set associatedVoice = "sopranos"
     Aye 
     \set associatedVoice = "altos"
@@ -108,70 +97,64 @@ altoWords = {
     \unset associatedVoice
     be mer -- ry, set sor -- row a -- side,
     Christ Je -- sus, our Sav -- ior, was born on this tide.
-
-    \set stanza = #"5. "
-    The King of all kings  to this world be -- ing brought,
-    Small store of fine lin -- en to __ wrap Him was sought,
-    But when she had swad -- dled her young Son so sweet,
-    With -- in an ox man -- ger she laid __ Him to sleep.
-  }
-  \set stanza = \markup\dynamic"ff "
-  \lyricmode {
-    \set associatedVoice = "altos"
-    \set associatedVoice = "sopranos"
-    Aye 
-    \set associatedVoice = "altos"
-    and there -- fore
-    \unset associatedVoice
-    be mer -- ry, set sor -- row a -- side,
-    Christ Je -- sus, our Sav -- ior, was born on this tide.
-  }
 }
-altoWordsII = \lyricmode {
-    \dropLyricsIX
+
+altoWordsII = \lyricmode { 
   \set stanza = #"2. "
   At __ Beth -- le -- hem ci -- ty in Jew -- ry it was
   That Jo -- seph and Ma -- ry to -- geth -- er did pass,
   All __ for to be tax -- ed with ma -- ny __ one moe.
   Great Cae -- sar com -- mand -- ed the same should be so.
+}
 
-  \repeat unfold 23 {\skip1}
+altoWordsIII = \lyricmode { 
+  \set stanza = #"3. "
+  But when they had en -- tered the ci -- ty so fair,
+  A __ num -- ber of __ peo -- ple so __ might -- y was there,
+  That Jo -- seph and Ma -- ry, whose sub -- stance was small,
+  Could find in the inn there no lodg -- ing at all.
+}
+
+altoWordsIV = \lyricmode { 
+  \set stanza = #"4. "
+  Then were they con -- strain’d in a __ sta -- ble to lie,
+  Where hors -- es and ass -- es they used for to tie:
+  Their lodg -- ing so sim -- ple they took it __ no scorn,
+  But_a -- gainst the next morn -- ing our Sav -- ior was born. 
+}
+
+altoWordsV = \lyricmode {
+    \set stanza = #"5. "
+    The King of all kings  to this world be -- ing brought,
+    Small store of fine lin -- en to __ wrap Him was sought,
+    But when she had swad -- dled her young Son so sweet,
+    With -- in an ox man -- ger she laid __ Him to sleep.
+}
+
+altoWordsVI = \lyricmode {
   \set stanza = #"6. "
   Then God sent an an -- gel from heav -- en so high,
   To __ cer -- tain poor shep -- herds in __ fields where they lie,
   And bade them no long -- er in sor -- row to stay,
   Be -- cause that our Sav -- ior was born on this day.
 }
-altoWordsIII = \lyricmode {
-    \dropLyricsIX
-  \set stanza = #"3. "
-  But when they had en -- tered the ci -- ty so fair,
-  A __ num -- ber of __ peo -- ple so __ might -- y was there,
-  That Jo -- seph and Ma -- ry, whose sub -- stance was small,
-  Could find in the inn there no lodg -- ing at all.
 
-  \repeat unfold 23 {\skip1}
+altoWordsVII = \lyricmode {
   \set stanza = #"7. "
   Then pres -- ent -- ly __ af -- ter the shep -- herds did spy
   Vast num -- bers of __ an -- gels to __ stand in the sky;
   They joy -- ful -- ly talk -- ed and sweet -- ly __ did sing:
   “To God be all glo -- ry, our heav -- en -- ly King.”
 }
-altoWordsIV = \lyricmode {
-    \dropLyricsIX
-  \set stanza = #"4. "
-  Then were they con -- strain’d in a __ sta -- ble to lie,
-  Where hors -- es and ass -- es they used for to tie:
-  Their lodg -- ing so sim -- ple they took it __ no scorn,
-  But_a -- gainst the next morn -- ing our Sav -- ior was born.
 
-  \repeat unfold 23 {\skip1}
+altoWordsVIII = \lyricmode {
   \set stanza = #"8. "
   To __ teach us hu -- mil -- i -- ty __ all __ this was done,
   And learn we from thence haugh -- ty __ pride for to shun;
   A __ man -- ger His cra -- dle Who came from a -- bove,
   The great God of mer -- cy, of __ peace, and of love.
 }
+
 tenorMusic = \relative c' {
   c8[ bes] |
   a4 d d |
@@ -194,7 +177,7 @@ tenorMusic = \relative c' {
   a2 \bar "||"
   
   %chorus
-  a8\noBeam bes |
+  a8\noBeam\ff bes |
   c4 d8[ c] c4 |
   d e e |
   f c b |
@@ -204,9 +187,6 @@ tenorMusic = \relative c' {
   c c c |
   f, bes bes |
   a2
-}
-tenorWords = \lyricmode {
-
 }
 
 bassMusic = \relative c {
@@ -231,7 +211,7 @@ bassMusic = \relative c {
   f2 \bar "||"
   
   %chorus
-  d8\noBeam d |
+  d8\noBeam\ff d |
   c4 bes' a |
   g c bes |
   a f g |
@@ -242,52 +222,44 @@ bassMusic = \relative c {
   d bes c |
   f2
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
+    \header {
+        title = \songTitle
+        poet = \songPoet
+        composer = \tuneComposer
+        arranger = \tuneArranger
+        source = \tuneSource
+    }
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global {\sopMusic \sopMusic} >> }
-      \new Voice = "altos" { \voiceTwo << \global {\altoMusic \altoMusic} >> }
+      \new Voice = "sopranos" { \voiceOne << \global {\sopMusic } >> }
+      \new Voice = "altos" { \voiceTwo << \global {\altoMusic } >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" } \lyricsto "sopranos" \sopWords
-%    \new Lyrics = "altosVIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVIII
-%    \new Lyrics = "altosVII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVII
-%    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVI
-%    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.4))} \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+    \new Lyrics = "altosIII"  \lyricsto "sopranos" \altoWordsIII
+    \new Lyrics = "altosIV"   \lyricsto "sopranos" \altoWordsIV
+    \new Lyrics = "altosV"   \lyricsto "sopranos" \altoWordsV
+    \new Lyrics = "altosVI"   \lyricsto "sopranos" \altoWordsVI
+    \new Lyrics = "altosVII"   \lyricsto "sopranos" \altoWordsVII
+    \new Lyrics = "altosVIII"   \lyricsto "sopranos" \altoWordsVIII
    \new Staff = men <<
       \clef bass
-      \new Voice = "tenors" { \voiceOne << \global {\tenorMusic \tenorMusic} >> }
-      \new Voice = "basses" { \voiceTwo << \global {\bassMusic \bassMusic} >> }
+      \new Voice = "tenors" { \voiceOne << \global {\tenorMusic } >> }
+      \new Voice = "basses" { \voiceTwo << \global {\bassMusic } >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

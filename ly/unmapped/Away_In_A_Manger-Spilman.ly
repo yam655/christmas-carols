@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Away In A Manger"
   poet = "Anonymous"
   composer = "Jonathan E. Spilman (1812–1896)"
-  %tagline = \markup { "from" \concat{\italic "Christmas Carols and Hymns for School and Choir" ", 1910"}}
+  %source = \markup { "from" \concat{\italic "Christmas Carols and Hymns for School and Choir" ", 1910"}}
 }
 
 global = {
-  \key a \major
-  \time 3/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key a \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 100
 }
 
 sopMusic = \relative c' {
@@ -52,10 +51,7 @@ sopMusic = \relative c' {
   a a b |
   cis^\pp e\fermata d |
   e, e gis |
-  \partial 2 a2 \bar "|."
-}
-sopWords = \lyricmode {
-  
+  a2 \bar "|."
 }
 
 altoMusic = \relative c' {
@@ -97,8 +93,8 @@ altoMusic = \relative c' {
   e cis d |
   cis2 \bar "|."
 }
-altoWords = \lyricmode {
-  \dropLyricsVII
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
   A -- way in a man -- ger,
   No crib for His bed,
@@ -119,7 +115,7 @@ altoWords = \lyricmode {
   Till mor -- ning is nigh.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"2. "
   Be near me, Lord Je -- sus,
   I ask Thee to stay
@@ -138,10 +134,6 @@ altoWordsII = \lyricmode {
   Look’d down where He lay,
   The lit -- tle Lord Je -- sus
   A -- sleep in the hay.
-}
-altoWordsIII = \lyricmode {
-}
-altoWordsIV = \lyricmode {
 }
 
 tenorMusic = \relative c {
@@ -183,9 +175,6 @@ tenorMusic = \relative c {
   cis a b |
   a2 \bar "|."
 }
-tenorWords = \lyricmode {
-
-}
 
 bassMusic = \relative c {
   e4 |
@@ -226,47 +215,35 @@ bassMusic = \relative c {
   e e e |
   a,2 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart {
 \score {
-  <<
-   \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
-    \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+    <<
+        \new ChoirStaff <<
+            \new Staff = women <<
+                \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
+                \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+            >>
+            \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+            \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+            \new Staff = men <<
+                \clef bass
+                \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
+                \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
+            >>
+        >>
     >>
-    \new Lyrics \with { alignAboveContext = #"women" } \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "sopranos" \altoWords
-   \new Staff = men <<
-      \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
-  >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
-  >>
-  \layout {
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
+    \layout {
+    % \context {
+    %   \Score
+    %   \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
+    %   \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
+    % }
     }
-  }
-  \midi {
-    \tempo 4 = 100
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        %\context { \Voice \remove "Dynamic_performer" }
     }
-  }
 }
+}
+

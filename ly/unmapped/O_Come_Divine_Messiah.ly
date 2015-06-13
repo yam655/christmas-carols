@@ -1,10 +1,10 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 
 \header {
     title = "O Come, Divine Messiah"
     poet = "Abbé Simon J. Pellegrin (1663–1745)"
-    meter = "Translated by Sister Mary of St. Philip, SND (1825–1904)"
+    translator = "Translated by Sister Mary of St. Philip, SND (1825–1904)"
     composer = "16th Century French Carol"
     section = "Advent"
 }
@@ -81,14 +81,14 @@ altoMusic = \relative c' {
   d8( c4 b4.)\fermata \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"1. "
   O come, di -- vine Mes -- si -- ah!
   The world in si -- lence waits the day
   When hope shall sing its tri -- umph,
   And sad -- ness flee a -- way. __
   
-  \dropLyricsV
+  
   Dear Sav -- ior haste;
   Come, come to earth,
   Dis -- pel the night and show Your face,
@@ -96,14 +96,14 @@ altoWords = \lyricmode {
 
   O come, di -- vine Mes -- si -- ah!
   The world in si -- lence
-  \break
-  \dropLyricsVII
+  
+  
   waits the day
   When hope shall sing its tri -- umph,
   And sad -- ness flee a -- way. __
 }
 altoWordsII = \lyricmode {
-  \dropLyricsVII
+  
 %\markup\italic
   \set stanza = #"2. "
   O Christ, whom na -- tions sigh for,
@@ -112,7 +112,7 @@ altoWordsII = \lyricmode {
   Re -- deem the long -- lost fold. __
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"3. "
   You come in peace and meek -- ness,
   And low -- ly will Your cra -- dle be;
@@ -196,6 +196,7 @@ bassMusic = \relative c {
 }
 
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -203,12 +204,12 @@ bassMusic = \relative c {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics = "altosVI"   \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"   \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"   \lyricsto "altos" \altoWordsII
     \new Lyrics = "altos"   \lyricsto "altos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "altos" \altoWordsII
+    \new Lyrics = "altosIII"  \lyricsto "altos" \altoWordsIII
+    \new Lyrics = "altosIV"  \lyricsto "altos" \altoWordsIV
+    \new Lyrics = "altosV"   \lyricsto "altos" \altoWordsV
+    \new Lyrics = "altosVI"   \lyricsto "altos" \altoWordsVI
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
@@ -220,9 +221,8 @@ bassMusic = \relative c {
   \midi {
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

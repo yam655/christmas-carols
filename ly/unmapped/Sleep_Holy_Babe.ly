@@ -1,85 +1,83 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
-  title = "Sleep, Holy Babe!"
-  poet = "Edward Caswall (1814–1878)"
-  composer = "John Bacchus Dykes (1823–1876)"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+    title = "Sleep, Holy Babe!"
+    poet = "Edward Caswall (1814–1878)"
+    composer = "John Bacchus Dykes (1823–1876)"
+    %source = \markup { "from" \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key ees \major
-  \time 4/2
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key ees \major
+    \time 4/2
+    \tempo 4 = 150
 }
 
-sopMusic = \relative c' {
+sopMusicIntro = \relative c' { 
 %Introduction
-  \set Staff.midiInstrument = "piano"
   ees4_\p g bes c~c2 f, |
   d4 f aes bes bes2 ees, |
   bes'2\rest bes4\rest <aes d,>~ q <g ees> f <ees ces> |
   <ees bes g> bes'\rest bes2\rest bes1\rest |
-  ees,2-> d2 bes'1\rest \bar "|:" 
-%
-  \set Staff.midiInstrument = "flute"
+  ees,2-> d2 bes'1\rest 
+}
+
+sopMusic = \relative c' {
   ees,1^\pp ees2. aes4 |
   g1.^\markup\italic"cresc." ees'2 |
   ees d4( c) bes2. aes4 |
-  g1. \bar "||" 
+  g1. 
   
   g2^\mf |
   g2. g4 a2 b |
   d2. g,4 g2 g |
   g ees' ees d4( c) |
-  c2. bes4 bes2 \bar "||" 
+  c2. bes4 bes2 
   
   bes2 |
   bes2.^\markup\italic"dim." ees,4 ees2 ees |
-  ees1. \bar "||"
+  ees1. 
   d2^\pp |
   ees4( g) bes( c) bes2. d,4 |
   << { ees1( ees) }
-     { s1. <ees d g,>2_\markup\smallCapsOldStyle"Accomp." }
+     { s1. <ees d g,>2_\markup\smallCaps"Accomp." }
   >> |
   <ees c aes>1 <ees ces aes> |
-  <ees bes g>1 bes'1\rest \bar ":|"
+  <ees bes g>1 bes'1\rest 
 }
-sopWords = \lyricmode {
   
-}
 
-altoMusic = \relative c' {
+altoMusicIntro = \relative c' {
 %Introduction
-  \set Staff.midiInstrument = "piano"
+  \set Staff.midiInstrument = "acoustic grand"
   s1 ees |
   s1 des |
   s2. ces4~ ces bes c aes |
   s1*2 |
-  aes1 s1 \bar "|:"
-%
+  aes1 s1 
+}
+
+altoMusic = \relative c' {
   \set Staff.midiInstrument = "flute"
   bes1 c2. ees4 |
   ees1 g |
   aes2 aes g f |
-  f1. |
+  f1. 
   
-  f2 f2. f4 f2 f |
+  f2 | f2. f4 f2 f |
   f2. f4 f2 f |
   ees2. g4 g2 f4( ees) |
-  ees2. d4 d2 |
+  ees2. d4 d2 
   
   d2 |
   ees4( bes2) c4 des2 c4( bes) |
-  c1( ees2) |
+  c1( ees2) 
   d4( c) |
   bes2 ees ees4( d c) bes |
   bes4( ees d c bes1) |
 }
-altoWords = \lyricmode {
-  \dropLyricsIX
-  \repeat unfold 7 { \skip 1}
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
   Sleep, Ho -- ly Babe!
   up --
@@ -91,10 +89,8 @@ altoWords = \lyricmode {
   In such a place of rest,
   In such a place of rest. __ 
 }
-altoWordsII = \lyricmode {
-  \dropLyricsIX
-%\markup\italic
-  \repeat unfold 7 { \skip 1}
+
+altoWordsII = \lyricmode { 
   \set stanza = #"2. "
   Sleep, Ho -- ly Babe!
   Thine 
@@ -106,9 +102,8 @@ altoWordsII = \lyricmode {
   In rev -- ’rent awe pro -- found,
   In rev -- ’rent awe pro -- found. __
 }
-altoWordsIII = \lyricmode {
-  \dropLyricsIX
-  \repeat unfold 7 { \skip 1}
+
+altoWordsIII = \lyricmode { 
   \set stanza = #"3. "
   Sleep, Ho -- ly Babe!
   while 
@@ -120,9 +115,8 @@ altoWordsIII = \lyricmode {
   Which there di -- vine -- ly plays,
   Which there di -- vine -- ly plays. __
 }
-altoWordsIV = \lyricmode {
-  \dropLyricsIX
-  \repeat unfold 7 { \skip 1}
+
+altoWordsIV = \lyricmode { 
   \set stanza = #"4. "
   Sleep, Ho -- ly Babe!
   ah! 
@@ -135,132 +129,144 @@ altoWordsIV = \lyricmode {
   That death a -- lone shall close,
   That death a -- lone shall close. __
 }
-altoWordsV = \lyricmode {
-}
-altoWordsVI = \lyricmode {
-}
-tenorMusic = \relative c' {
+
+tenorMusicIntro = \relative c' {
 %Introduction
-  \set Staff.midiInstrument = "piano"
+  \set Staff.midiInstrument = "acoustic grand"
   s1 a |
   s1 g |
   s1*2 |
   ees4 g bes c~ c2 bes~ |
-  bes1 bes \bar "|:"
-%
+  bes1 bes 
+}
+
+tenorMusic = \relative c' {
   \set Staff.midiInstrument = "flute"
   g1_\pp aes2. c4 |
   bes1._\markup\italic"cresc." b2 |
   c2 d4( ees) ees2 d |
-  d1. |
+  d1. 
   
   d2_\mf |
   b2. b4 c2 d |
   b2. b4 c2 d |
   c4( d) c( bes) a( f) g( a) |
-  a2. bes4 bes2 |
+  a2. bes4 bes2 
   
   d4( c) |
   bes2._\markup\italic"dim." bes4 bes2 ees, |
-  ees1. |
+  ees1. 
   f4(_\pp fis) |
   g2 g aes aes |
   << { g4( c bes aes g1) }
      { s1. ees,2 }
   >> |
   aes4 c ees f f2 ees2~ |
-  ees1 s1 \bar ":|"
-}
-tenorWords = \lyricmode {
-
+  ees1 s1 
 }
 
-bassMusic = \relative c {
+
+bassMusicIntro = \relative c {
 %Introduction
-  \set Staff.midiInstrument = "piano"
+  \set Staff.midiInstrument = "acoustic grand"
   d1\rest f, |
   d'\rest ees, |
   aes4 c ees f~ f g aes aes, |
   bes bes\rest d2\rest d1\rest |
-  bes1 d\rest \bar "|:"
-%
+  bes1 d\rest 
+}
+
+bassMusic = \relative c {
   \set Staff.midiInstrument = "flute"
   ees1 ees2. ees4 |
   ees1 ees |
   aes,2 aes bes bes' |
-  b1. |
+  b1. 
   
   b!2 |
   g2. g4 g2 g, |
   g2. g4 a2 b |
   c c f2. f4 |
-  f2. bes,4 bes2 |
+  f2. bes,4 bes2 
   
   aes2 |
   g2. g4 g2 g2 |
-  aes1. |
+  aes1. 
   a2 |
   bes bes bes bes |
   ees1~ ees |
   c,1\rest aes' |
-  ees d'\rest \bar ":|"
-}
-bassWords = \lyricmode {
-
+  ees d'\rest 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
-  <<
-   \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
-    \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
-    >>
-   \new Staff = men <<
-      \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5)) } \lyricsto "altos" \altoWords
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
-  >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
-  >>
-  \layout {
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 4)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
+    {
+        \new PianoStaff <<
+            \new Staff <<
+                \set Staff.midiInstrument = "acoustic grand"
+                \new Voice { \voiceOne \global \sopMusicIntro }
+                \new Voice { \voiceTwo \global \altoMusicIntro }
+            >>
+            \new Staff <<
+                \set Staff.midiInstrument = "acoustic grand"
+                \clef bass
+                \new Voice { \voiceOne \global \tenorMusicIntro }
+                \new Voice {
+                    \voiceTwo
+                    \global
+                    \bassMusicIntro
+                    \break
+                }
+            >>
+        >>
+        \new ChoirStaff <<
+            \new Staff = women <<
+                \set Staff.midiInstrument = "flute"
+                \new Voice = "sopranos" {
+                    \voiceOne
+                    \global
+                    \repeat volta 4 {
+                        \sopMusic
+                    }
+                }
+                \new Voice = "altos" {
+                    \voiceTwo
+                    \global
+                    \repeat volta 4 {
+                        \altoMusic
+                    }
+                }
+            >>
+            \new Lyrics = "altos"   \lyricsto "altos" \altoWords
+            \new Lyrics = "altosII"   \lyricsto "altos" \altoWordsII
+            \new Lyrics = "altosIII"   \lyricsto "altos" \altoWordsIII
+            \new Lyrics = "altosIV"   \lyricsto "altos" \altoWordsIV
+            \new Staff = men <<
+                \set Staff.midiInstrument = "flute"
+                \clef bass
+                \new Voice = "tenors" {
+                    \voiceOne
+                    \global
+                    \repeat volta 4 {
+                        \tenorMusic
+                    }
+                }
+                \new Voice = "basses" {
+                    \voiceTwo
+                    \global
+                    \repeat volta 4 {
+                        \bassMusic
+                    }
+                }
+            >>
+        >>
     }
-    \context {
-      % a little smaller so lyrics
-      % can be closer to the staff
-      \Staff
-      \override VerticalAxisGroup #'minimum-Y-extent = #'(-3 . 3)
+
+    \layout { }
+    \midi {
     }
-  }
-  \midi {
-    \tempo 4 = 150
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
-  }
+} 
 }
+

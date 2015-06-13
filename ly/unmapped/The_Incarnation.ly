@@ -1,24 +1,24 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Incarnation"
   poet = "Rev. H. R. Bramley (1833–1917)"
   composer = "Traditional"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key g \major
-  \time 3/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0 . 0)
+    \key g \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
+    \partial 4
   \repeat unfold 2 {
       \repeat volta 3 {
-      \partial 4 g'4 |
+      g'4 |
       g d' d8[ c] |
       b4 b  b8[ a] |
       g[ a] b4 a |
@@ -37,17 +37,17 @@ sopMusic = \relative c' {
       d4 d8[ c] b[ a] |
       
       g[ a] b4 a |
-      \partial 2 g2 \bar "||" \break
-      \partial 4 b4 |
+      g2 
+      b4 |
       a a8[ b] c4 |
       b8[ a] g[ fis] g[ a] |
       b[ c] d4 cis |
       
-      d2 \bar""\break c8[ b] |
+      d2  c8[ b] |
       c[ d] e[ c] b[ a] |
       d4 d8[ c] b[ a] |
       g[ a] b4 a |
-      \partial 2 g2 \pageBreak
+      g2 
     }
   }
 }
@@ -90,7 +90,7 @@ altoMusic = \relative c' {
   }
 }
 altoWords = {
-  \dropLyricsV
+  
   \lyricmode {
     \set stanza = #"1. "
     The great God of Heav -- en is __ come down to earth,
@@ -116,7 +116,7 @@ altoWords = {
   }
 }
 altoWordsII = {
-  \dropLyricsV
+  
   \set stanza = \markup{\dynamic"  mf " "2. "}
   \lyricmode {
     A Babe on the breast of a __ maid -- en He lies,
@@ -137,7 +137,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Lo! here is Em -- man -- u -- el, __ here is the Child,
   The Son that was prom -- ised to Ma -- ry so mild;
@@ -238,17 +238,11 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -268,16 +262,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

@@ -1,19 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Joy to the World!"
   poet = "Isaac Watts (1674–1748)"
   composer = "Lowell Mason (1792–1872)"
-  %tagline = \markup { "from" \concat{\italic "Hymns of the Kingdom of God" ", 1910, via " \italic"HymnsAndCarolsOfChristmas.com"}}
+  %source = \markup { "from" \concat{\italic "Hymns of the Kingdom of God" ", 1910, via " \italic"HymnsAndCarolsOfChristmas.com"}}
 }
 
 global = {
-  \key d \major
-  \time 2/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0.5 . 1)
-  \tempo 4 = 70
+    \key d \major
+    \time 2/4
+    \autoBeamOff
+    \tempo 4 = 70
 }
 
 sopMusic = \relative c'' {
@@ -21,18 +19,18 @@ sopMusic = \relative c'' {
   a4. g8 |
   fis4 e |
   d4. a'8 |
-  b4. b8 | \break
+  b4. b8 | 
   
   cis4. cis8 |
   d4.\fermata d8 |
   d[ cis] b[ a] |
   a8.[ g16 fis8] d' |
-  d[ cis] b[ a] | \break
+  d[ cis] b[ a] | 
   
   a8.[ g16 fis8] fis |
   fis\noBeam fis\noBeam fis\noBeam fis16[ g] |
   a4. g16[ fis] |
-  e8\noBeam e\noBeam e\noBeam e16[ fis] | \break
+  e8\noBeam e\noBeam e\noBeam e16[ fis] | 
   
   g4. fis16[ e] |
   d8( d'4) b8 |
@@ -69,39 +67,39 @@ altoMusic = \relative c' {
   d2
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Joy to the world! the Lord is come; Let earth re -- ceive her King; Let ev -- ’ry __ heart __ pre -- pare __ Him
-  \raiseLyrics
+  
   room, __
   And heav’n and na -- ture sing,
   And heav’n and na -- ture sing,
-  \dropLyricsXV
+  
   And heav’n, and heav’n __ and na -- ture sing.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   Joy to the world! the Sav -- ior reigns; Let men their songs em -- ploy;
   While fields and __ floods, __ rocks, hills __ and __
-  \raiseLyrics
+  
   plains __
   
   Re -- peat the sound -- ing joy,
   Re -- peat the sound -- ing joy,
-  \dropLyricsXV
+  
   Re -- peat, __ re -- peat __ the sound -- ing joy.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   He rules the world with truth and grace And makes the na -- tions prove The glo -- ries __ of __ His right -- eous --
-  \raiseLyrics
+  
   ness, __
   
   And won -- ders of His love,  
   And won -- ders of His love,
-  \dropLyricsXV
+  
   And won -- ders, won -- ders of His love.
 }
 altoWordsIV = \lyricmode {
@@ -184,10 +182,10 @@ bassWordsIII = \lyricmode {
   And won -- ders of His love.
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -213,12 +211,9 @@ bassWordsIII = \lyricmode {
   >>
   \layout { }
   \midi {
-    \tempo 4 = 70
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

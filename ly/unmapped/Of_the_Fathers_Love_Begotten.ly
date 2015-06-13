@@ -1,10 +1,10 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Of the Father’s Love Begotten"
   poet = "Translated by John Mason Neale (1818–1866)"
   composer = \markup{\italic{Divinum Mysterium}, 13th Century Melody}
-% tagline = \markup\center-column{
+% source = \markup\center-column{
 %   \concat{"from " \italic"Great Hymns of the Church Compiled by the Late Right Reverend John Freeman Young" ", 1887,"}
 %   \concat{"via " \italic"HymnsAndCarolsOfChristmas.com"}
 % }
@@ -14,8 +14,6 @@ global = {
   \key f \major
   \time 10/4
   \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
 }
 
 sopMusic = \relative c' {
@@ -26,9 +24,9 @@ sopMusic = \relative c' {
     d4. e8 f4 c c bes a4.( g8) f2 |
     d4. e8 f4 g f( d2) e4 f2 \bar "||"
     
-    \partial 4*6 f4. g8 a4 bes a g |
-    \partial 4*8 c4( d) c4( a2 bes4 c2) |
-    \partial 4*8 f,4 e4 d4 e \bar"" f d c2 |
+    f4. g8 a4 bes a g |
+    c4( d) c4( a2 bes4 c2) |
+    f,4 e4 d4 e  f d c2 |
     f4 g a c a f g2( f)
   }
 }
@@ -49,7 +47,7 @@ altoMusic = \relative c' {
   f'4 f f e e f e2( f)
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set associatedVoice = "sopranos"
   \set stanza = #"1. "
   Of the Fa -- ther’s love be -- got -- ten,
@@ -80,7 +78,7 @@ Who at last in ven -- geance com -- ing __
         Ev -- er -- more and ev -- er -- more!
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set associatedVoice = "sopranos"
   \set stanza = #"2. "
@@ -111,7 +109,7 @@ Let their guile -- less songs re -- ech -- o, __
         Ev -- er -- more and ev -- er -- more!
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set associatedVoice = "sopranos"
   \set stanza = #"3. "
   He is found in hu -- man fash -- ion,
@@ -198,6 +196,7 @@ pianoLH = \relative c' {
   
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -242,3 +241,5 @@ pianoLH = \relative c' {
     }
   }
 }
+}
+

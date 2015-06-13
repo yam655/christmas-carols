@@ -1,54 +1,49 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Truth From Above"
   subtitle = "(Herefordshire Carol)"
   poet = "Traditional"
   composer = "Arranged by Ralph Vaughan Williams (1872–1958)"
-  tagline = ""
+  source = ""
 }
 
-#(define ((compound-time one two num numtwo) grob)
-   (grob-interpret-markup grob
-                          (markup #:override '(baseline-skip . 0) #:number
-                                  (#:line ((#:column (one num))
-                                           (#:column (two numtwo)))))))
 global = {
-  \key c \major
-  \autoBeamOff
-  \time 3/2
+    \key c \major
+    \autoBeamOff
+    \time 3/2
+    \tempo 4 = 115
 }
 
 sopMusic = \relative c' {
+    \partial 4
   \repeat volta 3 {
-    \partial 4 e4 |
-    \partial 4*5 a4 b c( b) a |
-    \partial 2*3 g a e2. b'4 |
+    e4 |
+    a4 b c( b) a |
+    g a e2. b'4 |
     
-    \partial 2*3 c c b( a2) g4 |
-    \partial 2*3 a b c2. \bar""\break c8[ d] |
-    \partial 2*3 e4 e d2 c4( b) |
+    c c b( a2) g4 |
+    a b c2.  c8[ d] |
+    e4 e d2 c4( b) |
     
-    \partial 2*3 \slurDotted a a e2. e8( g) |
+    \slurDotted a a e2. e8( g) |
     \slurSolid
-    \partial 2*3 a4 b c( d) e( d) |
-    \partial 2*3 c( a) b4 a2.
+    a4 b c( d) e( d) |
+    c( a) b4 a2.
   }
-  \break
-  
   
   \repeat volta 2 {
-    \partial 4 e4 |
-    \partial 4*5 a4 b c( b) a |
-    \partial 2*3 g a e2. b'4 |
+    e4 |
+    a4 b c( b) a |
+    g a e2. b'4 |
     
-    \partial 2*3 c c b( a2) g4 |
-    \partial 2*3 a b c2. \bar""\break c8[ d] |
-    \partial 2*3 e4 e d2 c4( b) |
+    c c b( a2) g4 |
+    a b c2.  c8[ d] |
+    e4 e d2 c4( b) |
     
-    \partial 2*3 a a e2. e8[ g] |
-    \partial 2*3 a4 b c( d) e( d) |
-    \partial 2*3 c( a) b a2.
+    a a e2. e8[ g] |
+    a4 b c( d) e( d) |
+    c( a) b a2.
   }
 }
 sopWords = \lyricmode {
@@ -84,7 +79,7 @@ altoMusic = \relative c' {
 }
 
 altoWords = \lyricmode {
-  \dropLyricsXI
+  
   \set stanza = #"1. "
   This is the truth sent from a -- bove,
   The truth of God, the God of love.
@@ -98,7 +93,7 @@ altoWords = \lyricmode {
   and ma -- ny thou -- sands He did teach.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsXI
+  
 %\markup\italic
   \set stanza = #"2. "
   The first thing which I do re -- late
@@ -114,7 +109,7 @@ altoWordsII = \lyricmode {
   Be pleased to hear what He did say:
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsXI
+  
   \set stanza = #"3. "
   Then, af -- ter this, ’twas God’s own choice
   To place them both in Pa -- ra -- dise,
@@ -129,7 +124,7 @@ altoWordsIII = \lyricmode {
 
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsXI
+  
   \set stanza = #"4. "
   But they did eat, which was a sin,
   And thus their ru -- in did be -- gin.
@@ -146,7 +141,7 @@ altoWordsIV = \lyricmode {
   sure to have e -- ter -- nal bliss.
 }
 altoWordsV = \lyricmode {
-  \dropLyricsXI
+  
   \set stanza = #"5. "
   Thus we were heirs to end -- less woes,
   Till God the Lord did in -- ter -- pose;
@@ -231,13 +226,8 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -260,22 +250,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
-    }
-  }
+  \layout { }
   \midi {
-    \tempo 4 = 115
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

@@ -1,16 +1,15 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header { 
     title = "Flos de radice Jesse"
     composer = "Arranged by Michael Praetorius (1571–1621)"
-    %tagline = \markup { from \italic {HymnsAndCarolsOfChristmas.com}}
+    %source = \markup { from \italic {HymnsAndCarolsOfChristmas.com}}
   }
 
 global = {
-  \key g \major
-  \time 4/4
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 4/4
+    \tempo 4 = 100
 }
 
 sopMusic = \relative c'' {
@@ -62,7 +61,7 @@ altoMusic = \relative c'' {
   d4) d d2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Flos de ra -- di -- ce Jes -- se, est na -- tus ho -- di -- e.
   Quem no -- bis jam ad -- es -- se, læ -- ta -- mur u -- ni -- ce.
@@ -70,7 +69,7 @@ altoWords = \lyricmode {
   Ma -- ri -- a Vir -- go ra -- dix de qua flos or -- tus est.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   Hunc I -- sa -- ias flo -- rem, præ -- sa -- gi -- is ce -- ci -- nit.
   Ad e -- jus nos a -- mo -- rem, Na -- scen -- tis al -- li -- cit.
@@ -78,7 +77,7 @@ altoWordsII = \lyricmode {
   cœ -- li ter -- ræ -- que ci -- ves, Flos il -- le re -- cre -- at.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Est cam -- pi flos pu -- di -- ci, est flos con -- val -- li -- um.
   Pul -- crum -- que pot -- est di -- ci, in spi -- nis li -- li -- um.
@@ -161,17 +160,10 @@ bassWordsII = \lyricmode {
   -cre -- at.
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -192,7 +184,6 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)(padding . 0.2)) } \lyricsto "basses" \bassWordsII
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)(padding . 0.2)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout {
     \context {
@@ -204,12 +195,9 @@ pianoLH = \relative c' {
   }
   
   \midi {
-    \tempo 4 = 100
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }

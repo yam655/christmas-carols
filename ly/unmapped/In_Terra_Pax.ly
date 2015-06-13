@@ -1,26 +1,22 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "In Terra Pax"
   poet = "Mrs. Alderson"
   composer = "John Bacchus Dykes (1823–1876)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key f \major
-  \time 6/4
-  \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #-1.0
-  \override DynamicLineSpanner #'Y-extent = #'(-0.35 . 1)
-  \override DynamicText #'X-offset = #-4
+    \key f \major
+    \time 6/4
+    \autoBeamOff
+    \tempo 4 = 110
 }
 globalNoTime = {
-  \key f \major
-  \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #-1.0
-  \override DynamicLineSpanner #'Y-extent = #'(-0.35 . 1)
-  \override DynamicText #'X-offset = #-4
+    \key f \major
+    \autoBeamOff
+    \tempo 4 = 110
 }
 
 sopMusic = \relative c' {
@@ -34,16 +30,16 @@ sopMusic = \relative c' {
   g4^\markup\italic"cresc." g a bes( c) d |
   d( c) a g2. \bar "||"
   g4^\markup\italic"dim." g a bes( c) d |
-  \partial 4*5 d(^\> c)\! a bes2 \bar "||"
+  d(^\> c)\! a bes2 
   
-  \partial 4 c4^\f |
+  c4^\f |
   a2 a4 a( g) f |
-  \partial 4*5 c'2.~ c2 \bar "||"
-  \partial 4 c,4 |
+  c'2.~ c2 
+  c,4 |
   c2 a'4 a(^\> g)\! f |
-  \partial 4*5 f( e) d c2 \bar "||" \break
+  f( e) d c2 
   
-  \partial 4 b'4\rest |
+  b'4\rest |
   b1.\rest |
   b2.\rest b2\rest c,4^\p |
   f2. d |
@@ -60,7 +56,7 @@ sopMusic = \relative c' {
   f~ f~ |
   f~ f |
   bes1.\rest |
-  a2.~ a2.\fermata \bar "||" \break
+  a2.~ a2.\fermata \bar "||" 
   
   % verse 4
   c,4 f a c2 a4 |
@@ -72,18 +68,18 @@ sopMusic = \relative c' {
   g4 g a bes( c) d |
   d( c) a g2. \bar "||"
   g4^\markup\italic"dim." g^> a bes( c) d |
-  \partial 4*5 d( c) a bes2 \bar "||"
+  d( c) a bes2 
   
-  \partial 4 c4^\f |
+  c4^\f |
   a2 a4 a( g) f |
-  \partial 4*5 c'2. c2 \bar "||"
-  \partial 4 c,4^\pp |
+  c'2. c2 
+  c,4^\pp |
   c2. c |
   c a' |
   
   g2^> f4^\markup\italic"rall." e2 d4 |
-  \partial 4*5 c2.~ c2 \bar "||"  \pageBreak
-  \partial 4 b'4\rest |
+  c2.~ c2 
+  b'4\rest |
   b1.\rest |
   b2.\rest b2\rest c,4^\f |
   f2. d |
@@ -133,19 +129,6 @@ sopWords = {
   }
 }
 
-dropLyrics = {
-  \override LyricText #'extra-offset = #'(0 . -2.0)
-  \override LyricHyphen #'extra-offset = #'(0 . -2.0)
-  \override LyricExtender #'extra-offset = #'(0 . -2.0)
-  \override StanzaNumber #'extra-offset = #'(0 . -2.0)
-}
-dropLyricsII = {
-  \override LyricText #'extra-offset = #'(0 . -0.2)
-  \override LyricHyphen #'extra-offset = #'(0 . -0.2)
-  \override LyricExtender #'extra-offset = #'(0 . -0.2)
-  \override StanzaNumber #'extra-offset = #'(0 . -0.2)
-}
-
 altoMusic = \relative c' {
   c4 c f f2 f4 |
   e2 e4 f2. \bar "||"
@@ -174,7 +157,7 @@ altoMusic = \relative c' {
   c2.~ c2 c4 |
   
   d2. f~ |
-  f) c2.~ |
+  f c2.~ |
   c2 c4 c( d) e |
   f2.~ f |
   
@@ -240,7 +223,7 @@ altoMusic = \relative c' {
 }
 altoWords = {
   \lyricmode {
-    \dropLyricsV
+    
     \set stanza = #"1. "
     \set associatedVoice = "sopranos"
     In -- fant of days, yet Lord of Life,
@@ -257,14 +240,14 @@ altoWords = {
     \markup\italic In \markup\italic ter -- \markup\italic ra \markup\italic Pax, \markup\italic Pax __ \markup\italic Pax __ \markup\italic ho -- \markup\italic mi -- \markup\italic ni -- \markup\italic bus, __
     \markup\italic Pax, __ \markup\italic Pax __ \markup\italic In \markup\italic ter -- \markup\italic ra
     
-    \dropLyrics
+    
     \markup\italic Pax, __
   }
   \set stanza = \markup\dynamic"pp"
   \lyricmode{
     \markup\italic Pax.” __
     
-    \dropLyricsV
+    
     \set associatedVoice = "sopranos"
     O hear Thy Church, with one __ ac -- cord,
     \set associatedVoice = "tenors"
@@ -277,7 +260,7 @@ altoWords = {
     Heav’n’s Peace to earth \unset associatedVoice re -- sto -- ring.
     And Peace E -- ter -- nal, Je -- su, grant, we pray. __
     
-    \dropLyricsII
+    
     \markup\italic “In \markup\italic Cæ -- \markup\italic lo __ \markup\italic Pax, __
     \set associatedVoice = "sopranos"
     \markup\italic Et __ \markup\italic in \unset associatedVoice \markup\italic Ex -- \markup\italic cel -- \markup\italic sis,
@@ -297,7 +280,7 @@ altoWords = {
   }
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic 
   \set stanza = #"2. "
   \set associatedVoice = "sopranos"
@@ -312,7 +295,7 @@ altoWordsII = \lyricmode {
   When An -- gel choirs hymned forth to us
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   \set associatedVoice = "sopranos"
   O ol -- ive Branch! O Dove of Peace!
@@ -450,7 +433,7 @@ tenorWords = \lyricmode {
   %\repeat unfold 51 {\skip 1}
 }
 tenorWordsII = \lyricmode {
-  \dropLyricsII
+  
   \markup\italic “In \markup\italic Cæ -- \markup\italic lo __ \markup\italic Pax, __
   \markup\italic Et __ \markup\italic in \markup\italic Ex -- \markup\italic cel -- \markup\italic sis, \markup\italic Glo -- \markup\italic ri -- \markup\italic a, __
   \markup\italic Glo -- \markup\italic ri -- \markup\italic a, \markup\italic In \markup\italic Cæ -- \markup\italic lo \markup\italic Pax,
@@ -535,7 +518,7 @@ bassMusicII = \relative c {
   c2.~ c |
   d2 r4 r2. |
   
-  r2 g,4 g2 |
+  r2 g,4 g2 
   b4 |
   c2.~ c |
   c~ c2 c4 |
@@ -562,7 +545,7 @@ bassWords = \lyricmode {
   %\repeat unfold 49 {\skip 1}
 }
 bassWordsII = \lyricmode {
-  \dropLyricsII
+  
   \markup\italic “In \markup\italic Cæ -- \markup\italic lo \markup\italic Pax, __
   \markup\italic “In \markup\italic Cæ -- \markup\italic lo \markup\italic Pax, __
   \markup\italic Et __ \markup\italic in \markup\italic Ex -- \markup\italic cel -- \markup\italic sis,
@@ -575,17 +558,11 @@ bassWordsII = \lyricmode {
   \markup\italic Glo -- \markup\italic ri -- \markup\italic a.”
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \set Staff.explicitKeySignatureVisibility = #end-of-line-invisible
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
@@ -631,12 +608,9 @@ pianoLH = \relative c' {
     }
   }
   \midi {
-    \tempo 4 = 110
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}  
 }
+

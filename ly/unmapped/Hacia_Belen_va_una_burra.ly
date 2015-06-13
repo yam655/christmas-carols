@@ -1,10 +1,10 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Hacia Belén va una burra"
   poet = "Traditional"
   composer = "Traditional"
-  %tagline = \markup { "from" \italic {cpdl.org} and \italic"pucpr.edu"}
+  %source = \markup { "from" \italic {cpdl.org} and \italic"pucpr.edu"}
 }
 
 global = {
@@ -12,8 +12,7 @@ global = {
   \time 3/4
   \autoBeamOff
   \tempo "Allegro" 4 = 168
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+  % \tempo 4 = 90
 }
 
 sopMusic = \relative c' {
@@ -48,7 +47,7 @@ sopMusic = \relative c' {
   %page3
   d2 c4 |
   b2( a4) |
-  g2 \bar"|" \break
+  g2 \bar"|" 
   
   \repeat volta 2 {
     b8 b |
@@ -119,7 +118,7 @@ altoMusic = \relative c' {
   }
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Ha -- cia Be -- lén va u -- na bu -- rra rin rin
   yo me re -- men -- da -- ba yo me re -- men -- dé,
@@ -142,7 +141,7 @@ altoWords = \lyricmode {
   se lo~es -- tán co -- mien -- do.
 }
 altoWordsII = {
-  \dropLyricsV
+  
   \set stanza = \markup{\dynamic"mp " "2. "}
   \lyricmode {
   %\markup\italic
@@ -168,7 +167,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   En el por -- tal de Be -- lén rin rin rin rin
   yo me re -- men -- da -- ba yo me re -- men -- dé,
@@ -313,13 +312,8 @@ bassWords = \lyricmode {
   rin,
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -342,7 +336,6 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men"  \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
@@ -372,17 +365,13 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men"  \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   
   \midi {
-    \tempo 4 = 90
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+} 
 }
 

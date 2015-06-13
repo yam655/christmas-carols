@@ -1,10 +1,10 @@
 ﻿\version "2.14.2"
-%\include "util.ly"
+
 \header {
     title = "While Shepherds Watched Their Flocks"
     poet = "Nahum Tate (1652–1715)"
     composer = \markup{tune is \italic{Winchester Old}, by George Kirbye (c. 1565–1634)}
-    %tagline = \markup{ from \italic {Church Sunday School Hymn-Book}, 1892, via \italic{HymnsAndCarolsOfChristmas.com}}
+    %source = \markup{ from \italic {Church Sunday School Hymn-Book}, 1892, via \italic{HymnsAndCarolsOfChristmas.com}}
   }
 
 global = {
@@ -113,6 +113,7 @@ altoWordsVI = \lyricmode {
     Be -- gin and nev -- er cease.”
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -139,5 +140,6 @@ altoWordsVI = \lyricmode {
 %   \set Staff.midiInstrument = "flute" 
 %   \context { \Voice \remove "Dynamic_performer" }
   }
+} 
 }
 

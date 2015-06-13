@@ -1,5 +1,5 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "We Wish You a Merry Christmas"
     poet = "Traditional"
@@ -7,11 +7,10 @@
   }
 
 global = {
-  \key aes \major
-  \time 3/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-0.5 . 0.5)
+    \key aes \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 150
 }
 
 sopMusic = \relative c' {
@@ -24,8 +23,8 @@ sopMusic = \relative c' {
   c' c8\noBeam des c\noBeam bes |
   \slurDotted aes4 f ees8\noBeam( ees) |
   f4 bes g |
-  \partial 2 aes2^\markup\italic"Fine" \bar "||" \break
-  \partial 4 ees4 |
+  aes2^\markup\italic"Fine" 
+  ees4 |
   aes aes aes |
   
   g2 g4 |
@@ -34,7 +33,7 @@ sopMusic = \relative c' {
   c bes aes |
   ees' ees, ees8\noBeam ees |
   f4 bes g |
-  \partial 2 aes2 \bar "|."
+  aes2 \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -60,10 +59,10 @@ altoMusic = \relative c' {
   ees des c |
   ees ees ees8\noBeam ees |
   des4 f ees |
-  \partial 2 ees2 \bar "|."
+  ees2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1, 4. "
   \set ignoreMelismata = ##t
   We wish you a Mer -- ry Christ -- mas,
@@ -72,7 +71,7 @@ altoWords = \lyricmode {
   And a hap -- py New Year!
 }
 altoWordsII = {
-  \dropLyricsV
+  
   \set stanza = \markup{\dynamic"mf   " "2. "}
   \lyricmode {
   %\markup\italic
@@ -89,7 +88,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   \set ignoreMelismata = ##t
   We won’t go un -- til we get some,
@@ -126,7 +125,7 @@ tenorMusic = \relative c {
   aes aes aes |
   aes aes aes8\noBeam aes |
   aes4 des des |
-  \partial 2 c2 \bar "|."
+  c2 \bar "|."
 }
 tenorWords = \lyricmode {
 
@@ -152,23 +151,17 @@ bassMusic = \relative c {
   aes, aes aes |
   c c c8\noBeam c |
   des4 bes ees |
-  \partial 2 aes2 \bar "|."
+  aes2 \bar "|."
 }
 bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -188,17 +181,13 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 150
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

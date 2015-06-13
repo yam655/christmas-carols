@@ -1,53 +1,51 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "God Rest You Merry, Gentlemen"
   poet = "Traditional"
   composer = "Traditional"
   arranger = "Arranged by Sir John Stainer (1840–1901)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key g \major
-  \time 2/2
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 2/2
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
+    \partial 4
   \repeat volta 2 {
-    \partial 4 e4 |
+    e4 |
     e b' b a |
     \slurDotted g( fis) e d |
     \slurSolid e fis g a |
-    b2. \bar""\break e,4 |
+    b2.  e,4 |
     
     e b' b a |
     \slurDotted g( fis) e d |
     \slurSolid
     e fis g a |
-    b2 b4\rest \bar""\break b |
+    b2 b4\rest  b |
     
     c a b c |
     \slurDotted d( e) b a |
     \slurSolid
     g e fis g |
-    \partial 2 a2 \bar "||" \break
+    a2 
     
-    \partial 2 g4( a) |
+    g4( a) |
     b2 c4 b |
     b( a) g fis |
     e2 g8\noBeam fis e4 |
     a2 g4( a) |
     b( c) d e |
     b( a) g fis |
-    \partial 4*3 e2. \break
+    e2. 
   }
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   e4 |
@@ -66,20 +64,19 @@ altoMusic = \relative c' {
   \slurDotted f( e) d dis |
   \slurSolid
   e cis d g |
-  fis2 |
+  fis2 
   
   g4( d) |
   d2 e4 d |
-  g( fis) e dis) |
+  g( fis) e dis |
   e2 b8\noBeam b cis4 |
   d2 e4( fis) |
   g2 g4 g |
   g( fis) e dis |
   e2.
 }
-altoWords = {
-  \dropLyricsIX
-  \lyricmode {
+
+altoWords = \lyricmode {
     \set stanza = #"1. "
     God rest you mer -- ry, \set ignoreMelismata = ##t
     gen -- tle -- men,
@@ -91,50 +88,48 @@ altoWords = {
     Sa -- tan’s 
     \unset ignoreMelismata
     pow’r When we were gone a -- stray;
-  }
   \set stanza = \markup\dynamic"ff  "
-  \lyricmode {
-    O __ ti -- dings of com -- fort and joy, com -- fort and joy, O __ ti -- dings of com -- fort and joy.
-    
-    
-    \set stanza = #"4. "
-    “Fear not then,” said the An -- gel, “Let noth -- ing you af -- fright,
-    This day is born a Sav -- ior Of a pure Vir -- gin bright,
-    \set ignoreMelismata = ##t
-    To free all those who trust in Him From Sa -- tan’s pow’r and might.”
-    \unset ignoreMelismata
-  }
-  \set stanza = \markup\dynamic"ff  "
-  \lyricmode {
-    O __ ti -- dings of com -- fort and joy, com -- fort and joy, O __ ti -- dings of com -- fort and joy.
-  }
+    O __ ti -- dings of com -- fort and joy, com -- fort and joy, O __ ti -- dings of com -- fort and joy. 
 }
-altoWordsII = {
-  \dropLyricsIX
+
+altoWordsII = \lyricmode { 
   \set stanza = \markup{\dynamic"  mf " "2. "}
-  \lyricmode {
     In Beth -- le -- hem in Jew -- ry, This bless -- ed Babe was born,
     And laid with -- in a man -- ger, Up -- on this bless -- ed Morn;
-    The which His Moth -- er Ma -- ry, Did noth -- ing take in scorn.
-    
-    \repeat unfold 20\skip1
+    The which His Moth -- er Ma -- ry, Did noth -- ing take in scorn. 
+}
+
+altoWordsIII = \lyricmode { 
+  \set stanza = #"3. "
+  From God our Heav’n -- ly Fa -- ther, A bless -- ed An -- gel came;
+  And un -- to cer -- tain Shep -- herds Brought ti -- dings of the same:
+  \set ignoreMelismata = ##t
+  How that in Beth -- le -- hem was born The Son of God by Name. 
+  \unset ignoreMelismata 
+}
+
+altoWordsIV = \lyricmode { 
+  \set stanza = #"4. "
+  “Fear not then,” said the An -- gel, “Let noth -- ing you af -- fright,
+  This day is born a Sav -- ior Of a pure Vir -- gin bright,
+  \set ignoreMelismata = ##t
+  To free all those who trust in Him From Sa -- tan’s pow’r and might.”
+  \unset ignoreMelismata
+  \set stanza = \markup\dynamic"ff  "
+    O __ ti -- dings of com -- fort and joy,
+    com -- fort and joy,
+    O __ ti -- dings of com -- fort and joy.
+}
+
+altoWordsV = \lyricmode { 
     \set stanza = #"5. "
     The shep -- herds at those ti -- dings Re -- joic -- ed much in mind,
     And left their flocks a -- feed -- ing, In tem -- pest, storm, and wind:
     \set ignoreMelismata = ##t
     And went to Beth -- le -- hem straight way, The Son of God to find.
-  }
 }
-altoWordsIII = \lyricmode {
-  \dropLyricsIX
-  \set stanza = #"3. "
-  From God our Heav’n -- ly Fa -- ther, A bless -- ed An -- gel came;
-  And un -- to cer -- tain Shep -- herds Brought ti -- dings of the same:
-  \set ignoreMelismata = ##t
-  How that in Beth -- le -- hem was born The Son of God by Name.
-  
-  \unset ignoreMelismata
-  \repeat unfold 20\skip1
+
+altoWordsVI = \lyricmode { 
   \set stanza = #"6. "
   And when they came to \set ignoreMelismata = ##t
   Beth -- le -- hem
@@ -144,9 +139,8 @@ altoWordsIII = \lyricmode {
   \set ignoreMelismata = ##t
   His Moth -- er Ma -- ry kneel -- ing down, Un -- to the Lord did pray.
 }
-altoWordsIV = \lyricmode {
-  \repeat unfold 59\skip1
-  \dropLyricsIX
+
+altoWordsVII = \lyricmode { 
   \set stanza = #"7. "
   Now to the Lord sing prais -- es,
   All you with -- in this place,
@@ -156,12 +150,6 @@ altoWordsIV = \lyricmode {
   Each oth -- er now em -- brace;
   This ho -- ly tide of Christ -- mas
   All oth -- er doth de -- face.
-}
-altoWordsV = \lyricmode {
-}
-altoWordsVI = \lyricmode {
-}
-altoWordsVII = \lyricmode {
 }
 
 tenorMusic = \relative c {
@@ -182,7 +170,7 @@ tenorMusic = \relative c {
   \slurDotted g( g) g fis |
   \slurSolid
   g g a d |
-  d( c) |
+  d( c) 
   
   b( a) |
   g2 g4 g |
@@ -193,9 +181,7 @@ tenorMusic = \relative c {
   d( c) b b |
   g2.
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   e4 |
@@ -215,7 +201,7 @@ bassMusic = \relative c {
   \slurDotted b( c) g b |
   \slurSolid
   e e d b |
-  d2 |
+  d2 
   
   e4( fis) |
   g2 c,4 g' |
@@ -226,44 +212,34 @@ bassMusic = \relative c {
   g( a) b b |
   e2.
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \repeat unfold 2 \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \repeat unfold 2 \altoMusic >> }
+      \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
+      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsVII
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5)) } \lyricsto "altos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "altos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "altos" \altoWordsII
+    \new Lyrics = "altosIII"   \lyricsto "altos" \altoWordsIII
+    \new Lyrics = "altosIV"   \lyricsto "altos" \altoWordsIV
+    \new Lyrics = "altosV"   \lyricsto "altos" \altoWordsV
+    \new Lyrics = "altosVI"   \lyricsto "altos" \altoWordsVI
+    \new Lyrics = "altosVII"   \lyricsto "altos" \altoWordsVII
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \repeat unfold 2 \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \repeat unfold 2 \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

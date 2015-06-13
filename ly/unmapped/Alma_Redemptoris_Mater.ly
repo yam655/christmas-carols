@@ -1,17 +1,13 @@
 \version "2.14.2"
-\include "util.ly"
-\header {
-  title = "Alma Redemptoris Mater"
-  composer = "Giovanni Pierluigi da Palestrina (c. 1525–1594)"
-  tagline = ""
-}
+
+songTitle = "Alma Redemptoris Mater"
+tuneComposer = "Giovanni Pierluigi da Palestrina (c. 1525–1594)"
+tuneSource = \markup \null
 
 global = {
   \key ees \major
   \time 4/4
   \dynamicUp
-  %\set crescendoSpanner = #'dashed-line
-  %\set midiInstrument = "recorder"
   \autoBeamOff
   %\override DynamicTextSpanner #'style = #'none
 }
@@ -277,11 +273,12 @@ bassWords = \lyricmode {
     pec -- ca -- tó -- rum mi -- se -- ré -- re.
 }
 
-pianoRH = \relative c' {
+\bookpart { 
+\header {
+  title = \songTitle
+  composer = \tuneComposer
+  source = \tuneSource
 }
-pianoLH = \relative c' {
-}
-
 \score {
 <<
     \new ChoirStaff <<
@@ -325,11 +322,13 @@ pianoLH = \relative c' {
   \midi {
     \tempo 4 = 120
     \set Staff.midiInstrument = "flute"
+    %\set Staff.midiInstrument = "recorder"
   
     \context {
       \Voice
       \remove "Dynamic_performer"
     }
   }
+}
 }
 

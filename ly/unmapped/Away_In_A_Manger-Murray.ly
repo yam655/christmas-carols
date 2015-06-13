@@ -1,16 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "Away In A Manger"
     poet = "Anonymous"
     composer = "James Ramsey Murray (1841–1905)"
-    %tagline = ""%\markup { "from" \italic {ChristmasCarolMusic.org}} 
+    %source = ""%\markup { "from" \italic {ChristmasCarolMusic.org}} 
 }
 
 global = {
-  \key f \major
-  \time 3/4
-  \autoBeamOff
+    \key f \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 100
 }
 
 sopMusic = \relative c'' {
@@ -32,13 +33,7 @@ sopMusic = \relative c'' {
   bes'4. a8 g4 |
   a g f |
   g d e |
-  \partial 2 f2 \bar "|."
-%{IF_LESSER
-\pageBreak
-%}%END_IF_LESSER
-}
-sopWords = \lyricmode {
-  
+  f2 \bar "|."
 }
 
 altoMusic = \relative c' {
@@ -63,7 +58,7 @@ altoMusic = \relative c' {
   a2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIV
+  
   \set stanza = #"1. "
   A -- way in a man -- ger,
   No crib for His bed,
@@ -75,7 +70,7 @@ altoWords = \lyricmode {
   A -- sleep in the hay.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIV
+  
   \set stanza = #"2. "
   The cat -- tle are low -- ing,
   The poor ba -- by wakes,
@@ -87,7 +82,7 @@ altoWordsII = \lyricmode {
   Till mor -- ning is nigh.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIV
+  
   \set stanza = #"3. "
   Be near me, Lord Je -- sus,
   I ask Thee to stay
@@ -122,9 +117,6 @@ tenorMusic = \relative c {
   bes g g |
   f2 \bar "|."
 }
-tenorWords = \lyricmode {
-
-}
 
 bassMusic = \relative c {
   f4 |
@@ -147,48 +139,31 @@ bassMusic = \relative c {
   bes bes c4 |
   f,2 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart {
 \score {
-  <<
-   \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
-    \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+    <<
+        \new ChoirStaff <<
+            \new Staff = women <<
+                \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
+                \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+            >>
+            \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+            \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+            \new Lyrics = "altosIII"  \lyricsto "sopranos" \altoWordsIII
+            \new Lyrics = "altosIV"   \lyricsto "sopranos" \altoWordsIV
+            \new Staff = men <<
+                \clef bass
+                \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
+                \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
+            >>
+        >>
     >>
-    \new Lyrics \with { alignAboveContext = #"women" } \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWords
-   \new Staff = men <<
-      \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
-  >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
-  >>
-  \layout {
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
-    }
-  }
   
   \midi {
-    \tempo 4 = 100
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

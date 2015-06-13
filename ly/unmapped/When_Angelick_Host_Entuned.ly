@@ -1,7 +1,7 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
-    %tagline = \markup { from \italic "The Cambridge Carol Book" ", 1924"}
+    %source = \markup { from \italic "The Cambridge Carol Book" ", 1924"}
 
     title = "When Angelick Host Entuned"
     poet = "George Ratcliffe Woodward (1848–1934)"
@@ -9,13 +9,11 @@
     arranger = "Arranged by George Ratcliffe Woodward (1848–1934)"
   }
 
-%When Angelick Host Entuned
 global = {
-  \key g \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
@@ -45,7 +43,7 @@ altoMusic = \relative c' {
   d cis d2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   When an An -- gel host en -- tuned
   An -- them sweet and ai -- ry
@@ -54,7 +52,7 @@ altoWords = \lyricmode {
   Of the Vir -- gin Ma -- ry;
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   When, with hon -- ey, herd -- men brought
@@ -65,7 +63,7 @@ altoWordsII = \lyricmode {
   \set ignoreMelismata = ##t
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   When three pil -- grim kings un -- lockt
   Each his cas -- ket, spa -- ry
@@ -75,7 +73,7 @@ altoWordsIII = \lyricmode {
   \set ignoreMelismata = ##t
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   ‘Glo -- ry be to God on high,
   God, who can -- not va -- ry!’
@@ -122,13 +120,8 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -151,17 +144,13 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

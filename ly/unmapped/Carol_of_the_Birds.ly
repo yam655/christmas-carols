@@ -1,19 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "Carol of the Birds"
     poet = "Traditional"
     composer = "Bas-Quercey Carol"
-    %tagline = \markup { from \italic{Carols Old and Carols New}, 1916, via \italic{HymnsAndCarolsOfChristmas.com}}
+    %source = \markup { from \italic{Carols Old and Carols New}, 1916, via \italic{HymnsAndCarolsOfChristmas.com}}
   }
 
 global = {
-  \key bes \major
-  \time 4/4
-  \autoBeamOff
-  \tempo \markup\italic"Not slow."
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key bes \major
+    \time 4/4
+    \autoBeamOff
+    \tempo "Not slow." 4 = 110
 }
 
 sopMusic = \relative c'' {
@@ -47,7 +45,7 @@ altoMusic = \relative c' {
   g4 fis d2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   \set ignoreMelismata = ##t
   Whence comes this rush of wings a -- _ far,
@@ -56,7 +54,7 @@ altoWords = \lyricmode {
   Beth -- le -- hem seek this _ Ho -- ly Night.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   \set ignoreMelismata = ##t
@@ -66,7 +64,7 @@ altoWordsII = \lyricmode {
   And all our sweet -- est _ mu -- sic bring.”
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   Hark how the Green -- finch bears his __ part,
   Phi -- lo -- mel, too, with ten -- der heart,
@@ -74,7 +72,7 @@ altoWordsIII = \lyricmode {
   \markup\italic Re, \markup\italic mi, \markup\italic fa, \markup\italic sol, in ac -- cents sweet.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   \set ignoreMelismata = ##t
   An -- gels and shep -- herds, birds of the sky,
@@ -116,17 +114,8 @@ bassMusic = \relative c' {
   bes4 bes8\noBeam f bes4 c |
   d d, g2 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -148,19 +137,13 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 110
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }

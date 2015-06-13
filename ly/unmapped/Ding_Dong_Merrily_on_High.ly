@@ -1,17 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Ding Dong Merrily on High"
   poet = "George Ratcliffe Woodward (1848–1934)"
   composer = "16th century French melody"
   arranger = "Arranged by Charles Wood (1866–1926)" 
-  %tagline = \markup { from  \italic {The Cambridge Carol Book}, 1924} 
+  %source = \markup { from  \italic {The Cambridge Carol Book}, 1924} 
 }
 
 global = {
-  \key bes \major
-  \time 4/4
-  \autoBeamOff
+    \key bes \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 165
 }
 
 sopMusic = \relative c'' {
@@ -20,7 +21,7 @@ sopMusic = \relative c'' {
     f2. f4 |
     g bes bes a |
     bes2 bes
-  } \break
+  } 
   \repeat volta 2 {
     f'4.( ees8[ d ees f d] |
     ees4. d8[ c d ees c] |
@@ -57,20 +58,20 @@ altoMusic = \relative c' {
   }
 }
 altoWords = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"1. "
   Ding dong! mer -- ri -- ly on high in heav’n the bells are ring -- ing:
   Ding dong!  Ve -- ri -- ly the sky is riv’n with an -- gel sing -- ing.
   \markup\italic Glo -- \markup\italic ri -- \markup\italic a, \markup\italic ho -- \markup\italic san -- \markup\italic na \markup\italic in \markup\italic ex -- \markup\italic cel -- \markup\italic sis!
 }
 altoWordsII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"2. "
   E’en so here be -- low, be -- low, let stee -- ple bells be swung -- en.
   And i -- o, i -- o, i -- o by priest and peo -- ple sung -- en.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"3. "
   Pray ye du -- ti -- ful -- ly prime your ma -- tin chime, ye ring -- ers;
   may ye beau -- ti -- ful -- ly rime your eve -- time song, ye sing -- ers.
@@ -119,10 +120,9 @@ bassMusic = \relative c {
     bes,2 bes
   }
 }
-bassWords = \lyricmode {
 
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -140,9 +140,7 @@ bassWords = \lyricmode {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men"  } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
@@ -173,13 +171,10 @@ bassWords = \lyricmode {
   >>
   
   \midi {
-    \tempo 4 = 165
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+} 
 }
 

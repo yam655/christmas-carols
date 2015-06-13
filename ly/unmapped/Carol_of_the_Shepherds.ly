@@ -1,38 +1,37 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Carol of the Shepherds"
   poet = "English by Eda Lou Walton (1894–1961)"
   composer = "17th Century Bohemian Carol"
-  tagline = ""
+  source = ""
 }
 
 global = {
-  \key g \major
-  \time 3/4
-  \autoBeamOff
+    \key g \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c'' {
   d4 d8[ b] e[ c] |
   d4 d8[ b] e[ c] |
-  d4 b8[ d] a[ b] g2 b4\rest | \break
+  d4 b8[ d] a[ b] g2 b4\rest | 
   
   d4 d8[ b] e[ c] |
   d4 d8[ b] e[ c] |
-  d4 b8[ d] a[ b] g2 b4\rest | \break
+  d4 b8[ d] a[ b] g2 b4\rest | 
   
   g4 b8\noBeam g\noBeam b\noBeam d\noBeam |
   g,4 b8\noBeam g\noBeam a\noBeam d,\noBeam |
-  g4 b8\noBeam g\noBeam b\noBeam d\noBeam | \break
+  g4 b8\noBeam g\noBeam b\noBeam d\noBeam | 
   
   g,4 b8\noBeam g\noBeam a\noBeam d,\noBeam |
   d'4 b8[ d] a[ b] |
-  \partial 2 g2 \bar "|."
+  g2 \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c'' {
   b4 b8[ g] c[ a] |
@@ -52,7 +51,7 @@ altoMusic = \relative c'' {
   d2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Come, all __ ye __ shep -- herds and
 %8.5x11 __
@@ -65,7 +64,7 @@ altoWords = \lyricmode {
   In Christ -- mas __ joy.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   As we __ were watch -- ing __ our
 %8.5x11 __
@@ -76,7 +75,7 @@ altoWordsII = \lyricmode {
   Christ -- mas __ is __ come.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Now we __ have found Him in __ Beth -- le -- hem stall,
   Sing the __ glad ti -- dings, oh, __ sing them to __ all!
@@ -107,9 +106,7 @@ tenorMusic = \relative c' {
   b4 d c |
   b2 \bar "|."
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c' {
   g4 g g |
@@ -130,10 +127,8 @@ bassMusic = \relative c' {
   d4 d d |
   g2 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -142,7 +137,6 @@ bassWords = \lyricmode {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
     \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
     \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
@@ -152,19 +146,13 @@ bassWords = \lyricmode {
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

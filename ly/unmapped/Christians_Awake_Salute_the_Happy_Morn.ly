@@ -1,17 +1,16 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Christians, Awake, Salute the Happy Morn"
   poet = "John Byrom (1692–1763)"
   composer = "John Wainwright (1723–1768)"
-  %tagline = \markup { "from " \italic "The English Hymnal" ", 1906"}
+  %source = \markup { "from " \italic "The English Hymnal" ", 1906"}
 }
 
 global = {
-  \key c \major
-  \time 4/4
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0 . 0)
+    \key c \major
+    \time 4/4
+    \tempo 4 = 135
 }
 
 sopMusic = \relative c' {
@@ -42,7 +41,7 @@ sopMusic = \relative c' {
     a2 b |
     c4 d e d |
     c2 b |
-    c1 \break
+    c1 
   }
 }
 sopWords = \lyricmode {
@@ -79,7 +78,7 @@ altoMusic = \relative c' {
   e1
 }
 altoWords = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"1. "
   \set associatedVoice = "altos"
   Christ -- ians, a -- wake, sa -- lute the hap -- py morn,
@@ -101,7 +100,7 @@ altoWords = \lyricmode {
   The ear -- liest her -- alds of the Sav -- ior’s name.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"2. "
   \set associatedVoice = "altos"
   Then to the watch -- ful shep -- herds it was told,
@@ -123,7 +122,7 @@ altoWordsII = \lyricmode {
   Till man’s first heav’n -- ly state a -- gain takes place.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"3. "
   \set associatedVoice = "altos"
   He spake; and straight -- way the ce -- les -- tial choir
@@ -212,14 +211,11 @@ bassMusic = \relative c {
   g2 g |
   c,1
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global {\once \override Score.RehearsalMark #'self-alignment-X = #LEFT \mark "Majestically" \sopMusic \sopMusic} >> }
       \new Voice = "altos" { \voiceTwo << \global \repeat unfold 2 \altoMusic >> }
@@ -249,13 +245,11 @@ bassWords = \lyricmode {
       \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))
       } \lyricsto "basses" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 135
     \set Staff.midiInstrument = "flute"
   
     \context {
@@ -264,3 +258,5 @@ bassWords = \lyricmode {
     }
   }
 }
+}
+

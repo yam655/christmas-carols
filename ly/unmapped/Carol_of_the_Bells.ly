@@ -1,39 +1,37 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Carol of the Lala (Schedryck)"
   % The lyrics for "Carol of the Bells" is under Copyright in the United States
 
   poet = "S.W. Black"
   composer = \markup{tune is \italic{Schedryck}, Mikola Dmytrovitch Leontovych (1877–1921)}
-  %tagline = \markup { "from" \italic {HymnsAndCarolsOfChristmas.com}}
+  %source = \markup { "from" \italic {HymnsAndCarolsOfChristmas.com}}
 }
 
 global = {
-  \key bes \major
-  \time 3/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-0.5 . 0.5)
+    \key bes \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 170
 }
 
 sopMusic = \relative c'' {
-  \tempo 4 = 170
   bes4-> a8 bes g4 |
   bes4-> a8 bes g4 |
   bes4-> a8 bes g4 |
-  bes4-> a8 bes g4 | \break
+  bes4-> a8 bes g4 | 
   \repeat volta 2 {
     
     bes4-> a8 bes g4 |
     bes4-> a8 bes g4 |
     bes4-> a8 bes g4 |
-    bes4-> a8 bes g4 | \break
+    bes4-> a8 bes g4 | 
     
     bes4-> a8 bes g4 |
     bes4-> a8 bes g4 |
     bes4-> a8 bes g4 |
-    bes4-> a8 bes g4 | \break
+    bes4-> a8 bes g4 | 
     
     bes4->\p\< a8 bes g4
     bes4-> a8 bes g4 |
@@ -68,7 +66,7 @@ sopMusic = \relative c'' {
       bes4-> a8 bes g4 | 
       bes4-> a8 bes g4 | 
       bes4-> a8 bes g4 | 
-      bes4-> a8 bes g4 | \break
+      bes4-> a8 bes g4 | 
     }
     {
       g2. |
@@ -168,7 +166,7 @@ altoMusic = \relative c'' {
 altoWords = {
   \lyricmode {
     Bing! Bong! Bing! Bong!
-    \dropLyricsV
+    
     Bing! Bong! Bing! Bong!
     
     \set associatedVoice = "sopranos"
@@ -197,7 +195,7 @@ altoWords = {
     Bing! Bong!
     Bing! Bong!
     
-    \raiseLyrics
+    
     Bing! Bong!
     Bing! Bong!
     Bing, bong, bing bong! __
@@ -325,13 +323,8 @@ bassWords = \lyricmode {
   \repeat unfold 4 { \skip 1 }
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -350,7 +343,6 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout {
     \context {
@@ -381,17 +373,13 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   
   \midi {
-    \tempo 4 = 170
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+} 
 }
 

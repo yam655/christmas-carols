@@ -1,18 +1,16 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "Tollite Hostias"
     composer = "Camille Saint-Saëns (1835–1921)"
-    %tagline = \markup { "from" \italic "cpdl.org"}
+    %source = \markup { "from" \italic "cpdl.org"}
   }
 
 global = {
   \key g \major
   \time 4/4
   \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-  \tempo "Maestoso"
+  \tempo "Maestoso" 4 = 105
 }
 
 sopMusic = \relative c'' {
@@ -24,7 +22,7 @@ sopMusic = \relative c'' {
     c4 c b4. b8 |
     e4. e8 d2 |
     
-    c4 d b( c) a2. b4\rest \break
+    c4 d b( c) a2. b4\rest 
   }
   \repeat volta 2 {
     a2^\p a4 b |
@@ -39,7 +37,7 @@ sopMusic = \relative c'' {
   }
   \alternative {
     {
-      g2. b4\rest \break
+      g2. b4\rest 
     }
     {
       g2. b4\rest
@@ -129,7 +127,7 @@ altoMusic = \relative c' {
   d1 \bar "|."
 }
 altoWords = {
-  \dropLyricsVIII
+  
   \set stanza = \markup\dynamic"f   "
   \lyricmode {
     Tol -- li -- te hos -- ti -- as.
@@ -137,7 +135,7 @@ altoWords = {
     Do -- mi -- num in a -- tri -- o
     san -- cto e -- jus.
   }
-  \raiseLyrics
+  
   \lyricmode {
     Læ -- ten -- tur cœ -- li, et ex -- ul -- tet ter -- ra
     
@@ -315,7 +313,7 @@ bassWords = \lyricmode {
 }
 
 pianoRH = \relative c' {
-  \set Staff.midiInstrument = "piano"
+  \set Staff.midiInstrument = "acoustic grand"
   \repeat volta 2 {
     <g' b d>2_\f q4 <fis c' d> |
     <g d' g>4. <g b d>8 q2 |
@@ -376,7 +374,7 @@ pianoRH = \relative c' {
   
 }
 pianoLH = \relative c' {
-  \set Staff.midiInstrument = "piano"
+  \set Staff.midiInstrument = "acoustic grand"
   \repeat volta 2 {
     <g g,>2 q4 <a a,> |
     <b b,>4. <g g,>8 q2 |
@@ -431,6 +429,7 @@ pianoLH = \relative c' {
   <g, g,>1 \bar "|."
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -493,16 +492,11 @@ pianoLH = \relative c' {
   \new PianoStaff <<
 \new Staff = "one" { \new Voice { \global \pianoRH } } \new Staff = "two" { \global \clef "bass" \pianoLH } >>
 >>
-  
-  
+
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }
 

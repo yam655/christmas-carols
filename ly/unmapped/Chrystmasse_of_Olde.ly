@@ -1,49 +1,47 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 
 \header {
   title = "Chrystmasse of Olde"
   poet = "Eugene Field (1850–1895)"
   composer = \markup{\italic {Swiss Air}}
-  %tagline = \markup \concat{ "from " \italic "Favorite Songs and Hymns for School and Home" ", 1899, via " \italic"books.google.com"}
+  %source = \markup \concat{ "from " \italic "Favorite Songs and Hymns for School and Home" ", 1899, via " \italic"books.google.com"}
 }
 
 global = {
-  \key d \major
-  \time 3/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key d \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 80
 }
 
 sopMusic = \relative c' {
+    \partial 8*3
   \repeat volta 2 {
-    \partial 8*3 fis8 fis g |
+    fis8 fis g |
     a4. fis'8 fis e |
     d4( fis,8) a b a |
-    a cis, cis e b' a | \break
+    a cis, cis e b' a | 
     
     a d, d fis fis g |
     a4. a8 fis' e |
-    d4( fis,) a | \break
+    d4( fis,) a | 
     a8[ gis b] a g e |
     
     d4 b'8\rest a b a |
-    a cis, cis e b' a | \break
+    a cis, cis e b' a | 
     a d, d a' b a |
     a cis, cis e b' a |
     
-    a d, d fis fis g | \break
+    a d, d fis fis g | 
     a4. a8 fis' e |
     d4( fis,) a |
     a8[ gis b] a g e |
-    \partial 8*3 d4. \break
+    d4. 
   }
   \pageBreak
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   d8 d e |
@@ -67,8 +65,8 @@ altoMusic = \relative c' {
   fis8[ e d] cis cis cis |
   d4.
 }
-altoWords = \lyricmode {
-  \dropLyricsIX
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
   God rest you, Chryst -- en gen -- til men, 
     Wher -- ev -- er you may be,
@@ -80,7 +78,23 @@ altoWords = \lyricmode {
     That sav -- eth you and me.
   For on this morn oure Chryst is born
     That sav -- eth you and me.
-    
+}
+
+altoWordsII = \lyricmode { 
+  \set stanza = #"2. "
+  Last night ye shep -- herds in ye east 
+    Saw ma -- ny~a won -- drous thing,
+    Saw ma -- ny~a won -- drous thing;
+  Ye sky last night flamed pass -- ing bright
+    Whiles that __ ye stars did sing, 
+  And an -- gels came to bless, to bless ye name, ye name
+    Of Je -- sus Chryst, oure Kyng,
+    Of Je -- sus Chryst, oure Kyng.
+  And an -- gels came to bless ye name
+    Of Je -- sus Chryst, oure Kyng. 
+}
+
+altoWordsIII = \lyricmode { 
   \set stanza = #"3. "
   God rest you, Chryst -- en gen -- til men, 
     Far -- ing wher -- e’er you may,
@@ -93,21 +107,8 @@ altoWords = \lyricmode {
   In Pay -- nim lands hold thou thy hands
     From bloud -- y works this daye.
 }
-altoWordsII = \lyricmode {
-  \dropLyricsIX
-%\markup\italic
-  \set stanza = #"2. "
-  Last night ye shep -- herds in ye east 
-    Saw ma -- ny~a won -- drous thing,
-    Saw ma -- ny~a won -- drous thing;
-  Ye sky last night flamed pass -- ing bright
-    Whiles that __ ye stars did sing, 
-  And an -- gels came to bless, to bless ye name, ye name
-    Of Je -- sus Chryst, oure Kyng,
-    Of Je -- sus Chryst, oure Kyng.
-  And an -- gels came to bless ye name
-    Of Je -- sus Chryst, oure Kyng.
-    
+
+altoWordsIV = \lyricmode { 
   \set stanza = #"4. "
   But think -- ing on ye gen -- til Lord 
     That died up -- on ye tree,
@@ -120,18 +121,7 @@ altoWordsII = \lyricmode {
   For on this morn oure Chryst is born
     That sav -- eth you and me.
 }
-altoWordsIII = \lyricmode {
-}
-altoWordsIV = \lyricmode {
-}
-altoWordsV = \lyricmode {
-  \set stanza = #"5. "
-  \set ignoreMelismata = ##t
-}
-altoWordsVI = \lyricmode {
-  \set stanza = #"6. "
-  \set ignoreMelismata = ##t
-}
+
 tenorMusic = \relative c' {
   a8 a a |
   d4. d8 d a |
@@ -154,9 +144,7 @@ tenorMusic = \relative c' {
   d8[ b gis] a a g |
   fis4.
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   d8 d d |
@@ -180,49 +168,31 @@ bassMusic = \relative c {
   a4. a8 a a |
   d4.
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
     \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \repeat unfold 2 \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \repeat unfold 2 \altoMusic >> }
+      \new Voice = "sopranos" { \voiceOne << \global  \sopMusic >> }
+      \new Voice = "altos" { \voiceTwo << \global  \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5)) } \lyricsto "altos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "altos" \altoWords
+    \new Lyrics = "altosII"  \lyricsto "altos" \altoWordsII
+    \new Lyrics = "altosIII"  \lyricsto "altos" \altoWordsIII
+    \new Lyrics = "altosIV"   \lyricsto "altos" \altoWordsIV
    \new Staff = men <<
       \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \repeat unfold 2 \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \repeat unfold 2 \bassMusic >> }
+      \new Voice = "tenors" { \voiceOne << \global  \tenorMusic >> }
+      \new Voice = "basses" { \voiceTwo << \global  \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 80
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }

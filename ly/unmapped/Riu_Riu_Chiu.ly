@@ -1,17 +1,16 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Riu Riu Chiu"
   composer = "Mateo Flecha el Viejo (1481–1553)"
-  %tagline = \markup { "from" \italic {cpdl.org}}
+  %source = \markup { "from" \italic {cpdl.org}}
 }
 
 global = {
-  \key c \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key c \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 140
 }
 
 sopMusic = \relative c' {
@@ -59,23 +58,17 @@ altoMusic = \relative c' {
   a4 a \bar "|."
 }
 
-dropLyrics = {
-  \override LyricText #'extra-offset = #'(0 . -2.0)
-  \override LyricHyphen #'extra-offset = #'(0 . -2.0)
-  \override LyricExtender #'extra-offset = #'(0 . -2.0)
-  \override StanzaNumber #'extra-offset = #'(0 . -2.0)
-}
 altoWords = \lyricmode {
-  \dropLyrics
+  
   Ri -- u, ri -- u Chi -- u la guar -- da ri -- be -- ra.
-  \dropLyricsIV
+  
   Dios guar -- do el lo -- bo,_el
-  \dropLyrics
+  
   lo -- bo de nues -- tra cor -- de -- ra.
   
-  \dropLyricsIV
+  
   Dios guar -- do el lo -- bo,_el
-  \dropLyrics
+  
   lo -- bo de nues -- tra cor -- de -- ra.
   
 }
@@ -134,10 +127,10 @@ bassMusic = \relative c' {
   \time 3/4 d4 d r |
   \time 2/4 a'8 a g a |
   \time 4/4 f4 e8 g4 g8 e f |
-  \partial 2 d4 d \bar "||" \break
+  d4 d \bar "||" 
   
   \voiceTwo
-  \partial 2 f8 f c f |
+  f8 f c f |
   d4 a8 d4 c8 bes bes |
   \time 3/4 a4 a d\rest |
   \time 2/4 a'8 a g a |
@@ -148,7 +141,7 @@ bassMusic = \relative c' {
   \time 2/4 a'8 a g a |
   f4 e8 f |
   \time 4/4 d4 a8 d4 d8 a a |
-  \partial 2 d4 d \bar "||" \break
+  d4 d \bar "||" 
   
   \oneVoice
   \slurSolid
@@ -163,7 +156,7 @@ bassMusic = \relative c' {
     d e f g a4. a8 |
     
     a a g a f4 f8 e |
-    g g e f d4 d \bar "||" \break
+    g g e f d4 d \bar "||" 
     \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
     \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
     \mark "D.S."
@@ -181,7 +174,7 @@ bassMusic = \relative c' {
     d e f g a4 a8 a |
     
     a a g a f4 f8 e |
-    g g e f d4 d \bar "||" \break
+    g g e f d4 d \bar "||" 
     \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
     \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
     \mark "D.S."
@@ -197,7 +190,7 @@ bassMusic = \relative c' {
     d( e) f g a4 a4 |
     
     a8 a g a f4 f8 e |
-    g4 e8 f d4 d \bar "||" \break
+    g4 e8 f d4 d \bar "||" 
     \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
     \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
     \mark "D.S."
@@ -214,7 +207,7 @@ bassMusic = \relative c' {
     d e f g a4 a4 |
     
     a8 a g a f4 f8 e |
-    g4 e8 f d4 d \bar "||" \break
+    g4 e8 f d4 d \bar "||" 
     \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
     \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
     \mark "D.S."
@@ -230,7 +223,7 @@ bassMusic = \relative c' {
     d( e) f g a4 a4 |
     
     a8 a g a f4 f8 e |
-    g4 e8 f d4 d \bar "||" \break
+    g4 e8 f d4 d \bar "||" 
     \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
     \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
     \mark "D.S."
@@ -246,7 +239,7 @@ bassMusic = \relative c' {
     d( e) f g a4 a4 |
     
     a8 a g a f4 f8 e |
-    g8 g e f d4 d \bar "||" \break
+    g8 g e f d4 d \bar "||" 
     \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
     \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
     \mark "D.S."
@@ -262,14 +255,14 @@ bassMusic = \relative c' {
     d( e) f g a4 a4 |
     
     a8 a g a f4 f8 e |
-    g g e f d4 d \bar "||" \break
+    g g e f d4 d \bar "||" 
     \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
     \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
     \mark "D.S."
   }
 }
 bassWords = \lyricmode {
-  \dropLyricsIV
+  
   Ri -- u, ri -- u Chi -- u la guar -- da ri -- be -- ra.
   Dios guar -- do el lo -- bo de nues -- tra cor -- de -- ra.
   Dios guar -- do el lo -- bo de nues -- tra cor -- de -- ra.
@@ -336,13 +329,9 @@ bassWordsIII = \lyricmode {
 
 bassWordsIV = \lyricmode {
 }
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -368,7 +357,6 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWordsII
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout {
     \context {
@@ -377,12 +365,9 @@ pianoLH = \relative c' {
     }
   }
   \midi {
-    \tempo 4 = 140
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

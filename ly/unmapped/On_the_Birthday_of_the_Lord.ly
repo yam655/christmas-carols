@@ -1,19 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "On the Birthday of the Lord"
   poet = \markup{\italic{In natali Domini}, 14th Century}
-  meter = "Translated by Rev. H. R. Bramley (1833–1917) from Latin"
+  translator = "Translated by Rev. H. R. Bramley (1833–1917) from Latin"
   composer = "John Bacchus Dykes (1823–1876)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key d \major
-  \time 4/4
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(1 . 1)
-  %\override DynamicText #'X-offset = #-4
+    \key d \major
+    \time 4/4
+    \tempo 4 = 180
 }
 
 sopMusic = \relative c' {
@@ -39,7 +37,7 @@ sopMusic = \relative c' {
   e d4( cis) |
   b2 b |
   a1 \bar "||"
-  \time 3/2 \break
+  \time 3/2 
   a1^\markup\italic"dim." b2 |
   a1 fis2 |
   a2 b1 |
@@ -105,7 +103,7 @@ altoMusic = \relative c' {
   d1. \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   On the Birth -- day of __ \set associatedVoice = "sopranos" the Lord \unset associatedVoice
   An -- gels joy in glad ac -- cord,
@@ -121,7 +119,7 @@ altoWords = \lyricmode {
   Ma -- ry ev -- er pure.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   These good news an An -- \set associatedVoice = "sopranos" gel told \unset associatedVoice
@@ -131,7 +129,7 @@ altoWordsII = \lyricmode {
   Told them of \set associatedVoice = "sopranos" the __ joy for earth.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   Born is __ now Em -- man -- \set associatedVoice = "sopranos" u -- el, \unset associatedVoice
   He, an -- nounced by Ga -- bri -- el,
@@ -140,7 +138,7 @@ altoWordsIII = \lyricmode {
   Com -- eth from \set associatedVoice = "sopranos" His __ Fa -- ther’s Breast.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   Born to -- day is Christ \set associatedVoice = "sopranos" the Child, \unset associatedVoice
   Born of Ma -- ry un -- de -- filed,
@@ -248,17 +246,9 @@ bassMusic = \relative c {
   a1 a2 |
   d1. \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -279,18 +269,13 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 0) (padding . -1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 0)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 180
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

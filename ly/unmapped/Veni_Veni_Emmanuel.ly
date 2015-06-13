@@ -1,5 +1,5 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "Veni, Veni, Emmanuel"
     composer = "Gregorian"
@@ -14,8 +14,9 @@ global = {
 }
 
 sopMusic = \relative c' {
+    \partial 4
   \repeat volta 2{
-    \partial 4 e4 |
+    e4 |
     g b b b |
     a( c b) a |
     g2. a4 |
@@ -98,10 +99,10 @@ altoMusic = \relative c' {
   d2. b4 |
   d d d g |
   g2. fis4 |
-  g2. |
+  g2.
 }
 altoWords = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"1. "
   Ve -- ni, ve -- ni, Em -- ma -- nu -- el
   cap -- ti -- vum sol -- ve Is -- ra -- el,
@@ -119,7 +120,7 @@ altoWords = \lyricmode {
   et clau -- de vi -- as in -- fe -- rum.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"2. "
   Ve -- ni, O Sa -- pi -- en -- ti -- a,
   quæ hic dis -- po -- nis om -- ni -- a,
@@ -134,7 +135,7 @@ altoWordsII = \lyricmode {
   di -- ras -- que mor -- tis te -- ne -- bras.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"3. "
   Ve -- ni, ve -- ni, A -- do -- na -- i,
   qui po -- pu -- lo in Si -- na -- i
@@ -149,7 +150,7 @@ altoWordsIII = \lyricmode {
   pec -- ca -- ti si -- bi con -- sci -- os.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"4. "
   Ve -- ni, O Jes -- se vir -- gu -- la,
   ex hos -- tis tu -- os un -- gu -- la,
@@ -171,7 +172,7 @@ tenorMusic = \relative c' {
   fis2. g4 |
   fis fis g d' |
   e2( d4) c |
-  b2. |
+  b2. 
   
   b4 |
   a2. e'4 |
@@ -196,7 +197,7 @@ tenorMusic = \relative c' {
   fis2. g4 |
   fis fis g d' |
   e2( d4) c |
-  b2. |
+  b2. 
 }
 
 bassMusic = \relative c {
@@ -214,7 +215,7 @@ bassMusic = \relative c {
   d2. e4 |
   d b g b |
   c( a b) d |
-  g,2. |
+  g,2. 
   
   g'4 |
   d2. e4 |
@@ -239,9 +240,10 @@ bassMusic = \relative c {
   d2. e4 |
   d b g b |
   c( a b) d |
-  g,2. |
+  g,2. 
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -262,11 +264,9 @@ bassMusic = \relative c {
   >>
   \layout { }
   \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

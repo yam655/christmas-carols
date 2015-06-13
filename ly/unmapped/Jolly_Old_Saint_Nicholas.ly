@@ -1,14 +1,15 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Jolly Old Saint Nicholas"
   composer = "Anonymous, 19th Century"
-  %tagline = \markup { from \italic {HymnsAndCarolsOfChristmas.com}}
+  %source = \markup { from \italic {HymnsAndCarolsOfChristmas.com}}
 }
 
 global = {
-  \key bes \major
-  \time 2/4
+    \key bes \major
+    \time 2/4
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c' {
@@ -16,17 +17,17 @@ sopMusic = \relative c' {
   d'8 d d d |
   c c c4 |
   bes8 bes bes bes |
-  d2 | \break
+  d2 | 
   
   g,8 g g g |
   f f bes4 |
   a8 bes c d |
-  c2 | \break
+  c2 | 
   
   d8 d d d |
   c c c4 |
   bes8 bes bes bes |
-  d2 | \break
+  d2 | 
   
   g,8 g g g |
   f f bes4 |
@@ -60,7 +61,7 @@ altoMusic = \relative c' {
   d2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Jol -- ly old Saint Ni -- cho -- las,
   Lean your ear this way!
@@ -72,7 +73,7 @@ altoWords = \lyricmode {
   Tell me what you can.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   When the clock is strik -- ing twelve,
   When I’m fast a -- sleep,
@@ -84,7 +85,7 @@ altoWordsII = \lyricmode {
   You’ll be sure to know.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   John -- ny wants a pair of skates;
   Su -- sy wants a sled;
@@ -153,13 +154,8 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -182,16 +178,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men"  } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men"  } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

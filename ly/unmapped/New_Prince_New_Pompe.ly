@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "New Prince, New Pompe"
   poet = "Robert Southwell (1560–1593)"
   composer = \markup {Tune of \italic"We are poor frozen-out gardeners"}
   arranger = "Arranged by Charles Wood (1866–1926)"
-  %tagline = \markup \concat{ "from " \italic "The Cambridge Carol Book" ", 1924"}
+  %source = \markup \concat{ "from " \italic "The Cambridge Carol Book" ", 1924"}
 }
 
 global = {
-  \key bes \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key bes \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -22,21 +21,21 @@ sopMusic = \relative c' {
   bes4 bes c c |
   d4. c8 bes[ a] g4 |
   
-  f2( d4) \bar""\break d |
+  f2( d4)  d |
   g g g8[ f] g[ a] |
   bes4 bes c c |
   
   d4. c8 c[ bes] g4 |
-  g2. \bar""\break d'8[ ees] |
+  g2.  d'8[ ees] |
   f4 d d8[ c] bes4 |
   c c d bes8[ c] |
   d4 g, g8[ f] d4 |
   
-  f2. \bar""\break d4 |
+  f2.  d4 |
   g g g8[ f] g[ a] |
   bes4 bes c c |
   d4. c8 c[ bes] g4 |
-  \partial 2. g2.\fermata \bar "|."
+  g2.\fermata \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -65,7 +64,7 @@ altoMusic = \relative c' {
   d2. \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Be -- houlde a se -- ly ten -- der Babe
   In frees -- ing win -- ter nighte, __
@@ -77,7 +76,7 @@ altoWords = \lyricmode {
   In cribbe to \set associatedVoice = "tenors" shroude His headd.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   De -- spise not Him for ly -- ing there,
@@ -91,7 +90,7 @@ altoWordsII = \lyricmode {
   \set ignoreMelismata = ##t
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   This sta -- ble is a Prin -- ce’s courte,
   The cribbe His chaire of state: __
@@ -104,7 +103,7 @@ altoWordsIII = \lyricmode {
   \set ignoreMelismata = ##t
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   With joye ap -- proch, O Christ -- en wighte,
   Do hom -- age to thy Kinge: __
@@ -172,17 +171,9 @@ bassMusic = \relative c {
   bes ees, d c |
   g2.\fermata \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -203,18 +194,15 @@ pianoLH = \relative c' {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "altos" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

@@ -1,20 +1,19 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Christmas Song"
   poet = "William Bright (1824–1901)"
   composer = "John Bacchus Dykes (1823–1876)"
-  tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key c \major
-  \time 6/8
-  \autoBeamOff
-  \mergeDifferentlyHeadedOn
-  \mergeDifferentlyDottedOn
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0.5 . 0.5)
+    \key c \major
+    \time 6/8
+    \autoBeamOff
+    %\mergeDifferentlyHeadedOn
+    %\mergeDifferentlyDottedOn
+    \tempo 8 = 144
 }
 
 sopMusic = \relative c' {
@@ -40,7 +39,7 @@ sopMusic = \relative c' {
     d[ c] d ees4. |
     
     ees4^\f c8 ees8[ d] c |
-    c4. b | \break
+    c4. b | 
     c4 c8 f[ e] d |
     c4.( e4 d8) |
     
@@ -49,7 +48,7 @@ sopMusic = \relative c' {
     g-> g |
     g->~ g~ |
     g g
-  } \break
+  } 
 }
 sopWords = \lyricmode {
   
@@ -87,11 +86,9 @@ altoMusic = \relative c' {
   f4.( e4 d8 |
   c4 d8) c4.
 }
-dropLyrics = {
-  \dropLyricsIX
-}
+  
 altoWords = \lyricmode {
-  \dropLyrics
+  
   \set stanza = #"1."
   Once a -- gain O bless -- ed time,
   thank -- ful hearts em -- brace thee:
@@ -141,7 +138,7 @@ altoWords = \lyricmode {
   mas morn -- ing.”
 }
 altoWordsII = {
-  \dropLyrics
+  
   \set stanza = \markup{\dynamic"  mf " "2."}
   \lyricmode {
   %\markup\italic
@@ -200,7 +197,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyrics
+  
   \set stanza = #"3."
   Wel -- come Thou to souls a -- thirst,
   Fount of end -- less plea -- sure;
@@ -320,21 +317,12 @@ bassMusic = \relative c {
   g,~ g( |
   c) c
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \tempo 8 = 144 \repeat unfold 2 \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \repeat unfold 2 \altoMusic >> }
@@ -352,18 +340,13 @@ pianoLH = \relative c' {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.6))} \lyricsto "altos" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 8 = 144
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }

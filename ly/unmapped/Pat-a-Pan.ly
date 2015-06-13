@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Pat-a-Pan"
   poet = \markup\italic"Guilló, pran ton tamborin"
   composer = "Burgundian carol, 1720"
   arranger = "Arranged by Charles Wood (1866–1926)"
-  %tagline = \markup { Music from \italic {The Cambridge Carol Book}, 1924}
+  %source = \markup { Music from \italic {The Cambridge Carol Book}, 1924}
 }
 
 global = {
-  \key c \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key c \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 150
 }
 
 sopMusic = \relative c' {
@@ -21,17 +20,17 @@ sopMusic = \relative c' {
   e' e d e |
   c b8 c d4 b |
   e2 c |
-  b2 \bar""\break b4 c |
+  b2  b4 c |
   
   b gis a b |
   c2 a8 b c d |
   e2 d8 e d c |
-  b2 \bar""\break b4 c |
+  b2  b4 c |
   
   b gis a b |
   c b8 c d4 c8[ b] |
   e2 b |
-  \partial 2 a \bar "|."
+  a \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -54,8 +53,8 @@ altoMusic = \relative c' {
   e4( a2) gis4 |
   a2 \bar "|."
 }
-altoWords = \lyricmode {
-  \dropLyricsV
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
   Wil -- lie, get your lit -- tle drum,
   Rob -- in, bring your flute and come.
@@ -67,7 +66,7 @@ altoWords = \lyricmode {
   How can an -- y -- one be glum?
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   When the men of old -- en days
@@ -80,7 +79,7 @@ altoWordsII = \lyricmode {
   Full of joy, on Christ -- mas Day.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   God and man to -- day be -- come
   Close -- ly joined as flute and drum.
@@ -145,13 +144,7 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -174,16 +167,13 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 150
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

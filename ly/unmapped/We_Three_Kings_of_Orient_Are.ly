@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 
 \header {
   title = "We Three Kings of Orient Are"
   composer = "John H. Hopkins (1820–1891)"
   poet = "John H. Hopkins (1820–1891)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key g \major
-  \time 3/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0.1 . -0.1)
+    \key g \major
+    \time 3/8
+    \autoBeamOff
+    \tempo 4 = 80
 }
 
 sopMusic = \relative c' {
@@ -33,7 +32,7 @@ sopMusic = \relative c' {
   \slurSolid d[ c] b |
   \slurDotted a8\noBeam( b\noBeam) a |
   g4 fis8 |
-  e4. | \break
+  e4. | 
   
   \slurSolid << {fis4\fermata( a8\fermata)} {s8 s32 s16. s8}>> |
   g4^\markup\italic"a tempo" g8 | g4 d8 g4 e8 | g4 b8\rest |
@@ -65,7 +64,7 @@ altoMusic = \relative c'' {
   e4 c8 | d4. \bar "|."
 }
 altoWords = {
-  \dropLyricsIX
+  
   \lyricmode {
     %\set vocalName = #"All"
     %\set stanza = #"1. "
@@ -89,7 +88,7 @@ altoWords = {
   }
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
   %\set vocalName = #"Melchior"
   %\set stanza = #"2. "
   \set ignoreMelismata = ##t
@@ -102,7 +101,7 @@ altoWordsII = \lyricmode {
   O -- ver us all to reign.
 }
 altoWordsIII = {
-  \dropLyricsIX
+  
   \set stanza = \markup\dynamic"mf"
   \lyricmode {
     %\set vocalName = #"Casper"
@@ -118,7 +117,7 @@ altoWordsIII = {
   }
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   %\set vocalName = #"Balthazar"
   %\set stanza = #"4. "
   \set ignoreMelismata = ##t
@@ -131,7 +130,7 @@ altoWordsIV = \lyricmode {
   Seal’d in the stone -- cold tomb.
 }
 altoWordsV = \lyricmode {
-  \dropLyricsIX
+  
   %\set vocalName = #"All"
   %\set stanza = #"1. "
   \set ignoreMelismata = ##t
@@ -188,10 +187,10 @@ bassWords = \lyricmode {
 
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -210,16 +209,12 @@ bassWords = \lyricmode {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 80
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

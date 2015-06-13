@@ -1,19 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Carol for Christmas Day"
   poet = "William Austin (1587–1634)"
   composer = "Sir Arthur S. Sullivan (1842–1900)"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key f \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0.25 . 1)
-  %\override DynamicText #'X-offset = #-3
+    \key f \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
@@ -35,7 +33,7 @@ sopMusic = \relative c' {
   c4. d8 c2 |
   bes4 a g f |
   f2( g4) e |
-  f1 \bar ":|" \break
+  f1 \bar ":|" 
   
   %verse 3
   f4^\p g a bes |
@@ -105,7 +103,7 @@ altoMusic = \relative c' {
   f1 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsXI
+  
   \set stanza = #"1. "
   \set associatedVoice = "basses" 
   All this night bright an -- gels sing,
@@ -127,7 +125,7 @@ altoWords = \lyricmode {
   God and man, we do con -- fess: Hail, O Sun of Right -- eous -- ness!
 }
 altoWordsII = \lyricmode {
-  \dropLyricsXI
+  
 %\markup\italic
   \set stanza = #"2. "
   \set associatedVoice = "basses" 
@@ -244,17 +242,9 @@ bassMusic = \relative c {
   c2 c, |
   f1\fermata \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -276,18 +266,14 @@ pianoLH = \relative c' {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.9))} \lyricsto "altos" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }

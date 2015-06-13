@@ -1,19 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Jesu hail! O God most holy"
   poet = "Ave Jesu Deus"
-  meter = "Translated by Rev. H.R. Bramley (1833–1917)"
+  translator = "Translated by Rev. H.R. Bramley (1833–1917)"
   composer = "Sir John Stainer (1840–1901)"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key ees \major
-  \time 2/4
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(1 . 1)
-  %\override DynamicText #'X-offset = #-4
+    \key ees \major
+    \time 2/4
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c' {
@@ -34,7 +32,7 @@ sopMusic = \relative c' {
   
   c bes |
   bes a |
-  g g \bar "||" \break
+  g g \bar "||" 
   g4. f8 |
   ees4 ees |
   aes4. g8 |
@@ -101,7 +99,7 @@ altoMusic = \relative c' {
   g2 \bar "|."
 }
 altoWords = {
-  \dropLyricsV
+  
   \lyricmode {
     \set stanza = #"1. "
     Je -- su hail! O God most ho -- ly,
@@ -123,7 +121,7 @@ altoWords = {
   }
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   To en -- rich my des -- o -- la -- tion,
@@ -132,7 +130,7 @@ altoWordsII = \lyricmode {
   Thou in want and weak -- ness sigh -- est:
 }
 altoWordsIII = {
-  \dropLyricsV
+  
   \set stanza = \markup{\dynamic"mf " "3. "}
   \lyricmode {
     Low a -- based, where brutes are sleep -- ing,
@@ -142,7 +140,7 @@ altoWordsIII = {
   }
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   Je -- su, Thine my heart is sole -- ly;
   Draw it, take it to Thee whol -- ly:
@@ -150,7 +148,7 @@ altoWordsIV = \lyricmode {
   Let it in -- ward -- ly con -- sume me,
 }
 altoWordsV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"5. "
   Hence let i -- dle fan -- cies van -- ish,
   Hence all e -- vil pas -- sions ban -- ish;
@@ -251,17 +249,11 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -281,16 +273,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

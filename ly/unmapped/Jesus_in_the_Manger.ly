@@ -1,21 +1,23 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "Jesus in the Manger"
     poet = "Translated by Rev. H.R. Bramley (1833–1917) from Latin"
     composer = "Henry Smart (1813–1879)"
-    %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+    %source = \markup { "from" \italic {Christmas Carols, New and Old}}
     %\markup\fill-line{\concat{"from " \italic "CyberHymnal.org"}}
   }
 
 global = {
-  \key a \major
-  \time 4/4
-  \autoBeamOff
+    \key a \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 90
 }
 globalNoTime = {
-  \key a \major
-  \autoBeamOff
+    \key a \major
+    \autoBeamOff
+    \tempo 4 = 90
 }
 sopMusic = \relative c' {
   \once \override Score.RehearsalMark #'self-alignment-X = #LEFT
@@ -29,10 +31,10 @@ sopMusic = \relative c' {
   fis e a b |
   cis8[ d] e4 a, b |
   cis b8[ a] b4 gis |
-  \partial 2 a2 \bar "||" \break
+  a2 \bar "||" 
 }
 sopMusicII = \relative c' {
-  \partial 2 b'2\rest |
+  b'2\rest |
   e,4 a a gis |
   a cis fis, gis |
   a cis b gis |
@@ -41,7 +43,7 @@ sopMusicII = \relative c' {
   d cis b fis' |
   fis e a, b |
   cis a a gis |
-  \partial 2. a2.\fermata \bar "|."
+  a2.\fermata \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -72,13 +74,13 @@ altoMusicII = \relative c' {
   cis2. \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Why, Most High -- est, art Thou ly -- ing, In a man -- ger poor and low?
   Thou, the fires of heav’n sup -- ply -- ing, Come a sta -- ble’s cold to know?
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   On a Moth -- er’s breast Thou sleep -- est,
@@ -87,7 +89,7 @@ altoWordsII = \lyricmode {
   Eyes, which Heav’n with glad -- ness fill.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Weak the Strong, of strength the Giv -- er:
   Small, Whose arms cre -- a -- tion span;
@@ -171,14 +173,9 @@ bassIIMusic = \relative c {
   a,2. \bar "|."
 }
 bassWords = \lyricmode {}
-dropLyrics = {
-  \override LyricText #'extra-offset = #'(0 . -1.3)
-  \override LyricHyphen #'extra-offset = #'(0 . -1.3)
-  \override LyricExtender #'extra-offset = #'(0 . -1.3)
-  \override StanzaNumber #'extra-offset = #'(0 . -1.3)
-}
+
 bassWordsChorus = {
-  \dropLyrics
+  
   \set stanza = \markup\dynamic"f "
   \lyricmode {
     O what works of love stu -- pen -- dous,
@@ -224,7 +221,7 @@ pianoRH = \relative c' {
 }
 pianoLH = \relative c' {
   s1*8 |
-  \partial 2 e,4 b' |
+  e,4 b' |
   << \new Voice { \voiceOne <b e,>4 a e <e b'> }
      \new Voice { \voiceTwo a,4~ a8[ cis] } >> |
   a4 a b b |
@@ -237,6 +234,7 @@ pianoLH = \relative c' {
   <a e a,>2. \bar "|."
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -308,12 +306,9 @@ pianoLH = \relative c' {
   }
   
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

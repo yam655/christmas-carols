@@ -1,38 +1,33 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
-    title = "Although at Yule it Bloweth Cool"
-    poet = "George Ratcliffe Woodward (1848–1934)"
-    composer = \markup {\italic "Der wind der wet, der han der kret" ", 1554"}
-    arranger = \markup"Arranged by Charles Wood (1866–1926)"
-    %tagline = \markup \concat{ "from " \italic "The Cambridge Carol Book" ", 1924"}
+
+songTitle = "Although at Yule it Bloweth Cool"
+songPoet = "George Ratcliffe Woodward (1848–1934)"
+tuneComposer = \markup{\italic{Der wind der wet, der han der kret}, 1554}
+tuneArranger = \markup"Arranged by Charles Wood (1866–1926)"
+tuneSource = \markup{from \italic{The Cambridge Carol Book}, 1924}
     % \markup { Words from \italic{HymnsAndCarolsOfChristmas.com}, Music from \italic{CyberHymnal.org}}
-  }
 
 global = {
-  \key g \major
-  \time 3/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
+    \partial 8
   \repeat volta 2 {
-    \partial 8 g'8 |
+    g'8 |
     d'4 d8 d4 g,8 |
     d'4 d8 d4 d8 |
     c4 d8 e4 e8 |
-    d4. b4 \bar""\break b8 |
+    d4. b4  b8 |
     
     b4 b8 b4 b8 |
     d4 d8 a4 a8 |
     a4 c8 b4 a8 |
-    \partial 8*5 g4. g4
+    g4. g4
   }
-  \break
-}
-sopWords = \lyricmode {
   
 }
 
@@ -105,17 +100,16 @@ tenorWords = \lyricmode {
 bassMusic = \relative c {
   e8 |
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart { 
+\header {
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+    arranger = \tuneArranger
+    source = \tuneSource
+  }
 \score {
   <<
    \new ChoirStaff <<
@@ -123,25 +117,19 @@ pianoLH = \relative c' {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWords
+    \new Lyrics = "altosVI"  \lyricsto "altos" \altoWordsVI
+    \new Lyrics = "altosV"   \lyricsto "altos" \altoWordsV
+    \new Lyrics = "altosIV"  \lyricsto "altos" \altoWordsIV
+    \new Lyrics = "altosIII" \lyricsto "altos" \altoWordsIII
+    \new Lyrics = "altosII"  \lyricsto "altos" \altoWordsII
+    \new Lyrics = "altos"    \lyricsto "altos" \altoWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }

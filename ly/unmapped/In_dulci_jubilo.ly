@@ -1,17 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "In dulci jubilo"
     poet = "Heinrich Seuse (1300–1366)"
     composer = "14th century German melody"
     
-    %tagline = \markup { "from" \italic "ChristmasCarolMusic.org" }
+    %source = \markup { "from" \italic "ChristmasCarolMusic.org" }
     %\markup\fill-line{\concat { "from " \italic "The Cowley Carol Book" ", 1919"}}
   }
 
 global = {
-  \key f \major
-  \time 6/8
+    \key f \major
+    \time 6/8
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c' {
@@ -33,7 +34,7 @@ sopMusic = \relative c' {
   d,4 d8 e4 e8 |
   f4.( c'4) b8\rest |
   a4 a8 g4 g8 |
-  \partial 8*5 f4. b4\rest \bar "|."
+  f4. b4\rest \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -62,7 +63,7 @@ altoMusic = \relative c' {
 
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   \markup\italic In \markup\italic dul -- \markup\italic ci \markup\italic ju -- \markup\italic bi -- \markup\italic lo __ Now sing with hearts a -- glow!
 %8.5x11  __
@@ -73,7 +74,7 @@ altoWords = \lyricmode {
   \markup\italic Al -- \markup\italic pha \markup\italic es \markup\italic et \markup\italic O!
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   \markup\italic O \markup\italic Je -- \markup\italic su, \markup\italic par -- \markup\italic vu -- \markup\italic le, __
   For thee I long al -- way; __
@@ -85,7 +86,7 @@ altoWordsII = \lyricmode {
   \markup\italic Tra -- \markup\italic he \markup\italic me \markup\italic post \markup\italic Te!
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   \markup\italic O \markup\italic Pa -- \markup\italic tris \markup\italic ca -- \markup\italic ri -- \markup\italic tas! __
   \markup\italic O \markup\italic na -- \markup\italic ti \markup\italic lem -- \markup\italic i -- \markup\italic tas! __
@@ -96,7 +97,7 @@ altoWordsIII = \lyricmode {
   O that we were there! O that we were there! 
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   \markup\italic U -- \markup\italic bi \markup\italic sunt \markup\italic gau -- \markup\italic di -- \markup\italic a __
   In an -- y place  but there?
@@ -158,10 +159,10 @@ bassWords = \lyricmode {
 
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -179,17 +180,13 @@ bassWords = \lyricmode {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

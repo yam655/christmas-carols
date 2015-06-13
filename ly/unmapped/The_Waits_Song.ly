@@ -1,34 +1,34 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Waits’ Song"
   poet = "Traditional"
   composer = "Traditional"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key bes \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-  \slurDotted
+    \key bes \major
+    \time 4/4
+    \autoBeamOff
+    \slurDotted
+    \tempo "Moderato." 4 = 95
 }
 
 sopMusic = \relative c'' {
+    \partial 4
   \repeat volta 2 {
-    \partial 4 a4^\mf |
+    a4^\mf |
     bes4 a g a8( bes) |
     c[ bes] a( g) fis4 d |
     
     g a bes c |
-    d2. \bar"" bes8[ c] |
+    d2.  bes8[ c] |
     d4 ees8[ d] c4 d |
     
     bes4 c a bes8[ c] |
     d4 g,8( g) bes[ a] g[ fis] |
-    g2. \break
+    g2. 
   }
   
   %sop2
@@ -38,12 +38,12 @@ sopMusic = \relative c'' {
     c[ bes] a( g) fis4 d |
     
     g a bes c |
-    d2. \bar"" bes8[ c] |
+    d2.  bes8[ c] |
     d4 ees8[ d] c4 d |
     
     bes4 c a bes8( c) |
     d4 g,4 bes8[ a] g[ fis] |
-    g2. \break
+    g2. 
   }
   
   %sop3
@@ -53,12 +53,12 @@ sopMusic = \relative c'' {
     c[ bes] a[ g] fis4 d |
     
     g a bes c |
-    d2. \bar""\break bes8[ c] |
+    d2.  bes8[ c] |
     d4 ees8[ d] c4 d |
     
     bes4 c a bes8[ c] |
     d4 g,4 bes8[ a] g[ fis] |
-    g2. \break
+    g2. 
   }
   
   %sop4
@@ -68,12 +68,12 @@ sopMusic = \relative c'' {
     c[ bes] a[ g] fis4 d |
     
     g a bes c |
-    d2. \bar"" bes8[ c] |
+    d2.  bes8[ c] |
     d4 ees8[ d] c4 d |
     
     bes4 c a bes8( c) |
     d4 g,4 bes8[ a] g[ fis] |
-    g2. \break
+    g2. 
   }
   
   %sop5
@@ -83,12 +83,12 @@ sopMusic = \relative c'' {
     c[ bes] a[ g] fis4 d8 d |
     
     g4 a bes c |
-    d2. \bar""\break bes8[ c] |
+    d2.  bes8[ c] |
     d4 ees8[ d] c4 d |
     
     bes4 c a bes8[ c] |
     d4 g,8( g) bes( a) g[ fis] |
-    g2. \break
+    g2. 
   }
 }
 sopWords = \lyricmode {
@@ -173,7 +173,7 @@ altoMusic = \relative c' {
   
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   \set ignoreMelismata = ##t
   The moon shines bright and the stars _ give a light
@@ -211,7 +211,7 @@ altoWords = \lyricmode {
   Will all to -- geth -- er __ meet.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   A -- wake, a -- wake, good peo -- ple __ all,
@@ -272,7 +272,6 @@ altoWordsIX = \lyricmode {
 altoWordsX = \lyricmode {
 }
 tenorMusic = \relative c' {
-  \tempo \markup\italic "Moderato."
   %tenor1
   \repeat volta 2 {
     d4 |
@@ -434,13 +433,8 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -468,16 +462,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 95
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

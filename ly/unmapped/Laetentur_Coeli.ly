@@ -1,18 +1,17 @@
-﻿\include "util.ly"
+﻿
 \version "2.14.2"
 
 \header {
   title = "Lætentur Cœli"
   composer = "Rev. Hubert Gruender, S.J."
-  tagline = ""
+  source = ""
 }
 
 global = {
-  \key ees \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key ees \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
@@ -42,8 +41,8 @@ sopMusic = \relative c' {
   des4. c8 c2 |
   
   c2( f4) ees |
-  \partial 2. d2. \repeat volta 2 {
-    \partial 4 bes4~ |
+  d2. \repeat volta 2 {
+    bes4~ |
     bes1~ |
     bes2 bes4 bes |
     bes1~ |
@@ -55,10 +54,10 @@ sopMusic = \relative c' {
   }
   \alternative {
     {
-      \partial 2. g2 f4 |
+      g2 f4 
     }
     {
-      c'2 f, |
+      c'2 f, 
     }
   }
   aes4.( g8 f2) |
@@ -107,9 +106,9 @@ bassMusic = \relative c {
   bes4. aes8 aes2 |
   
   r4 f4.( g8) a4 |
-  \partial 2. bes2. |
+  bes2. 
   \repeat volta 2 {
-    \partial 4 bes,4( |
+    bes,4( |
     ees4 d) ees f |
     ees2 bes4 g'4~(  |
     g f) g aes |
@@ -121,7 +120,7 @@ bassMusic = \relative c {
   }
   \alternative {
     {
-      \partial 2. ees2 d4
+      ees2 d4
     }
     {
       ees2 ees
@@ -146,13 +145,7 @@ bassWords = \lyricmode {
   ve -- nit, ve -- nit!
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -164,10 +157,8 @@ pianoLH = \relative c' {
       \clef bass
       \new Voice = "basses" { \global \bassMusic }
     >>
-    %\new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
@@ -189,17 +180,14 @@ pianoLH = \relative c' {
     %\new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   
   \midi {
-    \tempo 4 = 120
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+
 

@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Make we joy now in this fest"
   poet = "Old English Carol"
-  %composer = "Old English Carol"
-  composer = "Arranged by George Ratcliffe Woodward (1848–1934)"
-  %tagline = \markup{ "from " \italic "The Cowley Carol Book" ", 1919"}
+  composer = "Old English Carol"
+  arranger = "Arranged by George Ratcliffe Woodward (1848–1934)"
+  %source = \markup{ "from " \italic "The Cowley Carol Book" ", 1919"}
 }
 
 global = {
-  \key g \major
-  \time 3/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 165
 }
 
 sopMusic = \relative c' {
@@ -30,13 +29,13 @@ sopMusic = \relative c' {
     g4 fis2 |
     e2. |
     \time 14/4
-    \partial 4*14 b'2( a4 b c b) b2( a g1\fermata) \bar "||"
+    b'2( a4 b c b) b2( a g1\fermata) \bar "||"
     \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
     \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
     \mark "Fine." 
-    \time 3/4 \break
+    \time 3/4 
     
-    \partial 4 d'4^"Verse" |
+    d'4^"Verse" |
     e2 d4 |
     d2 b4 |
     d2 c4 |
@@ -47,7 +46,7 @@ sopMusic = \relative c' {
     \slurSolid
     d2 b4 |
     b2 a4 |
-    g2 \bar""\break g4 |
+    g2  g4 |
     b2 b4 |
     a2 a4 |
     
@@ -57,11 +56,10 @@ sopMusic = \relative c' {
     b4 a2 |
     g4 fis2 |
     e2.\fermata 
-    \break
+    
   }
   
-  
-  \partial 4 d'4 |
+  d'4 |
   e2 d4 |
   d2 b4 |
   d2 c4 |
@@ -70,7 +68,7 @@ sopMusic = \relative c' {
   
   d2 b4 |
   b2 a4 |
-  g2 \bar""\break g4 |
+  g2  g4 |
   b2 b4 |
   a2 a4 |
   
@@ -82,7 +80,7 @@ sopMusic = \relative c' {
   e2.\fermata
   \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
   \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
-  \mark "D.C." \bar "||" \break
+  \mark "D.C." \bar "||" 
 }
 sopWords = \lyricmode {
   
@@ -99,10 +97,10 @@ altoMusic = \relative c' {
   e4 dis2 |
   e2. |
   \time 14/4
-  \partial 4*14 d2( d c4 d) d1( b) \bar "||"
+  d2( d c4 d) d1( b) \bar "||"
   \time 3/4
   
-  \partial 4 g'4 |
+  g'4 |
   g2 fis4 |
   g2 g4 |
   g2 g4 |
@@ -125,7 +123,7 @@ altoMusic = \relative c' {
   
   
   
-  \partial 4 g4 |
+  g4 |
   g2 fis4 |
   g2 g4 |
   g2 g4 |
@@ -145,7 +143,7 @@ altoMusic = \relative c' {
   e4 e( dis) e2. \bar "||"
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   Make we joy now in this fest
   \markup\italic In \markup\italic quo \markup\italic Chris -- \markup\italic tus \markup\italic na -- \markup\italic tus \markup\italic est.
   \markup\italic E -- \markup\italic ia. __
@@ -169,7 +167,7 @@ altoWords = \lyricmode {
   \markup\italic lu -- \markup\italic mi -- \markup\italic nis.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \repeat unfold 16{\skip1}
   \set stanza = #"2. "
   \markup\italic A -- \markup\italic gno -- \markup\italic scat \markup\italic o -- \markup\italic mne \markup\italic sæ -- \markup\italic cu -- \markup\italic lum,
@@ -190,7 +188,7 @@ altoWordsII = \lyricmode {
   \markup\italic Do -- \markup\italic mi -- \markup\italic ne.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \repeat unfold 16{\skip1}
   \set stanza = #"3. "
   \markup\italic A \markup\italic so -- \markup\italic lis \markup\italic or -- \markup\italic tus \markup\italic car -- \markup\italic di -- \markup\italic ne
@@ -223,10 +221,10 @@ tenorMusic = \relative c' {
   b4 b2 |
   g2. |
   \time 14/4
-  \partial 4*14 g2( a g4 g) g2( fis g1) \bar "||"
+  g2( a g4 g) g2( fis g1) \bar "||"
   \time 3/4
   
-  \partial 4 b4 |
+  b4 |
   c( b) a |
   b( c) d |
   d2 e4 |
@@ -249,9 +247,7 @@ tenorMusic = \relative c' {
   g2.
   
   
-  
-  
-  \partial 4 b4 |
+  b4 |
   c( b) a |
   b( c) d |
   d2 e4 |
@@ -286,10 +282,10 @@ bassMusic = \relative c {
   b4 b,2 |
   e2. |
   \time 14/4
-  \partial 4*14 g2( fis e4 g) b,2( d g1\fermata) \bar "||"
+  g2( fis e4 g) b,2( d g1\fermata) \bar "||"
   \time 3/4
   
-  \partial 4 g4 |
+  g4 |
   c,2 d4 |
   g2 g4 |
   b2 c4 |
@@ -312,9 +308,7 @@ bassMusic = \relative c {
   e2.\fermata
   
   
-  
-  
-  \partial 4 g4 |
+  g4 |
   c,2 d4 |
   g2 g4 |
   b2 c4 |
@@ -338,13 +332,7 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -367,16 +355,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 165
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

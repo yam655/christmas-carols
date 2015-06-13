@@ -1,15 +1,16 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Jesus, the Light of the World"
   composer = "Arranged by George D. Elderkin"
-  tagline = \markup{ from \italic {The Finest of the Wheat No. 2}, 1894}
+  source = \markup{ from \italic {The Finest of the Wheat No. 2}, 1894}
 }
 
 global = {
-  \key f \major
-  \time 6/8
-  \autoBeamOff
+    \key f \major
+    \time 6/8
+    \autoBeamOff
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c'' {
@@ -21,8 +22,8 @@ sopMusic = \relative c'' {
   a4 g8 f4. |
   
   a8 a8. f16 g8 g8. g16 |
-  \partial 8*5 f4.~ f4 | \break
-  \partial 8 c'8\fermata |
+  f4.~ f4 
+  c'8\fermata |
   a8 c c c4. |
   a8 c c c4. |
   a8 c8. c16
@@ -47,7 +48,7 @@ altoMusic = \relative c' {
   e4 c8 c4. |
   
   f8 f8. c16 e8 e8. e16 |
-  c4.~ c4 |
+  c4.~ c4 
   f8 |
   f8 f f f4. |
   f8 f f f4. |
@@ -68,11 +69,11 @@ altoWords = \lyricmode {
   Glo -- ry to the new -- born King,
   Je -- sus, the Light of the world.
   
-  \dropLyricsIV
+  
   We’ll walk in the light,
   beau -- ti -- ful light,
   Come where the dew -- drops of mer -- cy are bright,
-  \raiseLyrics
+  
   Shine all a -- round us by day and by night,
   Je -- sus, the Light of the world.
 }
@@ -115,7 +116,7 @@ tenorMusic = \relative c' {
   c4 bes8 a4. |
   
   c8 c8. a16 bes8 bes8. bes16 |
-  a4.~ a4 |
+  a4.~ a4 
   a8 |
   c8 a a a4. |
   c8 a a a4. |
@@ -142,7 +143,7 @@ bassMusic = \relative c {
   c4 c8 f4. |
   
   c8 c8. c16 c8 c8. c16 |
-  f4.~ f4 |
+  f4.~ f4 
   f8\fermata |
   f8 f f f4. |
   f8 f f f4. |
@@ -160,13 +161,9 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -189,16 +186,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

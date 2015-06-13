@@ -1,16 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Personent hodie"
   poet = \markup {Words from \italic {Piæ Cantiones}, 1582}
-  composer = "Arranged by Gustav Holst (1874–1934)"
-  tagline = ""
+  arranger = "arr. Gustav Holst (1874–1934)"
+  source = ""
 }
 
 global = {
-  \key ees \major
-  \time 4/4
-  \autoBeamOff
+    \key ees \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
@@ -117,7 +118,7 @@ bassWords = \lyricmode {
 }
 
 pianoRH = \relative c' {
-  \set Staff.midiInstrument = "piano"
+  \set Staff.midiInstrument = "acoustic grand"
   r1 |
   r1 |
   <f c aes>4 q <c g' c>2 |
@@ -153,7 +154,7 @@ pianoRH = \relative c' {
   <f a c f>2 q \bar "||"
 }
 pianoLH = \relative c' {
-  \set Staff.midiInstrument = "piano"
+  \set Staff.midiInstrument = "acoustic grand"
   r4 <f f,> <ees ees,> <d d,> |
   <c c,> <bes bes,> <aes aes,> <g g,> |
   <f f,> <d d,> <ees ees,> <c c,> |
@@ -178,6 +179,7 @@ pianoLH = \relative c' {
   <f a c f>2 q \bar "|."
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -196,19 +198,11 @@ pianoLH = \relative c' {
     \new PianoStaff << \new Staff { \new Voice { \global \pianoRH } } \new Staff { \clef "bass" \global \pianoLH } >>
   >>
   \layout {
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
   }
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

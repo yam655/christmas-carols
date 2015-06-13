@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Milford"
   poet = "Jeremiah Clarke (1674–1707)"
   composer = "Joseph Stephenson (1728–1810)"
-  %tagline = \markup { "from " \italic "The American Vocalist: a selection of tunes, anthems, sentences, and hymns, old and new" ", 1849, via " \italic "hymnary.org"}
+  %source = \markup { "from " \italic "The American Vocalist: a selection of tunes, anthems, sentences, and hymns, old and new" ", 1849, via " \italic "hymnary.org"}
 }
 
 global = {
-  \key a \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key a \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 180
 }
 
 sopMusic = \relative c'' {
@@ -26,9 +25,9 @@ sopMusic = \relative c'' {
   a2. gis4 |
   a2 cis |
   b2. a4 |
-  \partial 2. b2.
+  b2.
   \repeat volta 2 {
-    \partial 4 b4\rest |
+    b4\rest |
     b1\rest |
     
     b2.\rest d4\rest |
@@ -45,7 +44,7 @@ sopMusic = \relative c'' {
   }
   \alternative {
     {
-      \partial 2. cis2.
+      cis2.
     }
     {
       cis1 \bar "|."
@@ -76,7 +75,7 @@ altoMusic = \relative c' {
   e2. e4 |
   e2 <fis a> |
   fis2. fis4 |
-  fis2. |
+  fis2. 
   \repeat volta 2 {
     s4 |
     s1 |
@@ -194,7 +193,7 @@ bassMusic = \relative c' {
   a,2. e'4 |
   a2 fis |
   d fis |
-  b,2. |
+  b,2. 
   \repeat volta 2 {
     b4 |
     e e a a |
@@ -233,38 +232,21 @@ bassWords = \lyricmode {
   born.
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
-  <<
    \new ChoirStaff <<
-    \new Staff = women <<
-      \new Voice = "sopranos" { << \global \voiceOne \sopMusic >> }
-      \new Voice = "altos" { << \global \voiceTwo \altoMusic >> }
-    >>
-    \new Staff = tenors <<
-      \clef "G_8"
-      \new Voice = "tenors" { << \global \tenorMusic >> }
-    >>
-    \new Staff = basses <<
-      \clef bass
-      \new Voice = "basses" { << \global \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWords
+    \new Staff = soprano << \new Voice = "sopranos" << \global \sopMusic >> >>
+    \new Lyrics \lyricsto "sopranos" \sopWords
+    \new Staff = alto << \new Voice = "altos" << \global \altoMusic >> >>
+    \new Lyrics \lyricsto "altos" \altoWords
+    \new Staff = tenor << \clef "G_8" \new Voice = "tenors" << \global \tenorMusic >> >>
+    \new Lyrics  \lyricsto "tenors" \tenorWords
+    \new Staff = basse << \clef bass \new Voice = "basses" << \global \bassMusic >> >>
+    \new Lyrics  \lyricsto "basses" \bassWords
    
-    \new Lyrics \with { alignBelowContext = #"tenors" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"basses" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
-  >>
-  \layout { }
-  
+  \layout { } 
 }
 
 \score {
@@ -272,35 +254,21 @@ pianoLH = \relative c' {
 
   <<
    \new ChoirStaff <<
-    \new Staff = women <<
-      \new Voice = "sopranos" { << \global \voiceOne \sopMusic >> }
-      \new Voice = "altos" { << \global \voiceTwo \altoMusic >> }
-    >>
-    \new Staff = tenors <<
-      \clef "G_8"
-      \new Voice = "tenors" { << \global \tenorMusic >> }
-    >>
-    \new Staff = basses <<
-      \clef bass
-      \new Voice = "basses" { << \global \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWords
-   
-    \new Lyrics \with { alignBelowContext = #"tenors" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"basses" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
+    \new Staff << \new Voice = "sopranos" << \global \voiceOne \sopMusic >> >>
+    \new Lyrics  \lyricsto "sopranos" \sopWords
+    \new Staff << \new Voice = "altos" << \global \voiceTwo \altoMusic >> >>
+    \new Lyrics  \lyricsto "altos" \altoWords
+    \new Staff << \clef "G_8" \new Voice = "tenors" << \global \tenorMusic >> >>
+    \new Lyrics  \lyricsto "tenors" \tenorWords
+    \new Staff << \clef bass \new Voice = "basses" << \global \bassMusic >> >> 
+    \new Lyrics  \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   
   \midi {
-    \tempo 4 = 180
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }
 

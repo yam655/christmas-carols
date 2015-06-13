@@ -1,17 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Sans Day Carol"
   poet = "Traditional"
   composer = "Traditional Cornish"
-  %tagline = \markup { from \italic {The Cornish Song Book}, 1929, via \italic{HymnsAndCarolsOfChristmas.com}}
+  %source = \markup { from \italic {The Cornish Song Book}, 1929, via \italic{HymnsAndCarolsOfChristmas.com}}
 }
 
 global = {
   \key f \major
   \time 3/4
   \autoBeamOff
-  % Quarter note = 108
+  \tempo 4 = 108
 }
 
 sopMusic = \relative c' {
@@ -24,7 +24,7 @@ sopMusic = \relative c' {
   
   a4 f \slurDotted a8( a) |
   bes4 g e |
-  f2 \bar "||" \break
+  f2 \bar "||" 
   f8[ a] |
   c4 c d8[ e] |
   f8 f c4 c |
@@ -41,7 +41,7 @@ sopMusic = \relative c' {
   c4 c c8 bes |
   a4 f a |
   bes g e |
-  \partial 2 f2 \bar "|."
+  f2 \bar "|."
   
 }
 sopWords = \lyricmode {
@@ -58,7 +58,7 @@ altoMusic = \relative c' {
   
   c,4 c \slurDotted f8( f) |
   f[ e] d4 c |
-  c2 |
+  c2 
   f4 |
   a a bes |
   a8 a a4 a |
@@ -78,7 +78,7 @@ altoMusic = \relative c' {
   c2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Now the Hol -- ly bears a ber -- ry
   As white as the milk,
@@ -97,7 +97,7 @@ altoWords = \lyricmode {
   It was the Hol -- ly.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   Now the Hol -- ly bears a ber -- ry
@@ -105,14 +105,14 @@ altoWordsII = \lyricmode {
   And Ma -- ry bore Je -- sus Who died on the Cross.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Now the Hol -- ly bears a ber -- ry
   As red as the blood,
   And Ma -- ry bore Je -- sus Who died on the Rood.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   Now the Hol -- ly bears a ber -- ry
   As black as a coal,
@@ -136,7 +136,7 @@ tenorMusic = \relative c' {
   
   c a \slurDotted a8( a) |
   d[ c] bes4 bes |
-  a2 |
+  a2 
   a8[ c] |
   f4 ees d |
   c8 c c4 c |
@@ -169,7 +169,7 @@ bassMusic = \relative c {
   
   f4 f \slurDotted d8( d) |
   bes4 bes c |
-  <f f,>2 |
+  <f f,>2 
   f4 |
   f f f |
   f8 f f4 f8[ a] |
@@ -192,13 +192,8 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -221,16 +216,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

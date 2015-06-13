@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Babe of Bethlehem"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
   poet = "Traditional"
   composer = "Traditional"
 }
 
 global = {
-  \key c \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key c \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -20,30 +19,31 @@ sopMusic = \relative c' {
   a c b gis |
   a c e,2 |
   c' a4 c |
-  b gis e\fermata \bar""\break e |
+  b gis e\fermata  e |
   
   a c b gis a c f,\fermata f |
   e8[ dis] e[ fis] gis4 e |
-  a2. b4\rest \bar "||" \key a\major \break
-  
+  a2. b4\rest \bar "||" 
+
+  \key a\major 
   cis2 cis4 cis |
   d8([ cis d e] d4) cis8[ b] |
   a4 gis8[ a] b4 cis |
-  b2. e,4 | \break
+  b2. e,4 | 
   
   a a b b |
   cis e b cis8[ d] |
   e4 a, b a8[ gis] |
-  \partial 2. a2. \bar ":|" \break
+  a2. \bar ":|" 
   
   
   
   \key c\major
-  \partial 4 e4 |
+  e4 |
   a c b gis |
   a c e,2 |
   c' a4 c |
-  b gis e\fermata \bar""\break e |
+  b gis e\fermata  e |
   
   a c b gis a c f,\fermata f |
   e8[ dis] e[ fis] gis4 e |
@@ -74,7 +74,7 @@ altoMusic = \relative c' {
   cis4 a' gis fis |
   e8[ fis] g4 fis e |
   e cis fis e |
-  e2. |
+  e2. 
   
   
   \key c\major
@@ -90,7 +90,7 @@ altoMusic = \relative c' {
   c2. s4 \bar "||"
 }
 altoWords = {
-  \dropLyricsXI
+  
   \lyricmode {
     \set stanza = #"1."
     The Babe in Beth -- lem’s man -- ger laid,
@@ -120,7 +120,7 @@ altoWords = {
   }
 }
 altoWordsII = {
-  \dropLyricsXI
+  
   \set stanza = \markup{\dynamic"  mf " "2."}
   \lyricmode {
     A Sav -- ior! sin -- ners all a -- round
@@ -145,7 +145,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsXI
+  
   \set stanza = #"3."
   For not to sit on Da -- vid’s throne
   With world -- ly pomp and joy,
@@ -192,7 +192,7 @@ tenorMusic = \relative c' {
   a4 cis b b |
   b b8[ ais] b[ a] gis4 |
   a a d cis8[ b] |
-  cis2. |
+  cis2. 
   
   
   
@@ -222,7 +222,7 @@ bassMusic = \relative c {
   a c b gis |
   a c f,\fermata d |
   e e e e |
-  a,2. d4\rest \bar "||"
+  a,2. d4\rest 
   
   \key a\major
   a'2 fis4 fis |
@@ -233,7 +233,7 @@ bassMusic = \relative c {
   fis fis d d |
   cis cis d e8[ d] |
   cis4 fis d e |
-  a,2. |
+  a,2. 
   
   
   
@@ -253,17 +253,11 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -283,16 +277,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

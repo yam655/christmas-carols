@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "O Little Town of Bethlehem"
   poet = "Phillips Brooks (1835–1893)"
   composer = "Lewis H. Redner (1831–1908)"
-  %tagline = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
+  %source = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
 }
 
 global = {
-  \key g \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 95
 }
 
 sopMusic = \relative c'' {
@@ -20,25 +19,22 @@ sopMusic = \relative c'' {
   b b ais b |
   \slurDotted d( c) e, a |
   \slurSolid g fis8[ g] a4 d, |
-  b'2. \bar""\break b4 |
+  b'2.  b4 |
   
   b b e d |
   d c e, a |
   g fis8[ g] b4. a8 |
-  g2. \bar""\break b4 |
+  g2.  b4 |
   
   b b a g |
   fis2 fis4 fis |
   e fis g a |
-  b2. \bar""\break b4 |
+  b2.  b4 |
   
   b b ais b |
   d c e, e' |
   d g, b4. a8 |
-  \partial 4*3 g2. \bar "|."
-}
-sopWords = \lyricmode {
-  
+  g2. \bar "|."
 }
 
 altoMusic = \relative c' {
@@ -64,7 +60,7 @@ altoMusic = \relative c' {
   b2. \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   \set ignoreMelismata = ##t
   O lit -- tle town of Beth -- le -- hem,
@@ -77,7 +73,7 @@ altoWords = \lyricmode {
   Are met in \set associatedVoice = "altos" thee to -- night.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"2. "
   \set ignoreMelismata = ##t
   For Christ is born of Ma -- _ ry,
@@ -90,7 +86,7 @@ altoWordsII = \lyricmode {
   And peace to \set associatedVoice = "altos" men on earth!
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   \set ignoreMelismata = ##t
   How si -- lent -- ly, how si -- lent -- ly
@@ -103,7 +99,7 @@ altoWordsIII = \lyricmode {
   The dear Christ \set associatedVoice = "altos" en -- ters in.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   \set ignoreMelismata = ##t
   Where chil -- dren pure and hap -- _ py
@@ -116,7 +112,7 @@ altoWordsIV = \lyricmode {
     and Christ -- \set associatedVoice = "altos" mas comes once more
 }
 altoWordsV = \lyricmode {
-  \dropLyricsIX
+  
 \set ignoreMelismata = ##t
   \set stanza = #"5. "
   O ho -- ly Child of Beth -- le -- hem!
@@ -151,9 +147,6 @@ tenorMusic = \relative c' {
   b a8[ g] g4 fis |
   g2. \bar "|."
 }
-tenorWords = \lyricmode {
-
-}
 
 bassMusic = \relative c' {
   g4 |
@@ -177,42 +170,32 @@ bassMusic = \relative c' {
   d e d4 d |
   g,2. \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart {
 \score {
-  <<
-   \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
-    \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"women" } \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5)) } \lyricsto "sopranos" \altoWords
-   \new Staff = men <<
-      \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
+    <<
+        \new ChoirStaff <<
+            \new Staff = women <<
+                \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
+                \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+            >>
+            \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+            \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+            \new Lyrics = "altosIII"   \lyricsto "sopranos" \altoWordsIII
+            \new Lyrics = "altosIV"   \lyricsto "sopranos" \altoWordsIV
+            \new Lyrics = "altosV"   \lyricsto "sopranos" \altoWordsV
+            \new Staff = men <<
+                \clef bass
+                \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
+                \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
+            >>
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 95
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

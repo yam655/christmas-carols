@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "’Twas in a Cave on Christmas Morn"
   poet = "George Ratcliffe Woodward (1848–1934)"
   composer = \markup{\italic{Dich grüssen wir, O Jesulein}, 1623}
   arranger = "Arranged by Charles Wood (1866–1926)"
-  tagline = \markup { from \italic {The Cambridge Carol Book}, 1924}
+  source = \markup { from \italic {The Cambridge Carol Book}, 1924}
 }
 
 global = {
-  \key g \major
-  \time 3/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 180
 }
 
 sopMusic = \relative c' {
@@ -23,7 +22,7 @@ sopMusic = \relative c' {
     cis2 cis4 |
     d2 d4
     cis2 cis4 |
-    d2. | \break
+    d2. | 
     
     d4 d e |
     d2 b4 |
@@ -32,12 +31,10 @@ sopMusic = \relative c' {
     a2 b4 |
     c a2 |
     g2.~ |
-    g \break
+    g 
   }
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   d4 d fis |
@@ -57,7 +54,7 @@ altoMusic = \relative c' {
   b
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   ’Twas in a cave on Christ -- mas morn,
   No -- el, No -- el,
@@ -71,7 +68,7 @@ altoWords = \lyricmode {
   E -- ia, E -- ia, E -- ia. __
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic 
   \set stanza = #"2. "
   See in a crib the heav’n -- ly Child,
@@ -87,7 +84,7 @@ altoWordsII = \lyricmode {
   \set ignoreMelismata = ##t
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Thi -- ther -- ward kings and herd -- men drew
   To Eph -- ra -- tha,
@@ -148,13 +145,9 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -165,7 +158,6 @@ pianoLH = \relative c' {
         \sopMusic}>> }
       \new Voice = "altos" { \voiceTwo << \global \repeat unfold2\altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
     \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
     \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
     \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
@@ -180,16 +172,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 180
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

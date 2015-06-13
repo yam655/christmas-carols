@@ -1,36 +1,35 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "’Twas in the winter cold"
   subtitle = "A Christmas Morning Hymn"
   poet = "Rev. Charles I. Black (1821–1896)"
   composer = "Joseph Barnby (1838–1896)"
-  tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+  source = \markup { "from" \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key d \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0 . 0)
+    \key d \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 80
 }
 
 sopMusic = \relative c' {
   d4 d8 d e4 fis |
   fis4. e8 e4 fis |
   g^\< a b\! cis |
-  a2~^\> a4\! \bar""\break a4 |
+  a2~^\> a4\!  a4 |
   
   d4. cis8 b4 fis |
   a4.^\markup\italic"dim." g8 g4 fis^\p |
   d4. d8 fis4 e |
-  e2. \bar""\break e4 |
+  e2.  e4 |
   
   g4. fis8 e4^\cresc e |
   a4. g8 fis4 fis |
   b4.-> a8 g4 fis\! |
-  g2 \bar""\break a |
+  g2  a |
   
   b4. b8 cis4 cis |
   d^\f dis e b^\markup{\dynamic"p" \italic" rit."} |
@@ -63,7 +62,7 @@ altoMusic = \relative c' {
   d1 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   ’Twas in the win -- ter cold, when earth Was de -- so -- late and wild, __
   That An -- gels wel -- comed at His Birth The ev -- er -- last -- ing Child.
@@ -71,7 +70,7 @@ altoWords = \lyricmode {
   He came, with hu -- man kind to stay, All low -- li -- ness and love.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   Then in the man -- ger the poor beast
@@ -84,7 +83,7 @@ altoWordsII = \lyricmode {
   Bend low the rev -- ’rent knee.
 }
 altoWordsIII = {
-  \dropLyricsIX
+  
   \set stanza = \markup{\dynamic"mf " "3. "}
   \lyricmode {
     But I have not, it makes me sigh,
@@ -101,7 +100,7 @@ altoWordsIII = {
   }
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   Grant me Thy -- self, O Sav -- ior kind,
   The Spi -- rit un -- de -- filed, __
@@ -113,7 +112,7 @@ altoWordsIV = \lyricmode {
   Keep ev -- er close to God.
 }
 altoWordsV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"5. "
   Light of the ev -- er -- last -- ing morn,
   Deep through my spi -- rit shine; __
@@ -178,17 +177,11 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -208,16 +201,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 80
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

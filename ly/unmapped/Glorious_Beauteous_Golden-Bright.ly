@@ -1,26 +1,26 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 
 \header {
     title = "Glorious, Beauteous, Golden-Bright"
     poet = "Anna M. E. Nichols"
     composer = "Maria Tiddeman (1837–1915)"
-    %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+    %source = \markup { "from" \italic {Christmas Carols, New and Old}}
     %\concat{"Chorus and text of verses from " \italic"Piæ Cantiones" ", 1582, via " \italic"imslp.org" ", Melody of verses from " \italic "www.cpdl.org"}}}
 }
 
 global = {
-  \key d \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-  \tieDotted
+    \key d \major
+    \time 4/4
+    \autoBeamOff
+    \tieDotted
+    \tempo 4 = 100
 }
 
 sopMusic = \relative c' {
+    \partial 2
   \repeat volta 2 {
-    \partial 2 fis4. g8 |
+    fis4. g8 |
     a4 d cis b8[ a] |
     d2 d4 cis8[ d] |
     
@@ -32,11 +32,10 @@ sopMusic = \relative c' {
     g4 gis a a |
     a2 b4. b8 |
     cis4 d d8[ cis] b[ cis] |
-    \partial 2 d2 |
+    d2 
   }
-  \pageBreak
   \repeat volta 3 {
-    \partial 2 a4. a8 |
+    a4. a8 |
     fis'4 d b e |
     \slurDotted
     d4( cis8[) b] a4. a8 |
@@ -49,9 +48,9 @@ sopMusic = \relative c' {
     g4 gis a a |
     a2 b4. b8 |
     cis4 d d8[ cis] b[ cis] |
-    \partial 2 d2 | \break
+    d2 
   }
-  \partial 2 a4. a8 |
+  a4. a8 |
   fis'4 d b e |
   d4 cis8[ b] a4. a8 |
   a4 a d d |
@@ -82,7 +81,7 @@ altoMusic = \relative c' {
   d4 d cis d8[ e] |
   d2 d4. d8 |
   e4 d g g |
-  fis2 |
+  fis2 
   
   
   fis4. fis8 |
@@ -98,7 +97,7 @@ altoMusic = \relative c' {
   d4 d cis d8[ e] |
   d2 d4. d8 |
   e4 d g g |
-  fis2 |
+  fis2 
   
   
   fis4. fis8 |
@@ -116,7 +115,7 @@ altoMusic = \relative c' {
   e2 fis \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Glo -- rious, beau -- teous, gol -- den -- bright,
   Shed -- ding soft -- est pur -- est light,
@@ -140,7 +139,7 @@ altoWords = \lyricmode {
   Peace on earth to us for -- giv -- en.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   But the stars’ sweet gold -- en gleam
@@ -157,7 +156,7 @@ altoWordsII = \lyricmode {
   ’Mid the bright  -- ness lost their gold.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \repeat unfold 35 { \skip 1 }
   \set stanza = #"5. "
   Now no more on Christ -- mas night, __
@@ -185,7 +184,7 @@ tenorMusic = \relative c' {
   d4 e e fis8[ g] |
   fis2 g4. b8 |
   a4 a e' d8[ e] |
-  d2 |
+  d2 
   
   
   d4. d8 |
@@ -201,7 +200,7 @@ tenorMusic = \relative c' {
   d4 e e fis8[ g] |
   fis2 g4. b8 |
   a4 a e' d8[ e] |
-  d2 |
+  d2 
   
   
   d4. d8 |
@@ -235,7 +234,7 @@ bassMusic = \relative c {
   b4 b a a |
   d2 g4. g8 |
   g4 fis a a, |
-  d2 |
+  d2 
   
   
   d4. d8 |
@@ -251,7 +250,7 @@ bassMusic = \relative c {
   b4 b a a |
   d2 g4. g8 |
   g4 fis a a, |
-  d2 |
+  d2 
   
   
   d4. d8 |
@@ -268,17 +267,9 @@ bassMusic = \relative c {
   a a a a |
   a2 d \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -300,19 +291,15 @@ pianoLH = \relative c' {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWords
      \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 100
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

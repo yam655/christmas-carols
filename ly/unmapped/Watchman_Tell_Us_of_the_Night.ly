@@ -1,10 +1,10 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Watchman, Tell Us of the Night"
   poet = "John Bowring (1792–1872)"
   composer = \markup{\italic {Aberystwyth}, Joseph Parry (1841–1903)}
-  %tagline = \markup { "from" \italic {ChristmasCarolMusic.org}}
+  %source = \markup { "from" \italic {ChristmasCarolMusic.org}}
 }
 
 global = {
@@ -12,25 +12,23 @@ global = {
   \time 4/4
   \autoBeamOff
   \tempo 4 = 90
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
 }
 
 sopMusic = \relative c' {
   d4 d8[ e] f[ g] a4 |
   f e d2 |
   f4 e d cis |
-  d8[ e] f4 e2 | \break
+  d8[ e] f4 e2 | 
   
   d4 d8[ e] f[ g] a4 |
   f e d2 |
   e4 f8[ g] a4 g |
-  f e d2 | \break
+  f e d2 | 
   
   d4 c d e |
   f a8[ g] f2 |
   f4 e f g |
-  a c8[ b] a2 | \break
+  a c8[ b] a2 | 
   
   d4 d c a |
   f g a2 |
@@ -63,7 +61,7 @@ altoMusic = \relative c' {
   d cis a2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"1. "
   Watch -- man, tell us of the night,
   What its signs of prom -- ise are.
@@ -75,7 +73,7 @@ altoWords = \lyricmode {
   Prom -- ised day of Is -- ra -- el.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsVII
+  
 %\markup\italic
   \set stanza = #"2. "
   Watch -- man, tell us of the night;
@@ -88,7 +86,7 @@ altoWordsII = \lyricmode {
   See, it bursts o’er all the earth.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"3. "
   Watch -- man, tell us of the night,
   For the morn -- ing seems to dawn.
@@ -161,13 +159,8 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -190,15 +183,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

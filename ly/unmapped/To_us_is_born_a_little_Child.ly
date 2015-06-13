@@ -1,49 +1,46 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "To us is born a little Child"
   subtitle = "(Parvulus nobis nascitur)"
   poet = "15th Century"
-  meter = "Translated by Wm. John Blew (1808–1894)"
+  translator = "Translated by Wm. John Blew (1808–1894)"
   composer = \markup{\italic "Ach! bleib bei uns, Herr Jesu Christ"}
   arranger = "J.S. Bach (1685–1750)"
-  tagline = \markup{ from \italic {The Cowley Carol Book}, 1919}
+  source = \markup{ from \italic {The Cowley Carol Book}, 1919}
 }
 
 global = {
-  \key a \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key a \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
   \partial 4 cis'4 |
   cis8[ d] e4 cis a |
-  b cis d\fermata \bar"" cis |
+  b cis d\fermata  cis |
   b a a4.( b8 |
   cis4) cis b8[ a] b4 |
-  \partial 2. a2.\fermata \bar "||"\break
+  a2.\fermata 
   
-  \partial 4 cis4 |
+  cis4 |
   cis8[ d] e4 cis a | 
-  b cis d\fermata \bar""\break cis |
+  b cis d\fermata  cis |
   b a a4.( b8 |
   cis4) cis b8[ a] b4 |
-  \partial 2. a2.\fermata \bar "||" \break
+  a2.\fermata 
   
-  \partial 4 cis4 |
+  cis4 |
   b4 cis a fis |
   
   gis a b\fermata cis |
   a a a4.( b8 |
   cis4) cis b8[ a] b4 |
-  \partial 2. a2.\fermata \bar "|."
+  a2.\fermata \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   a'4 |
@@ -51,14 +48,14 @@ altoMusic = \relative c' {
   g8[ fis] e4 fis e |
   e8[ d] cis4 fis2( |
   e4) e e4. d8 |
-  cis2. |
+  cis2. 
   
   a'4 |
   a b a a |
   g8[ fis] e4 fis e |
   e8[ d] cis4 fis2( |
   e4) e e4. d8 |
-  cis2. |
+  cis2. 
   
   a'4 |
   gis gis fis8[ e] dis4 |
@@ -70,7 +67,7 @@ altoMusic = \relative c' {
 }
 altoWords = \lyricmode {
 %6x9  \override LyricText #'font-size = #1.1
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   To us is born a lit -- tle Child
   Of Ma -- ry, maid -- en -- mo -- ther mild;
@@ -81,7 +78,7 @@ altoWords = \lyricmode {
 }
 altoWordsII = \lyricmode {
 %6x9  \override LyricText #'font-size = #1.1
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   Our King of Glo -- ry, Him have we,
@@ -91,7 +88,7 @@ altoWordsII = \lyricmode {
 }
 altoWordsIII = \lyricmode {
 %6x9  \override LyricText #'font-size = #1.1
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   That dear, through Him, to God we be,
   From death de -- liv -- er’d and set free:
@@ -100,7 +97,7 @@ altoWordsIII = \lyricmode {
 }
 altoWordsIV = \lyricmode {
 %6x9  \override LyricText #'font-size = #1.1
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   Now, mas -- ters all, full sweet -- ly sing
   Ho -- san -- na to __ our Ba -- by -- king;
@@ -121,14 +118,14 @@ tenorMusic = \relative c' {
   d4 a a a |
   gis a d2( |
   cis8)[ b] a4 a gis |
-  e2. |
+  e2. 
   
   e'4 |
   e e e e8[ d] |
   d4 a a a |
   gis a d2( |
   cis8)[ b] a4 a gis |
-  e2. |
+  e2. 
   
   e'4 |
   e8[ d] cis4 cis b |
@@ -148,14 +145,14 @@ bassMusic = \relative c {
   g a d,\fermata a |
   e' fis8[ e] d([ e fis gis] |
   a4) cis,8[ d] e4 e |
-  a,2.\fermata |
+  a,2.\fermata 
   
   a4 |
   a' gis a fis |
   g a d,\fermata a |
   e' fis8[ e] d([ e fis gis] |
   a4) cis,8[ d] e4 e |
-  a,2.\fermata |
+  a,2.\fermata 
   
   a4 |
   e' eis fis b8[ a] |
@@ -175,6 +172,7 @@ pianoLH = \relative c' {
   
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -182,7 +180,6 @@ pianoLH = \relative c' {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
     \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVI
     \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsV
     \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
@@ -208,12 +205,9 @@ pianoLH = \relative c' {
     }
   }
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

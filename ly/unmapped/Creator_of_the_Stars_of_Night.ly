@@ -1,19 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
 
-\header {tagline = ""
+\header {
     title = "Creator of the Stars of Night"
     poet = "Translated by John Mason Neale (1818–1866)"
-    %tagline = \markup { from \italic {Peters’ Sodality Hymn Book,} 1914}
+    %source = \markup { from \italic {Peters’ Sodality Hymn Book,} 1914}
   }
 
 global = {
-  \key f \major
-  \time 6/8
-  \autoBeamOff
-  \override DynamicLineSpanner #'staff-padding = #0.0
-  \override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-  \set Score.timing = ##f
+    \key f \major
+    \time 6/8
+    \autoBeamOff
+    %\set Score.timing = ##f
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c'' {
@@ -25,8 +23,8 @@ sopMusic = \relative c'' {
     c bes a g
     a\fermata \bar "|"
     
-    c bes g \bar""
-    a bes \bar"" a g
+    c bes g 
+    a bes  a g
     f \bar "|"
     f a bes
     c bes a g
@@ -59,7 +57,7 @@ altoAmen = \relative c' {
   f2. e2( f)
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1."
   Cre -- a -- tor of the stars of night,
   Thy peo -- ple’s ev -- er -- last -- ing Light;
@@ -73,7 +71,7 @@ altoWords = \lyricmode {
   And things ter -- res -- trial, Lord a -- lone.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2."
   Thou, griev -- ing that the an -- cient curse
@@ -90,7 +88,7 @@ altoWordsII = \lyricmode {
   A -- men.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3."
   Thou cam’st, the Bride -- groom of the bride,
   As drew the world to eve -- ning -- tide;
@@ -155,17 +153,8 @@ bassMusic = \relative c {
 bassAmen = \relative c {
   f2. c2( f)
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -186,9 +175,7 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global {\repeat unfold2 \bassMusic \bassAmen} >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout {
     \context {
@@ -200,12 +187,10 @@ pianoLH = \relative c' {
   }
   
   \midi {
-    \tempo 4 = 120
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

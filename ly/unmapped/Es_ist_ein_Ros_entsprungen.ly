@@ -1,17 +1,16 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header { 
     title = "Es ist ein Ros entsprungen"
     poet = "15th Century German"
     composer = "Arranged by Michael Praetorius (1571–1621)"
-    tagline = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
+    source = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
   }
 
 global = {
-  \key g \major
-  \time 4/4
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 4/4
+    \tempo 4 = 100
 }
 
 sopMusic = \relative c'' {
@@ -63,7 +62,7 @@ altoMusic = \relative c'' {
   d4) d d2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Es ist ein Ros ent -- sprung -- en,
   aus ein -- er Wur -- zel zart,
@@ -74,7 +73,7 @@ altoWords = \lyricmode {
   wohl zu der halb -- en Nacht.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   Das Rös -- lein, das ich mein -- e,
   da -- von Je -- sai -- a sagt,
@@ -85,7 +84,7 @@ altoWordsII = \lyricmode {
   und blieb ein rei -- ne Magd.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Das Blüm -- e -- lein, so klein -- e,
   das duf -- tet uns __ so süß,
@@ -181,10 +180,10 @@ pianoLH = \relative c' {
   
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -202,23 +201,18 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . 0.2)) } \lyricsto "tenors" \tenorWords
-%{IF_LESSER
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)(padding . 0.2)) } \lyricsto "basses" \bassWordsIII
-%}%END_IF_LESSER
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)(padding . 0.2)) } \lyricsto "basses" \bassWordsII
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)(padding . 0.2)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 100
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

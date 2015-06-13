@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Coventry Carol"
   poet = "Robert Croo, 1534"
   composer = "16th Centry English Carol"
   arranger = "Adapted and Arranged by Sir John Stainer (1840–1901)"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key bes \major
-  \time 3/4
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key bes \major
+    \time 3/4
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c'' {
@@ -20,21 +19,21 @@ sopMusic = \relative c'' {
   <g d>2 <bes d,>4 |
   <a f>2 <g d>4 |
   <fis d>2. |
-  <g d>4 <fis d> <g bes,> | \break
+  <g d>4 <fis d> <g bes,> | 
   <c ees,>2 <a d,>4 | 
   <b d,>2. \bar "||" 
   
   g4 g fis |
   g2 bes4 |
   a2 g4 |
-  fis2. | \break
+  fis2. | 
   
   g4 a bes |
   c2 a4 |
   g2.~ |
   <<g2 {s4 s^\mf}>> d'4 |
   c2 bes4 |
-  a2 bes4 | \break
+  a2 bes4 | 
   
   a2^\markup\italic"dim." g4 |
   fis2. |
@@ -70,7 +69,7 @@ altoMusic = \relative c' {
   d2. \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsXI
+  
   \repeat unfold 14 \skip 1
   \set stanza = #"1. "
   Lul -- lay, Thou lit -- tle ti -- ny Child,
@@ -79,7 +78,7 @@ altoWords = \lyricmode {
   By, by, lul -- ly, lul -- lay. __
 }
 altoWordsII = \lyricmode {
-  \dropLyricsXI
+  
   \repeat unfold 14 \skip 1
   \set stanza = #"2. "
   O sis -- ters too, how may we do,
@@ -88,7 +87,7 @@ altoWordsII = \lyricmode {
   By, by, lul -- ly, lul -- lay? __
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsXI
+  
   \repeat unfold 14 \skip 1
   \set stanza = #"3. "
   Her -- od, the king, in his rag -- ing,
@@ -97,7 +96,7 @@ altoWordsIII = \lyricmode {
   All chil -- dren young to slay. __
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsXI
+  
   \repeat unfold 14 \skip 1
   \set stanza = #"4. "
   Then woe is me, poor Child, for Thee,
@@ -109,7 +108,7 @@ altoWordsIV = \lyricmode {
 tenorMusic = \relative c' {
   s2.*6_\p |
   
-  <g g,>2. ~ |
+  <g g,>2. |
   
   bes4 bes a |
   bes2 bes4 |
@@ -162,14 +161,12 @@ bassMusic = \relative c' {
   g,2.~ |
   g2. \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -185,18 +182,13 @@ bassWords = \lyricmode {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

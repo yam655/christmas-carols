@@ -1,20 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Virgin and Child"
   poet = \markup{Adapted from \italic{Thys endris nyzth}, 15th Century}
   composer = "Charles Steggall (1826–1905)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key c \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(1 . 1)
-  %\override DynamicText #'X-offset = #-2.5
-  \tempo 4 = 112
+    \key c \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 112
 }
 
 sopMusic = \relative c'' {
@@ -29,10 +26,10 @@ sopMusic = \relative c'' {
   a e8[ f] g4 c,8[ d] |
   e4 f8[ d] e4 c8[ d] |
   e2. c8[ d] |
-  \partial 2. e2.\fermata | \break
+  e2.\fermata 
   
   \repeat volta 2 {
-    \partial 4 e4 |
+    e4 |
     a4. b8 c4 d |
     b4. c8 a4 b |
     c4 a8[ b] c4 f |
@@ -49,7 +46,7 @@ sopMusic = \relative c'' {
     e'2. e4 |
     
     b^\markup\italic"dim." c g a |
-    e4. f8 g4 \bar"||"\break a8[ b] |
+    e4. f8 g4 \bar"||" a8[ b] |
     c4 d8[ e] c4 a8[ b] |
     g[ f] g[ a] g4 a8[ b] |
     
@@ -61,7 +58,7 @@ sopMusic = \relative c'' {
     e4 f8[ d] e4 c |
     e f8[ d] e4 c8[ d] |
     e4 c8[ d] e4 c |
-    \partial 2. e2.
+    e2.
   }
 }
 sopWords = \lyricmode {
@@ -88,7 +85,7 @@ altoMusic = \relative c' {
   f c c a |
   c2~ c4 e,\rest |
   g\rest c4 b a |
-  b2. |
+  b2. 
   
   e4 |
   a4. b8 c4 d |
@@ -120,23 +117,18 @@ altoMusic = \relative c' {
   c2. a8[ b] c4 a c a |
   c2.
 }
-dropLyrics = {
-  \override LyricText #'extra-offset = #'(0 . -1.8)
-  \override LyricHyphen #'extra-offset = #'(0 . -1.8)
-  \override LyricExtender #'extra-offset = #'(0 . -1.8)
-  \override StanzaNumber #'extra-offset = #'(0 . -1.8)
-}
+
 altoWords = {
-  \dropLyricsIX
+  
   \set stanza = \markup{\dynamic"  mf" " 1."}
   \lyricmode {
     On yes -- ter night I saw a sight,
     A star as bright as day; __
     And all a -- long, I heard a song,
-    lul -- lay, by by, \dropLyricsIV lul -- lay, __
-    \dropLyricsXV lul -- lay, lul -- lay.
+    lul -- lay, by by,  lul -- lay, __
+     lul -- lay, lul -- lay.
   }
-  \dropLyricsIX
+  
   \set stanza = "2."
   \lyricmode{
     A love -- ly la -- dy sat and sang,
@@ -146,17 +138,17 @@ altoWords = {
     To see Thee there, so cold and bare,
     A King up -- on this hay;
     But hush Thy wail, I will not fail
-    \dropLyricsVI
+    
     To sing by by, lul -- lay, lul -- lay,
-    to sing by by, \dropLyrics lul -- lay, lul -- lay;
+    to sing by by,  lul -- lay, lul -- lay;
     To sing by by lul -- lay, lul -- lay,
-    lul -- lay, \dropLyricsVI lul -- lay,
-    \dropLyrics
+    lul -- lay,  lul -- lay,
+    
     lul -- lay, lul -- lay, lul -- lay.
   }
 }
 altoWordsII = {
-  \dropLyricsIX
+  
   \lyricmode{
     \repeat unfold 32 \skip1
   }
@@ -175,7 +167,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \repeat unfold 32 \skip1
   \set stanza = #"4."
   “Now, sweet -- est Lord, since Thou art King,
@@ -212,7 +204,7 @@ tenorMusic = \relative c' {
   c a g a |
   g a8[ f] g4 s |
   s a gis a |
-  gis!2. |
+  gis!2. 
   
   e4 |
   a4. b8 c4 d |
@@ -270,7 +262,7 @@ bassMusic = \relative c {
   f a e f |
   c2~ c4 d\rest |
   d\rest a e' a |
-  e2.\fermata |
+  e2.\fermata 
   
   e4 |
   a4. b8 c4 d |
@@ -323,10 +315,10 @@ pianoLH = \relative c' {
   
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -350,12 +342,8 @@ pianoLH = \relative c' {
   >>
   \layout { }
   \midi {
-    \tempo 4 = 112
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }

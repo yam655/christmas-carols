@@ -1,16 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Coventry Carol"
   poet = "Robert Croo, 1534"
   composer = "16th Centry English Carol"
   arranger = "Arranged by Martin Fallas Shaw (1875–1958)"
-  %tagline = \markup { "from" \italic {ChristmasCarolMusic.org}}
+  %source = \markup { "from" \italic {ChristmasCarolMusic.org}}
 }
 
 global = {
-  \key bes \major
-  \time 3/4
+    \key bes \major
+    \time 3/4
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c'' {
@@ -20,27 +21,25 @@ sopMusic = \relative c'' {
   fis2. |
   g4 a bes |
   c a2 |
-  b2. \bar "||" \break
+  b2. \bar "||" 
   
   g4 g fis |
   g2 bes4 |
   a2 g4 |
   fis2. |
-  g4 a bes | \break
+  g4 a bes | 
   c a2 |
   g2 d'4 |
   
   c2 bes4 |
   a2 bes4 |
-  a2 g4 | \break
+  a2 g4 | 
   fis2. |
   g4 fis g |
   c a2 |
   b2. \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   d4 d d |
@@ -68,7 +67,7 @@ altoMusic = \relative c' {
   g2. \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsXI
+  
   Lul -- ly, lul -- lay, Thou lit -- tle ti -- ny Child,
   By, by, lul -- ly, lul -- lay;
   
@@ -79,7 +78,7 @@ altoWords = \lyricmode {
   By, by, lul -- ly, lul -- lay?
 }
 altoWordsII = \lyricmode {
-  \dropLyricsXI
+  
   \repeat unfold 16 { \skip 1 }
   \set stanza = #"2. "
   Her -- od, the king, in his rag -- ing,
@@ -88,18 +87,13 @@ altoWordsII = \lyricmode {
   All chil -- dren young to slay.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsXI
+  
   \repeat unfold 16 { \skip 1 }
   \set stanza = #"3. "
   Then woe is me, poor Child, for Thee!
   And ev -- er mourn and say;
   For Thy part -- ing nor say nor sing,
   By, by, lul -- ly, lul -- lay.
-}
-altoWordsIV = \lyricmode {
-  \repeat unfold 2 { \skip 1 }
-  \set stanza = #"4. "
-  
 }
 
 tenorMusic = \relative c' {
@@ -127,9 +121,7 @@ tenorMusic = \relative c' {
   ees d2 |
   d2. \bar "|."
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c' {
   g4 g d |
@@ -156,41 +148,31 @@ bassMusic = \relative c' {
   c, d2 |
   g2. \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5)) } \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+    \new Lyrics = "altosIII"   \lyricsto "sopranos" \altoWordsIII
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

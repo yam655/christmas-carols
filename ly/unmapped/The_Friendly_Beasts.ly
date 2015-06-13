@@ -1,16 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "The Friendly Beasts"
     poet = "Robert Davis (1881–1950)"
     composer = \markup{Adapted from \italic{Orientis Partibus}, 12th Century French}
-    %tagline = \markup { "from" \italic {HymnsAndCarolsOfChristmas.com}}
+    %source = \markup { "from" \italic {HymnsAndCarolsOfChristmas.com}}
   }
 
 global = {
-  \key f \major
-  \time 3/4
-  \autoBeamOff
+    \key f \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -23,7 +24,7 @@ sopMusic = \relative c' {
     
     d2 d8\noBeam( d) |
     c2 c4 |
-    a2 \bar"" a8\noBeam( a) |
+    a2  a8\noBeam( a) |
     a4( a) g |
     bes4( bes) a |
     
@@ -34,7 +35,7 @@ sopMusic = \relative c' {
     g( g) e |
     f2.
   }
-  \break
+  
   
   \repeat volta 4 {
     f4 f g |
@@ -45,7 +46,7 @@ sopMusic = \relative c' {
     
     d4( d) d8\noBeam( d) |
     c2 c4 |
-    a2 \bar"" a8\noBeam( a) |
+    a2  a8\noBeam( a) |
     a4( a) g |
     bes4( bes) a |
     
@@ -110,7 +111,7 @@ altoMusic = \relative c' {
   c2.
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   \set ignoreMelismata = ##t
   Je -- sus, our bro -- ther, kind _ and good, Was hum -- _ bly born in a sta -- ble rude,
@@ -122,7 +123,7 @@ altoWords = \lyricmode {
   He __ _ wore __ _ my coat _ on Christ -- _ mas morn.” “I,” said the sheep _ with curl -- _ y horn.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   \set ignoreMelismata = ##t
@@ -137,7 +138,7 @@ altoWordsII = \lyricmode {
   “I,” said the dove _ from the raf -- ters high.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   \set ignoreMelismata = ##t
   “I,” said the cow, all white _ and red, “I gave Him my man -- ger __ _ for His bed,
@@ -151,7 +152,7 @@ altoWordsIII = \lyricmode {
   “I,” said the cam -- _ el, yel -- low and black.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \repeat unfold 32 \skip1
   \set stanza = #"7. "
   \set ignoreMelismata = ##t
@@ -272,10 +273,10 @@ bassWords = \lyricmode {
 
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -307,12 +308,9 @@ bassWords = \lyricmode {
   }
   
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

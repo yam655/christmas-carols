@@ -1,19 +1,19 @@
 ﻿\version "2.14.2"
-\include "util.ly"
 
-\header {
-  title = "Angelus ad virginem"
-  poet = "13th Century"
-  composer = "Anonymous, 13th Century"
-  %tagline = \markup { "from" \italic "cpdl.org"}
-}
+songTitle = "Angelus ad virginem"
+songPoet = "13th Century"
+tuneComposer = "Anonymous, 13th Century"
+tuneSource = \markup \null
+    % \markup { "from" \italic "cpdl.org"}
+
 
 global = {
-  \key g \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 6/8
+    \autoBeamOff
+    %\override DynamicLineSpanner #'staff-padding = #0.0
+    %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \tempo 4 = 135
 }
 
 sopMusic = \relative c'' {
@@ -43,7 +43,7 @@ sopMusic = \relative c'' {
     e8( fis4) g e8 |
     g[ a] b b[ a g] |
     a4 d,8 e4 f8 |
-    e[ d] c d4. \break
+    e[ d] c d4. 
   }
 }
 sopWords = \lyricmode {
@@ -79,7 +79,7 @@ altoMusic = \relative c'' {
   c4 a8 b4.
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   An -- ge -- lus ad vir -- gi -- nem
       Sub -- in -- trans in con -- cla -- ve.
@@ -109,7 +109,7 @@ altoWords = \lyricmode {
       De -- i con -- si -- li -- o.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   Quo -- mo -- do con -- ci -- pe -- rem,
@@ -140,7 +140,7 @@ altoWordsII = \lyricmode {
       Hos -- ti mor -- ti -- fe -- ro.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \repeat unfold 74 \skip1
   \set stanza = #"5. "
   E -- ia Ma -- ter Do -- mi -- ni,
@@ -224,15 +224,13 @@ bassMusic = \relative c {
   d4 d8 c4 f,8 |
   c'[ b] a g4.
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
+\bookpart { 
+\header {
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+    source = \tuneSource
 }
 
 \score {
@@ -255,18 +253,12 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \repeat unfold 2 \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 135
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }

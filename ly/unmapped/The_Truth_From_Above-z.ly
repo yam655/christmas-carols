@@ -1,46 +1,48 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Truth From Above"
   subtitle = "(Herefordshire Carol)"
   poet = "Traditional"
   composer = "Traditional"  
-  %tagline = \markup { from \italic {ChristmasCarolMusic.org}}
+  %source = \markup { from \italic {ChristmasCarolMusic.org}}
 }
 
 global = {
-  \key c \major
-  \time 4/4
-  \autoBeamOff
+    \key c \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
+    \partial 4
   \repeat volta 3 {
-    \partial 4 e4 |
+    e4 |
     a b \times 2/3 { c( b) a} |
-    \partial 4*6 g a e2. b'4 |
+    g a e2. b'4 |
     c c \times 2/3 {b( a) g} |
     
-    \partial 4*6 a b c2. \bar""\break c8[ d] |
+    a b c2.  c8[ d] |
     e4 e d c8[ b] |
-    \partial 4*6 a4 a e2. \slurDotted e8( g) |
+    a4 a e2. \slurDotted e8( g) |
     
     a4 b c8[ d] e[ d] |
     c[ a] b4 a2
   }
-  \break
+  
   
   
   \slurSolid
   \repeat volta 2 {
-    \partial 4 e4 |
+    e4 |
     a b \times 2/3 { c( b) a} |
-    \partial 4*6 g a e2. b'4 |
+    g a e2. b'4 |
     c c \times 2/3 {b( a) g} |
     
-    \partial 4*6 a b c2. \bar""\break c8[ d] |
+    a b c2.  c8[ d] |
     e4 e d c8[ b] |
-    \partial 4*6 a4 a e2. e8[ g] |
+    a4 a e2. e8[ g] |
     
     a4 b c8[ d] e[ d] |
     c[ a] b4 a2
@@ -81,7 +83,7 @@ altoMusic = \relative c' {
 
 
 altoWords = \lyricmode {
-  \dropLyricsXI
+  
   \set stanza = #"1. "
   This is the truth sent from a -- bove,
   The truth of God, the God of love.
@@ -95,7 +97,7 @@ altoWords = \lyricmode {
   and ma -- ny thou -- sands He did teach.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsXI
+  
 %\markup\italic
   \set stanza = #"2. "
   The first thing which I do re -- late
@@ -111,7 +113,7 @@ altoWordsII = \lyricmode {
   Be pleased to hear what He did say:
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsXI
+  
   \set stanza = #"3. "
   Then, af -- ter this, ’twas God’s own choice
   To place them both in Pa -- ra -- dise,
@@ -126,7 +128,7 @@ altoWordsIII = \lyricmode {
 
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsXI
+  
   \set stanza = #"4. "
   But they did eat, which was a sin,
   And thus their ru -- in did be -- gin.
@@ -143,7 +145,7 @@ altoWordsIV = \lyricmode {
   sure to have e -- ter -- nal bliss.
 }
 altoWordsV = \lyricmode {
-  \dropLyricsXI
+  
   \set stanza = #"5. "
   Thus we were heirs to end -- less woes,
   Till God the Lord did in -- ter -- pose;
@@ -227,13 +229,9 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -256,22 +254,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      %\override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 8)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-  }
+  \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

@@ -1,51 +1,48 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "O Tannenbaum"
   poet = "Traditional"
   composer = "German Folk Song"
-  tagline = ""
+  source = ""
 }
 
 global = {
   \key g \major
   \time 3/4
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(1 . 1)
-  %\override DynamicText #'X-offset = #-5
-  \tempo "Moderately"
+  \tempo "Moderately" 4 = 90
 }
 
 sopMusic = \relative c' {
-  \partial 8 d8_\mp |
-  g8.\noBeam g16 g4 a |
-  b8.\noBeam b16 b4. b8 |
-  a8\noBeam b c4 fis, | \break
+    \partial 8
+    \repeat volta 2 {
+        d8_\mp |
+        g8.\noBeam g16 g4 a |
+        b8.\noBeam b16 b4. b8 |
+        a8\noBeam b c4 fis, | 
   
-  \partial 8*5 a g b8\rest \bar ":|"
-  \partial 8 d8_\mf |
+        a g b8\rest 
+    }
+  d8_\mf |
   d\noBeam b e4. d8 |
-  d\noBeam c c4. c8 | \break
+  d\noBeam c c4. c8 | 
   
   c8\noBeam a d4. c8 |
   c\noBeam b b4 d, |
-  g8.\noBeam_\mp g16 g4 a | \break
+  g8.\noBeam_\mp g16 g4 a | 
   
   b8.\noBeam b16 b4. b8 |
   a\noBeam b c4 fis, |
-  \partial 8*5 a4 g b8\rest \bar "|."
+  a4 g b8\rest \bar "|."
 }
-sopWords = \lyricmode {
   
-}
-
 altoMusic = \relative c' {
   d8 |
   d8.\noBeam d16 d4 fis |
   g8.\noBeam g16 g4. g8 |
   fis8\noBeam g fis4 d |
   
-  d d s8 |
+  d d s8 
   g8 |
   g\noBeam g g4. g8 |
   fis8\noBeam fis fis4. fis8 |
@@ -58,8 +55,8 @@ altoMusic = \relative c' {
   e\noBeam g g4 fis |
   fis g s8 \bar "|."
 }
+
 altoWords = \lyricmode {  
-  \dropLyricsV
   \set stanza = #"1. "
   O Tan -- nen -- baum, o Tan -- nen -- baum,
   Wie treu sind dei -- ne Blät -- ter!
@@ -68,8 +65,8 @@ altoWords = \lyricmode {
   O Tan -- nen -- baum, o Tan -- nen -- baum,
   Wie treu sind dei -- ne Blät -- ter!
 }
-altoWordsII = \lyricmode {
-  \dropLyricsV
+
+altoWordsII = \lyricmode { 
   \set stanza = #"2. "
   O Tan -- nen -- baum, o Tan -- nen -- baum,
   Du kannst mir sehr ge -- fal -- len!
@@ -78,8 +75,8 @@ altoWordsII = \lyricmode {
   O Tan -- nen -- baum, o Tan -- nen -- baum,
   Du kannst mir sehr ge -- fal -- len!
 }
-altoWordsIII = \lyricmode {
-  \dropLyricsV
+
+altoWordsIII = \lyricmode { 
   \set stanza = #"3. "
   O Tan -- nen -- baum, o Tan -- nen -- baum,
   Dein Kleid will mich was lehr -- en:
@@ -88,11 +85,7 @@ altoWordsIII = \lyricmode {
   O Tan -- nen -- baum, o Tan -- nen -- baum,
   Dein Kleid will mich was lehr -- en!
 }
-altoWordsIV = \lyricmode {
-  \set stanza = #"4. "
-}
-altoWordsV = \lyricmode {
-}
+
 
 tenorMusic = \relative c' {
   d8^\mp |
@@ -100,7 +93,7 @@ tenorMusic = \relative c' {
   d8.\noBeam d16 d4. d8 |
   d\noBeam d d4 a |
   
-  c b s8 |
+  c b s8 
   b8^\mf |
   b\noBeam d c4. b8 |
   b\noBeam a a4. a8 |
@@ -113,9 +106,6 @@ tenorMusic = \relative c' {
   c\noBeam d e4 c |
   c b s8 \bar "|."
 }
-tenorWords = \lyricmode {
-
-}
 
 bassMusic = \relative c {
   d8 |
@@ -123,7 +113,7 @@ bassMusic = \relative c {
   g8. g16 g4. g8 |
   c8\noBeam b8\noBeam a4 d, |
   
-  d g d8\rest |
+  d g d8\rest 
   g |
   g\noBeam g g4. g8 |
   d\noBeam d d4. d8 |
@@ -136,42 +126,30 @@ bassMusic = \relative c {
   c,\noBeam b a4 d |
   d g d8\rest \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+    \new Lyrics = "altosIII"   \lyricsto "sopranos" \altoWordsIII
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

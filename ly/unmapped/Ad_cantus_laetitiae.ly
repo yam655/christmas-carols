@@ -1,24 +1,16 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
-  title = "Ad cantus lætitiæ"
-  poet = "13th Century Manuscript at Stuttgart"
-  meter = "trans. English by George Ratcliffe Woodward (1848–1934)"
-  composer = \markup\concat  {"As found in " \italic "Piæ Cantiones" ", 1582"}
-  %tagline = \markup\concat { "from " \italic "The Cowley Carol Book" ", 1919"}
-}
+
+songTitle = "Ad cantus lætitiæ"
+songPoet = "13th Century Manuscript at Stuttgart"
+songTranslator = "tr. English by George Ratcliffe Woodward (1848–1934)"
+tuneComposer = \markup{As found in \italic{Piæ Cantiones}, 1582}
+tuneSource = \markup{from \italic{The Cowley Carol Book}, 1919}
 
 global = {
-  \key f \major
-  \time 4/4
-  \autoBeamOff
-}
-
-sopMusic = \relative c' {
-  
-}
-sopWords = \lyricmode {
-  
+    \key f \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 100
 }
 
 altoMusic = \relative c' {
@@ -32,12 +24,12 @@ altoMusic = \relative c' {
   bes8[( a] g4) f\fermata b\rest |
   f d e c |
   d e f g |
-  bes8[( a] g4) f2\fermata \bar "|." \break
+  bes8[( a] g4) f2\fermata \bar "|." 
   
   
   \once \override Score.RehearsalMark #'self-alignment-X = #LEFT
   \mark \markup \italic "The same, in English"
-  \partial 4 f4^"Alto" |
+  f4^"Alto" |
   a bes c a |
   bes8([ a] g4) f\fermata f |
   a bes c a |
@@ -104,24 +96,6 @@ bassWordsIII = \lyricmode {
   Bless, in ca -- rol and cho -- ral,
   Je -- sus on this fes -- tiv -- al, And ev -- er.
 }
-altoWordsIV = \lyricmode {
-  \set stanza = #"4. "
-  \set ignoreMelismata = ##t
-}
-altoWordsV = \lyricmode {
-  \set stanza = #"5. "
-  \set ignoreMelismata = ##t
-}
-altoWordsVI = \lyricmode {
-  \set stanza = #"6. "
-  \set ignoreMelismata = ##t
-}
-tenorMusic = \relative c' {
-  
-}
-tenorWords = \lyricmode {
-
-}
 
 bassMusic = \relative c {
   \oneVoice
@@ -148,13 +122,14 @@ bassMusic = \relative c {
   d( e) f2\fermata \bar "|."
 }
 
-pianoRH = \relative c' {
-  
+\bookpart {
+\header {
+  title = \songTitle
+  poet = \songPoet
+  translator = \songTranslator
+  composer = \tuneComposer
+  source = \tuneSource
 }
-pianoLH = \relative c' {
-  
-}
-
 \score {
   <<
    \new ChoirStaff <<
@@ -172,16 +147,13 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignBelowContext = #"men" } \lyricsto "basses" \altoWordsII
     \new Lyrics \with { alignBelowContext = #"men" } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 100
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

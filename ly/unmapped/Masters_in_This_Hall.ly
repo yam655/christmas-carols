@@ -1,20 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Masters in This Hall"
   poet = "William Morris (1834–1896)"
   composer = \markup{\italic{Marche pour les Matelots}, by Marin Marais (1656–1728)}
   arranger = "Arranged by Edmund Sedding (1836–1868)"
-  %tagline = \markup{from \italic{The Musical times and singing-class circular, Volume 52}, November 1, 1911}
+  %source = \markup{from \italic{The Musical times and singing-class circular, Volume 52}, November 1, 1911}
 }
 
 global = {
   \key f \major
   \time 6/8
   \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-0.2 . 0.2)
-  \tempo \markup\italic"Andante"
+  \tempo "Andante" 4 = 120
 }
 
 sopMusic = \relative c' {
@@ -26,7 +24,7 @@ sopMusic = \relative c' {
   d4 a'8 a4 g8 |
   f4.( g4) g8 |
   a4 g8 f4 e8 |
-  d2. \bar"||" \break
+  d2. \bar"||" 
   
   \repeat unfold 2 {
     f'4 e8 d4 cis8 |
@@ -84,7 +82,7 @@ altoMusic = \relative c' {
   }
 }
 altoWords = {
-  \dropLyricsV
+  
   \lyricmode {
     \set stanza = #"1. "
     Mas -- ters in this hall, __
@@ -94,7 +92,7 @@ altoWords = {
   }
   \set stanza = \markup\dynamic"f "
   \lyricmode{
-    \dropLyricsVII
+    
     No -- ël! No -- ël! No -- ël! 
     No -- ël sing we clear! Holp -- en are all folk on earth
     Born is God’s Son so dear:
@@ -106,7 +104,7 @@ altoWords = {
   }
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   This is Christ, the Lord, __
@@ -197,10 +195,10 @@ bassMusic = \relative c{
   }
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -222,12 +220,10 @@ bassMusic = \relative c{
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

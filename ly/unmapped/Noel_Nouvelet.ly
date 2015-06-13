@@ -1,35 +1,36 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Noël Nouvelet"
   poet = \markup{15th Century French Carol from \italic {Le Grande Bible des Noels} Translated by P.S.B.}
   composer = "15th Century French Carol"
-  tagline = ""
+  source = ""
 }
 
 global = {
-  \key bes \major
-  \time 2/4
-  \autoBeamOff
+    \key bes \major
+    \time 2/4
+    \autoBeamOff
+    \tempo 4 = 75
 }
 
 sopMusic = \relative c'' {
   g8 d' e c |
   d4 bes |
   c8 c16[ d] bes8 a |
-  g2 | \break
+  g2 | 
   
   \slurDotted
   g8( d') e c |
   \slurSolid
   d4 bes |
   c8 c16[ d] bes8 a |
-  g2 | \break
+  g2 | 
   
   bes4 a8 g |
   a4. d,8 |
   bes' bes a g |
-  a2 | \break
+  a2 | 
   
   g8 d' e c |
   d4 bes |
@@ -64,7 +65,7 @@ altoMusic = \relative c' {
   d2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   \markup\italic “No -- \markup\italic ël \markup\italic nou -- \markup\italic ve -- \markup\italic let,”
   come let us sing \markup\italic “no -- \markup\italic ël;”
@@ -79,7 +80,7 @@ altoWords = \lyricmode {
   come let us sing \markup\italic “no -- \markup\italic ël.”
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   Prais -- es to our Lord, our Sav -- ior Je -- sus Christ,
   \set ignoreMelismata = ##t
@@ -89,7 +90,7 @@ altoWordsII = \lyricmode {
   
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \markup\italic No -- \markup\italic ël \markup\italic nou -- \markup\italic ve -- \markup\italic let, \markup\italic No -- \markup\italic ël \markup\italic chan -- \markup\italic tons \markup\italic i -- \markup\italic ci,
   \markup\italic Dé -- \markup\italic vo -- \markup\italic tes \markup\italic gens, \markup\italic cri -- \markup\italic ons \markup\italic à \markup\italic Dieu \markup\italic mer -- \markup\italic ci!
   
@@ -149,10 +150,8 @@ bassMusic = \relative c' {
   c,8 c d d |
   g,2 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -171,18 +170,14 @@ bassWords = \lyricmode {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 75
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

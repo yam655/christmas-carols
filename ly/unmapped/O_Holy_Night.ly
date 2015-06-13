@@ -10,23 +10,20 @@
 }
 
 global = {
-  \key des \major
-  \time 4/4
-  \autoBeamOff
-  %#'line-break-system-details #'((alignment-distances . (-100)))
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key des \major
+    \time 4/4
+    \autoBeamOff
+    \tempo "Andante maestoso" 4 = 72
+    %\tempo 4 = 90
 }
 globalNoTime = {
-  \key des \major
-  \autoBeamOff
-  %#'line-break-system-details #'((alignment-distances . (-100)))
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key des \major
+    \autoBeamOff
+    \tempo "Andante maestoso" 4 = 72
+    %\tempo 4 = 90
 }
 
 sopMusicPre = \relative c' {
-  \tempo \markup\italic"Andante maestoso" 4 = 72
   r2 | r1 | r1 | r1 | \mark \markup { \musicglyph #"scripts.segno" }
   r2 f4^\mf f8.\noBeam f16 | \break
   
@@ -131,7 +128,6 @@ chorusWords = \lyricmode {
   O night di -- vine!
   \unset associatedVoice
   
-  \dropLyricsV
   Fall on your knees, Oh, hear __ the an -- gel \break voi -- ces!
   O night __ di -- vine, __
   O night __ when Christ was \break born!
@@ -150,7 +146,6 @@ chorusWordsII = {
   }
   \set stanza = \markup\dynamic"f"
   \lyricmode {
-    \dropLyricsV
     He knows our need, Our weak -- ness is no stran -- ger.
     Be -- hold __ your King, __ be -- fore __ Him low -- ly bend!
     Be -- hold your King, __ be -- fore Him low -- ly bend!
@@ -164,7 +159,6 @@ chorusWordsIII = \lyricmode {
   His pow’r and glo -- ry ev -- er -- more pro -- claim!
   \unset associatedVoice
   
-  \dropLyricsV
   Christ is the Lord, Oh, praise __ His name for -- ev -- er!
   His pow’r __ and glo -- ry ev -- er -- more pro -- claim!
   His pow’r and glo -- ry __ ev -- er -- more pro -- claim!
@@ -270,7 +264,7 @@ bassWords = \lyricmode {
 }
 
 pianoRH = \relative c {
-  \set Staff.midiInstrument = "piano"
+  \set Staff.midiInstrument = "acoustic grand"
   \override TupletBracket #'bracket-visibility = ##f 
   \mergeDifferentlyHeadedOn
 %  \times 2/3 { f8[(_\mf des' aes} \times 2/3 { f' des aes])} \times 2/3 { f8[( des' aes } \times 2/3 { f' des aes]) } |
@@ -279,7 +273,7 @@ pianoRH = \relative c {
   << {aes4~ aes8.[ aes16] bes4 ges8.[ bes16] |
       s1 |
       f''8[ des aes f] f4 ees!} \\
-     {des,2_\< des |
+     { des,2\mf_\< des |
       <e des'>2~\! q8[ <g bes e des'> <g bes e e'> q] |
       <aes des f>2 c |
      } >>
@@ -366,12 +360,12 @@ pianoRH = \relative c {
     
     <ees aes, ges ees>2. 
     << { <aes, ees c>4 | <aes des aes'>2~ aes'8[ ges f ees] } \\
-       { s4_\< | s8. s16\! ces4_\markup\italic"rit." bes4 <bes ges> } >>
+       { s4\mf_\< | s8. s16\! ces4_\markup\italic"rit." bes4 <bes ges> } >>
     <des aes f>2 <c ges ees>4_\markup\italic"a tempo" <des aes f>8.[ <ees aes, ges>16] |
     <des aes f>2. r4 \bar "|."
 }
 pianoLH = \relative c {
-  \set Staff.midiInstrument = "piano"
+  \set Staff.midiInstrument = "acoustic grand"
   \partial 2 <des aes'>2 |
   <f aes>2 <ges bes> |
   <g bes>2~ q4 s |
@@ -433,6 +427,7 @@ pianoLH = \relative c {
   <des des,>2. r4 \bar "|."
 }
 
+\bookpart {
 \score {
    <<
    \new ChoirStaff <<
@@ -450,13 +445,6 @@ pianoLH = \relative c {
       }
       >>
     }
-    \new Lyrics = "altos" { s1 }
-    \new Lyrics = "altosII" { s1 }
-    \new Lyrics = "altosIII" { s1 }
-    \new Lyrics = "altosIV" { s1 }
-    \new Lyrics = "altosV" { s1 }
-    \new Lyrics = "altosVI" { s1 }
- %   \new Lyrics = "tenors" { s1 }
     \new Staff = men <<
        \set Staff.explicitKeySignatureVisibility = #end-of-line-invisible
          \override Staff.TimeSignature #'stencil = ##f
@@ -471,8 +459,6 @@ pianoLH = \relative c {
         \voiceTwo { s1*29 s2 \globalNoTime \bassMusic }
       }
     >>
-%    \new Lyrics = basses { s1 }
-%    \context Lyrics = sopranos \lyricsto sopranos \sopWords
     \context Lyrics = altos \lyricsto sopranos \altoWords
     \context Lyrics = altosII \lyricsto sopranos \altoWordsII
     \context Lyrics = altosIII \lyricsto sopranos \altoWordsIII
@@ -513,12 +499,9 @@ pianoLH = \relative c {
     }
   }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

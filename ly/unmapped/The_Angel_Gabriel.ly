@@ -1,31 +1,32 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Angel Gabriel"
   poet = "Translated and Adapted by Sabine Baring-Gould (1834–1924)"
   composer = "Basque Carol"
-  %tagline = \markup { "from" \italic {CyberHymnal.org}}
+  %source = \markup { "from" \italic {CyberHymnal.org}}
 }
 
 global = {
-  \key bes \major
-  \time 6/4
+    \key bes \major
+    \time 6/4
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c' {
   \partial 8 d8 |
-  \partial 8*9 g4 bes8 a4 c8 bes4 a8 |
-  g4. a d,~ d4 \bar""\break d8 |
+  g4 bes8 a4 c8 bes4 a8 |
+  g4. a d,~ d4  d8 |
   
-  \partial 8*9 g4 bes8 a4 c8 bes4 a8 |
-  g4.~ g4 f8 g4.~ g4 \bar""\break bes8 |
+  g4 bes8 a4 c8 bes4 a8 |
+  g4.~ g4 f8 g4.~ g4  bes8 |
   
   bes4 c8 bes4 a8 bes4 c8 d4 d8 |
-  \slurDotted c4.( bes) \slurSolid a4.~ a4 \bar""\break bes8 |
+  \slurDotted c4.( bes) \slurSolid a4.~ a4  bes8 |
   
   c4 bes8 a4 g8 a4. d, |
   g4.( bes8[ a bes] g4.~ g4) f8 |
-  \partial 8*11 g2.~ g4. bes4\rest \bar "|."
+  g2.~ g4. bes4\rest \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -47,7 +48,7 @@ altoMusic = \relative c' {
   d2.~ d4. s4 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   The an -- gel Ga -- bri -- el from heav -- en came, __
   His wings as drif -- ted snow, his eyes __ a -- flame; __
@@ -55,7 +56,7 @@ altoWords = \lyricmode {
   Most high -- ly fa -- vored la -- dy,” Glo -- ri -- a! __
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   “For know a bles -- sed Mo -- ther thou shalt be, __
   All ge -- ne -- ra -- tions laud and hon -- or thee, __
@@ -68,7 +69,7 @@ altoWordsII = \lyricmode {
   Glo -- ri -- a! __
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Then gen -- tle Ma -- ry meek -- ly bowed her head, __
   “To me be as it plea -- seth God,” __ she said, __
@@ -82,7 +83,7 @@ altoWordsIII = \lyricmode {
   Glo -- ri -- a! __
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   Of her, Em -- man -- u -- el, the Christ, was born __
   In Beth -- le -- hem, all on a Christ -- mas morn, __
@@ -133,6 +134,7 @@ bassWords = \lyricmode {
 
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -153,16 +155,12 @@ bassWords = \lyricmode {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

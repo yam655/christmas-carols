@@ -1,16 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "Orientis Partibus"
     poet = "Attributed to Pierre de Corbeil, Bishop of Sens (d. 1222)"
     composer = "12th Century French"
-    %tagline = \markup { Words from \italic{HymnsAndCarolsOfChristmas.com}, Music from \italic{CyberHymnal.org}}
+    %source = \markup { Words from \italic{HymnsAndCarolsOfChristmas.com}, Music from \italic{CyberHymnal.org}}
   }
 
 global = {
-  \key f \major
-  \time 4/4
-  \autoBeamOff
+    \key f \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 100
 }
 
 sopMusic = \relative c' {
@@ -43,7 +44,7 @@ altoMusic = \relative c' {
   d c c2
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   O -- ri -- en -- tis par -- ti -- bus
   Ad -- ven -- ta -- vit a -- si -- nus,
@@ -57,7 +58,7 @@ altoWords = \lyricmode {
   Du -- ra te -- rit pa -- bu -- la.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   Sal -- tu vin -- cit hin -- nu -- los
@@ -72,7 +73,7 @@ altoWordsII = \lyricmode {
   Se -- gre -- gat in a -- re -- a.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   Hic in col -- li -- bus Sy -- chen,
   Jam nu -- tri -- tus sub Ru -- ben
@@ -124,10 +125,10 @@ bassWords = \lyricmode {
 
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \repeat unfold2\sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \repeat unfold2\altoMusic >> }
@@ -148,22 +149,12 @@ bassWords = \lyricmode {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-  }
   
   \midi {
-    \tempo 4 = 100
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

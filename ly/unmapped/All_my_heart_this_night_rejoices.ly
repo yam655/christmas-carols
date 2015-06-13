@@ -1,33 +1,32 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
-  title = "All my heart this night rejoices"
-  poet = \markup\concat{\italic"Fröhlich soll mein Herze springen" ", by Paul Gerhardt, 1653"}
-  meter = \markup"Translated by Catherine Winkworth, 1858"
-  composer = \markup"Johann Georg Ebeling (1637–1676)"
-  %tagline = \markup { "from" \italic "CantateDomino.org"}
-}
+
+songTitle = "All my heart this night rejoices"
+songPoet = \markup{\italic{Fröhlich soll mein Herze springen}, by Paul Gerhardt, 1653}
+songTranslator = \markup{Translated by Catherine Winkworth, 1858}
+tuneComposer = \markup{Johann Georg Ebeling (1637–1676)}
+tuneSource = \markup{from \italic{CantateDomino.org}}
 
 global = {
-  \key f \major
-  \time 4/4
-  \autoBeamOff
+    \key f \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
   f2 g |
   a2. g4 |
   a c d2 |
-  c1 | \break
+  c1 | 
   c4 d bes2 |
   bes4 c a2 |
   
   a4 c bes a |
-  g2 f | \break
+  g2 f | 
   c' bes |
   a2. g4 |
   f e d2 |
-  c1 | \break
+  c1 | 
   
   c'4 d bes2 |
   bes4 c a2 |
@@ -59,7 +58,7 @@ altoMusic = \relative c' {
   d( c) a2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   All my heart this night re -- joi -- ces,
   As I hear, Far and near,
@@ -71,7 +70,7 @@ altoWords = \lyricmode {
   Now with joy is ring -- ing.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   Hark! a voice from yon -- der man -- ger,
   Soft and sweet, Doth en -- treat,
@@ -83,7 +82,7 @@ altoWordsII = \lyricmode {
   I will sure -- ly give you.”
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Come then let us hast -- en yon -- der;
   Here let all, Great and small,
@@ -95,7 +94,7 @@ altoWordsIII = \lyricmode {
   bright with hope is burn -- ing.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   Thee, dear Lord, with thee I cher -- ish;
   Live to thee, and with thee, Dy -- ing shall not per -- ish;
@@ -149,10 +148,15 @@ bassMusic = \relative c' {
   d bes8[ a] g4 a |
   bes( c) f,2 \bar "|."
 }
-bassWords = \lyricmode {
 
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  translator = \songTranslator
+  composer = \tuneComposer
+  source = \tuneSource
 }
-
 \score {
   <<
    \new ChoirStaff <<
@@ -171,18 +175,14 @@ bassWords = \lyricmode {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "basses" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

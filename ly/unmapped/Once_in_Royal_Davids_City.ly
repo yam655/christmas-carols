@@ -1,10 +1,10 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Once in Royal David’s City"
   poet = "Cecil Frances Alexander (1818–1895)"
   composer = "Henry J. Gauntlett (1805–1876)"
-  %tagline = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
+  %source = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
 }
 
 global = {
@@ -20,17 +20,17 @@ sopMusic = \relative c' {
   a4 g g b |
   
   d4. b8 b[ a] g[ fis] |
-  g2 \bar""\break d4 fis |
+  g2  d4 fis |
   g4. g8 g[ fis] g[ a] |
   
   a4 g g b |
   d4. b8 b[ a] g[ fis] |
-  g2 \bar""\break e'4 e |
+  g2  e'4 e |
   
   d4. g,8 c4 c |
   \slurDotted b4( b) e e |
   \slurSolid d4. b8 b[ a] g[ fis] |
-  \partial 2 \slurDotted g4( g) \bar "|."
+  \slurDotted g4( g) \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -54,7 +54,7 @@ altoMusic = \relative c' {
   d( d) \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   \set ignoreMelismata = ##t
   Once in roy -- al Da -- _ vid’s _ cit -- y
@@ -66,7 +66,7 @@ altoWords = \lyricmode {
   Je -- sus Christ _ _ her lit -- _ tle _ Child. _
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"2. "
   \set ignoreMelismata = ##t
   He came down to earth _ from _ heav -- en,
@@ -78,7 +78,7 @@ altoWordsII = \lyricmode {
   Lived on earth _ _ our Sav -- _ ior _ ho -- ly.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   And, through all His won -- drous child -- hood,
     He would hon -- or and o -- bey,
@@ -89,7 +89,7 @@ altoWordsIII = \lyricmode {
   Mild, o -- be -- dient, good as He. __
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   \set ignoreMelismata = ##t
   Je -- sus is our child -- _ hood’s _ pat -- tern,
@@ -101,7 +101,7 @@ altoWordsIV = \lyricmode {
   And He shar -- _ _ eth in _ our _ glad -- ness.
 }
 altoWordsV = \lyricmode {
-  \dropLyricsIX
+  
   \set ignoreMelismata = ##t
   \set stanza = #"5. "
   And our eyes at last _ shall _ see Him,
@@ -151,10 +151,8 @@ bassMusic = \relative c {
   g4. g8 c,4 d |
   g,( g) \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -175,18 +173,13 @@ bassWords = \lyricmode {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5)) } \lyricsto "sopranos" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 108
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

@@ -1,29 +1,29 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "From far away"
   poet = "William Morris (1834–1896)"
   composer = "John Bacchus Dykes (1823–1876)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key bes \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key bes \major
+    \time 6/8
+    \autoBeamOff
+    \tempo 4 = 95
 }
 
 sopMusic = \relative c' {
+    \partial 8
   \repeat volta 3 {
-    \partial 8 f8^\mf |
+    f8^\mf |
     \slurDotted
     f( f) bes8 d8( d) c8 |
-    bes[ a] g f4 \bar"" f8^\pp |
+    bes[ a] g f4  f8^\pp |
     bes bes bes a a a |
     
-    a a a a4 \bar"" f8^\mf |
+    a a a a4  f8^\mf |
     f f bes d8( d) c8 |
     bes( a) g c4. | 
     b8^\p b b c[ d] c |
@@ -31,35 +31,35 @@ sopMusic = \relative c' {
     bes a g f4. |
     \once\override DynamicText #'X-offset = #'-3
     f^>^\f f8 f f |
-    f4 bes8\rest bes4\rest  \bar""
+    f4 bes8\rest bes4\rest  
     f8^\mf |
     bes( bes) bes8 a8( a) a8 |
     
     g4 g8 f4 f8 |
     ees ees ees d[ c] bes |
-    f'( f) f8 f4 \bar"" f8 |
+    f'( f) f8 f4  f8 |
     
     d'( d) d8 f8( f) f8 |
-    bes,4 bes8 d4 \bar"" d8 |
+    bes,4 bes8 d4  d8 |
     g, g a bes( bes) ees8 |
     
     \slurSolid
     d4.(~ d8[ c bes] |
     c4.~ c8[ bes]) a |
     bes4.~^\markup\italic"dim." bes~ |
-    \partial 8*5 bes~ bes4 \break
+    bes~ bes4 
   }
   
   
   %2ndPage
   \repeat volta 3 {
-    \partial 8 f8^\mf |
+    f8^\mf |
     \slurDotted
     f( f) bes8 d8( d) c8 |
-    bes[ a] g f4 \bar"" f8^\pp |
+    bes[ a] g f4  f8^\pp |
     bes bes bes a a a |
     
-    a a a a4 \bar"" f8^\mf |
+    a a a a4  f8^\mf |
     f( f) bes d8( d) c8 |
     bes[ a] g c4. | 
     b8^\p b b c[ d] c |
@@ -67,23 +67,23 @@ sopMusic = \relative c' {
     bes a g f4. |
     \once\override DynamicText #'X-offset = #'-3
     f^>^\f f8 f f |
-    f4 bes8\rest bes4\rest  \bar""
+    f4 bes8\rest bes4\rest  
     f8^\mf |
     bes( bes) bes8 a8( a) a8 |
     
     g4 g8 f4 f8 |
     ees( ees) ees d( c) bes |
-    f'4 f8 f4 \bar"" f8 |
+    f'4 f8 f4  f8 |
     
     d'( d) d8 f8( f) f8 |
-    bes,4 bes8 d4 \bar"" d8 |
+    bes,4 bes8 d4  d8 |
     g,( g) a bes( bes) ees8 |
     
     \slurSolid
     d4.(~ d8[ c bes] |
     c4.~ c8[ bes]) a |
     bes4.~^\markup\italic"dim." bes~ |
-    \partial 8*5 bes~ bes4 \break
+    bes~ bes4 
   }
   
   
@@ -92,12 +92,12 @@ sopMusic = \relative c' {
   %3rdPage
   \repeat volta 3 {
     \slurDotted
-    \partial 8 f16(^\mf f) |
+    f16(^\mf f) |
     f8( f) bes8 d8( d) c8 |
-    bes( a) g f4 \bar"" f8^\pp |
+    bes( a) g f4  f8^\pp |
     bes bes bes a a a |
     
-    a a a a4 \bar"" f8^\mf |
+    a a a a4  f8^\mf |
     f( f) bes d8( d) c8 |
     bes[ a] g c4. | 
     b8^\p b b c[ d] c |
@@ -105,23 +105,23 @@ sopMusic = \relative c' {
     bes a g f4. |
     \once\override DynamicText #'X-offset = #'-3
     f^>^\f f8 f f |
-    f4 bes8\rest bes4\rest  \bar""
+    f4 bes8\rest bes4\rest  
     f16(^\mf f) |
     bes8( bes) bes8 a8( a) a8 |
     
     g( g) g8 f4 f8 |
     ees( ees) ees d( c) bes |
-    f'4 f8 f4 \bar"" f16( f) |
+    f'4 f8 f4  f16( f) |
     
     d'8( d) d8 f8( f) f8 |
-    bes,( bes) bes8 d4 \bar"" d8 |
+    bes,( bes) bes8 d4  d8 |
     g,( g) a bes( bes) ees8 |
     
     \slurSolid
     d4.(~ d8[ c bes] |
     c4.~ c8[ bes]) a |
     bes4.~^\markup\italic"dim." bes~ |
-    \partial 8*5 bes~ bes4 \break
+    bes~ bes4 
   }
 }
 sopWords = \lyricmode {
@@ -239,7 +239,7 @@ altoMusic = \relative c' {
   d4.)~ d4
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   From far __ a -- way __ we come to you,
   
@@ -301,7 +301,7 @@ altoWords = \lyricmode {
   the lit -- tle One. __
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic 
   \set stanza = #"2. "
   For as __ we wan -- dered far __ and wide,
@@ -376,7 +376,7 @@ altoWordsII = \lyricmode {
   and healed __ our care,” __
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   \skip1
   \set ignoreMelismata = ##t
@@ -648,7 +648,7 @@ bassMusic = \relative c {
   ees8( ees) g8 bes4 a8 |
   g g g a a a |
   
-  a a a d4 \bar"" a8 |
+  a a a d4  a8 |
   bes( bes) a g( g) g8 |
   g[ a] bes a[ g f] |
   d d d c4 c8 |
@@ -658,7 +658,7 @@ bassMusic = \relative c {
   f4 d8\rest d4\rest f16( f) |
   bes8( bes) bes8 a( a) a8 |
   
-  g( g) g8 f4 \bar"" f8 |
+  g( g) g8 f4  f8 |
   ees( ees) ees d( c) bes |
   f'4 f8 f4 f16( f) |
   
@@ -671,21 +671,11 @@ bassMusic = \relative c {
   bes,4.~ bes~ |
   bes~ bes4
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -706,12 +696,9 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout {
-%6.14 \context {\Lyrics\override LyricText #'font-size = #0.9 }
     \context {
       \Score
       \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 4)
@@ -719,12 +706,10 @@ pianoLH = \relative c' {
     }
   }
   \midi {
-    \tempo 4 = 95
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

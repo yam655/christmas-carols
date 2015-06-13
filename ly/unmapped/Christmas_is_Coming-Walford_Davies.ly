@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Christmas is Coming"
   %poet = "Old Rhyme"
   composer = "H. Walford Davies (1869–1941)"
-  tagline = ""
+  source = ""
 }
 
 global = {
-  \key ees \major
-  \time 2/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0 . 0)
+    \key ees \major
+    \time 2/4
+    \autoBeamOff
+    \tempo 4 = 70
 }
 
 sopMusic = \relative c'' {
@@ -67,7 +66,7 @@ sopMusic = \relative c'' {
   c4 c8 bes4 g8 |
   bes4. aes4 g8 |
   f4 ees8 f4 g8 \bar "||"
-  \time 2/2 aes2 g4^\f aes \break
+  \time 2/2 aes2 g4^\f aes 
   
   \repeat volta 2 {
     bes2 ees4 c |
@@ -170,7 +169,7 @@ altoMusic = \relative c' {
   }
 }
 altoWords = \lyricmode {
-  \dropLyricsVII
+  
   Christ -- mas is com -- ing, the geese are get -- ting fat,
   Please to put a pen -- ny in the old man’s hat.
   old man’s hat. __
@@ -373,13 +372,8 @@ bassWords = \lyricmode {
   Love __
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -403,7 +397,6 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
@@ -414,7 +407,6 @@ pianoLH = \relative c' {
 
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -434,17 +426,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   
   \midi {
-    \tempo 4 = 70
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }
 

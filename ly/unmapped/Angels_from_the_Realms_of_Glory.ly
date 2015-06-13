@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
-    title = "Angels, from the Realms of Glory"
-    poet = "James Montgomery (1771–1854)"
-    composer = "Henry Smart (1813–1879)"
-    %tagline = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}}
-  }
+
+songTitle = "Angels, from the Realms of Glory"
+songPoet = "James Montgomery (1771–1854)"
+tuneComposer = "Henry Smart (1813–1879)"
+tuneSource = \markup{from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
 
 %Angels From the Realms of Glory
 global = {
-  \key c \major
-  \time 4/4
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-  \autoBeamOff
+    \key c \major
+    \time 4/4
+    %\override DynamicLineSpanner #'staff-padding = #0.0
+    %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \autoBeamOff
+    \tempo 4 = 104
 }
 
 sopMusic = \relative c'' {
@@ -21,12 +20,12 @@ sopMusic = \relative c'' {
   g4 e c' g |
   e'4. d8 c4 g |
   a a g c |
-  g f e2 | \break
+  g f e2 | 
   
   g4 e c' g |
   e'4. d8 c4 b |
   c b a b8[ c] |
-  b4 a g2 | \break
+  b4 a g2 | 
   
   d'4. d8 b4 g |  
   e'4. d8 c4 a |
@@ -55,7 +54,7 @@ altoMusic = \relative c' {
   g4. f8 e2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   An -- gels, from the realms of glo -- ry,
   Wing your flight o’er all the earth,
@@ -72,7 +71,7 @@ altoWords = \lyricmode {
   new -- born King.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   Shep -- herds, in the field a -- bid -- ing, Watch -- ing o’er your flocks by night,
@@ -82,7 +81,7 @@ altoWordsII = \lyricmode {
   Yon -- der shines the in -- fant light;
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   Sa -- ges, leave your con -- tem -- pla -- tions, Bright -- er vis -- ions beam a -- far;
   \set associatedVoice = "basses"
@@ -91,7 +90,7 @@ altoWordsIII = \lyricmode {
   Ye have seen His na -- tal star;
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   Saints be -- fore the al -- tar bend -- ing,
     Watch -- ing long in hope and fear,
@@ -138,14 +137,17 @@ bassMusic = \relative c {
   d e f8[ g] a4 |
   g g, c2 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart { 
+\header {
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+    source = \tuneSource
+  }
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -161,19 +163,14 @@ bassWords = \lyricmode {
     \context Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
     \context Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5))} \lyricsto "sopranos" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 104
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

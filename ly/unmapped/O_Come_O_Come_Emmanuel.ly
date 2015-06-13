@@ -4,7 +4,7 @@
     title = "O Come, O Come, Emmanuel"
     poet = "Translated by John Mason Neale (1818–1866)"
     composer = "15th Century French"
-    %tagline = \markup ""
+    %source = \markup ""
     section = "Advent"
 }
 
@@ -59,7 +59,7 @@ sopMusic = \relative c' {
   d2. g4 |
   a b b b |
   a( c b) a |
-  g2. \bar "||" \break
+  g2. \bar "||"
 }
   
 
@@ -78,7 +78,7 @@ altoMusic = \relative c' {
   d2. b4 |
   d d d g |
   g2. fis4 |
-  g2. |
+  g2. 
   
   g4 |
   fis2. g4 |
@@ -106,7 +106,7 @@ altoMusic = \relative c' {
   d2. b4 |
   d d d g |
   g2. fis4 |
-  g2. |
+  g2. 
 }
 altoWords = \lyricmode {
   \set stanza = #"1. "
@@ -150,7 +150,7 @@ tenorMusic = \relative c' {
   fis2. g4 |
   fis fis g d' |
   e2( d4) c |
-  b2. |
+  b2.
   
   b4 |
   a2. e'4 |
@@ -178,7 +178,7 @@ tenorMusic = \relative c' {
   fis2. g4 |
   fis fis g d' |
   e2( d4) c |
-  b2. |
+  b2.
 }
 
 bassMusic = \relative c {
@@ -196,7 +196,7 @@ bassMusic = \relative c {
   d2. e4 |
   d b g b |
   c( a b) d |
-  g,2. |
+  g,2.
   
   g'4 |
   d2. e4 |
@@ -224,9 +224,10 @@ bassMusic = \relative c {
   d2. e4 |
   d b g b |
   c( a b) d |
-  g,2. |
+  g,2.
 }
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -248,5 +249,6 @@ bassMusic = \relative c {
   \midi {
     \set Staff.midiInstrument = "flute"
   }
+} 
 }
 

@@ -1,19 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 
 \header {
   title = "The Stranger Star"
   poet = "Cecil Frances Alexander (1818–1895)"
   composer = "J. A. Shultze, 1780"
-  tagline = \markup { from \italic {Favorite Songs and Hymns for School and Home}, 1899}
+  source = \markup { from \italic {Favorite Songs and Hymns for School and Home}, 1899}
 }
 
 global = {
-  \key e \major
-  \time 2/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key e \major
+    \time 2/4
+    \autoBeamOff
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c' {
@@ -95,7 +94,7 @@ altoMusic = \relative c' {
   e2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"1. "
   Saw ye nev -- er in the twi -- light,
   When the sun had left the skies,
@@ -107,7 +106,7 @@ altoWords = \lyricmode {
   And they fol -- lowed it from far.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsVII
+  
 %\markup\italic
   \set stanza = #"2. "
   Heard ye nev -- er of the sto -- ry,
@@ -120,7 +119,7 @@ altoWordsII = \lyricmode {
   Gave the myrrh in __ of -- fer -- ing?
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"3. "
   Know ye not that low -- ly Ba -- by
   Was the bright and Morn -- ing Star,
@@ -222,17 +221,10 @@ bassMusic = \relative c {
   b b, |
   e2\fermata \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -253,18 +245,13 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

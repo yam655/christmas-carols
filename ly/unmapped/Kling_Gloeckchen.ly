@@ -1,25 +1,24 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Kling Glöckchen"
   poet = "Karl Enslin (1819–1875)"
   composer = "Traditional German"
-  %tagline = \markup { "from " \italic "The Wartburg Hymnal" \oldStyleNum", 1918"}
+  %source = \markup { "from " \italic "The Wartburg Hymnal" \oldStyleNum", 1918"}
 }
 
 global = {
-  \key g \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0 . 0)
+    \key g \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c'' {
   d2 b4 c |
   d8 e d e d4 b\rest |
   c2 a4 d |
-  b2 b\rest | \break
+  b2 b\rest | 
   a4 a b g |
   
   b2 a |
@@ -29,7 +28,7 @@ sopMusic = \relative c'' {
   d2 a |
   
   b4 e d cis |
-  e2 d4 b\rest | \break
+  e2 d4 b\rest | 
   d2 b4 c |
   d8 e d e d4 b\rest |
   c2 a4 d |
@@ -61,7 +60,7 @@ altoMusic = \relative c' {
   g2 s \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   Kling, Glöck -- chen kling -- e -- ling -- e -- ling!
   Kling, Glöck -- chen kling!
   
@@ -75,7 +74,7 @@ altoWords = \lyricmode {
   Kling, Glöck -- chen kling!
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   %Kling, Glöck -- chen kling -- e -- ling -- e -- ling!
   %Kling, Glöck -- chen kling!
@@ -90,7 +89,7 @@ altoWordsII = \lyricmode {
   %Kling, Glöck -- chen kling!
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   %Kling, Glöck -- chen kling -- e -- ling -- e -- ling!
   %Kling, Glöck -- chen kling!
   \repeat unfold 12 \skip1
@@ -166,13 +165,8 @@ bassWordsII = \lyricmode {
 bassWords = \lyricmode {
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -197,16 +191,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)(padding . -0.35)) } \lyricsto "basses" \bassWordsII
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)(padding . -0.35)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

@@ -3,9 +3,9 @@
 \header { 
     title = "Hark! a Herald Voice is Calling"
     poet = \markup{\italic{Vox clara ecce intonat}, 6th Century}
-    meter = "Translated by Edward Caswall (1814–1878)"
+    translator = "Translated by Edward Caswall (1814–1878)"
     composer = "William Henry Monk (1823–1889)"
-    %tagline = \markup \concat{ "from " \italic "The English Hymnal" ", 1906"}
+    %source = \markup \concat{ "from " \italic "The English Hymnal" ", 1906"}
     section = "Advent"
 }
 
@@ -100,7 +100,7 @@ bassMusic = \relative c {
   a b <e e,>2 \bar "|."
 }
 
-
+\bookpart {
 \score {
     <<
         \new ChoirStaff <<
@@ -126,5 +126,6 @@ bassMusic = \relative c {
         \set Staff.midiInstrument = "flute" 
         %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }
 

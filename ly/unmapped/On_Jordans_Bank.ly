@@ -1,9 +1,9 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header { 
     title = "On Jordan’s Bank"
     poet = \markup{\italic{Jordanis oras prævia}, by Charles Coffin (1676–1749)}
-    meter = \markup"Translated by John Chandler (1806–1876)"
+    translator = \markup"Translated by John Chandler (1806–1876)"
     composer = \markup{ tune is \italic{Winchester New}}
     arranger = \markup{"Adapted from Chorale in " \italic"Musikalisches Hand-Buch" ", 1690"}
     section = "Advent"
@@ -23,7 +23,7 @@ sopMusic = \relative c' {
   f ees d d |
   ees d c f |
   
-  f e f\fermata \bar"" f |
+  f e f\fermata  f |
   bes c d bes |
   ees d c d |
   
@@ -45,7 +45,7 @@ altoMusic = \relative c' {
   g f f \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   On Jor -- dan’s bank the Bap -- tist’s cry
   An -- noun -- ces that the Lord is nigh;
@@ -53,7 +53,7 @@ altoWords = \lyricmode {
   Glad tid -- ings from the King of kings!
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   Then cleansed be ev -- ’ry soul from sin;
@@ -62,7 +62,7 @@ altoWordsII = \lyricmode {
   Where such a might -- y Guest may come.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   For Thou art our sal -- va -- tion, Lord,
   Our Ref -- uge and our great re -- ward.
@@ -70,7 +70,7 @@ altoWordsIII = \lyricmode {
   And with -- er like a flow’r de -- cayed.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   Stretch forth Thine hand, to heal our sore,
   And make us rise and fall no more;
@@ -78,7 +78,7 @@ altoWordsIV = \lyricmode {
   And fill the world with love di -- vine.
 }
 altoWordsV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"5. "
   All praise, e -- ter -- nal Son, to Thee,
   Whose ad -- vent doth Thy peo -- ple free,
@@ -114,6 +114,7 @@ bassMusic = \relative c {
 }
 
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -138,9 +139,8 @@ bassMusic = \relative c {
   \midi {
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

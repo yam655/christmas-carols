@@ -1,22 +1,24 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Shiloh"
   poet = \markup { from \italic {The Suffolk Harmony} (1786)}
   composer = "William Billings (1746–1800)"
-  %tagline = \markup { "from" \italic {www.cpdl.org}}
+  %source = \markup { "from" \italic {www.cpdl.org}}
 }
 
 global = {
-  \key g \major
-  \time 4/4
-  \autoBeamOff
+    \key g \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 160
 }
 
 sopMusic = \relative c' {
+    \partial 2
   \repeat unfold 2 {
     \global
-    \partial 2 g'2 |
+    g'2 |
     b4 b b d |
     d d d d8[ c] |
     b4 a8[ b] c[ b] a4 |
@@ -31,7 +33,7 @@ sopMusic = \relative c' {
     
     \time 6/4 |
     b2\rest b4\rest r2. |
-    r1. | \break
+    r1. | 
     r2. b2. |
     b2 a4 g( c) a |
     b2.~ b2 r4 |
@@ -94,14 +96,9 @@ altoMusic = \relative c' {
     d1. |
   }
 }
-dropLyrics = {
-  \override LyricText #'extra-offset = #'(0 . -2.5)
-  \override LyricHyphen #'extra-offset = #'(0 . -2.5)
-  \override LyricExtender #'extra-offset = #'(0 . -2.5)
-  \override StanzaNumber #'extra-offset = #'(0 . -2.5)
-}
+
 altoWords = {
-  \dropLyricsIX
+  
   \set stanza = \markup {\normal-text\italic " 1st Shepherd" "1."}
     \lyricmode {
     Me -- thinks I see an heav’n -- ly Host of An -- gels on the Wing;
@@ -123,11 +120,11 @@ altoWords = {
     and des -- ti -- tute of Grace,
     and des -- ti -- tute of Grace.
   }
-  \dropLyrics
+  
   \set stanza = \markup {\normal-text\italic "1st Angel" "  7. "}
   \lyricmode {
     Ex -- ult ye Ox -- en,
-    \dropLyricsIX
+    
     low for joy, ye Ten -- ants of the Stall, __
     Pay your o -- bei -- sance; on your knees
     U -- nan -- i -- mous -- ly fall, __
@@ -135,7 +132,7 @@ altoWords = {
   }
 }
 altoWordsII = {
-  \dropLyricsIX
+  
   \set stanza = \markup {\normal-text\italic " Narrator   " "5."}
   \lyricmode {
     Then learn from hence, ye ru -- ral Swains, the meek -- ness of your God,
@@ -157,11 +154,11 @@ altoWordsII = {
     and thus ad -- dress their song,
     and thus ad -- dress their song.
   }
-  \dropLyrics
+  
   \set stanza = \markup {\normal-text\italic "1st Angel" "  8. "}
   \lyricmode {
     The Roy -- al guest you
-    \dropLyricsIX
+    
     en -- ter -- tain is not of com -- mon Birth, __
     but sec -- ond to the Great I Am;
     the God of heav’n and earth,
@@ -170,7 +167,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = {
-  \dropLyricsIX
+  
   \lyricmode {
     \repeat unfold 34{\skip1}
   }
@@ -203,6 +200,7 @@ altoWordsVI = \lyricmode {
   \set stanza = #"6. "
   \set ignoreMelismata = ##t
 }
+
 tenorMusic = \relative c {
   \repeat unfold 2 {
     d2 |
@@ -232,9 +230,7 @@ tenorMusic = \relative c {
     g1. |
   }
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   \repeat unfold 2 {
@@ -265,6 +261,7 @@ bassMusic = \relative c {
     g,1. |
   }
 }
+
 bassWords = \lyricmode {
   \repeat unfold 34{\skip1}
   Glad
@@ -284,13 +281,9 @@ bassWordsIII = \lyricmode {
   %Nor
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -314,21 +307,16 @@ pianoLH = \relative c' {
     \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "tenors" \altoWordsIII
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "tenors" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5))} \lyricsto "tenors" \altoWords
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWordsIII
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWordsII
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . 0.4)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 160
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

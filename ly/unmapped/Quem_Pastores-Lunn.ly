@@ -1,7 +1,7 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
-    %tagline = \markup { "from" \italic {ChristmasCarolMusic.org}}
+    %source = \markup { "from" \italic {ChristmasCarolMusic.org}}
     %\concat{ "Music from " \italic "The Cowley Carol Book" ", 1919, Words from " \italic "HymnsAndCarolsOfChristmas.com"}}}
 
     title = "Quem Pastores"
@@ -11,11 +11,10 @@
   }
 
 global = {
-  \key f \major
-  \time 3/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key f \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
@@ -66,7 +65,7 @@ altoMusic = \relative c' {
   c2. \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   Quem pas -- to -- res lau -- da -- ve -- re,
   Qui -- bus an -- ge -- li di -- xe -- re,
@@ -77,7 +76,7 @@ altoWords = \lyricmode {
   Rex glo -- ri -- æ.”
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   Ad quem ma -- gi am -- bu -- la -- bant,
@@ -89,7 +88,7 @@ altoWordsII = \lyricmode {
   vic -- to -- ri -- æ.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   Ex -- ul -- te -- mus cum Ma -- ri -- a
   In cœ -- les -- ti hie -- rar -- chi -- a
@@ -100,7 +99,7 @@ altoWordsIII = \lyricmode {
   et glo -- ri -- a.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   Chris -- to re -- gi, De -- o na -- to,
   Per Ma -- ri -- am no -- bis da -- to,
@@ -170,13 +169,7 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -199,23 +192,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
-    }
-  }
   
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

@@ -1,42 +1,44 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "God’s dear Son"
   poet = "Traditional"
   composer = "Traditional"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key aes \major
-  \time 2/2
-  \autoBeamOff
+    \key aes \major
+    \time 2/2
+    \autoBeamOff
+    \tempo 4 = 95
 }
 
 sopMusic = \relative c' {
+    \partial 4
   \repeat unfold 2 {
     \repeat volta 3 {
-      \partial 4 f4 |
+      f4 |
       f des' c4. bes8 |
       aes4 f g e |
       f4. g8 aes4 aes |
-      bes bes c4. \bar""\break f,8 |
+      bes bes c4.  f,8 |
       
       f4 des' c4. bes8 |
       aes4 f g e |
       f4. g8 aes4 aes |
-      bes bes c4. \bar""\break bes8 |
+      bes bes c4.  bes8 |
       
       c4 c ees4. c8 |
       bes4 bes ees4. des8 |
       c4 bes aes c |
-      c8[ bes] aes[ g] aes4. \bar""\break aes8 |
+      c8[ bes] aes[ g] aes4.  aes8 |
       
       c4 c c4. c8 |
       aes4 c bes2 |
       c aes4 g |
       f c' f, e |
-      f1 \break
+      f1 
     }
   }
 }
@@ -70,7 +72,7 @@ altoMusic = \relative c' {
   }
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   \skip1 God’s dear Son, with -- out be -- gin -- ning,
   Whom the wick -- ed Jews did scorn;
@@ -96,7 +98,7 @@ altoWords = \lyricmode {
 
 }
 altoWordsII = {
-  \dropLyricsV
+  
   \set stanza = \markup{\dynamic"mf  " "2. "}
   \lyricmode {
   %\markup\italic
@@ -144,7 +146,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   No prince -- ly pal -- ace for our Sav -- ior
   In Ju -- de -- a could be found,
@@ -228,21 +230,12 @@ bassMusic = \relative c {
     f1
   }
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -260,18 +253,13 @@ pianoLH = \relative c' {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "tenors" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "tenors" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 95
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

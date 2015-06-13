@@ -1,17 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Past Three a Clock"
   poet = "George Ratcliffe Woodward (1848–1934)"
   composer = \markup{\italic"London Waits"}
   arranger = "Arranged by Charles Wood (1866–1926)"
-  %tagline = \markup { from \italic "The Cambridge Carol Book" ", 1924"}
+  %source = \markup { from \italic "The Cambridge Carol Book" ", 1924"}
 }
 
 global = {
-  \key g \major
-  \time 3/4
-  \autoBeamOff
+    \key g \major
+    \time 3/4
+    \autoBeamOff
+    \tempo 4 = 135
 }
 
 sopMusic = \relative c' {
@@ -21,7 +22,7 @@ sopMusic = \relative c' {
     g[ a] b4 b ||
     d2 a4 |
     g e e |
-    d2 d4 | \break
+    d2 d4 | 
     
     g8 a b4 a |
     g2.\fermata \bar"||"
@@ -89,22 +90,17 @@ altoMusic = \relative c' {
   d e fis |
   g g2 \bar "||"
 }
-dropLyrics = {
-  \override LyricText #'extra-offset = #'(0 . -4.9)
-  \override LyricHyphen #'extra-offset = #'(0 . -4.9)
-  \override LyricExtender #'extra-offset = #'(0 . -4.9)
-  \override StanzaNumber #'extra-offset = #'(0 . -4.9)
-}
+
 altoWords = \lyricmode {
-  \dropLyricsIV
+  
   Past three a clock,
   And a cold frost -- y morn -- ing,
   Past three a clock;
   Good
-  \dropLyrics
+  
   mor -- row, mas -- ters all!
   
-  \dropLyricsVII
+  
   \set stanza = #"1. "
   \set associatedVoice = "sopranos"
   Born is a Ba -- by, Gen -- tle as may be,
@@ -118,7 +114,7 @@ altoWords = \lyricmode {
   But -- ter and hon -- ey.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsVII
+  
 %\markup\italic
   \repeat unfold 21 {\skip1}
   \set stanza = #"2. "
@@ -133,7 +129,7 @@ altoWordsII = \lyricmode {
   Wor -- ship and greet Him.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsVII
+  
   \repeat unfold 21 {\skip1}
   \set stanza = #"3. "
   Mid earth re -- joic -- es
@@ -149,7 +145,7 @@ altoWordsIII = \lyricmode {
   Nug -- get with -- hol -- den.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsVII
+  
   \repeat unfold 21 {\skip1}
   \set stanza = #"4. "
   Hinds o’er the pear -- ly
@@ -252,13 +248,8 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -284,22 +275,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 4)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
-    }
-  }
+  \layout { }
   \midi {
-    \tempo 4 = 135
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

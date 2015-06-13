@@ -1,33 +1,29 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
-  title = "As With Gladness Men of Old"
-  poet = "William C. Dix (1837–1898)"
-  composer = "Konrad Kocher (1786–1872)"
-  %tagline = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}}
-}
+
+songTitle = "As With Gladness Men of Old"
+songPoet = "William C. Dix (1837–1898)"
+tuneComposer = "Konrad Kocher (1786–1872)"
+tuneSource = \markup{from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
 
 global = {
-  \key aes \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key aes \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 100
 }
 
 sopMusic = \relative c'' {
-  \tempo 4 = 100
   aes4 g8[ aes] bes4 aes |
   des des c2 |
-  f,4 g aes f | \break
+  f,4 g aes f | 
   
   ees4 ees ees2 |
   aes4 g8[ aes] bes4 aes |
-  des des c2 | \break
+  des des c2 | 
   
   f,4 g aes f |
   ees ees ees2 |
-  c'4 bes aes c | \break
+  c'4 bes aes c | 
   
   ees4. des8 c2 |
   f,4 g aes des |
@@ -55,7 +51,7 @@ altoMusic = \relative c' {
   ees4. des8 c2 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   As with __ glad -- ness men of old
   Did the guid -- ing star be -- hold;
@@ -65,7 +61,7 @@ altoWords = \lyricmode {
   Ev -- er -- more be led to Thee.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   As with __ joy -- ful steps they sped
@@ -76,7 +72,7 @@ altoWordsII = \lyricmode {
   Ev -- er seek Thy mer -- cy seat.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   As they __ of -- fer’d gifts most rare
   At that man -- ger rude and bare;
@@ -86,7 +82,7 @@ altoWordsIII = \lyricmode {
   Christ, to Thee, our heav’n -- ly King.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   Ho -- ly __ Je -- sus, ev -- ’ry day
   Keep us in the nar -- row way;
@@ -96,7 +92,7 @@ altoWordsIV = \lyricmode {
   Where no clouds Thy glo -- ry hide.
 }
 altoWordsV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"5. "
   In the __ heav’n -- ly coun -- try bright
   Need they no cre -- a -- ted light;
@@ -145,14 +141,18 @@ bassMusic = \relative c' {
   des,4 des c f |
   ees ees aes,2 \bar "|."
 }
-bassWords = \lyricmode {
 
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  composer = \tuneComposer
+  source = \tuneSource
 }
 
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -170,18 +170,14 @@ bassWords = \lyricmode {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "tenors" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.7)) } \lyricsto "tenors" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 100
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

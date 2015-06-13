@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Good Christian Men, Rejoice"
   poet = "John Mason Neale (1818–1866)"
   composer = "14th Century German Melody"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key f \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key f \major
+    \time 6/8
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -21,25 +20,24 @@ sopMusic = \relative c' {
   c4( d8 c4) c8 |
   f,4 f8 a4 bes8 |
   
-  c4( d8 c4) bes8\rest | \break
+  c4( d8 c4) bes8\rest | 
   c4 d8 c4 bes8 |
   a4 g8 f4. |
 %  f f |
   g4 g8 a4 g8 |
   
-  f4 g8 a4 bes8\rest | \break
+  f4 g8 a4 bes8\rest | 
   c4 d8 c4 bes8 |
   a4 g8 f4 f8 |
   g4 g8 a4 g8 |
   
-  f4 g8 a4 bes8\rest | \break
+  f4 g8 a4 bes8\rest | 
   d,4 d8 e4 e8 |
-  f4.( c') |
-  \partial 8*5 a4 a8 g4 g8 f4. bes4\rest \bar "|."
+  f4. ( c'4. ) |
+  a4 a8 g4 g8 |
+  f4. bes4\rest \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   c8 |
@@ -60,12 +58,12 @@ altoMusic = \relative c' {
   
   f4 f8 f4 s8 |
   d4 d8 d4 cis8 |
-  d4.( e) |
+  d4. ( e4. ) |
   f4 f8 f4 e8 |
   f4. s4 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Good Chris -- tian men, re -- joice __
   With heart, and soul and voice; __
@@ -78,7 +76,7 @@ altoWords = \lyricmode {
   Christ is born to -- day!
 }
 altoWordsII = {
-  \dropLyricsV
+  
   \set stanza = \markup{\dynamic"  mf " "2. "}
   \lyricmode {
   %\markup\italic
@@ -99,7 +97,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Good Chris -- tian men, re -- joice __
   With heart, and soul and voice; __
@@ -111,12 +109,7 @@ altoWordsIII = \lyricmode {
   Christ was born to save! __
   Christ was born to save!
 }
-altoWordsIV = \lyricmode {
-}
-altoWordsV = \lyricmode {
-}
-altoWordsVI = \lyricmode {
-}
+
 tenorMusic = \relative c' {
   a8 |
   bes4 a8 c4 bes8 |
@@ -136,13 +129,11 @@ tenorMusic = \relative c' {
   
   a4 bes8 c4 s8 |
   a4 a8 g4 g8 |
-  a4( bes8 g4.) |
+  a4 ( bes8 g4. ) |
   f4 a8 d4 c8 |
   a4. s4 \bar "|."
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   f8 |
@@ -163,47 +154,34 @@ bassMusic = \relative c {
   
   f4 f8 f4 d8\rest |
   f4 f8 e4 e8 |
-  d4.( c) |
+  d4.( c ) |
   f4 d8 bes4 c8 |
   f4. d4\rest \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+    \new Lyrics = "altosIII"   \lyricsto "sopranos" \altoWordsIII
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

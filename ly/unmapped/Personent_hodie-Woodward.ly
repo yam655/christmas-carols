@@ -1,21 +1,22 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Personent hodie"
   poet = \markup {from \italic {Piæ Cantiones}, 1582}
   composer = \markup {from \italic {Piæ Cantiones}, 1582}
   arranger = "Arranged by George Ratcliffe Woodward (1848–1934)"
-  %tagline = \markup{from \italic {The Cowley Carol Book}, 1919}
+  %source = \markup{from \italic {The Cowley Carol Book}, 1919}
 }
 
 global = {
-  \key d \major
-  \time 4/4
-  \autoBeamOff
+    \key d \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
-  e4 e |
+  \partial 2 e4 e |
   b'2 a4 a b2 b4 b |
   e2 cis4 d |
   b2 a4 b |
@@ -37,12 +38,11 @@ sopMusic = \relative c' {
   fis4 e e d |
   e2 e\fermata \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
-  b4 b |
+    \partial 2
+    b4 b |
   d2 d4 d |
   d2 d4 e |
   g2 fis4 fis |
@@ -67,7 +67,7 @@ altoMusic = \relative c' {
   cis2 b \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   Per -- so -- nent ho -- di -- e
   vo -- ces pu -- e -- ru -- læ,
@@ -80,7 +80,7 @@ altoWords = \lyricmode {
   ven -- tre pro -- cre -- a -- tus.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   In mun -- do na -- sci -- tur,
@@ -94,7 +94,7 @@ altoWordsII = \lyricmode {
   prin -- ceps in -- fer -- no -- rum.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   Ma -- gi tres ve -- ne -- runt,
   par -- vu -- lum in -- qui -- runt,
@@ -107,7 +107,7 @@ altoWordsIII = \lyricmode {
   E -- i of -- fe -- ren -- do.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   Om -- nes cle -- ri -- cu -- li,
   par -- i -- ter pu -- e -- ri,
@@ -185,11 +185,7 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-}
-pianoLH = \relative c' {
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -197,7 +193,6 @@ pianoLH = \relative c' {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
     \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVI
     \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsV
     \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
@@ -212,16 +207,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

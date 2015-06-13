@@ -1,48 +1,45 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Ho! Steward, Bid My Servants"
   poet = "John Mason Neale (1818–1866)"
   composer = "Ancient ecclesiastical pre-Reformation melody"
   arranger = "Arranged by Charles Wood (1866–1926)"
-  %tagline = \markup { "from " \italic "The Cambridge Carol Book" ", 1924"}
+  %source = \markup { "from " \italic "The Cambridge Carol Book" ", 1924"}
 }
 
 global = {
-  \key bes \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key bes \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
-  \repeat volta 2 {
-    \partial 4 g'4 |
+    \partial 4
+    g'4 |
     d g g a |
     bes2 bes4 c8[ bes] |
     a4 g f e |
-    f2. \bar""\break g4 |
+    f2.  g4 |
     
     d g g a |
     bes2 bes4 bes8\rest bes |
     d4. c8 bes4 c |
-    d2. \bar""\break f4 |
+    d2.  f4 |
     
     d4. c8 bes4 d |
     f2 ees4 d |
     c4. bes8 a4 bes |
-    c2. \bar""\break bes8[ c] |
+    c2.  bes8[ c] |
     
     d4 bes c a |
     bes g d'4\fermata g, |
     d g g f |
-    \partial 2. g2. | \break
-  }
+    g2. 
+    \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   bes8[ c] |
@@ -66,8 +63,8 @@ altoMusic = \relative c' {
   d d ees8[ d] ees4 |
   d2.
 }
-altoWords = \lyricmode {
-  \dropLyricsV
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
   ‘Ho! stew -- ard, bid my ser -- vants
   Go forth, and hith -- er call,
@@ -78,9 +75,38 @@ altoWords = \lyricmode {
   We may, as folk
   \set associatedVoice = "sopranos"
   in old -- en days,
-  Re -- joice, and make good cheer.’
-  
-  \unset associatedVoice
+  Re -- joice, and make good cheer.’ 
+}
+
+altoWordsII = \lyricmode { 
+  \set stanza = #"2. "
+  ‘Sire, shall I bid the no -- ble,
+  That ban -- quets in his state,
+  With pur -- ple and fine lin -- en,
+  With gold and sil -- ver plate?’
+  ‘Nay, bid me not the no -- ble,
+  For he hath got e -- now;
+  But bring me in 
+  \set associatedVoice = "sopranos"
+  the coun -- try man,
+  That liv -- eth by the plow.’ 
+}
+
+altoWordsIII = \lyricmode { 
+  \set stanza = #"3. "
+  ‘Sire, shall I bid in Di -- vès,
+  For it is ve -- ry plain,
+  If ye give him a ban -- quet,
+  He’ll ban -- quet you a -- gain?’
+  ‘Nay, bid not hith -- er Di -- vès,
+  For it shall ne’er be thus,
+  But go a -- mong 
+  \set associatedVoice = "sopranos"
+  the al -- ley -- lanes,
+  And fetch in La -- za -- rus.’ 
+}
+
+altoWordsIV = \lyricmode { 
   \set stanza = #"4. "
   ‘Sire, shall I bid the mer -- chant,
   That hath up -- on the seas
@@ -93,22 +119,8 @@ altoWords = \lyricmode {
   dog goes to rest,
   And ris -- eth with the lark.’
 }
-altoWordsII = \lyricmode {
-  \dropLyricsV
-%\markup\italic
-  \set stanza = #"2. "
-  ‘Sire, shall I bid the no -- ble,
-  That ban -- quets in his state,
-  With pur -- ple and fine lin -- en,
-  With gold and sil -- ver plate?’
-  ‘Nay, bid me not the no -- ble,
-  For he hath got e -- now;
-  But bring me in 
-  \set associatedVoice = "sopranos"
-  the coun -- try man,
-  That liv -- eth by the plow.’
-  
-  \unset associatedVoice
+
+altoWordsV = \lyricmode { 
   \set stanza = #"5. "
   ‘And where -- fore must I turn me
   From no -- ble and from rich?
@@ -121,21 +133,8 @@ altoWordsII = \lyricmode {
   for mor -- tal sake.
   And born was in a stall.
 }
-altoWordsIII = \lyricmode {
-  \dropLyricsV
-  \set stanza = #"3. "
-  ‘Sire, shall I bid in Di -- vès,
-  For it is ve -- ry plain,
-  If ye give him a ban -- quet,
-  He’ll ban -- quet you a -- gain?’
-  ‘Nay, bid not hith -- er Di -- vès,
-  For it shall ne’er be thus,
-  But go a -- mong 
-  \set associatedVoice = "sopranos"
-  the al -- ley -- lanes,
-  And fetch in La -- za -- rus.’
-  
-  \unset associatedVoice
+
+altoWordsVI = \lyricmode { 
   \set stanza = #"6. "
   ‘For these be they, good stew -- ard,
   Whom God doth chief -- ly choose,
@@ -148,12 +147,7 @@ altoWordsIII = \lyricmode {
   of Babe Je -- su,
   The poor we wel -- come here.’
 }
-altoWordsIV = \lyricmode {
-}
-altoWordsV = \lyricmode {
-}
-altoWordsVI = \lyricmode {
-}
+
 tenorMusic = \relative c' {
   g8[ a] |
   bes4 bes bes c |
@@ -176,9 +170,7 @@ tenorMusic = \relative c' {
   d8[ c] bes[ a] g[ f] g[ a] |
   b2.
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   g4 |
@@ -201,49 +193,34 @@ bassMusic = \relative c {
   g4 ees d\fermata c |
   bes g c c g2.
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
     \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \repeat unfold2 \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \repeat unfold2\altoMusic >> }
+      \new Voice = "sopranos" { \voiceOne << \global  \sopMusic >> }
+      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWords
+    \new Lyrics  \lyricsto "altos" \altoWords
+    \new Lyrics  \lyricsto "altos" \altoWordsII
+    \new Lyrics  \lyricsto "altos" \altoWordsIII
+    \new Lyrics  \lyricsto "altos" \altoWordsIV
+    \new Lyrics  \lyricsto "altos" \altoWordsV
+    \new Lyrics  \lyricsto "altos" \altoWordsVI
    \new Staff = men <<
       \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \repeat unfold2\tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \repeat unfold2\bassMusic >> }
+      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
+      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

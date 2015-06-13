@@ -1,40 +1,38 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Shepherds! Shake Off Your Drowsy Sleep"
   poet = "Traditional"
   composer = "Besançon Carol"
   arranger = "Arranged by Sir John Stainer (1840–1901)"
-  %tagline = \markup { from  \italic"Carols Old and Carols New" ", 1916, via " \italic"HymnsAndCarolsOfChristmas.com" }
+  %source = \markup { from  \italic"Carols Old and Carols New" ", 1916, via " \italic"HymnsAndCarolsOfChristmas.com" }
 }
 
 global = {
-  \key f \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key f \major
+    \time 6/8
+    \autoBeamOff
+    \tempo "Vivace" 4 = 105
 }
 
 sopMusic = \relative c' {
-  \tempo \markup\italic "Vivace"
   \partial 4. f8\noBeam f\noBeam f |
   c'4 c8 d4 e8 |
-  f4. f4 f8 | \break
+  f4. f4 f8 | 
   
   e4 e8 d[ c] d |
   c4. c8\noBeam d\noBeam e |
-  f4 c8 c4 bes8 | \break
+  f4 c8 c4 bes8 | 
   
   a4 g8 a[ bes] a |
   g[ f] g a[ bes] a |
-  g4-> f8 \bar "||" \break 
+  g4-> f8 \bar "||"  
   c'8\noBeam d\noBeam e |
   
   f4 c8 c4 bes8 |
   a4. c4^\markup\italic"poco rit." g8 |
   bes4 a8 g[ f] g |
-  \partial 4. f4. \bar "|."
+  f4. \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -59,7 +57,7 @@ altoMusic = \relative c' {
   f4. \bar "|."
 }
 altoWords = {
-  \dropLyricsIX
+  
   \lyricmode {
     \set stanza = #"1. "
     Shep -- herds! shake off your drow -- sy sleep,
@@ -69,12 +67,12 @@ altoWords = {
   }
   \set stanza = \markup\dynamic"ff "
   \lyricmode {
-    \dropLyricsXI
+    
     Shep -- herds! the cho -- rus come and swell! Sing No -- ël, O sing No -- ël!
   }
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   Hark! e -- ven now the bells ring round,
@@ -83,7 +81,7 @@ altoWordsII = \lyricmode {
   As __ if win -- ter’s chains __ were break -- ing.
 }
 altoWordsIII = {
-  \dropLyricsIX
+  
   \set stanza = \markup{\dynamic" mf " "3. "}
   \lyricmode {
     See how the flow’rs all burst a -- new,
@@ -93,7 +91,7 @@ altoWordsIII = {
   }
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   Com -- eth at length the age of peace,
   Strife and sor -- row now __ shall cease;
@@ -101,7 +99,7 @@ altoWordsIV = \lyricmode {
   Of __ this Heav’n born Prince __ of Glo -- ry.
 }
 altoWordsV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"5. "
   Shep -- herds! then up and quick a -- way,
   Seek the Babe ere break of day;
@@ -150,10 +148,9 @@ bassMusic = \relative c {
   d4 a8 c4 c8 |
   f4. \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -175,18 +172,13 @@ bassWords = \lyricmode {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

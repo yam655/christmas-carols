@@ -1,16 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Manger Throne"
   poet = "William Chatterson Dix (1837–1898)"
   composer = "Charles Steggall (1826–1905)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key d \major
-  \time 4/4
-  \autoBeamOff
+    \key d \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c'' {
@@ -18,33 +19,33 @@ sopMusic = \relative c'' {
   \partial 4 d4 |
   a b a fis8( fis) |
   e4( e8) fis8 d4 e |
-  fis b8( b) a( a) d4 | \break
+  fis b8( b) a( a) d4 | 
   
   cis2. a4 |
   d4 cis8 b a g fis[ e] |
-  fis4 gis8( gis) a4 b8( b) | \break
+  fis4 gis8( gis) a4 b8( b) | 
   cis4. d8 e( e) a,4 |
   
   b4( b8) cis8 a4 a |
-  b fis a a8 a | \break
+  b fis a a8 a | 
   b4 fis a a8( a) |
-  b8( b) d8( d) e4. fis8 |
-  \partial 2. d2. \bar "||" \pageBreak
+  b8( b) d8( d) e4. fis8 
+  d2. |
   
   d8 a b4 a8 a fis4 |
   e4. fis8 d4 e |
-  fis4 b8 b a a d4 | \break
+  fis4 b8 b a a d4 | 
   cis2. a4 |
   
   d8( d) cis[ b] a( g) fis( e) |
-  fis8( fis) gis4 a b8( b) | \break
+  fis8( fis) gis4 a b8( b) | 
   cis4. d8 e8( e) a,8( a) |
   b4. cis8 a4 a |
   
-  b4 fis8( fis) a4. a8 | \break
+  b4 fis8( fis) a4. a8 | 
   b4 fis a a8( a) |
   b( b) d8( d) e( e) fis4 |
-  \partial 2. d2. \bar "|."
+  d2. \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -66,7 +67,7 @@ altoMusic = \relative c' {
   d d e d8 d |
   d4 d e d8( d) |
   d8( d) g8( g) g4. g8 |
-  fis2. |
+  fis2. 
   
   fis8 d d4 d8 d d4 |
   d4. d8 d4 a |
@@ -84,7 +85,7 @@ altoMusic = \relative c' {
   fis2. \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   \set associatedVoice = "sopranos"
   \set ignoreMelismata = ##t
@@ -113,7 +114,7 @@ altoWords = \lyricmode {
   As __ _ this __ _ which has end -- ed our sighs.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"4. "
   \set associatedVoice = "sopranos"
@@ -143,7 +144,7 @@ altoWordsII = \lyricmode {
   Whom the pro -- phets of __ _ God __ _ fore -- tell.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"5. "
   \set ignoreMelismata = ##t
   \set associatedVoice = "sopranos"
@@ -182,7 +183,7 @@ tenorMusic = \relative c' {
   b d cis d8 d |
   b4 d cis d8( d) |
   d8( d) d8( d) cis4. cis8 |
-  d2. |
+  d2. 
   
   a8 fis g4 fis8 fis a4 |
   g4. a8 fis4 a |
@@ -219,7 +220,7 @@ bassMusic = \relative c {
   g b a fis8 fis |
   g4 b a fis8( fis) |
   g8( g) b8( b) a4. a8 |
-  d,2. |
+  d,2. 
   
   d8 d d4 d8 d d4 |
   d4. d8 d4 cis |
@@ -240,13 +241,8 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -270,16 +266,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

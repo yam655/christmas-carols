@@ -1,18 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "The Holly and the Ivy"
   poet = "17th Century English"
   composer = "Old French Carol"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key f \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key f \major
+    \time 6/8
+    \autoBeamOff
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c' {
@@ -21,13 +20,13 @@ sopMusic = \relative c' {
   bes4. a4 d,8 |
   e[ f] g f[ e] f |
   
-  d4.~ d4 \bar""\break d8 |
+  d4.~ d4  d8 |
   a'4 a8 a4 d8 |
   \slurDotted
   c8( c) bes8 a4 gis8 |
   a4 b8 c4 b8 |
   
-  a4.~ a4 bes8\rest \bar "||" \break
+  a4.~ a4 bes8\rest \bar "||" 
   e,4 f8 g4 a8 |
   g4 f8 e4 a8 |
   a[ f] a a[ g] f |
@@ -39,17 +38,17 @@ sopMusic = \relative c' {
   d[ c] bes a[ g] fis |
   g4.~ g4 bes8 |
   a[ bes] g f4 e8 |
-  \partial 8*5 d4.~ d4 \bar ":|" \break
+  d4.~ d4 \bar ":|" 
   
   
   
   
-  \partial 8 d8 |
+  d8 |
   a'4 a8 a[ g] a |
   bes4.( a4) d,8 |
   e( f) g f[ e] f |
   
-  d4.~ d4 \bar""\break d8 |
+  d4.~ d4  d8 |
   a'4 a8 a4 d8 |
   c4 bes8 a4 gis8 |
   \tieDotted
@@ -86,7 +85,7 @@ altoMusic = \relative c' {
   d,4 d8 ees4 ees8 |
   d4.~ d4 d8 |
   f4 e8 d4 cis8 |
-  d4.~ d4 |
+  d4.~ d4 
   
   
   
@@ -105,7 +104,7 @@ altoMusic = \relative c' {
   a4.~ a4 s8 |
 }
 altoWords = {
-  \dropLyricsXI
+  
   \lyricmode {
     \set stanza = #"1, 6."
     The Hol -- ly and the I -- vy,
@@ -141,7 +140,7 @@ altoWords = {
   }
 }
 altoWordsII = {
-  \dropLyricsXI
+  
   \set stanza = \markup{\dynamic"mf " "2."}
   \lyricmode {
     The Hol -- ly bears a blos -- som,
@@ -164,7 +163,7 @@ altoWordsII = {
   }
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsXI
+  
   \set stanza = #"3."
   The Hol -- ly bears a ber -- ry,
   As red as an -- y blood, __
@@ -202,7 +201,7 @@ tenorMusic = \relative c {
   bes[ a] g fis[ g] a |
   g4.~ g4 g8 |
   a4 bes8 a4 g8 |
-  f4.~ f4 |
+  f4.~ f4 
   
   
   
@@ -249,7 +248,7 @@ bassMusic = \relative c {
   
   g4 g8 c,4 c8 bes4.~ bes4 g'8 |
   f4 g8 a4 a,8 |
-  d4.~ d4 |
+  d4.~ d4 
   
   
   
@@ -272,17 +271,11 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -302,16 +295,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

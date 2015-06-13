@@ -1,15 +1,16 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "In the Bleak Midwinter"
   poet = "Christina Rosetti (1830–1894)"
   composer = "Gustav Holst (1874–1934)"
-  %tagline = \markup { "from" \italic "CantateDomino.org"}
+  %source = \markup { "from" \italic "CantateDomino.org"}
 }
 
 global = {
-  \key f \major
-  \time 4/4
+    \key f \major
+    \time 4/4
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c'' {
@@ -18,26 +19,24 @@ sopMusic = \relative c'' {
   a4.( bes8) c4 a |
   g4( g) f bes\rest |
   g4.( a8) g4 d |
-  g2. \bar""\break a4 |
+  g2.  a4 |
   
   a4.( bes8) c4 a |
   g4.( g8) f4 f |
   g4( a) g4. f8 |
-  f2. \bar""\break f4 |
+  f2.  f4 |
   
   bes4. a8 bes4( c) |
   d( d) a a |
   c( a) g( f) |
-  e2. \bar""\break a4 |
+  e2.  a4 |
   
   a4.( bes8) c4 a |
   g2 f4 bes\rest |
   \slurSolid g4( a) g4.( f8) |
   f1 \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   \partial 4 f4 |
@@ -61,8 +60,8 @@ altoMusic = \relative c' {
   \slurSolid f2 e4.( f8) |
   f1 \bar "|."
 }
-altoWords = \lyricmode {
-  \dropLyricsXI
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
   \set ignoreMelismata = ##t
   "" In the bleak mid -- win -- _ ter,
@@ -76,13 +75,11 @@ altoWords = \lyricmode {
   ter,
   Long a -- _ go.
 }
-altoWordsII = \lyricmode {
-  \dropLyricsXI
+
+altoWordsII = \lyricmode { 
   \set stanza = #"2. "
   \set ignoreMelismata = ##t
-  Our God, Heav’n can -- not hold
-%8.5x11 __
-  _ Him
+  Our God, Heav’n can -- not hold __ _ Him
   Nor __ _ earth sus -- tain; ""
   Heav’n and earth shall flee a -- way ""
   When He comes to reign; ""
@@ -92,8 +89,8 @@ altoWordsII = \lyricmode {
   ty,
   Je -- sus __ _ Christ.
 }
-altoWordsIII = \lyricmode {
-  \dropLyricsXI
+
+altoWordsIII = \lyricmode { 
   \set stanza = #"3. "
   \set ignoreMelismata = ##t
   E -- nough for Him, whom Cher -- u -- bim
@@ -106,8 +103,8 @@ altoWordsIII = \lyricmode {
   \set associatedVoice = "tenors"
   mel which a -- _ dore.
 }
-altoWordsIV = \lyricmode {
-  \dropLyricsXI
+
+altoWordsIV = \lyricmode { 
 \set ignoreMelismata = ##t
   \set stanza = #"4. "
   "" An -- gels and arch -- an -- _ gels May have ga -- thered there ""
@@ -119,8 +116,8 @@ altoWordsIV = \lyricmode {
   \set associatedVoice = "tenors"
   ed with a __ _ kiss.
 }
-altoWordsV = \lyricmode {
-  \dropLyricsXI
+
+altoWordsV = \lyricmode { 
 \set ignoreMelismata = ##t
   \set stanza = #"5. "
   "" What __ _ can I give __ _ Him,
@@ -157,9 +154,7 @@ tenorMusic = \relative c' {
   \slurSolid d2 bes4.( a8) |
   a1 \bar "|."
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   \partial 4 f4 |
@@ -183,10 +178,9 @@ bassMusic = \relative c {
   \slurSolid bes2 c4.( f8) |
   f1 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -194,30 +188,23 @@ bassWords = \lyricmode {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
+    \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+    \new Lyrics = "altosIII"  \lyricsto "sopranos" \altoWordsIII
+    \new Lyrics = "altosIV"   \lyricsto "sopranos" \altoWordsIV
+    \new Lyrics = "altosV"   \lyricsto "sopranos" \altoWordsV
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.9))  } \lyricsto "sopranos" \altoWords
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

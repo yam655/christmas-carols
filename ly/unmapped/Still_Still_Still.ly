@@ -1,26 +1,25 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
     title = "Still, Still, Still"
     poet = "Traditional Austrian"
     composer = "Salzburg Melody, c. 1819"
-    %tagline = \markup{ from \italic {Salzburgische Volks-Lieder}, 1865}
+    %source = \markup{ from \italic {Salzburgische Volks-Lieder}, 1865}
     %\markup\fill-line{\concat { "from " \italic "The Cowley Carol Book" ", 1919"}}
   }
 
 global = {
-  \key ees \major
-  \time 4/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key ees \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 77
 }
 
 sopMusic = \relative c'' {
   bes4( ees) g,( bes) |
   ees,2. ees8[ g] |
   f4 f8[ aes] d,4 d8[ f] |
-  ees2. \bar""\break g4 |
+  ees2.  g4 |
   
   f4 f8[ g] aes4 f |
   g g8[ aes] bes4 g |
@@ -32,9 +31,7 @@ sopMusic = \relative c'' {
   f4 f8[ aes] d,4 d8[ f] |
   ees1 \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   g'2 ees |
@@ -52,8 +49,8 @@ altoMusic = \relative c' {
   c c4 bes4 bes |
   bes1 \bar "|."
 }
-altoWords = \lyricmode {
-  \dropLyricsIX
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
   Still, still, still,
   Weil’s Kind -- lein schlaf -- en will.
@@ -62,9 +59,8 @@ altoWords = \lyricmode {
   Still, still, still,
   Weil’s Kind -- lein schlaf -- en will.
 }
-altoWordsII = \lyricmode {
-  \dropLyricsIX
-%\markup\italic
+
+altoWordsII = \lyricmode { 
   \set stanza = #"2. "
   Schlaf, schlaf, schlaf,
   Mein lieb -- es Kind -- lein schlaf!
@@ -73,8 +69,8 @@ altoWordsII = \lyricmode {
   Schlaf, schlaf, schlaf,
   Mein lieb -- es Kind -- lein schlaf!
 }
-altoWordsIII = \lyricmode {
-  \dropLyricsIX
+
+altoWordsIII = \lyricmode { 
   \set stanza = #"3. "
   Groß, groß, groß
   Die Lieb’ ist ü -- ber -- groß!
@@ -83,8 +79,8 @@ altoWordsIII = \lyricmode {
   Groß, groß, groß
   Die Lieb’ ist ü -- ber -- groß.
 }
-altoWordsIV = \lyricmode {
-  \dropLyricsIX
+
+altoWordsIV = \lyricmode { 
   \set stanza = #"4. "
   Wir, wir, wir,
   Wir ruf -- en all zu dir:
@@ -93,14 +89,7 @@ altoWordsIV = \lyricmode {
   Wir, wir, wir,
   Wir ruf -- en all zu dir.
 }
-altoWordsV = \lyricmode {
-  \set stanza = #"5. "
-  \set ignoreMelismata = ##t
-}
-altoWordsVI = \lyricmode {
-  \set stanza = #"6. "
-  \set ignoreMelismata = ##t
-}
+
 tenorMusic = \relative c' {
   bes2 bes |
   g2. g4 |
@@ -117,9 +106,7 @@ tenorMusic = \relative c' {
   aes4 aes4 aes4 aes |
   g1 \bar "|."
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   ees2 d |
@@ -137,17 +124,10 @@ bassMusic = \relative c {
   aes aes4 bes4 bes |
   ees1 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -155,32 +135,23 @@ pianoLH = \relative c' {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5)) } \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+    \new Lyrics = "altosIII"   \lyricsto "sopranos" \altoWordsIII
+    \new Lyrics = "altosIV"   \lyricsto "sopranos" \altoWordsIV
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   
   \midi {
-    \tempo 4 = 77
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

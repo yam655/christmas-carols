@@ -1,17 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Blessed be that Maid Marie"
   poet = "15th Century Middle English Carol, modernized"
   composer = \markup{Melody from William Ballet’s \italic{Lute Book}, c. 1600}
   arranger = "Arranged by Charles Wood (1866–1926)"
-  %tagline = \markup{ from \italic {The Cowley Carol Book}, 1919}
+  %source = \markup{ from \italic {The Cowley Carol Book}, 1919}
 }
 
 global = {
-  \key g \major
-  \time 4/4
-  \autoBeamOff
+    \key g \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -24,12 +25,12 @@ sopMusic = \relative c' {
   fis[ e] fis[ g] e2 |
   
   g8[ a] b[ c] b4 a8[ g] |
-  fis[ e] fis[ g] e2 \bar "||" \break
+  fis[ e] fis[ g] e2 \bar "||" 
   g4\segno g d d |
   
   e8[ fis] g[ a] b4.( c8) |
   d[ e] d[ c] b4 a8[ g] |
-  fis[ e] fis[ g] e2\fermata \bar ":|" \break
+  fis[ e] fis[ g] e2\fermata \bar ":|" 
   \once \override Score.RehearsalMark #'break-visibility = #end-of-line-visible
   \once \override Score.RehearsalMark #'self-alignment-X = #RIGHT
   \mark "Fine."
@@ -85,7 +86,7 @@ altoMusic = \relative c' {
   d d e2 \bar "||"
 }
 altoWords = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"1. "
   \set associatedVoice = "basses"
   Bless -- ed
@@ -123,7 +124,7 @@ altoWords = \lyricmode {
   \markup\italic duc -- \markup\italic ti \markup\italic lu -- \markup\italic mi -- \markup\italic ne.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   \set associatedVoice = "basses"
@@ -158,7 +159,7 @@ altoWordsII = \lyricmode {
   soil and save us all.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"3. "
   \set associatedVoice = "basses"
   Sweet and
@@ -248,17 +249,8 @@ bassMusic = \relative c {
   b4 d8[ c] g'4 g |
   d b c8([ d] e4) \bar "||"
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -279,18 +271,12 @@ pianoLH = \relative c' {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5))} \lyricsto "sopranos" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
+}
 }

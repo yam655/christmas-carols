@@ -1,19 +1,19 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
-  title = "Auld Lang Syne"
-  poet = "First verse, traditional"
-  meter = "Other verses, Robert Burns (1759–1796)"
-  composer = "Traditional"
-  %tagline = \markup { from \italic {Favorite Songs and Hymns for School and Home}, 1899}
-}
+
+songTitle = "Auld Lang Syne"
+songPoet = \markup {
+        \line {First verse, traditional}
+        \line {Other verses, Robert Burns (1759–1796)}
+    }
+songTranslator = \markup \null
+tuneComposer = "Traditional"
+tuneSource = \markup {from \italic {Favorite Songs and Hymns for School and Home}, 1899} 
 
 global = {
-  \key g \major
-  \time 2/4
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
+    \key g \major
+    \time 2/4
+    \autoBeamOff
+    \tempo 4 = 60
 }
 
 sopMusic = \relative c' {
@@ -21,25 +21,24 @@ sopMusic = \relative c' {
   g8. g16 g8 b |
   a8. g16 a8 b |
   g8. g16 b8 d |
-  e4. \bar""\break e8 |
+  e4.  e8 |
   d8. b16 b8 g |
   
   a8. g16 a8 b |
   \slurDotted g8.( e16) e8( d) |
-  \partial 4. g4 b8\rest \bar "|:" \break
-  \partial 8 e8 |
-  d8.[ b16] b8[ g] |
-  a8. g16 a8 b16\rest b |
+  g4 b8\rest 
+    \repeat volta 2 {
+        e8 |
+        d8.[ b16] b8[ g] |
+        a8. g16 a8 b16\rest b |
   
-  b8.[ g16] b8.[ d16] |
-  e4. \bar""\break e8 |
-  d8. b16 b8 g |
-  a8. g16 a8 b |
-  g8.[ e16] e8[ d] |
-  \partial 4. g4  b8\rest \bar ":|"
-}
-sopWords = \lyricmode {
-  
+        b8.[ g16] b8.[ d16] |
+        e4.  e8 |
+        d8. b16 b8 g |
+        a8. g16 a8 b |
+        g8.[ e16] e8[ d] |
+        g4  b8\rest 
+    }
 }
 
 altoMusic = \relative c' {
@@ -52,7 +51,7 @@ altoMusic = \relative c' {
   
   fis8. e16 fis8 g |
   \slurDotted e8.( c16) c8( c) |
-  b4 s8 |
+  b4 s8 
   g'8 |
   g4 g |
   fis8. e16 fis8 s16 g |
@@ -65,7 +64,7 @@ altoMusic = \relative c' {
   b4 s8 \bar ":|"
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"1. "
   \set ignoreMelismata = ##t
   Should auld ac -- quain -- tance be for -- got,
@@ -82,7 +81,7 @@ altoWords = \lyricmode {
   
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic
   \set stanza = #"2. "
   We twa ha’e run a -- boot the braes,
@@ -91,7 +90,7 @@ altoWordsII = \lyricmode {
   Sin’ auld __ lang __ syne.
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   We twa ha’e sport -- ed i’ the burn,
   Frae morn -- in’ sun till dine,
@@ -99,7 +98,7 @@ altoWordsIII = \lyricmode {
   Sin’ auld __ lang __ syne.
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   And here’s a hand, my trust -- y frien’,
   And gie’s a hand o’ thine;
@@ -124,7 +123,7 @@ tenorMusic = \relative c' {
   
   d8. d16 d8 d |
   \slurDotted c8.( g16) fis8( fis) |
-  g4 s8 |
+  g4 s8 
   c |
   b8.[ d16] d4 |
   d8. d16 d8 s16 d |
@@ -135,9 +134,6 @@ tenorMusic = \relative c' {
   d8. d16 d8 d |
   b4 fis |
   g s8 \bar ":|"
-}
-tenorWords = \lyricmode {
-
 }
 
 bassMusic = \relative c {
@@ -150,7 +146,7 @@ bassMusic = \relative c {
   
   d8. d16 d8 g |
   \slurDotted c,8.( c16) d8( d) |
-  g,4 d'8\rest |
+  g,4 d'8\rest 
   g |
   g4 g4 |
   d8. d16 d8 d16\rest g |
@@ -162,49 +158,41 @@ bassMusic = \relative c {
   e4 d |
   g, d'8\rest \bar ":|"
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  translator = \songTranslator
+  composer = \tuneComposer
+  source = \tuneSource
 }
 
 \score {
-  <<
-   \new ChoirStaff <<
-    \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+    <<
+        \new ChoirStaff <<
+            \new Staff = women <<
+                \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
+                \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+            >>
+            \new Lyrics = "altos"   \lyricsto "altos" \altoWords
+            \new Lyrics = "altosII"   \lyricsto "altos" \altoWordsII
+            \new Lyrics = "altosIII"   \lyricsto "altos" \altoWordsIII
+            \new Lyrics = "altosIV"   \lyricsto "altos" \altoWordsIV
+            \new Lyrics = "altosV"   \lyricsto "altos" \altoWordsV
+            \new Lyrics = "altosVI"   \lyricsto "altos" \altoWordsVI
+            \new Staff = men <<
+                \clef bass
+                \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
+                \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
+            >>
+        >>
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWords
-   \new Staff = men <<
-      \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
-  >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
-  >>
-  \layout { }
-  \midi {
-    \tempo 4 = 60
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
+    \layout { }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        %\context { \Voice \remove "Dynamic_performer" }
     }
-  }
+} 
 }
+

@@ -5,7 +5,7 @@
   poet = "15th Century Middle English Harleian Manuscript"
   composer = \markup{tune is \italic{When Christ Was Born}, Arthur H. Brown}
   arranger = "Arranged by Sir John Stainer (1840–1901)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
@@ -186,6 +186,7 @@ altoWordsIV = \lyricmode {
   “In ex -- cel -- sis Glo -- ri -- a.”
 }
 
+\bookpart {
 \score {
     {
         \new ChoirStaff <<
@@ -219,16 +220,12 @@ altoWordsIV = \lyricmode {
 
         >>
     }
-    \layout {
-        \context {
-            %\Staff \RemoveEmptyStaves
-            %\override VerticalAxisGroup.remove-first = ##t
-        }
-    }
+    \layout { }
     \midi {
-        \set Staff.midiInstrument = "flute"
-  
+        \set Staff.midiInstrument = "flute" 
         %\context { \Voice \remove "Dynamic_performer" }
     }
 }
+}
+
 

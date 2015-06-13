@@ -1,24 +1,25 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
  \header {
   title = "Up! Good Christen folk and listen"
   poet = "George Ratcliffe Woodward (1848–1934)"
   composer = \markup { \italic {O quam mundum}, from \italic {Piæ Cantiones}, 1582}
   arranger = "Arranged by George Ratcliffe Woodward (1848–1934)"
-  %tagline = \markup{ from \italic {The Cowley Carol Book}, 1919}
+  %source = \markup{ from \italic {The Cowley Carol Book}, 1919}
 }
 
 global = {
-  \key c \major
-  \time 4/4
-  \autoBeamOff
+    \key c \major
+    \time 4/4
+    \autoBeamOff
+    \tempo 4 = 135
 }
 
 sopMusic = \relative c' {
   c4 e g2 |
   f8 g a b g2 |
   c4 b g e |
-  f8 e d4 c2\fermata \break
+  f8 e d4 c2\fermata 
   \repeat volta 2 {
     g'4 g a g |
     
@@ -32,7 +33,7 @@ sopMusic = \relative c' {
     e g a g |
     e( a g e) |
     d2 c |
-  } \break
+  } 
   c'4 c b d |
   e d b a |
   g g e a |
@@ -77,7 +78,7 @@ altoMusic = \relative c' {
   g1 \bar "|."
 }
 altoWords = \lyricmode {
-  \dropLyricsV
+  
   Ding dong, ding
   Ding -- a dong -- a ding
   Ding dong, ding dong
@@ -89,7 +90,7 @@ altoWords = \lyricmode {
   And from stee -- ple bid good peo -- ple
   Come a -- dore the new __ born King.
   
-  \raiseLyrics
+  
   Born of mo -- ther, blest o’er o -- ther,
   \markup\italic ex \markup\italic Ma -- \markup\italic ri -- \markup\italic a
   \markup\italic Vir -- \markup\italic gi -- \markup\italic ne
@@ -97,7 +98,7 @@ altoWords = \lyricmode {
   \markup\italic Chris -- \markup\italic tus \markup\italic na -- \markup\italic tus \markup\italic ho -- \markup\italic di -- \markup\italic e.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
 %\markup\italic 
   \repeat unfold 16 {\skip1}
   \set stanza = #"2. "
@@ -186,13 +187,8 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -215,16 +211,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 135
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

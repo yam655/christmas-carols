@@ -1,18 +1,16 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "O Come, All Ye Faithful"
   poet = "Translated by Frederick Oakley (1802–1880)"
   composer = "John Francis Wade (1711–1786)"
-  %tagline = \markup { "from" \concat{\italic "Christmas Carols and Hymns for School and Choir" ", 1910"}}
+  %source = \markup { "from" \concat{\italic "Christmas Carols and Hymns for School and Choir" ", 1910"}}
 }
 
 global = {
   \key a \major
   \time 4/4
   \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-0.5 . 1.5)
   \tempo 4 = 100
 }
 
@@ -21,7 +19,7 @@ sopMusic = \relative c'' {
   a2 e4 a |
   b2 e, |
   cis'4 b cis d |
-  \slurDotted cis2 b4 \bar"" a |
+  \slurDotted cis2 b4  a |
   a2 gis4 fis |
   
   gis( a)( b) cis |
@@ -30,21 +28,18 @@ sopMusic = \relative c'' {
   e2 d4 cis |
   \slurDotted d2( cis) |
   b4 cis a b |
-  \slurSolid \partial 4*3 gis4.( fis8) e4 | \break
+  \slurSolid gis4.( fis8) e4  
   
-  \partial 4 a4 |
+  a4 |
   a gis a b |
   a2 e4 cis'4 |
   cis b cis d |
-  cis2 b4 \bar""\break cis |
+  cis2 b4  cis |
   
   d cis b a |
   gis2 a4( d) |
-  cis2( b4.) a8) |
-  \partial 4*3 a2. \bar "|."
-}
-sopWords = \lyricmode {
-  
+  cis2( b4.) a8 |
+  a2. \bar "|."
 }
 
 altoMusic = \relative c' {
@@ -61,7 +56,7 @@ altoMusic = \relative c' {
   e2 fis8[ gis] a4 |
   a( \slurDotted gis)( a2) |
   e4 e fis fis |
-  \slurSolid \partial 4*3 e2 e4 |
+  \slurSolid e2 e4 
   
   e4 |
   e1~ |
@@ -72,10 +67,10 @@ altoMusic = \relative c' {
   gis a e e8[ dis] |
   e2 e4( fis) |
   e2( d4.) cis8 |
-  \partial 4*3 cis2. \bar "|."
+  cis2. \bar "|."
 }
 altoWords = {
-  \dropLyricsV
+  
   \lyricmode {
     \set stanza = #"1. "
     \set ignoreMelismata = ##t
@@ -92,12 +87,12 @@ altoWords = {
   }
   \set stanza = \markup\dynamic"ff  "
   \lyricmode {
-    \raiseLyrics
+    
     O come, let us a -- dore Him, __ Christ, __ the Lord!
   }
 }
 altoWordsII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"2. "
   \set ignoreMelismata = ##t
   _ God, of __ _ God, __ _
@@ -107,7 +102,7 @@ altoWordsII = \lyricmode {
   Be -- got -- ten, not cre -- at -- _ ed:
 }
 altoWordsIII = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"3. "
   \set ignoreMelismata = ##t
   _ Sing, choirs of an -- gels, Sing with ex -- ul -- ta -- tions, ""
@@ -115,7 +110,7 @@ altoWordsIII = \lyricmode {
   Glo -- ry to God, __ _ Glo -- ry in the high -- _ est;
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsV
+  
   \set stanza = #"4. "
   \set ignoreMelismata = ##t
   _ Yea, Lord, we greet Thee, Born this hap -- py morn -- ing, ""
@@ -137,9 +132,9 @@ tenorMusic = \relative c' {
   cis'2 d4 e |
   \slurDotted e2( e2) |
   e4 a, cis d |
-  \slurSolid \partial 4*3 b4.( a8) gis4 |
+  \slurSolid b4.( a8) gis4 
   
-  \partial 4 cis4 |
+  cis4 |
   cis b cis d |
   cis2. a4 |
   a gis a b |
@@ -148,10 +143,7 @@ tenorMusic = \relative c' {
   e e b b |
   b2 a |
   a( gis4.) a8 |
-  \partial 4*3 a2. \bar "|."
-}
-tenorWords = \lyricmode {
-
+  a2. \bar "|."
 }
 
 bassMusic = \relative c' {
@@ -168,9 +160,9 @@ bassMusic = \relative c' {
   cis'2 b4 a |
   b2( a2) |
   gis4 a fis d |
-  \partial 4*3 e2 e4 |
+  e2 e4 
   
-  \slurSolid \partial 4 d\rest |
+  \slurSolid d\rest |
   g,1\rest |
   g1\rest |
   g1\rest |
@@ -179,43 +171,34 @@ bassMusic = \relative c' {
   b a gis fis |
   e( d) cis( d) |
   e2~e4. a,8 |
-  \partial 4*3 a2. \bar "|."
-}
-bassWords = \lyricmode {
-
+  a2. \bar "|."
 }
 
+\bookpart {
 \score {
-  <<
-   \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
-    \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+    <<
+        \new ChoirStaff <<
+            \new Staff = women <<
+                \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
+                \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+            >>
+            \new Lyrics = "altos"   \lyricsto "sopranos" \altoWords
+            \new Lyrics = "altosII"   \lyricsto "sopranos" \altoWordsII
+            \new Lyrics = "altosIII"   \lyricsto "sopranos" \altoWordsIII
+            \new Lyrics = "altosIV"   \lyricsto "sopranos" \altoWordsIV
+            \new Staff = men <<
+                \clef bass
+                \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
+                \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
+            >>
+        >>
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWords
-   \new Staff = men <<
-      \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
-  >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
-  >>
-  \layout { }
-  \midi {
-    \tempo 4 = 100
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
+    \layout { }
+    \midi {
+        \set Staff.midiInstrument = "flute"
+        %\context { \Voice \remove "Dynamic_performer" }
     }
-  }
 }
+
+}
+

@@ -1,19 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Christmas Day"
   poet = "Translated by Rev. H.R. Bramley (1833–1917) from Latin"
   composer = "Sir John Stainer (1840–1901)"
-  %tagline = \markup { from \italic {Christmas Carols, New and Old}}
+  %source = \markup { from \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key e \major
-  \time 4/4
-  \autoBeamOff
-  \tempo "Allegro vivace."
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-0 . 0)
+    \key e \major
+    \time 4/4
+    \autoBeamOff
+    \tempo "Allegro vivace." 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -30,7 +28,7 @@ sopMusic = \relative c' {
   e4 dis cis b |
   a cis b( a) |
   gis fis e a |
-  gis2 fis \bar "||" \break
+  gis2 fis \bar "||" 
   
   b4 gis fis4. gis8 |
   a4 fis e( fis) |
@@ -73,7 +71,7 @@ altoMusic = \relative c' {
   e dis e2 \bar "|."
 }
 altoWords = {
-  \dropLyricsIX
+  
   \lyricmode {
     \set stanza = #"1. "
     \set associatedVoice = "basses"
@@ -85,13 +83,13 @@ altoWords = {
     Gi -- ant in the race He tow’rs,
     Toil and dan -- ger scorn -- ing.
   }
-  \dropLyricsIV
+  
   \set stanza = \markup\dynamic"p "
   \lyricmode {
     O that bless -- ed go -- ing out, __
     Which sal -- va -- tion brought a -- bout,
   }
-  \dropLyricsIX
+  
   \set stanza = \markup\dynamic "ff  "
   \lyricmode {
     O that bless -- ed go -- ing out, __
@@ -99,7 +97,7 @@ altoWords = {
   }
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIX
+  
 %\markup\italic
   \set stanza = #"2. "
   \set associatedVoice = "basses"
@@ -111,7 +109,7 @@ altoWordsII = \lyricmode {
   With our con -- course blend -- ing.
 }
 altoWordsIII = {
-  \dropLyricsIX
+  
   \set stanza = \markup{\dynamic"mf  " "3. "}
   \lyricmode {
     \set associatedVoice = "basses"
@@ -139,7 +137,7 @@ altoWordsIII = {
   }
 }
 altoWordsIV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"4. "
   \set associatedVoice = "basses"
   O how bright is this day made,
@@ -150,7 +148,7 @@ altoWordsIV = \lyricmode {
   Bright -- ness o’er us throw -- ing!
 }
 altoWordsV = \lyricmode {
-  \dropLyricsIX
+  
   \set stanza = #"5. "
   \set associatedVoice = "basses"
   Ris’n to -- day in splen -- dor bright,
@@ -224,21 +222,12 @@ bassMusic = \relative c {
   fis e dis e |
   b b e2 \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -256,18 +245,14 @@ pianoLH = \relative c' {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.8))} \lyricsto "altos" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)(padding . 0.1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

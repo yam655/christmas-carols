@@ -1,208 +1,180 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
-  title = "I Saw Three Ships"
-  poet = "Traditional"
-  composer = "Traditional English (Derbyshire)"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
-}
+
+
+songTitle = "I Saw Three Ships"
+songPoet = "Traditional"
+tuneComposer = "Traditional English (Derbyshire)"
+tuneSource = \markup { from \italic {Christmas Carols, New and Old}}
 
 global = {
-  \key g \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-  %\override DynamicText #'X-offset = #-6
+    \key g \major
+    \time 6/8
+    \autoBeamOff
+    \tempo "Briskly" 4 = 120
 }
 
 sopMusic = \relative c' {
-    \repeat volta 2 {
-    \partial 8 d8 |
-    \slurDotted  g4 g8\noBeam a\noBeam( a\noBeam) b |
+    \partial 8
+    d8 |
+    g4 g8 a4 b8 |
     d4 b8 a4 c8 |
     
     b4 g8 g4 b8 |
-    a4 fis8 d4 \bar"" d8 |
-    g4 g8\noBeam a\noBeam( a\noBeam) b |
-    
+    a4 fis8 d4 d8 |
+    g4 g8 a4 b8 |
+
     d4 b8 a4 c8 |
-    b4 g8\noBeam g\noBeam a\noBeam b |
-    \partial 8*5 a4. g4 \break
-  }
+    b4 g8 g\noBeam a\noBeam b |
+    a4. g4 
 }
-sopWords = \lyricmode {
-  
-}
+
 
 altoMusic = \relative c' {
   d8 |
-  \slurDotted d4 d8 d\noBeam( d\noBeam) d |
+  d4 d8 d4 d8 |
   d4 d8 d4 d8 |
   
   d4 d8 d4 d8 |
   d4 d8 d4 c8 |
-  b4 e8 d\noBeam( d\noBeam) g |
-  \slurSolid g[ fis] g8 fis4 a8 |
+  b4 e8 d4 g8 |
+  g[ fis] g8 fis4 a8 |
   g4 d8\noBeam e\noBeam fis\noBeam g |
   fis4. g4
-}
-altoWords = \lyricmode {
-  \dropLyricsIX
-  \set stanza = #"1. "
-  \set ignoreMelismata = ##t
-  I saw three ships _ come sail -- ing in,
-  On Christ -- mas day, on Christ -- mas day,
-  I saw three ships _ come sail -- ing in,
-  On Christ -- mas day in the morn -- ing.
-  
-  
-  \set stanza = #"5. "
-  \set ignoreMelismata = ##t
-  O they sailed in -- _ to Beth -- le -- hem,
-  On Christ -- mas day, on Christ -- mas day,
-  O they sailed in -- _ to Beth -- le -- hem,
-  On Christ -- mas day in the morn -- ing.
-}
-altoWordsII = \lyricmode {
-  \dropLyricsIX
-  \set stanza = #"2. "
-  \set ignoreMelismata = ##t
-  And what was in __ _ those ships all three,
-  On Christ -- mas day, on Christ -- mas day,
-  And what was in __ _ those ships all three,
-  On Christ -- mas day in the morn -- ing.
-  
-  
-  \set stanza = #"6. "
-  \set ignoreMelismata = ##t
-  And all the bells _ on earth shall ring,
-  On Christ -- mas day, on Christ -- mas day,
-  And all the bells _ on earth shall ring,
-  On Christ -- mas day in the morn -- ing.
-}
-altoWordsIII = \lyricmode {
-  \dropLyricsIX
-  \set stanza = #"3. "
-  \set ignoreMelismata = ##t
-  The Vir -- gin Ma -- ry and Christ were there,
-  On Christ -- mas day, on Christ -- mas day,
-  The Vir -- gin Ma -- ry and Christ were there,
-  On Christ -- mas day in the morn -- ing.
-  
-  
-  \set stanza = #"7. "
-  \set ignoreMelismata = ##t
-  And all the An -- gels in Heav’n shall sing,
-  On Christ -- mas day, on Christ -- mas day,
-  And all the An -- gels in Heav’n shall sing,
-  On Christ -- mas day in the morn -- ing.
-}
-altoWordsIV = \lyricmode {
-  \dropLyricsIX
-  \set stanza = #"4. "
-  \set ignoreMelismata = ##t
-  Pray, whith -- er sailed _ those ships all three,
-  On Christ -- mas day, on Christ -- mas day,
-  Pray, whith -- er sailed _ those ships all three,
-  On Christ -- mas day in the morn -- ing.
-  
-  \set stanza = #"8. "
-  \set ignoreMelismata = ##t
-  And all the souls _ on earth shall sing,
-  On Christ -- mas day, on Christ -- mas day,
-  And all the souls _ on earth shall sing,
-  On Christ -- mas day in the morn -- ing.
-}
-altoWordsV = \lyricmode {
-  \dropLyricsIX
-  \repeat unfold 32 \skip1
-  \set stanza = #"9. "
-  \set ignoreMelismata = ##t
-  Then let us all __ _ re -- joice a -- main,
-  On Christ -- mas day, on Christ -- mas day,
-  Then let us all __ _ re -- joice a -- main,
-  On Christ -- mas day in the morn -- ing.
-}
-altoWordsVI = \lyricmode {
-}
-altoWordsVII = \lyricmode {
-}
-altoWordsVIII = \lyricmode {
-}
-altoWordsIX = \lyricmode {
 }
 
 tenorMusic = \relative c {
   d8 |
-  \slurDotted b'4 b8 c\noBeam( c\noBeam) b |
+  b'4 b8 c4 b8 |
   a4 g8 fis4 a8 |
   
   g4 b8 b4 g8 |
   fis4 a8 fis4 fis8 |
-  g4 b8 a\noBeam( a\noBeam) d |
+  g4 b8 a4 d8 |
   
-  \slurSolid d[ c] b d4 d8 |
+  d[ c] b d4 d8 |
   d4 b8 c\noBeam c\noBeam d |
   d4. b4
-}
-tenorWords = \lyricmode {
-
 }
 
 bassMusic = \relative c {
   d8 |
-  \slurDotted g4 g8 g\noBeam( g\noBeam) g |
+  g4 g8 g4 g8 |
   fis4 g8 d4 fis8 |
   
   g4 g8 g4 g8 |
   d4 d8 d4 d8 |
-  e4 e8 fis\noBeam( fis\noBeam) g |
+  e4 e8 fis4 g8 |
   
-  \slurSolid b[ a] g d4 fis8 |
+  b[ a] g d4 fis8 |
   g4 g8 c\noBeam a\noBeam g |
   d'4. g,4
 }
-bassWords = \lyricmode {
 
+altoLyrics = \lyricmode { 
+  \set stanza = #"1. "
+  I saw three ships come sail -- ing in,
+  On Christ -- mas day, on Christ -- mas day,
+  I saw three ships come sail -- ing in,
+  On Christ -- mas day in the morn -- ing. 
 }
 
+altoLyricsII = \lyricmode { 
+  \set stanza = #"2. "
+  And what was in those ships all three,
+  On Christ -- mas day, on Christ -- mas day,
+  And what was in those ships all three,
+  On Christ -- mas day in the morn -- ing. 
+}
+
+altoLyricsIII = \lyricmode { 
+  \set stanza = #"3. "
+  The Vir -- gin Ma~ry and Christ were there,
+  On Christ -- mas day, on Christ -- mas day,
+  The Vir -- gin Ma~ry and Christ were there,
+  On Christ -- mas day in the morn -- ing. 
+}
+
+altoLyricsIV = \lyricmode { 
+  \set stanza = #"4. "
+  Pray, whith -- er sailed those ships all three,
+  On Christ -- mas day, on Christ -- mas day,
+  Pray, whith -- er sailed those ships all three,
+  On Christ -- mas day in the morn -- ing. 
+}
+
+altoLyricsV = \lyricmode { 
+  \set stanza = #"5. "
+  O they sailed in to Beth -- le -- hem,
+  On Christ -- mas day, on Christ -- mas day,
+  O they sailed in to Beth -- le -- hem,
+  On Christ -- mas day in the morn -- ing. 
+}
+
+altoLyricsVI = \lyricmode { 
+  \set stanza = #"6. "
+  And all the bells on earth shall ring,
+  On Christ -- mas day, on Christ -- mas day,
+  And all the bells on earth shall ring,
+  On Christ -- mas day in the morn -- ing.
+}
+
+altoLyricsVII = \lyricmode { 
+  \set stanza = #"7. "
+  And all the An~gels in Heav’n shall sing,
+  On Christ -- mas day, on Christ -- mas day,
+  And all the An~gels in Heav’n shall sing,
+  On Christ -- mas day in the morn -- ing.
+}
+altoLyricsVIII = \lyricmode {
+  \set stanza = #"8. "
+  And all the souls on earth shall sing,
+  On Christ -- mas day, on Christ -- mas day,
+  And all the souls on earth shall sing,
+  On Christ -- mas day in the morn -- ing.
+}
+altoLyricsIX = \lyricmode { 
+  \set stanza = #"9. "
+  \set ignoreMelismata = ##t
+  Then let us all re -- joice a -- main,
+  On Christ -- mas day, on Christ -- mas day,
+  Then let us all re -- joice a -- main,
+  On Christ -- mas day in the morn -- ing.
+}
+
+\bookpart {
+\header {
+  title = \songTitle
+  poet = \songPoet
+  composer = \tuneComposer
+}
 \score {
-  <<
-   \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
-    \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global {\tempo \markup\italic"Briskly." \sopMusic \sopMusic} >> }
-      \new Voice = "altos" { \voiceTwo << \global \repeat unfold2 \altoMusic >> }
+    <<
+        \new ChoirStaff <<
+            \new Staff = women <<
+                \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
+                \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+            >>
+            \new Lyrics = "altos"   \lyricsto "sopranos" \altoLyrics
+            \new Lyrics = "altosII"   \lyricsto "sopranos" \altoLyricsII
+            \new Lyrics = "altosIII"   \lyricsto "sopranos" \altoLyricsIII
+            \new Lyrics = "altosIV"   \lyricsto "sopranos" \altoLyricsIV
+            \new Lyrics = "altosV"   \lyricsto "sopranos" \altoLyricsV
+            \new Lyrics = "altosVI"   \lyricsto "sopranos" \altoLyricsVI
+            \new Lyrics = "altosVII"   \lyricsto "sopranos" \altoLyricsVII
+            \new Lyrics = "altosVIII"   \lyricsto "sopranos" \altoLyricsVIII
+            \new Lyrics = "altosIX"   \lyricsto "sopranos" \altoLyricsIX
+            \new Staff = men <<
+                \clef bass
+                \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
+                \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
+            >>
+        >>
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosIX"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIX
-    \new Lyrics = "altosVIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVIII
-    \new Lyrics = "altosVII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVII
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.7)) } \lyricsto "sopranos" \altoWords
-   \new Staff = men <<
-      \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \repeat unfold2 \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \repeat unfold2 \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
-  >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
-  >>
-  \layout { }
-  \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
+    \layout { }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        %\context { \Voice \remove "Dynamic_performer" }
     }
-  }
 }
+}
+

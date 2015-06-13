@@ -1,16 +1,17 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Carol for Christmas Eve"
   poet = "Rev. H. R. Bramley (1833–1917)"
   composer = "Sir Frederick A. G. Ouseley (1825–1889)"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key c \major
-  \time 2/4
-  \autoBeamOff
+    \key c \major
+    \time 2/4
+    \autoBeamOff
+    \tempo 4 = 80
 }
 
 sopMusic = \relative c' {
@@ -33,23 +34,20 @@ sopMusic = \relative c' {
     b8. c16 a8 e |
     f a a gis | 
     
-    \partial 4. a b\rest b\rest \bar "||" \break
-    \partial 8 b |
+    a b\rest b\rest 
+    b |
     c b\rest b\rest g |
     e b'\rest b\rest g |
     a g f g |
-    a g e4 | \break
+    a g e4 | 
     
     c'8 c16 c f8 e |
     d4 d |
     e8 d c b |
     a g f e |
     a16[ b] c8 d8.-> c16 |
-    c4 b\rest \break
+    c4 b\rest 
   }
-}
-sopWords = \lyricmode {
-  
 }
 
 altoMusic = \relative c' {
@@ -85,7 +83,7 @@ altoMusic = \relative c' {
   e4 s
 }
 altoWords = \lyricmode {
-  \dropLyricsVII
+  
   \set stanza = #"1. "
   Lis -- ten, Lord -- ings, un -- to me, a tale I will you tell;
   Which, as on this night of glee, in Da -- vid’s town be -- fell.
@@ -118,7 +116,7 @@ altoWords = \lyricmode {
   That Christ is born in -- deed.
 }
 altoWordsII = \lyricmode {
-  \dropLyricsVII
+  
 %\markup\italic
   \set stanza = #"2. "
   In the Inn they found no room; a scan  -- ty bed they made:
@@ -178,10 +176,6 @@ tenorMusic = \relative c {
   c e b8. c16 |
   c4 s
 }
-tenorWords = \lyricmode {
-}
-tenorWordsBass = \lyricmode {
-}
 
 bassMusic = \relative c {
   c8 c' b a |
@@ -214,21 +208,11 @@ bassMusic = \relative c {
   f c d e |
   f c g8. c16 c4 d\rest
 }
-bassWords = \lyricmode {
 
-}
-
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \repeat unfold 2 \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \repeat unfold 2 \altoMusic >> }
@@ -238,32 +222,20 @@ pianoLH = \relative c' {
       \new Voice = "tenors" { \voiceOne << \global \repeat unfold 2 \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \repeat unfold 2 \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
      \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsVI
     \new Lyrics = "altosV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsV
     \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsIV
     \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsIII
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWords
-%    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
-    }
-  }
+  \layout { }
   \midi {
-    \tempo 4 = 80
     \set Staff.midiInstrument = "flute"
   
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

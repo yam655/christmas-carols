@@ -1,17 +1,18 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Jacob’s Ladder"
   poet = "Traditional"
   composer = "Traditional"
-  %tagline = \markup { "from" \italic {Christmas Carols, New and Old}}
+  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
 }
 
 global = {
-  \key g \major
-  \time 2/4
-  \autoBeamOff
-  \slurDotted
+    \key g \major
+    \time 2/4
+    \autoBeamOff
+    \slurDotted
+    \tempo 4 = 105
 }
 
 sopMusic = \relative c' {
@@ -35,8 +36,8 @@ sopMusic = \relative c' {
   d[ b] c a|
   
   g4 g8 g |
-  \partial 4 g4 \bar "||" \break
-  \partial 4 d8 d |
+  g4 
+  d8 d |
   g4 g8 g |
   g[ b] a g |
   a4 a8 a |
@@ -50,7 +51,7 @@ sopMusic = \relative c' {
   d4 d8 e |
   d[ b] c a |
   g4 g8 g |
-  \partial 4. g4. \bar "|."
+  g4. \bar "|."
 }
 sopWords = \lyricmode {
   
@@ -94,11 +95,9 @@ altoMusic = \relative c' {
   g4 f8 e |
   d4. \bar "|."
 }
-dropLyrics = {
-  \dropLyricsXI
-}
+  
 altoWords = \lyricmode {
-  \dropLyrics
+  
   \set stanza = #"1. "
   As Ja -- cob with tra -- vel was wea -- ry one
   \set associatedVoice = "sopranos"
@@ -114,7 +113,7 @@ altoWords = \lyricmode {
   And hath rais’d up a lad -- der of mer -- cy for me.
 }
 altoWordsII = \lyricmode {
-  \dropLyrics
+  
 %\markup\italic
   \set stanza = #"2. "
   This lad -- der is long, it is strong and well -- 
@@ -126,7 +125,7 @@ altoWordsII = \lyricmode {
   And __ _ thou -- sands by faith _ are __ _ climb -- ing it still.
 }
 altoWordsIII = \lyricmode {
-  \dropLyrics
+  
   \set stanza = #"3. "
   Come let __ us a -- scend: all may climb it who 
   \set associatedVoice = "sopranos"
@@ -137,7 +136,7 @@ altoWordsIII = \lyricmode {
   Some _ Pro -- phet or Mar -- _ tyr hath trod it be -- fore.
 }
 altoWordsIV = \lyricmode {
-  \dropLyrics
+  
   \set stanza = #"4. "
   And when we ar -- rive at the ha -- ven of 
   \set associatedVoice = "sopranos"
@@ -239,17 +238,11 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -269,16 +262,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 105
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

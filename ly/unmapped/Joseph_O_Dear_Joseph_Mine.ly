@@ -1,5 +1,5 @@
 ﻿\version "2.14.2"
-\include "util.ly"
+
 \header {
   title = "Joseph, O Dear Joseph Mine"
   poet = \markup{\italic{Josef, Lieber Josef Mein}, 16th Century}
@@ -7,12 +7,10 @@
 }
 
 global = {
-  \key f \major
-  \time 6/8
-  \autoBeamOff
-  %\override DynamicLineSpanner #'staff-padding = #0.0
-  %\override DynamicLineSpanner #'Y-extent = #'(0 . 1.5)
-  %\override DynamicText #'X-offset = #-3
+    \key f \major
+    \time 6/8
+    \autoBeamOff
+    \tempo 4 = 90
 }
 
 sopMusic = \relative c'' {
@@ -20,12 +18,12 @@ sopMusic = \relative c'' {
   c4_\mf a8 f4 a8 |
   c4 d8 c4. |
   c4 a8 f4 a8 |
-  c4 d8 c4. | \break
+  c4 d8 c4. | 
   
   bes4 a8 g4 c8 |
   bes4 a8 g4 a8 |
   c4 a8 f4 a8 |
-  g4 f8 g4 f8 | \break
+  g4 f8 g4 f8 | 
   
   f2. |
   f2. |
@@ -93,14 +91,14 @@ altoMusic = \relative c' {
 }
 altoWords = {
   \lyricmode {
-    \dropLyricsIV
+    
     \set stanza = #"1. "
     Jo -- seph, O dear Jo -- seph mine,
     Help me rock the Child di -- vine,
     God re -- ward both thee and thine,
     In par -- a -- dise, So prays the moth -- er,
     
-    \raiseLyrics
+    
     Ma -- ry.
   }
   %\set stanza = \markup\dynamic"f "
@@ -117,7 +115,7 @@ altoWords = {
   }
 }
 altoWordsII = \lyricmode {
-  \dropLyricsIV
+  
 %\markup\italic
   \set stanza = #"2. "
   I will glad -- ly, la -- dy mine,
@@ -214,17 +212,12 @@ bassWords = \lyricmode {
 
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
-}
 
+\bookpart {
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
@@ -244,16 +237,12 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
-    \tempo 4 = 90
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
+    \set Staff.midiInstrument = "flute" 
+    %\context { \Voice \remove "Dynamic_performer" }
   }
 }
+}
+

@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-    %source = \markup { "from" \italic {CyberHymnal.org}} 
-    title = "Come Thou Long Expected Jesus"
-    poet = "Charles Wesley (1707–1788)"
-    composer = \markup{\italic{Cross of Jesus}, Sir John Stainer (1840–1901)}
-    section = "Advent"
-  }
+songTitle = "Come Thou Long Expected Jesus"
+songPoet = "Charles Wesley (1707–1788)"
+tuneComposer = \markup{\italic{Cross of Jesus}, Sir John Stainer (1840–1901)}
+tuneSection = "Advent"
+tuneSource = \markup \null % {from \italic {CyberHymnal.org}} 
 
 global = {
     \key aes \major
@@ -90,7 +88,15 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    poet = \songPoet 
+    composer = \tuneComposer 
+    section = \tuneSection 
+    %source = \tuneSource
+  }
+
 \score {
   <<
    \new ChoirStaff <<

@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Babe of Bethlehem"
-  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
-  poet = "Traditional"
-  composer = "Traditional"
-}
+songTitle = "The Babe of Bethlehem"
+songPoet = "Traditional"
+tuneComposer = "Traditional"
+tuneSource = \markup { "from" \italic {Christmas Carols, New and Old}}
 
 global = {
     \key c \major
@@ -254,7 +252,14 @@ bassWords = \lyricmode {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  composer = \tuneComposer
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<

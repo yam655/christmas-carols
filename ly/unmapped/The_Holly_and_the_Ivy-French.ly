@@ -1,11 +1,12 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Holly and the Ivy"
-  poet = "17th Century English"
-  composer = "Old French Carol"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+-- The problem with this file is that verses 4 and 5 were are distinctly different.
+-- Need to confirm how chorus works with versus 4 and 5
+
+songTitle = "The Holly and the Ivy"
+songPoet = "17th Century English"
+tuneComposer = "Old French Carol"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key f \major
@@ -57,9 +58,7 @@ sopMusic = \relative c' {
   \tieSolid
   a4.~ a4 bes8\rest \bar "||" 
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   d8 |
@@ -103,55 +102,51 @@ altoMusic = \relative c' {
   \tieSolid
   a4.~ a4 s8 |
 }
-altoWords = {
-  
-  \lyricmode {
-    \set stanza = #"1, 6."
+
+songLyricsA = \lyricmode { 
+    \set stanza = #"1."
     The Hol -- ly and the I -- vy,
     Now both are full -- well grown, __
     \set ignoreMelismata = ##t
     Of all the trees that are in the wood,
     \unset ignoreMelismata
     The Hol -- ly bears the crown: __
-  }
   \set stanza = \markup\dynamic"p  "
-  \lyricmode {
     O the ris -- ing of the sun,
     The run -- ning of the deer,
-  }
   \set stanza = \markup\dynamic"   f "
-  \lyricmode {
     The play -- ing of the mer -- ry or -- gan,
     Sweet sing -- ing in the quire,
-    Sweet sing -- ing in the quire.
-    
-  }
+    Sweet sing -- ing in the quire. 
+}
+
+songLyricsB = \lyricmode { 
+  \set stanza = \markup{\dynamic"mf " "2."}
+    The Hol -- ly bears a blos -- som,
+    As white as li -- ly -- flow’r; __
+  \set stanza = \markup\dynamic"f  "
+    And Ma -- ry bore sweet Je -- sus Christ,
+    To be our sweet Sav -- ior. __ "" 
+}
+
+songLyricsC = \lyricmode { 
+  \set stanza = #"3."
+  The Hol -- ly bears a ber -- ry,
+  As red as an -- y blood, __
+  And Ma -- ry bore sweet Je -- sus Christ,
+  To do poor sin -- ners good. __
+}
+songLyricsD = \lyricmode { 
   \set stanza = \markup{\dynamic" mf" "4."}
-  \lyricmode {
     The Hol -- ly bears a \set ignoreMelismata = ##t
     prick -- le,
     \unset ignoreMelismata
     As sharp as an -- y thorn, __
-  }
   \set stanza = \markup\dynamic"f "
-  \lyricmode {
     And Ma -- ry bore sweet Je -- sus Christ,
     On Christ -- mas \set ignoreMelismata = ##t day in the morn. __ _
-  }
 }
-altoWordsII = {
-  
-  \set stanza = \markup{\dynamic"mf " "2."}
-  \lyricmode {
-    The Hol -- ly bears a blos -- som,
-    As white as li -- ly -- flow’r; __
-  }
-  \set stanza = \markup\dynamic"f  "
-  \lyricmode {
-    And Ma -- ry bore sweet Je -- sus Christ,
-    To be our sweet Sav -- ior. __ ""
-    
-    \repeat unfold 33 \skip1
+songLyricsE = \lyricmode { 
     \set stanza = #"5."
     The Hol -- ly bears a bark, __
     \set ignoreMelismata = ##t
@@ -160,23 +155,25 @@ altoWordsII = {
     as an -- y gall; __
     And Ma -- ry bore sweet Je -- sus Christ,
     For to re -- deem us all. __
-  }
 }
-altoWordsIII = \lyricmode {
-  
-  \set stanza = #"3."
-  The Hol -- ly bears a ber -- ry,
-  As red as an -- y blood, __
-  And Ma -- ry bore sweet Je -- sus Christ,
-  To do poor sin -- ners good. __
+
+songLyricsF = \lyricmode { 
+    \set stanza = #"6."
+    The Hol -- ly and the I -- vy,
+    Now both are full -- well grown, __
+    \set ignoreMelismata = ##t
+    Of all the trees that are in the wood,
+    \unset ignoreMelismata
+    The Hol -- ly bears the crown: __
+  \set stanza = \markup\dynamic"p  "
+    O the ris -- ing of the sun,
+    The run -- ning of the deer,
+  \set stanza = \markup\dynamic"   f "
+    The play -- ing of the mer -- ry or -- gan,
+    Sweet sing -- ing in the quire,
+    Sweet sing -- ing in the quire. 
 }
-altoWordsIV = \lyricmode {
-}
-altoWordsV = \lyricmode {
-}
-altoWordsVI = \lyricmode {
-  \set stanza = #"6."
-}
+
 tenorMusic = \relative c {
   f8 |
   f4 g8 f[ g] f |
@@ -221,9 +218,6 @@ tenorMusic = \relative c {
   \tieSolid
   c4.~ c4 s8 |
 }
-tenorWords = \lyricmode {
-
-}
 
 bassMusic = \relative c {
   d8 |
@@ -267,12 +261,16 @@ bassMusic = \relative c {
   \tieSolid
   a4.~ a4 d,8\rest |
 }
-bassWords = \lyricmode {
 
+
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet 
+  composer = \tuneComposer
+  source = \tuneSource
 }
 
-
-\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -280,27 +278,29 @@ bassWords = \lyricmode {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.9))} \lyricsto "sopranos" \altoWords
+    \new Lyrics \lyricsto "sopranos" \songLyricsA
+    \new Lyrics \lyricsto "sopranos" \songLyricsB
+    \new Lyrics \lyricsto "sopranos" \songLyricsC
+    \new Lyrics \lyricsto "sopranos" \songLyricsD
+    \new Lyrics \lyricsto "sopranos" \songLyricsE
+    \new Lyrics \lyricsto "sopranos" \songLyricsF
     \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
   >>
-  \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+    \layout { }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

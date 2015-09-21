@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Sans Day Carol"
-  poet = "Traditional"
-  composer = "Traditional Cornish"
-  %source = \markup { from \italic {The Cornish Song Book}, 1929, via \italic{HymnsAndCarolsOfChristmas.com}}
-}
+songTitle = "The Sans Day Carol"
+songPoet = "Traditional"
+tuneComposer = "Traditional Cornish"
+tuneSource = \markup {from \italic {The Cornish Song Book}, 1929} %, via \italic{HymnsAndCarolsOfChristmas.com}}
 
 global = {
   \key f \major
@@ -188,12 +186,17 @@ bassMusic = \relative c {
   bes bes c |
   <f f,>2 \bar "|."
 }
-bassWords = \lyricmode {
 
+
+
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource
 }
 
-
-\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -214,14 +217,19 @@ bassWords = \lyricmode {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

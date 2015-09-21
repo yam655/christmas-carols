@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Truth From Above"
-  subtitle = "(Herefordshire Carol)"
-  poet = "Traditional"
-  composer = "Arranged by Ralph Vaughan Williams (1872–1958)"
-  source = ""
-}
+songTitle = "The Truth From Above"
+songSubtitle = "(Herefordshire Carol)"
+songPoet = "Traditional"
+tuneComposer = "arr. by Ralph Vaughan Williams (1872–1958)"
+tuneSource = \markup \null
 
 global = {
     \key c \major
@@ -227,7 +225,15 @@ bassWords = \lyricmode {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  subtitle = \songSubtitle
+  poet = \songPoet
+  composer = \tuneComposer 
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<

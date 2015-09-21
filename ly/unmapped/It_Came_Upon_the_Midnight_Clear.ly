@@ -188,10 +188,16 @@ bassMusic = \relative c {
             >>
         >>
     >>
-    \layout { }
+  \layout { }
     \midi {
         \set Staff.midiInstrument = "flute" 
-        %\context { \Voice \remove "Dynamic_performer" }
-  }
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+

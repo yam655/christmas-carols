@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "O Come, All Ye Faithful"
-  poet = "Translated by Frederick Oakley (1802–1880)"
-  composer = "John Francis Wade (1711–1786)"
-  %source = \markup { "from" \concat{\italic "Christmas Carols and Hymns for School and Choir" ", 1910"}}
-}
+songTitle = "O Come, All Ye Faithful"
+songPoet = "Translated by Frederick Oakley (1802–1880)"
+tuneComposer = "John Francis Wade (1711–1786)"
+tuneSource = \markup {from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
 
 global = {
   \key a \major
@@ -174,7 +172,14 @@ bassMusic = \relative c' {
   a2. \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  composer = \tuneComposer
+  source = \tuneSource
+}
+
 \score {
     <<
         \new ChoirStaff <<
@@ -193,12 +198,16 @@ bassMusic = \relative c' {
             >>
         >>
     >>
-    \layout { }
+  \layout { }
     \midi {
-        \set Staff.midiInstrument = "flute"
-        %\context { \Voice \remove "Dynamic_performer" }
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
     }
 }
-
 }
 

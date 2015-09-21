@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "’Twas in the winter cold"
-  subtitle = "A Christmas Morning Hymn"
-  poet = "Rev. Charles I. Black (1821–1896)"
-  composer = "Joseph Barnby (1838–1896)"
-  source = \markup { "from" \italic {Christmas Carols, New and Old}}
-}
+songTitle = "’Twas in the winter cold"
+songSubtitle = "A Christmas Morning Hymn"
+songPoet = "Rev. Charles I. Black (1821–1896)"
+tuneComposer = "Joseph Barnby (1838–1896)"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key d \major
@@ -148,9 +146,7 @@ tenorMusic = \relative c {
   g e e g |
   fis1 \bar "|."
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   d4 d8 d d4 d |
@@ -178,7 +174,15 @@ bassWords = \lyricmode {
 }
 
   
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  subtitle = \songSubtitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -198,15 +202,20 @@ bassWords = \lyricmode {
     \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "tenors" \altoWordsIII
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "tenors" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5))} \lyricsto "tenors" \altoWords
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

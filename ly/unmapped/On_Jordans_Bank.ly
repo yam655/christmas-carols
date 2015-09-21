@@ -1,13 +1,11 @@
 ﻿\version "2.14.2"
 
-\header { 
-    title = "On Jordan’s Bank"
-    poet = \markup{\italic{Jordanis oras prævia}, by Charles Coffin (1676–1749)}
-    translator = \markup"Translated by John Chandler (1806–1876)"
-    composer = \markup{ tune is \italic{Winchester New}}
-    arranger = \markup{"Adapted from Chorale in " \italic"Musikalisches Hand-Buch" ", 1690"}
-    section = "Advent"
-  }
+songTitle = "On Jordan’s Bank"
+songPoet = \markup{\italic{Jordanis oras prævia}, by Charles Coffin (1676–1749)}
+songTranslator = \markup{tr. by John Chandler (1806–1876)}
+tuneComposer = \markup{tune is \italic{Winchester New}}
+tuneArranger = \markup{Adapted from Chorale in \italic{Musikalisches Hand-Buch}, 1690}
+songSection = "Advent"
 
 global = {
     \key bes \major
@@ -114,7 +112,15 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header { 
+    title = \songTitle 
+    poet = \songPoet 
+    translator = \songTranslator
+    composer = \tuneComposer
+    arranger = \tuneArranger 
+    section = \songSection
+  }
 \score {
   <<
    \new ChoirStaff <<
@@ -135,12 +141,15 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

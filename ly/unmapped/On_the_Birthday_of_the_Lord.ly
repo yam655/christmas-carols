@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "On the Birthday of the Lord"
-  poet = \markup{\italic{In natali Domini}, 14th Century}
-  translator = "Translated by Rev. H. R. Bramley (1833–1917) from Latin"
-  composer = "John Bacchus Dykes (1823–1876)"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "On the Birthday of the Lord"
+songPoet = \markup{\italic{In natali Domini}, 14th Century}
+songTranslator = "tr. by Rev. H. R. Bramley (1833–1917) from Latin"
+tuneComposer = "John Bacchus Dykes (1823–1876)"
+tuneSource = \markup { from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key d \major
@@ -248,7 +246,15 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  translator = \songTranslator
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<

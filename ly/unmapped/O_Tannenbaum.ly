@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "O Tannenbaum"
-  poet = "Traditional"
-  composer = "German Folk Song"
-  source = ""
-}
+songTitle = "O Tannenbaum"
+songPoet = "Traditional"
+tuneComposer = "German Folk Song"
+tuneSource = \markup \null
 
 global = {
   \key g \major
@@ -127,7 +125,14 @@ bassMusic = \relative c {
   d g d8\rest \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  composer = \tuneComposer 
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -146,10 +151,16 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

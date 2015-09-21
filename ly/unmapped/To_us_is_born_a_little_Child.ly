@@ -1,14 +1,12 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "To us is born a little Child"
-  subtitle = "(Parvulus nobis nascitur)"
-  poet = "15th Century"
-  translator = "Translated by Wm. John Blew (1808–1894)"
-  composer = \markup{\italic "Ach! bleib bei uns, Herr Jesu Christ"}
-  arranger = "J.S. Bach (1685–1750)"
-  source = \markup{ from \italic {The Cowley Carol Book}, 1919}
-}
+songTitle = "To us is born a little Child"
+songSubtitle = "(Parvulus nobis nascitur)"
+songPoet = "15th Century"
+songTranslator = "tr. by Wm. John Blew (1808–1894)"
+tuneComposer = \markup{\italic {Ach! bleib bei uns, Herr Jesu Christ}}
+tuneArranger = "J.S. Bach (1685–1750)"
+tuneSource = \markup {from \italic {The Cowley Carol Book}, 1919}
 
 global = {
     \key a \major
@@ -135,9 +133,7 @@ tenorMusic = \relative c' {
   a4) a a gis |
   e2. \bar "|."
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   a4 |
@@ -161,18 +157,19 @@ bassMusic = \relative c {
   fis4) cis8[ d] e4 e |
   a,2.\fermata \bar "|."
 }
-bassWords = \lyricmode {
 
+
+\bookpart { 
+\header {
+  title = \songTitle 
+  subtitle = \songSubtitle 
+  poet = \songPoet 
+  translator = \songTranslator 
+  composer = \tuneComposer 
+  arranger = \tuneArranger 
+  source = \tuneSource 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
-\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -191,19 +188,9 @@ pianoLH = \relative c' {
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-%6.14 \context {\Lyrics\override LyricText #'font-size = #0.4 }
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
-    }
-  }
+  \layout { }
   \midi {
     \set Staff.midiInstrument = "flute" 
     %\context { \Voice \remove "Dynamic_performer" }

@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Come Ye Lofty"
-  poet = "Rev. Archer Gurney (1820–1887)"
-  composer = "G.J. Elvey (1816–1893)"
-  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
-}
+songTitle = "Come Ye Lofty"
+songPoet = "Rev. Archer Gurney (1820–1887)"
+tuneComposer = "G.J. Elvey (1816–1893)"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key d \major
@@ -172,12 +170,17 @@ bassMusic = \relative c {
   e g a fis8[ g] |
   a4 a, d2 \bar "|."
 }
-bassWords = \lyricmode {
 
+
+
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
 }
 
-
-\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -198,15 +201,19 @@ bassWords = \lyricmode {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

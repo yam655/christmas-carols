@@ -1,17 +1,14 @@
 ﻿\version "2.14.2"
 
-\header {
-
-    title = "This Endris Night"
-    composer = "15th Century English"
-    poet = \markup{Adapted from \italic{Thys endris nyzth}, 15th Century}
-    %source = \markup\concat{"from " \italic"The English Carol Book, Second Series" ", 1913, via " \italic"HymnsAndCarolsOfChristmas.com"}
-  }
+songTitle = "This Endris Night"
+songPoet = \markup{Adapted from \italic{Thys endris nyzth}, 15th Century}
+tuneComposer = "15th Century English"
+tuneSource = \markup{from \italic{The English Carol Book, Second Series}, 1913} %, via \italic{HymnsAndCarolsOfChristmas.com}}
 
 global = {
     \key ees \major
     \time 6/4
-    \tempo 4 = 150
+    \tempo 4 = 112
 }
 
 sopMusic = \relative c' {
@@ -116,7 +113,14 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header { 
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+    source = \tuneSource 
+  }
+
 \score {
   <<
    \new ChoirStaff <<
@@ -141,11 +145,16 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

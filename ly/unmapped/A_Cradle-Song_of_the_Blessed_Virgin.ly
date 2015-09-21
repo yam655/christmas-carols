@@ -4,7 +4,7 @@ songTitle = "A Cradle-Song of the Blessed Virgin"
 songPoet = \markup \null
 songTranslator = "tr. Rev. H.R. Bramley (1833–1917) from Latin"
 tuneComposer = "Joseph Barnby (1838–1896)"
-tuneSource = \markup { "from" \italic {Christmas Carols, New and Old}}
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key f \major
@@ -188,11 +188,18 @@ bassMusic = \relative c {
             >>
         >>
     >>
-    \layout { }
+  \layout { }
     \midi {
         \set Staff.midiInstrument = "flute" 
-        %\context { \Voice \remove "Dynamic_performer" }
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
     }
 }
 }
+
+
 

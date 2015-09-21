@@ -1,12 +1,9 @@
 ﻿\version "2.14.2"
 
-
-\header {
-  title = "The Stranger Star"
-  poet = "Cecil Frances Alexander (1818–1895)"
-  composer = "J. A. Shultze, 1780"
-  source = \markup { from \italic {Favorite Songs and Hymns for School and Home}, 1899}
-}
+songTitle = "The Stranger Star"
+songPoet = "Cecil Frances Alexander (1818–1895)"
+tuneComposer = "J. A. Shultze, 1780"
+tuneSource = \markup {from \italic {Favorite Songs and Hymns for School and Home}, 1899}
 
 global = {
     \key e \major
@@ -224,7 +221,14 @@ bassMusic = \relative c {
 
   
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<

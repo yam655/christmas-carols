@@ -263,7 +263,7 @@ altoWords = \lyricmode {
   
   
   \set stanza = #"4. "
-  "" “O __ ye \set ignoreMelismata = ##t shep -- herds, \unset ignoreMelismata what have ye seen,
+  _ “O __ ye \set ignoreMelismata = ##t shep -- herds, \unset ignoreMelismata what have ye seen,
   
   %\markup\italic The \markup\italic snow \markup\italic in \markup\italic the \markup\italic street, \markup\italic and \markup\italic the \markup\italic wind \markup\italic on \markup\italic the \markup\italic door,
   \repeat unfold 11 \skip1
@@ -328,7 +328,7 @@ altoWordsII = \lyricmode {
   
   
   \set stanza = #"5. "
-  "" \set ignoreMelismata = ##t
+  _ \set ignoreMelismata = ##t
   “In an ox -- stall __ _ this night _ we saw,
   
   \set associatedVoice = "sopranos"
@@ -431,7 +431,7 @@ altoWordsIII = \lyricmode {
   
   \set stanza = #"9. "
   \set ignoreMelismata = ##t
-  "" "" News of a fair and a mar -- vel -- lous thing,
+  _ _ News of a fair and a mar -- vel -- lous thing,
   
   %%\markup\italic The \markup\italic snow \markup\italic in \markup\italic the \markup\italic street, \markup\italic and \markup\italic the \markup\italic wind \markup\italic on \markup\italic the \markup\italic door,
   \repeat unfold 11 \skip1
@@ -441,9 +441,9 @@ altoWordsIII = \lyricmode {
   %\markup\italic Min -- \markup\italic strels \markup\italic and \markup\italic maids \markup\italic stand \markup\italic forth \markup\italic on \markup\italic the \markup\italic floor, \markup\italic Stand \markup\italic forth \markup\italic on \markup\italic the \markup\italic floor.
   \repeat unfold 14{\skip1}
   
-  "" "" News of a fair and a mar -- vel -- lous thing,
+  _ _ News of a fair and a mar -- vel -- lous thing,
   No -- ël, __ _ No -- ël, __ _ No -- ël, we sing!
-  "" "" News of a fair and a mar -- vel -- lous thing,
+  _ _ News of a fair and a mar -- vel -- lous thing,
   \unset ignoreMelismata
   No -- ël, __ No -- ël, __ No -- ël, __ we sing! __
 }
@@ -705,11 +705,16 @@ bassMusic = \relative c {
       \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 4)
     }
   }
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

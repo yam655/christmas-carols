@@ -1,15 +1,12 @@
 ﻿\version "2.14.2"
 
-
-\header {
-    title = "Wake, O Wake! with Tidings Thrilling"
-    poet = \markup{\italic{Wachet Auf!} by P. Nicolai (1556–1608)}
-    translator = "Translated by F.C.B."
-    composer = "P. Nicolai (1556–1608)"
-    arranger = "Adapted and arranged by J.S. Bach (1685–1750)"
-    %source = \markup { from \italic {The English Hymnal}, 1906}
-    section = "Advent"
-}
+songTitle = "Wake, O Wake! with Tidings Thrilling"
+songPoet = \markup{\italic{Wachet Auf!} by P. Nicolai (1556–1608)}
+songTranslator = "tr. by F.C.B."
+songSection = "Advent"
+tuneComposer = "P. Nicolai (1556–1608)"
+tuneArranger = "Adapted and arranged by J.S. Bach (1685–1750)"
+tuneSource = \markup { from \italic {The English Hymnal}, 1906}
 
 global = {
   \key d \major
@@ -225,7 +222,17 @@ bassMusic = \relative c {
   e a, d2 \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle
+    poet = \songPoet
+    translator = \songTranslator
+    section = \songSection
+    composer = \tuneComposer
+    arranger = \tuneArranger
+    source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<

@@ -13,7 +13,8 @@ global = {
     \autoBeamOff
     %\override DynamicLineSpanner #'staff-padding = #0.0
     %\override DynamicLineSpanner #'Y-extent = #'(-1 . 1)
-    \tempo 4 = 135
+    % \tempo 4 = 135
+    \tempo 4. = 54
 }
 
 sopMusic = \relative c'' {
@@ -46,9 +47,7 @@ sopMusic = \relative c'' {
     e[ d] c d4. 
   }
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c'' {
   b4 g8 b4 g8 |
@@ -78,8 +77,8 @@ altoMusic = \relative c'' {
   fis4 d8 c4 c8 |
   c4 a8 b4.
 }
-altoWords = \lyricmode {
-  
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
   An -- ge -- lus ad vir -- gi -- nem
       Sub -- in -- trans in con -- cla -- ve.
@@ -92,8 +91,26 @@ altoWords = \lyricmode {
       In -- tac -- ta,
       Sa -- lu -- tem ho -- mi -- num.
       Tu por -- ta cœ -- li fac -- ta
-      Me -- del -- la cri -- mi -- num.
-      
+      Me -- del -- la cri -- mi -- num. 
+}
+
+altoWordsII = \lyricmode { 
+  \set stanza = #"2. "
+  Quo -- mo -- do con -- ci -- pe -- rem,
+      quæ vi -- rum non co -- gno -- vi?
+  Qua -- li -- ter in -- frin -- ge -- rem,
+      quæ fir -- ma men -- te vo -- vi?
+  ‘Spi -- ri -- tus san -- cti gra -- ti -- a
+  Per -- fi -- ci -- et hæc o -- mni -- a;
+      Ne ti -- me -- as,
+      sed gau -- de -- as,
+      se -- cu -- ra,
+      quod cas -- ti -- mo -- ni -- a
+      Ma -- ne -- bit in te pu -- ra
+      De -- i po -- ten -- ti -- a.’ 
+}
+
+altoWordsIII = \lyricmode { 
   \set stanza = #"3. "
   Ad hæc vir -- go no -- bi -- lis
       Re -- spon -- dens in -- quit e -- i;
@@ -108,23 +125,8 @@ altoWords = \lyricmode {
       Pa -- ra -- ta sum pa -- re -- re
       De -- i con -- si -- li -- o.
 }
-altoWordsII = \lyricmode {
-  
-%\markup\italic
-  \set stanza = #"2. "
-  Quo -- mo -- do con -- ci -- pe -- rem,
-      quæ vi -- rum non co -- gno -- vi?
-  Qua -- li -- ter in -- frin -- ge -- rem,
-      quæ fir -- ma men -- te vo -- vi?
-  ‘Spi -- ri -- tus san -- cti gra -- ti -- a
-  Per -- fi -- ci -- et hæc o -- mni -- a;
-      Ne ti -- me -- as,
-      sed gau -- de -- as,
-      se -- cu -- ra,
-      quod cas -- ti -- mo -- ni -- a
-      Ma -- ne -- bit in te pu -- ra
-      De -- i po -- ten -- ti -- a.’
-      
+
+altoWordsIV = \lyricmode { 
   \set stanza = #"4. "
   An -- ge -- lus dis -- pa -- ru -- it
       Et sta -- tim pu -- el -- la -- ris
@@ -139,10 +141,9 @@ altoWordsII = \lyricmode {
       Cru -- cem, qua de -- dit ic -- tum
       Hos -- ti mor -- ti -- fe -- ro.
 }
-altoWordsIII = \lyricmode {
-  
-  \repeat unfold 74 \skip1
-  \set stanza = #"5. "
+
+altoWordsV = \lyricmode {
+\set stanza = #"5. "
   E -- ia Ma -- ter Do -- mi -- ni,
       Quæ pa -- cem red -- di -- di -- sti
   An -- ge -- lis et ho -- mi -- ni,
@@ -156,14 +157,7 @@ altoWordsIII = \lyricmode {
       Vi -- ta fru -- i be -- a -- ta
       Post hoc ex -- si -- li -- um.
 }
-altoWordsIV = \lyricmode {
-}
-altoWordsV = \lyricmode {
-}
-altoWordsVI = \lyricmode {
-  \set stanza = #"6. "
-  \set ignoreMelismata = ##t
-}
+
 tenorMusic = \relative c' {
   g4 d'8 g,4 b8 |
   c4 d8 d4 d8 |
@@ -191,9 +185,6 @@ tenorMusic = \relative c' {
   b[ d] b b[ d b] |
   a4 d8 g,4 a8 |
   g4 e8 g4.
-}
-tenorWords = \lyricmode {
-
 }
 
 bassMusic = \relative c {
@@ -237,28 +228,32 @@ bassMusic = \relative c {
   <<
    \new ChoirStaff <<
     \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \repeat unfold 2 \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \repeat unfold 2 \altoMusic >> }
+      \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
+      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.4))} \lyricsto "altos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "altos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "altos" \altoWordsII
+    \new Lyrics = "altosIII"   \lyricsto "altos" \altoWordsIII
+    \new Lyrics = "altosIV"   \lyricsto "altos" \altoWordsIV
+    \new Lyrics = "altosV"   \lyricsto "altos" \altoWordsV
    \new Staff = men <<
       \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \repeat unfold 2 \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \repeat unfold 2 \bassMusic >> }
+      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
+      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+

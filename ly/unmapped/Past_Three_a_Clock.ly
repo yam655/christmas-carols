@@ -12,7 +12,7 @@ global = {
     \key g \major
     \time 3/4
     \autoBeamOff
-    \tempo 4 = 135
+    \tempo 4 = 126
 }
 
 sopMusic = \relative c' {
@@ -277,10 +277,16 @@ bassWords = \lyricmode {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

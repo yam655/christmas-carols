@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "Christ Was Born on Christmas Day"
-    poet = "John Mason Neale (1818–1866)"
-    composer = \markup{14th Century German melody, \italic{Resonet in laudibus}}
-    arranger = "Arranged chiefly by G. R. Woodward (1848–1934)"
-    %source = \markup { from \italic {The Cowley Carol Book}, 1919}
-  }
+songTitle = "Christ Was Born on Christmas Day"
+songPoet = "John Mason Neale (1818–1866)"
+tuneComposer = \markup{14th Century German melody, \italic{Resonet in laudibus}}
+tuneArranger = "arr. chiefly by G. R. Woodward (1848–1934)"
+tuneSource = \markup {from \italic {The Cowley Carol Book}, 1919}
 
 global = {
     \key f \major
@@ -356,7 +354,15 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    poet = \songPoet 
+    composer = \tuneComposer 
+    arranger = \tuneArranger 
+    source = \tuneSource 
+  }
+
 \score {
   <<
    \new ChoirStaff <<
@@ -409,16 +415,16 @@ bassMusic = \relative c {
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  
-  
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
     }
-  }
-} 
+}
 }
 

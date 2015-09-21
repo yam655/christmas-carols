@@ -1,13 +1,11 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Son of God is born for all"
-  subtitle = "(Geborn ist Gottes Sönelein)"
-  poet = "Michael Praetorius (1571–1621)"
-  composer = \markup{Variation of \italic{Puer nobis nascitur} from \italic {Piæ Cantiones}}
-  arranger = "Arranged by George Ratcliffe Woodward (1848–1934)"
-  %source = \markup{ from \italic {The Cowley Carol Book}, 1919}
-}
+songTitle = "The Son of God is born for all"
+songSubtitle = "(Geborn ist Gottes Sönelein)"
+songPoet = "Michael Praetorius (1571–1621)"
+tuneComposer = \markup{Variation of \italic{Puer nobis nascitur} from \italic {Piæ Cantiones}}
+tuneArranger = "Arranged by George Ratcliffe Woodward (1848–1934)"
+tuneSource = \markup {from \italic {The Cowley Carol Book}, 1919}
 
 global = {
     \key ees \major
@@ -191,7 +189,16 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  subtitle = \songSubtitle 
+  poet = \songPoet
+  composer = \tuneComposer
+  arranger = \tuneArranger
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<

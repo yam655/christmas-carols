@@ -1,10 +1,8 @@
 \version "2.14.2"
 
-\header {
-  title = "O Magnum Mysterium"
-  composer = "Tomás Luis de Victoria (c. 1548–1611)"
-  source = ""
-}
+songTitle = "O Magnum Mysterium"
+tuneComposer = "Tomás Luis de Victoria (c. 1548–1611)"
+tuneSource = \markup \null
 
 global = {
   \key f \major
@@ -457,7 +455,13 @@ bassWords = \lyricmode {
   Al -- le -- lu -- ja. __
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  composer = \tuneComposer 
+  source = \tuneSource
+}
+
 \score {
 <<
     \new ChoirStaff <<
@@ -500,12 +504,16 @@ bassWords = \lyricmode {
       
     }
   }
-  \midi {
-    \set Staff.midiInstrument = "flute"
-    %\set Staff.midiInstrument = "recorder"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

@@ -1,13 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-    %source = \markup { from \italic "The Cambridge Carol Book" ", 1924"}
-
-    title = "When Angelick Host Entuned"
-    poet = "George Ratcliffe Woodward (1848–1934)"
-    composer = \markup{\italic{Heinz, wiltu Christa han}, 1582}
-    arranger = "Arranged by George Ratcliffe Woodward (1848–1934)"
-  }
+tuneSource = \markup { from \italic "The Cambridge Carol Book" ", 1924"}
+songTitle = "When Angelick Host Entuned"
+songPoet = "George Ratcliffe Woodward (1848–1934)"
+tuneComposer = \markup{\italic{Heinz, wiltu Christa han}, 1582}
+tuneArranger = "Arranged by George Ratcliffe Woodward (1848–1934)"
 
 global = {
     \key g \major
@@ -120,8 +117,16 @@ bassWords = \lyricmode {
 
 }
 
-  
-\bookpart {
+
+\bookpart { 
+\header {
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+    arranger = \tuneArranger
+    source = \tuneSource 
+  }
+
 \score {
   <<
    \new ChoirStaff <<
@@ -146,11 +151,16 @@ bassWords = \lyricmode {
   >>
   >>
   \layout { }
-  
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

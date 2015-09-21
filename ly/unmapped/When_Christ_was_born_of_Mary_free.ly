@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "When Christ was born of Mary free!"
-  poet = "15th Century Middle English Harleian Manuscript"
-  composer = \markup{tune is \italic{When Christ Was Born}, Arthur H. Brown}
-  arranger = "Arranged by Sir John Stainer (1840–1901)"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "When Christ was born of Mary free!"
+songPoet = "15th Century Middle English Harleian Manuscript"
+tuneComposer = \markup{tune is \italic{When Christ Was Born}, Arthur H. Brown}
+tuneArranger = "Arranged by Sir John Stainer (1840–1901)"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key g \major
@@ -186,7 +184,15 @@ altoWordsIV = \lyricmode {
   “In ex -- cel -- sis Glo -- ri -- a.”
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  composer = \tuneComposer
+  arranger = \tuneArranger
+  source = \tuneSource
+}
+
 \score {
     {
         \new ChoirStaff <<
@@ -221,9 +227,15 @@ altoWordsIV = \lyricmode {
         >>
     }
     \layout { }
+
     \midi {
         \set Staff.midiInstrument = "flute" 
-        %\context { \Voice \remove "Dynamic_performer" }
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
     }
 }
 }

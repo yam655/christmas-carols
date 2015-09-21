@@ -111,7 +111,7 @@
 \include "unmapped/O_Come_Little_Children.ly"
 \include "unmapped/Theres_a_Song_in_the_Air.ly"
 \include "unmapped/The_Holly_and_the_Ivy-English.ly"
-\include "unmapped/The_Holly_and_the_Ivy-French.ly"
+%\include "unmapped/The_Holly_and_the_Ivy-French.ly"
 %\include "unmapped/The_Sussex_Carol.ly" % repeats
 \include "unmapped/Blessed_be_that_Maid_Marie.ly"
 \include "unmapped/Rise_Up_Shepherds_and_Follow.ly"

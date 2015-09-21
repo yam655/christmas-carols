@@ -1,13 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Carol of the Lala (Schedryck)"
+songTitle = "Carol of the Lala (Schedryck)"
   % The lyrics for "Carol of the Bells" is under Copyright in the United States
-
-  poet = "S.W. Black"
-  composer = \markup{tune is \italic{Schedryck}, Mikola Dmytrovitch Leontovych (1877–1921)}
-  %source = \markup { "from" \italic {HymnsAndCarolsOfChristmas.com}}
-}
+songPoet = "S.W. Black"
+tuneComposer = \markup{tune is \italic{Schedryck}, Mikola Dmytrovitch Leontovych (1877–1921)}
+tuneSource = \markup \null % {from \italic {HymnsAndCarolsOfChristmas.com}}
 
 global = {
     \key bes \major
@@ -324,7 +321,14 @@ bassWords = \lyricmode {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -374,12 +378,16 @@ bassWords = \lyricmode {
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "basses" \bassWords
   >>
   >>
-  
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
-} 
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
+}
 }
 

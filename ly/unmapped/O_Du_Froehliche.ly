@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header { 
-    title = "O Du Fröhliche"
-    poet = "Johannes Daniel Falk (1768–1826)"
-    composer = "Sicilian Hymn"
-    %source = \markup \concat{ "from " \italic"The Wartburg Hymnal" ", 1918, via " \italic"HymnsAndCarolsOfChristmas.com"}
-    %\markup{from \italic{The English Carol Book, Second Series}, 1913, via \italic{HymnsAndCarolsOfChristmas.com}}
-}
+songTitle = "O Du Fröhliche"
+songPoet = "Johannes Daniel Falk (1768–1826)"
+tuneComposer = "Sicilian Hymn"
+tuneSource = \markup{from \italic{The English Carol Book, Second Series}, 1913} %, via \italic{HymnsAndCarolsOfChristmas.com}}
+%tuneSource = \markup {from \italic{The Wartburg Hymnal}, 1918} % , via \italic{HymnsAndCarolsOfChristmas.com}}
 
 global = {
     \key f \major
@@ -139,7 +137,14 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header { 
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+    source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -163,11 +168,16 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "What Child is This?"
-  poet = "William C. Dix (1837–1898)"
-  composer = "16th Century English Air"
-  arranger = "Arranged by Sir John Stainer (1840–1901)"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "What Child is This?"
+songPoet = "William C. Dix (1837–1898)"
+tuneComposer = "16th Century English Air"
+tuneArranger = "Arranged by Sir John Stainer (1840–1901)"
+tuneSource = \markup { from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key g \major
@@ -211,7 +209,15 @@ bassWords = \lyricmode {
 
   
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  composer = \tuneComposer
+  arranger = \tuneArranger
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -236,10 +242,16 @@ bassWords = \lyricmode {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

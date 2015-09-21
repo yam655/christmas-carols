@@ -1,14 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Of the Father’s Love Begotten"
-  poet = "Translated by John Mason Neale (1818–1866)"
-  composer = \markup{\italic{Divinum Mysterium}, 13th Century Melody}
-% source = \markup\center-column{
-%   \concat{"from " \italic"Great Hymns of the Church Compiled by the Late Right Reverend John Freeman Young" ", 1887,"}
-%   \concat{"via " \italic"HymnsAndCarolsOfChristmas.com"}
-% }
-}
+songTitle = "Of the Father’s Love Begotten"
+songPoet = "tr. by John Mason Neale (1818–1866)"
+tuneComposer = \markup{\italic{Divinum Mysterium}, 13th Century Melody}
+tuneSource = \markup {from \italic{Great Hymns of the Church Compiled by the Late Right Reverend John Freeman Young}, 1887}
+%   via \italic{HymnsAndCarolsOfChristmas.com}}
 
 global = {
   \key f \major
@@ -185,18 +181,17 @@ bassMusic = \relative c {
   a4 a4 bes4 bes f f f2 |
   f'4 f f a,8[ bes] c4 d c2( f)
 }
-bassWords = \lyricmode {
 
+
+
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
 }
 
-pianoRH = \relative c' {
-  
-}
-pianoLH = \relative c' {
-  
-}
-
-\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -220,9 +215,7 @@ pianoLH = \relative c' {
       \new Voice = "basses" { \voiceTwo << \global \repeat unfold3\bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout {
     \context {

@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Christmas is Coming"
-  %poet = "Old Rhyme"
-  composer = "H. Walford Davies (1869–1941)"
-  source = ""
-}
+songTitle = "Christmas is Coming"
+songPoet = \markup \null % "Old Rhyme"
+tuneComposer = "H. Walford Davies (1869–1941)"
+tuneSource = \markup \null
 
 global = {
     \key ees \major
@@ -373,11 +371,17 @@ bassWords = \lyricmode {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet
+  composer = \tuneComposer 
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }

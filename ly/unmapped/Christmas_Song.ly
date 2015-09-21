@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Christmas Song"
-  poet = "William Bright (1824–1901)"
-  composer = "John Bacchus Dykes (1823–1876)"
-  source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "Christmas Song"
+songPoet = "William Bright (1824–1901)"
+tuneComposer = "John Bacchus Dykes (1823–1876)"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key c \major
@@ -281,9 +279,7 @@ tenorMusic = \relative c' {
   b4( a8 g4 f8 |
   e4 f8) e4.
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   c4 c8 c4 c8 |
@@ -319,7 +315,14 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -339,14 +342,22 @@ bassMusic = \relative c {
     \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsIII
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.6))} \lyricsto "altos" \altoWords
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+
+
+
+

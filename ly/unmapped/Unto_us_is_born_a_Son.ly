@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "Unto us is born a Son"
-    subtitle = "(The same, in English)"
-    poet = \markup{Words and tune (14th cent.) from \italic{Piæ Cantiones,} 1582}
-    composer = "Arranged by G.H. Palmer"
-  }
+songTitle = "Unto us is born a Son"
+songSubtitle = "(The same, in English)"
+songPoet = \markup{Words and tune (14th cent.) from \italic{Piæ Cantiones,} 1582}
+tuneComposer = "arr. by G.H. Palmer"
 
 global = {
     \key d \major
@@ -110,9 +108,7 @@ tenorMusic = \relative c' {
   e b' a g |
   fis g fis2 \bar "|."
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   d2. g,4 |
@@ -127,13 +123,16 @@ bassMusic = \relative c {
   a1 |
   d2 d, \bar "|."
 }
-bassWords = \lyricmode {
 
-}
 
-  
+\bookpart { 
+\header {
+    title = \songTitle
+    subtitle = \songSubtitle
+    poet = \songPoet 
+    composer = \tuneComposer 
+  }
 
-\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -153,8 +152,6 @@ bassWords = \lyricmode {
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
   >>
   \layout { }

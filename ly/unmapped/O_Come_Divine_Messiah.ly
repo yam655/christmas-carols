@@ -1,13 +1,10 @@
 ﻿\version "2.14.2"
 
-
-\header {
-    title = "O Come, Divine Messiah"
-    poet = "Abbé Simon J. Pellegrin (1663–1745)"
-    translator = "Translated by Sister Mary of St. Philip, SND (1825–1904)"
-    composer = "16th Century French Carol"
-    section = "Advent"
-}
+songTitle = "O Come, Divine Messiah"
+songPoet = "Abbé Simon J. Pellegrin (1663–1745)"
+songTranslator = "tr. by Sister Mary of St. Philip, SND (1825–1904)"
+tuneComposer = "16th Century French Carol"
+tuneSection = "Advent"
 
 global = {
     \key g \major
@@ -196,7 +193,15 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    poet = \songPoet 
+    translator = \songTranslator 
+    composer = \tuneComposer 
+    section = \tuneSection 
+}
+
 \score {
   <<
    \new ChoirStaff <<

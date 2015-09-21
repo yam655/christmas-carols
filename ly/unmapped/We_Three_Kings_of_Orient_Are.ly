@@ -1,12 +1,9 @@
 ﻿\version "2.14.2"
 
-
-\header {
-  title = "We Three Kings of Orient Are"
-  composer = "John H. Hopkins (1820–1891)"
-  poet = "John H. Hopkins (1820–1891)"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "We Three Kings of Orient Are"
+songPoet = "John H. Hopkins (1820–1891)"
+tuneComposer = "John H. Hopkins (1820–1891)"
+tuneSource = \markup { from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key g \major
@@ -187,7 +184,14 @@ bassWords = \lyricmode {
 
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songTitle
+  composer = \tuneComposer
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<

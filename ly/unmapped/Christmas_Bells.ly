@@ -1,9 +1,7 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "Christmas Bells"
-    subtitle = "(Lovely Evening)"
-  }
+songTitle = "Christmas Bells"
+songSubtitle = "(Lovely Evening)"
 
 global = {
     \key g \major
@@ -41,7 +39,12 @@ altoWords = \lyricmode {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    subtitle = \songSubtitle 
+  }
+
 \score {
   <<
     \new Staff = women <<
@@ -51,11 +54,17 @@ altoWords = \lyricmode {
    
   >>
   \layout { }
-  
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+
 

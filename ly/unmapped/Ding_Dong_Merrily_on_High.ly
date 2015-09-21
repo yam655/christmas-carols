@@ -22,7 +22,7 @@ sopMusic = \relative c'' {
     g bes bes a |
     bes2 bes
   } 
-  \repeat volta 2 {
+  \repeat unfold 2 {
     f'4.( ees8[ d ees f d] |
     ees4. d8[ c d ees c] |
     d4. c8[ bes c d bes] |
@@ -45,7 +45,7 @@ altoMusic = \relative c' {
     f ees c f |
     f2 f |
   }
-  \repeat volta 2 {
+  \repeat unfold 2 {
     r4 f2( bes4 |
     bes8[ a g f] g[ f] ees4) |
     r4  f8([ ees] d4 g |
@@ -57,21 +57,21 @@ altoMusic = \relative c' {
     f2 f
   }
 }
-altoWords = \lyricmode {
-  
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
   Ding dong! mer -- ri -- ly on high in heav’n the bells are ring -- ing:
   Ding dong!  Ve -- ri -- ly the sky is riv’n with an -- gel sing -- ing.
-  \markup\italic Glo -- \markup\italic ri -- \markup\italic a, \markup\italic ho -- \markup\italic san -- \markup\italic na \markup\italic in \markup\italic ex -- \markup\italic cel -- \markup\italic sis!
+  Glo -- ri -- a, ho -- san -- na in ex -- cel -- sis!
+  Glo -- ri -- a, ho -- san -- na in ex -- cel -- sis!
 }
-altoWordsII = \lyricmode {
-  
+altoWordsII = \lyricmode { 
   \set stanza = #"2. "
   E’en so here be -- low, be -- low, let stee -- ple bells be swung -- en.
   And i -- o, i -- o, i -- o by priest and peo -- ple sung -- en.
 }
-altoWordsIII = \lyricmode {
-  
+
+altoWordsIII = \lyricmode { 
   \set stanza = #"3. "
   Pray ye du -- ti -- ful -- ly prime your ma -- tin chime, ye ring -- ers;
   may ye beau -- ti -- ful -- ly rime your eve -- time song, ye sing -- ers.
@@ -96,9 +96,11 @@ tenorMusic = \relative c' {
     d2 d
   }
 }
+
 tenorWords = \lyricmode {
   \repeat unfold 28 { \skip 1}
-  \markup\italic Glo -- _ _ \markup\italic ri -- \markup\italic a, \markup\italic ho -- \markup\italic san -- \markup\italic na \markup\italic in \markup\italic ex -- \markup\italic cel -- \markup\italic sis!
+  Glo -- _ _ ri -- a, ho -- san -- na in ex -- cel -- sis!
+  Glo -- _ _ ri -- a, ho -- san -- na in ex -- cel -- sis!
 }
 
 bassMusic = \relative c {
@@ -108,7 +110,7 @@ bassMusic = \relative c {
     ees g f f |
     bes,2 bes |
   }
-  \repeat volta 2 {
+  \repeat unfold 2 {
     s4 a'4( bes d, |
     c d ees8[ d] c4) |
     s4 f( g bes, |
@@ -165,16 +167,19 @@ bassMusic = \relative c {
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men"  } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" } \lyricsto "basses" \bassWords
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
-} 
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
+}
 }
 

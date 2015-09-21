@@ -1,13 +1,10 @@
 ﻿\version "2.14.2"
 
-
-\header {
-    title = "Conditor alme siderum"
-    poet = "Vesper Hymn"
-    composer = "Arranged by Michael Praetorius (1571–1621)" 
-    %source = \markup{from \italic"cpdl.org"}
-    %\markup { from \italic {Peters’ Sodality Hymn Book}, 1914}
-  }
+songTitle = "Conditor alme siderum"
+songPoet = "Vesper Hymn"
+tuneComposer = "Arranged by Michael Praetorius (1571–1621)" 
+tuneSource = \markup {from \italic {Peters’ Sodality Hymn Book}, 1914}
+    %\markup{from \italic"cpdl.org"}
 
 global = {
     \key f \major
@@ -87,7 +84,14 @@ bassWords = \lyricmode {
 %  \repeat unfold 11 \skip1
 %  pre -- ces súp -- pli -- cum.
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    poet = \songPoet 
+    composer = \tuneComposer 
+    source = \tuneSource
+  }
+
 \score {
   <<
    \new ChoirStaff <<

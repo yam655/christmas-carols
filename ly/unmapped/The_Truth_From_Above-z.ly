@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Truth From Above"
-  subtitle = "(Herefordshire Carol)"
-  poet = "Traditional"
-  composer = "Traditional"  
-  %source = \markup { from \italic {ChristmasCarolMusic.org}}
-}
+songTitle = "The Truth From Above"
+songSubtitle = "(Herefordshire Carol)"
+songPoet = "Traditional"
+tuneComposer = "Traditional"  
+tuneSource = \markup {from \italic {ChristmasCarolMusic.org}}
 
 global = {
     \key c \major
@@ -48,9 +46,7 @@ sopMusic = \relative c' {
     c[ a] b4 a2
   }
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   e4 |
@@ -231,7 +227,15 @@ bassWords = \lyricmode {
 
   
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  subtitle = \songSubtitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -239,7 +243,6 @@ bassWords = \lyricmode {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
     \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsVI
     \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsV
     \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "sopranos" \altoWordsIV

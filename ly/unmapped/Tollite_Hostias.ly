@@ -1,10 +1,8 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "Tollite Hostias"
-    composer = "Camille Saint-Saëns (1835–1921)"
-    %source = \markup { "from" \italic "cpdl.org"}
-  }
+songTitle = "Tollite Hostias"
+tuneComposer = "Camille Saint-Saëns (1835–1921)"
+tuneSource = \markup \null % {from \italic {cpdl.org}}
 
 global = {
   \key g \major
@@ -429,7 +427,12 @@ pianoLH = \relative c' {
   <g, g,>1 \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    composer = \tuneComposer 
+    source = \tuneSource
+  }
 \score {
   <<
    \new ChoirStaff <<
@@ -493,10 +496,16 @@ pianoLH = \relative c' {
 \new Staff = "one" { \new Voice { \global \pianoRH } } \new Staff = "two" { \global \clef "bass" \pianoLH } >>
 >>
 
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+
 

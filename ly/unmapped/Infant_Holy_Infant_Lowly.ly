@@ -1,15 +1,13 @@
 ﻿\version "2.14.2"
 
-
-\header {
-  title = "Infant Holy, Infant Lowly"
-  subtitle = "(W Żłobie Leży)"
-  poet = "Traditional Polish Carol"
-  translator = "Translated by Edith M. G. Reed (1885–1933)"
-  composer = "Traditional Polish Carol"
-  arranger = "Arranged by Edith M. G. Reed (1885–1933)"
-  %source = \markup { "from" \italic "CyberHymnal.org"}
-}
+tuneTitle = "W Żłobie Leży"
+tuneComposer = "Traditional Polish Carol"
+tuneArranger = "arr. by Edith M. G. Reed (1885–1933)"
+tuneSource = \markup {from \italic {CyberHymnal.org}}
+songTitle = "Infant Holy, Infant Lowly"
+songSubtitle = \markup{(\tuneTitle)}
+songPoet = "Traditional Polish Carol"
+songTranslator = "tr. by Edith M. G. Reed (1885–1933)"
 
 global = {
     \key g \major
@@ -146,7 +144,17 @@ bassWords = \lyricmode {
 
   
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  subtitle = \songSubtitle
+  poet = \songPoet 
+  translator = \songTranslator 
+  composer = \tuneComposer 
+  arranger = \tuneArranger
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<

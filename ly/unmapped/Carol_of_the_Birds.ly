@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "Carol of the Birds"
-    poet = "Traditional"
-    composer = "Bas-Quercey Carol"
-    %source = \markup { from \italic{Carols Old and Carols New}, 1916, via \italic{HymnsAndCarolsOfChristmas.com}}
-  }
+songTitle = "Carol of the Birds"
+songPoet = "Traditional"
+tuneComposer = "Bas-Quercey Carol"
+tuneSource = \markup {from \italic{Carols Old and Carols New}, 1916} %, via \italic{HymnsAndCarolsOfChristmas.com}}
 
 global = {
     \key bes \major
@@ -27,9 +25,7 @@ sopMusic = \relative c'' {
   d4 d8\noBeam c d4 c |
   bes a g2 \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   d4 d8\noBeam d f4 f |
@@ -80,10 +76,6 @@ altoWordsIV = \lyricmode {
   Christ on the earth with man doth dwell,
   Join in the shout, “No -- _ ël, No -- ël!”
 }
-altoWordsV = \lyricmode {
-}
-altoWordsVI = \lyricmode {
-}
 tenorMusic = \relative c' {
   bes4 a8\noBeam bes c4 c |
   \slurDotted d d8\noBeam( d) c2 |
@@ -97,9 +89,7 @@ tenorMusic = \relative c' {
   bes4 bes8\noBeam a bes4 ees |
   d \slurSolid d8[ c] bes2 \bar "|."
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c' {
   g4 d8\noBeam g f4 f |
@@ -115,35 +105,43 @@ bassMusic = \relative c' {
   d d, g2 \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    poet = \songPoet 
+    composer = \tuneComposer 
+    source = \tuneSource 
+  }
+
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5))} \lyricsto "altos" \altoWords
+    \new Lyrics = "altos"   \lyricsto "altos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "altos" \altoWordsII
+    \new Lyrics = "altosIII"  \lyricsto "altos" \altoWordsIII
+    \new Lyrics = "altosIV"   \lyricsto "altos" \altoWordsIV
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
   >>
   >>
   \layout { }
-  
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+

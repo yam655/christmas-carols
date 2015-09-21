@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "Away In A Manger"
-    poet = "Anonymous"
-    composer = "James Ramsey Murray (1841–1905)"
-    %source = ""%\markup { "from" \italic {ChristmasCarolMusic.org}} 
-}
+songTitle = "Away In A Manger"
+songPoet = "Anonymous"
+tuneComposer = "James Ramsey Murray (1841–1905)"
+tuneSource = \markup \null %\markup {from \italic {ChristmasCarolMusic.org}} 
 
 global = {
     \key f \major
@@ -140,7 +138,14 @@ bassMusic = \relative c {
   f,2 \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    poet = \songPoet 
+    composer = \tuneComposer 
+    source = \tuneSource 
+}
+
 \score {
     <<
         \new ChoirStaff <<

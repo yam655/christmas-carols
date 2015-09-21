@@ -1,13 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-    %source = \markup \concat{ "from " \italic "The Cambridge Carol Book" ", 1924"}
-
-    title = "To Us This Morn a Child is Born"
-    poet = "George Ratcliffe Woodward (1848–1934)"
-    composer = \markup{\italic "Jog on, jog on the footpath way"}
-    arranger = "Arranged by Charles Wood (1866–1926)"
-  }
+songTitle = "To Us This Morn a Child is Born"
+songPoet = "George Ratcliffe Woodward (1848–1934)"
+tuneComposer = \markup{\italic "Jog on, jog on the footpath way"}
+tuneArranger = "arr. by Charles Wood (1866–1926)"
+tuneSource = \markup {from \italic {The Cambridge Carol Book}, 1924}
 
 global = {
     \key g \major
@@ -114,7 +111,15 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header { 
+    title = \songTitle 
+    poet = \songPoet 
+    composer = \tuneComposer 
+    arranger = \tuneArranger 
+    source = \tuneSource 
+  }
+
 \score {
   <<
    \new ChoirStaff <<
@@ -136,11 +141,16 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

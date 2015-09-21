@@ -1,10 +1,8 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "While Shepherds Watched Their Flocks"
-    poet = "Nahum Tate (1652–1715)"
-    composer = "Adapted from George F. Handel"
-  }
+songTitle = "While Shepherds Watched Their Flocks"
+songPoet = "Nahum Tate (1652–1715)"
+tuneComposer = "Adapted from George F. Handel"
 
 global = {
     \key d \major
@@ -109,7 +107,13 @@ bassMusic = \relative c {
   d2. \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+  }
+
 \score {
     <<
         \new ChoirStaff <<
@@ -129,10 +133,15 @@ bassMusic = \relative c {
         >>
     >>
     \layout { }
-  
+
     \midi {
         \set Staff.midiInstrument = "flute" 
-        %\context { \Voice \remove "Dynamic_performer" }
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
     }
 }
 }

@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Deck the Hall"
-  poet = "Traditional"
-  composer = "16th Century Welsh Tune"
-  source = \markup { from \italic {Favorite Songs and Hymns for School and Home}}
-}
+songTitle = "Deck the Hall"
+songPoet = "Traditional"
+tuneComposer = "16th Century Welsh Tune"
+tuneSource = \markup {from \italic {Favorite Songs and Hymns for School and Home}}
 
 global = {
     \key f \major
@@ -138,7 +136,14 @@ bassWords = \lyricmode {
 
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -161,11 +166,16 @@ bassWords = \lyricmode {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

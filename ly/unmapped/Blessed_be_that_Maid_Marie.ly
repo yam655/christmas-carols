@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Blessed be that Maid Marie"
-  poet = "15th Century Middle English Carol, modernized"
-  composer = \markup{Melody from William Ballet’s \italic{Lute Book}, c. 1600}
-  arranger = "Arranged by Charles Wood (1866–1926)"
-  %source = \markup{ from \italic {The Cowley Carol Book}, 1919}
-}
+songTitle = "Blessed be that Maid Marie"
+songPoet = "15th Century Middle English Carol, modernized"
+tuneComposer = \markup{Melody from William Ballet’s \italic{Lute Book}, c. 1600}
+tuneArranger = "Arranged by Charles Wood (1866–1926)"
+tuneSource = \markup {from \italic {The Cowley Carol Book}, 1919}
 
 global = {
     \key g \major
@@ -250,7 +248,15 @@ bassMusic = \relative c {
   d b c8([ d] e4) \bar "||"
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  arranger = \tuneArranger 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<

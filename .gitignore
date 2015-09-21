@@ -1,4 +1,6 @@
 lytemp
 title.eps
 .c9revisions
-gh-pages
+gh-pages 
+.DS_Store
+ly/ss

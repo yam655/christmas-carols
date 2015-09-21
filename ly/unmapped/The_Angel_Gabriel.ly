@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Angel Gabriel"
-  poet = "Translated and Adapted by Sabine Baring-Gould (1834–1924)"
-  composer = "Basque Carol"
-  %source = \markup { "from" \italic {CyberHymnal.org}}
-}
+songTitle = "The Angel Gabriel"
+songPoet = "Translated and Adapted by Sabine Baring-Gould (1834–1924)"
+tuneComposer = "Basque Carol"
+tuneSource = \markup {from \italic {CyberHymnal.org}}
 
 global = {
     \key bes \major
@@ -134,7 +132,14 @@ bassWords = \lyricmode {
 
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  composer = \tuneComposer
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<

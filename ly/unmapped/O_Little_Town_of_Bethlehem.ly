@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "O Little Town of Bethlehem"
-  poet = "Phillips Brooks (1835–1893)"
-  composer = "Lewis H. Redner (1831–1908)"
-  %source = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
-}
+songTitle = "O Little Town of Bethlehem"
+songPoet = "Phillips Brooks (1835–1893)"
+tuneComposer = "Lewis H. Redner (1831–1908)"
+tuneSource = \markup {from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
 
 global = {
     \key g \major
@@ -171,7 +169,14 @@ bassMusic = \relative c' {
   g,2. \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet
+  composer = \tuneComposer
+  source = \tuneSource
+}
+
 \score {
     <<
         \new ChoirStaff <<
@@ -192,10 +197,15 @@ bassMusic = \relative c' {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

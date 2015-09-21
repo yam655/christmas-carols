@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Wexford Carol"
-  poet = "Traditional, 16th Century or earlier"
-  composer = "Traditional"
-  source = \markup { from \italic{free-scores.com}, with additional verses from \italic{Some Ancient Christmas Carols with the Tunes To Which They Were Formerly Sung in the West of England}, 1822}
-}
+songTitle = "The Wexford Carol"
+songPoet = "Traditional, 16th Century or earlier"
+tuneComposer = "Traditional"
+tuneSource = \markup {from \italic{free-scores.com}, with additional verses from \italic{Some Ancient Christmas Carols with the Tunes To Which They Were Formerly Sung in the West of England}, 1822}
 
 global = {
     \key g \major
@@ -17,7 +15,6 @@ global = {
 
 sopMusic = \relative c' {
     \partial 8
-  \repeat volta 3 {
     d8 |
     g8 g16[ fis] g4. a8 |
     b c d4 b8\rest d |
@@ -39,35 +36,6 @@ sopMusic = \relative c' {
     b c d4 b8\rest b |
     c d \slurDotted b8( g4) a8 |
     g g g4. 
-  }
-  
-  \repeat volta 3 {
-    \slurSolid
-    d8 |
-    g8 g16[ fis] g4. a8 |
-    b c d4 b8\rest d |
-    c b g( d4) e8 |
-    
-    f g f4   b8\rest d, |
-    g g16[ fis] g4. a8 |
-    b c d4 b8\rest b |
-    
-    c d b( g4) a8 |
-    g g g4   b8\rest g |
-    g8 f' d( c4) a8 |
-    
-    bes c bes4. d16[ c] |
-    \times 2/3 {bes8[ a] g} g( d4) e8 |
-    f g f4   b8\rest d, |
-    
-    g8 g16[ fis] g4. a8 |
-    b c d4 b8\rest b |
-    c d b8( g4) a8 |
-    g g g4.
-  }
-}
-sopWords = \lyricmode {
-  
 }
 
 altoMusic = \relative c' {
@@ -92,35 +60,10 @@ altoMusic = \relative c' {
   g d d8.[ c16 b8] d |
   g g fis4 s8 e |
   e8 d \slurDotted d( f4) e8 |
-  e d b4.
-  
-  
-  \slurSolid
-  d8 |
-  g d d8.[ c16 b8] d |
-  g g fis4 s8 d |
-  e fis g( d4) e8 |
-  
-  c c d4 s8 d |
-  g d d8.[ c16 b8] d |
-  g g fis4 s8 e |
-  
-  e8 d d( f4) e8 |
-  d c d4 s8 
-  g |
-  g a g( e4) f8 |
-  
-  g8 c, d4. d8 |
-  d d g( d4) e8 |
-  d e d4 s8 d |
-  
-  g d d8.[ c16 b8] d |
-  g g fis4 s8 e |
-  e8 d d( f4) e8 |
-  e d b4.
+  e d b4. 
 }
-altoWords = \lyricmode {
-  
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
   \set associatedVoice = "tenors"
   Good peo -- ple all, __ this Christ -- mas time,
@@ -135,9 +78,39 @@ altoWords = \lyricmode {
   There was a
   \set ignoreMelismata = ##t
   bless -- ed Mes -- si -- ah born.
-  \unset ignoreMelismata
+  \unset ignoreMelismata 
+}
+
+altoWordsII = \lyricmode { 
+  \set stanza = #"2. "
+  \set associatedVoice = "tenors"
+  The night be -- fore __ that hap -- py tide,
+  The no -- ble Vir -- gin and her guide
+  \set associatedVoice = "basses"
+  Were long time seek -- ing up and down
+  To find a lodg -- ing in the town.
+  But mark how all things came to pass:
+  From ev -- ’ry door re -- pelled A -- las!
+  As long fore -- told __ their ref -- uge all
+  Was but a hum -- ble ox -- ’s stall. 
+}
+
+altoWordsIII = \lyricmode { 
+  \set stanza = #"3. "
+  \set associatedVoice = "tenors"
+  Let all your songs __ and prais -- es be,
+  Un -- to His Heav’n -- ly __ Ma -- je -- sty;
+  \set associatedVoice = "basses"
+  And ev -- er -- more, __ a -- mongst our mirth,
+  Re -- mem -- ber Christ our Sav -- ior’s birth.
   
-  
+  That night the Vir -- gin Ma -- ry mild,
+  Was safe de -- liv -- er’d of a child;
+  Ac -- cord -- ing un -- to Heav’n’s de -- cree,
+  Man’s sweet sal -- va -- tion for to be. 
+}
+
+altoWordsIV = \lyricmode { 
   \set stanza = #"4. "
   \set associatedVoice = "tenors"
   Near Beth -- le -- hem __ did shep -- herds keep
@@ -150,21 +123,8 @@ altoWords = \lyricmode {
   For there you’ll find __ this hap -- py morn
   A prince -- ly babe sweet Je -- sus born.”
 }
-altoWordsII = \lyricmode {
-  
-%\markup\italic
-  \set stanza = #"2. "
-  \set associatedVoice = "tenors"
-  The night be -- fore __ that hap -- py tide,
-  The no -- ble Vir -- gin and her guide
-  \set associatedVoice = "basses"
-  Were long time seek -- ing up and down
-  To find a lodg -- ing in the town.
-  But mark how all things came to pass:
-  From ev -- ’ry door re -- pelled A -- las!
-  As long fore -- told __ their ref -- uge all
-  Was but a hum -- ble ox -- ’s stall.
-  
+
+altoWordsV = \lyricmode { 
   \set stanza = #"5. "
   \set associatedVoice = "tenors"
   With thank -- ful heart __ and joy -- ful mind,
@@ -175,23 +135,10 @@ altoWordsII = \lyricmode {
   With -- in a man -- ger He was laid,
   And by His side the vir -- gin maid
   At -- tend -- ing on __ the Lord of Life
-  Who came to earth to end all strife.
+  Who came to earth to end all strife. 
 }
-altoWordsIII = \lyricmode {
-  
-  \set stanza = #"3. "
-  \set associatedVoice = "tenors"
-  Let all your songs __ and prais -- es be,
-  Un -- to His Heav’n -- ly __ Ma -- je -- sty;
-  \set associatedVoice = "basses"
-  And ev -- er -- more, __ a -- mongst our mirth,
-  Re -- mem -- ber Christ our Sav -- ior’s birth.
-  
-  That night the Vir -- gin Ma -- ry mild,
-  Was safe de -- liv -- er’d of a child;
-  Ac -- cord -- ing un -- to Heav’n’s de -- cree,
-  Man’s sweet sal -- va -- tion for to be.
-  
+
+altoWordsVI = \lyricmode {
   \set stanza = #"6. "
   \set associatedVoice = "tenors"
   See how the Lord __ of Heav’n and earth,
@@ -205,15 +152,7 @@ altoWordsIII = \lyricmode {
   Sing prais -- es to __ the God of Heav’n,
   That un -- to us __ His Son has giv’n.
 }
-altoWordsIV = \lyricmode {
-}
-altoWordsV = \lyricmode {
-  
-}
-altoWordsVI = \lyricmode {
-  \set stanza = #"6. "
-  \set ignoreMelismata = ##t
-}
+
 tenorMusic = \relative c {
   d8 |
   g a b8.[ c16 d8] d |
@@ -236,37 +175,9 @@ tenorMusic = \relative c {
   g a b8.[ c16 d8] d |
   b g a4 s8 g |
   g g \slurDotted g8( g4) c8 |
-  b c d4.
-  
-  
-  
-  \slurSolid
-  d,8 |
-  g a b8.[ c16 d8] d |
-  b g a4 s8 b |
-  a fis b[ a] c[ b] |
-  
-  a g a4 s8 d, |
-  g a b8.[ c16 d8] d |
-  b g a4 s8 g |
-  
-  g g g4 c |
-  b8 c b4 s8 
-  g |
-  g c b( a4) c8 |
-  
-  d8 a f4. g8 |
-  \times 2/3 {g[ a] bes} bes[ a] bes[ c] |
-  a c a4 r8 d, |
-  
-  g a b8.[ c16 d8] d |
-  b g a4 s8 g |
-  g g g8( g4) c8 |
-  b c d4.
+  b c d4. 
 }
-tenorWords = \lyricmode {
 
-}
 
 bassMusic = \relative c {
   d8 |
@@ -289,40 +200,20 @@ bassMusic = \relative c {
   g'8 d b8.[ a16 g8] fis' |
   e e d4 d8\rest e |
   c b \slurDotted b( d4) c8 |
-  e g g4.
-  
-  
-  
-  \slurSolid
-  d8 |
-  g d b8.[ a16 g8] fis' |
-  e e d4 d8\rest b |
-  c d e[ fis] g4 |
-  
-  f8 e d4 d8\rest d |
-  g d b8.[ a16 g8] fis' |
-  e e d4 d8\rest e |
-  
-  c b b[ d] c4 |
-  g'8 e g4 d8\rest g |
-  g f g( a4) f8 |
-  
-  g f bes,4. g8 |
-  g' g g[ f] g[ a] |
-  d, c d4 g, |
-  
-  g'8 d b8.[ a16 g8] fis' |
-  e e d4 d8\rest e |
-  c b b( d4) c8 |
-  e g g4.
-}
-bassWords = \lyricmode {
-
+  e g g4. 
 }
 
+
   
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -330,27 +221,33 @@ bassWords = \lyricmode {
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
+
+    \new Lyrics = "altos"   \lyricsto "altos" \altoWords
+    \new Lyrics = "altosII"   \lyricsto "altos" \altoWordsII 
+    \new Lyrics = "altosIII"   \lyricsto "altos" \altoWordsIII
+    \new Lyrics = "altosIV"   \lyricsto "altos" \altoWordsIV
+    \new Lyrics = "altosV"   \lyricsto "altos" \altoWordsV
+    \new Lyrics = "altosVI"   \lyricsto "altos" \altoWordsVI
+
    \new Staff = men <<
       \clef bass
       \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
       \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
-    \new Lyrics = "altosVI"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsVI
-    \new Lyrics = "altosV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsV
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWords
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
+
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

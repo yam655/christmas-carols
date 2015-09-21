@@ -1,13 +1,10 @@
 ﻿\version "2.14.2"
 
-
-\header {source = ""
-    title = "Christmas is Coming"
-    %subtitle = "(Three-part Round)"
-    poet = "Traditional"
-    composer = "Edith Nesbitt (1858–1924)"
-    %\markup{from \italic{cpdl.org}}
-  }
+songTitle = "Christmas is Coming"
+songSubtitle = \markup \null % "(Three-part Round)"
+songPoet = "Traditional"
+tuneComposer = "Edith Nesbitt (1858–1924)"
+tuneSource = \markup \null % {from \italic{cpdl.org}}
 
 global = {
     \key d \major
@@ -38,7 +35,15 @@ sopWords = \lyricmode {
   Please to put a pen -- ny in the old man’s hat.
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    subtitle = \songSubtitle
+    poet = \songPoet 
+    composer = \tuneComposer 
+    source = \tuneSource 
+  }
+
 \score {
   \new Staff = women <<
     \new Voice { \global \sopMusic }

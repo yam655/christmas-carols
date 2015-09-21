@@ -1,12 +1,9 @@
 ﻿\version "2.14.2"
 
-
-\header {
-    title = "Creator alme siderum"
-    %subtitle = "(Vesper Hymn for Sundays in Advent)"
-    %source = \markup { from \italic {Peters’ Sodality Hymn Book,} 1914}
-    section = "Advent"
-}
+songTitle = "Creator alme siderum"
+songSubtitle = \markup \null % "(Vesper Hymn for Sundays in Advent)"
+songSection = "Advent"
+tuneSource = \markup { from \italic {Peters’ Sodality Hymn Book,} 1914}
 
 global = {
     \key f \major
@@ -157,7 +154,14 @@ bassAmen = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    subtitle = \songSubtitle
+    section = \songSection 
+    source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<

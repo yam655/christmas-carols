@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "While Shepherds Watched Their Flocks"
-    poet = "Nahum Tate (1652–1715)"
-    composer = \markup{tune is \italic{Winchester Old}, by George Kirbye (c. 1565–1634)}
-    %source = \markup{ from \italic {Church Sunday School Hymn-Book}, 1892, via \italic{HymnsAndCarolsOfChristmas.com}}
-  }
+songTitle = "While Shepherds Watched Their Flocks"
+songPoet = "Nahum Tate (1652–1715)"
+tuneComposer = \markup{tune is \italic{Winchester Old}, by George Kirbye (c. 1565–1634)}
+tuneSource = \markup{from \italic {Church Sunday School Hymn-Book}, 1892, via \italic{HymnsAndCarolsOfChristmas.com}}
 
 global = {
     \key g \major
@@ -113,7 +111,14 @@ altoWordsVI = \lyricmode {
     Be -- gin and nev -- er cease.”
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+    source = \tuneSource
+  }
+
 \score {
   <<
    \new ChoirStaff <<

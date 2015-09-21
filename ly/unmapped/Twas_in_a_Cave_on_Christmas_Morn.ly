@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "’Twas in a Cave on Christmas Morn"
-  poet = "George Ratcliffe Woodward (1848–1934)"
-  composer = \markup{\italic{Dich grüssen wir, O Jesulein}, 1623}
-  arranger = "Arranged by Charles Wood (1866–1926)"
-  source = \markup { from \italic {The Cambridge Carol Book}, 1924}
-}
+songTitle = "’Twas in a Cave on Christmas Morn"
+songPoet = "George Ratcliffe Woodward (1848–1934)"
+tuneComposer = \markup{\italic{Dich grüssen wir, O Jesulein}, 1623}
+tuneArranger = "Arranged by Charles Wood (1866–1926)"
+tuneSource = \markup {from \italic {The Cambridge Carol Book}, 1924}
 
 global = {
     \key g \major
@@ -147,7 +145,15 @@ bassWords = \lyricmode {
 
   
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  arranger = \tuneArranger 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<

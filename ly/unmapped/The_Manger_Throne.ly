@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Manger Throne"
-  poet = "William Chatterson Dix (1837–1898)"
-  composer = "Charles Steggall (1826–1905)"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "The Manger Throne"
+songPoet = "William Chatterson Dix (1837–1898)"
+tuneComposer = "Charles Steggall (1826–1905)"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key d \major
@@ -242,11 +240,17 @@ bassWords = \lyricmode {
 }
 
   
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
-%    \new Lyrics = sopranos \with { \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) }
     \new Staff = women <<
       \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
       \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }

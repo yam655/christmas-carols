@@ -1,14 +1,11 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Corde Natus"
-  poet = "Marcus Aurelius Clemens Prudentius (348–413?)"
-  composer = \markup{\italic{Divinum Mysterium}, 13th Century Melody}
-% source = \markup\center-column{
-%   \concat{"from " \italic"Great Hymns of the Church Compiled by the Late Right Reverend John Freeman Young" ", 1887,"}
+songTitle = "Corde Natus"
+songPoet = "Marcus Aurelius Clemens Prudentius (348–413?)"
+tuneComposer = \markup{\italic{Divinum Mysterium}, 13th Century Melody}
+tuneSource = \markup{From \italic{Great Hymns of the Church Compiled by the Late Right Reverend John Freeman Young}, 1887}
 %   \concat{"via " \italic"HymnsAndCarolsOfChristmas.com"}
 % }
-}
 
 global = {
     \key f \major
@@ -176,7 +173,14 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<

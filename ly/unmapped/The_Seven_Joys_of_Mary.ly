@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Seven Joys of Mary"
-  poet = "Traditional"
-  composer = "Old English"
-  arranger = "Arranged by Sir John Stainer (1840–1901)"
-  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
-}
+songTitle = "The Seven Joys of Mary"
+songPoet = "Traditional"
+tuneComposer = "Old English"
+tuneArranger = "Arranged by Sir John Stainer (1840–1901)"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key g \major
@@ -196,7 +194,15 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  arranger = \tuneArranger 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<

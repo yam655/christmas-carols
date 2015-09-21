@@ -11,7 +11,7 @@
 global = {
     \key g \major
     \time 2/2
-    \tempo 4 = 120
+    \tempo 4 = 170
 }
 
 sopMusic = \relative c' {
@@ -230,16 +230,26 @@ bassMusic = \relative c {
     \new Lyrics = "altosVII"   \lyricsto "altos" \altoWordsVII
    \new Staff = men <<
       \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \repeat unfold 2 \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \repeat unfold 2 \bassMusic >> }
+      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
+      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
     >>
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+
+
+
+
 

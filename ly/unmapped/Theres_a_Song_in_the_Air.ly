@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "There’s a Song in the Air!"
-  poet = "Josiah G. Holland (1819–1881)"
-  composer = "Karl P. Harrington (1861–1953)"
-  %source = \markup { from \italic {HymnsAndCarolsOfChristmas.com}}
-}
+songTitle = "There’s a Song in the Air!"
+songPoet = "Josiah G. Holland (1819–1881)"
+tuneComposer = "Karl P. Harrington (1861–1953)"
+tuneSource = \markup \null % {from \italic {HymnsAndCarolsOfChristmas.com}} 
 
 global = {
     \key g \major
@@ -154,7 +152,14 @@ bassWords = \lyricmode {
 }
 
   
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<

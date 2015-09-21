@@ -1,12 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "The Boar’s Head Carol"
-    poet = "15th Century English"
-    composer = "Traditional English"
-    %source = ""
-    %\markup\fill-line{\concat{ "from " \italic "The English Hymnal" ", 1906"}}
-  }
+songTitle = "The Boar’s Head Carol"
+songPoet = "15th Century English"
+tuneComposer = "Traditional English"
+tuneSource = \markup {from \italic {The English Hymnal}, 1906}
 
 global = {
     \key c \major
@@ -144,7 +141,14 @@ bassMusic = \relative c {
 
   
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+    source = \tuneSource
+  }
+
 \score {
   <<
    \new ChoirStaff <<
@@ -187,10 +191,15 @@ bassMusic = \relative c {
   >>
   >>
 
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

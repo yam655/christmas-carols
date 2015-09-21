@@ -1,10 +1,18 @@
 ﻿\version "2.14.2"
 
+%% CONFIRM: Is the arrangement legit?
+%% See: http://www.hymnsandcarolsofchristmas.com/Hymns_and_Carols/joy_to_the_world-1.htm
+
+songTitle = "Joy to the World!"
+songPoet = "Isaac Watts (1674–1748)"
+tuneComposer = \markup {\smallCaps{Antioch} by Lowell Mason (1792–1872)}
+tuneSource = \markup {from \italic {Hymns of the Kingdom of God}, 1910} % , via \italic{HymnsAndCarolsOfChristmas.com}}
+
 \header {
-  title = "Joy to the World!"
-  poet = "Isaac Watts (1674–1748)"
-  composer = "Lowell Mason (1792–1872)"
-  %source = \markup { "from" \concat{\italic "Hymns of the Kingdom of God" ", 1910, via " \italic"HymnsAndCarolsOfChristmas.com"}}
+  title = \songTitle
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
 }
 
 global = {
@@ -38,9 +46,7 @@ sopMusic = \relative c'' {
   fis4 e |
   d2 \bar "|."
 }
-sopWords = \lyricmode {
   
-}
 
 altoMusic = \relative c' {
   fis4 a8.\noBeam g16 |
@@ -66,43 +72,90 @@ altoMusic = \relative c' {
   d4 cis |
   d2
 }
-altoWords = \lyricmode {
-  
-  \set stanza = #"1. "
-  Joy to the world! the Lord is come; Let earth re -- ceive her King; Let ev -- ’ry __ heart __ pre -- pare __ Him
-  
-  room, __
-  And heav’n and na -- ture sing,
-  And heav’n and na -- ture sing,
-  
-  And heav’n, and heav’n __ and na -- ture sing.
+
+commonLyricsA = \lyricmode {
+    \set stanza = #"1. "
+    Joy to the world! the Lord is come;
+    Let earth re -- ceive her King;
+    Let ev -- ’ry __ heart __ pre -- pare __ Him 
+    room, __
 }
-altoWordsII = \lyricmode {
-  
-  \set stanza = #"2. "
-  Joy to the world! the Sav -- ior reigns; Let men their songs em -- ploy;
-  While fields and __ floods, __ rocks, hills __ and __
-  
-  plains __
-  
-  Re -- peat the sound -- ing joy,
-  Re -- peat the sound -- ing joy,
-  
-  Re -- peat, __ re -- peat __ the sound -- ing joy.
+
+altoLyricsA = \lyricmode { 
+    \commonLyricsA
+    And heav’n and na -- ture sing,
+    And heav’n and na -- ture sing, 
+    And heav’n, and heav’n __ and na -- ture sing.
 }
-altoWordsIII = \lyricmode {
-  
-  \set stanza = #"3. "
-  He rules the world with truth and grace And makes the na -- tions prove The glo -- ries __ of __ His right -- eous --
-  
-  ness, __
-  
-  And won -- ders of His love,  
-  And won -- ders of His love,
-  
-  And won -- ders, won -- ders of His love.
+
+tenorLyricsA = \lyricmode {
+    \commonLyricsA 
+    And heav’n and na -- ture sing, __
+    And heav’n, and heav’n __ and na -- ture sing.
+} 
+
+bassLyricsA = \lyricmode {
+    \commonLyricsA 
+    And heav’n and na -- ture sing,
+    And heav’n and na -- ture sing,
+    And heav’n and na -- ture sing.
 }
-altoWordsIV = \lyricmode {
+
+commonLyricsB = \lyricmode {
+    \set stanza = #"2. "
+    Joy to the world! the Sav -- ior reigns;
+    Let men their songs em -- ploy;
+    While fields and __ floods, __ rocks, hills __ and __ 
+    plains __
+}
+
+altoLyricsB = \lyricmode { 
+    \commonLyricsB
+    Re -- peat the sound -- ing joy,
+    Re -- peat the sound -- ing joy,
+  
+    Re -- peat, __ re -- peat __ the sound -- ing joy.
+}
+
+tenorLyricsB = \lyricmode {
+    \commonLyricsB
+    Re -- peat the sound -- ing joy, __
+    Re -- peat, __ re -- peat __ the sound -- ing joy.
+}
+
+bassLyricsB = \lyricmode {
+    \commonLyricsB
+    Re -- peat the sound -- ing joy,
+    Re -- peat the sound -- ing joy,
+    Re -- peat the sound -- ing joy.
+}
+
+commonLyricsC = \lyricmode { 
+    \set stanza = #"3. "
+    He rules the world with truth and grace.
+    And makes the na -- tions prove
+    the glo -- ries __ of __ His right -- eous -- 
+    ness, __
+}
+
+altoLyricsC = \lyricmode {
+    \commonLyricsC
+    And won -- ders of His love,  
+    And won -- ders of His love, 
+    And won -- ders, won -- ders of His love.
+}
+
+tenorLyricsC = \lyricmode {
+    \commonLyricsC
+    And won -- ders of His love, __
+    And won -- ders, won -- ders of His love.
+}
+
+bassLyricsC = \lyricmode {
+    \commonLyricsC
+    And won -- ders of His love,
+    And won -- ders of His love,
+    And won -- ders of His love.
 }
 
 tenorMusic = \relative c' {
@@ -129,18 +182,6 @@ tenorMusic = \relative c' {
   a4. g8 |
   fis2
 }
-tenorWords = \lyricmode {
-  \repeat unfold 22 { \skip 1 }
-  And heav’n and na -- ture sing, __
-}
-tenorWordsII = \lyricmode {
-  \repeat unfold 22 { \skip 1 }
-  Re -- peat the sound -- ing joy, __
-}
-tenorWordsIII = \lyricmode {
-  \repeat unfold 22 { \skip 1 }
-  And won -- ders of His love, __
-}
 
 bassMusic = \relative c {
   d4 d8.\noBeam d16 |
@@ -155,8 +196,8 @@ bassMusic = \relative c {
   d4. d8 |
   d4 d |
   
-  d4. s8 |
-  s4. d8 |
+  d4. r8 |
+  r4. d8 |
   d\noBeam d\noBeam d\noBeam d\noBeam |
   a'4. a,8 |
   
@@ -166,54 +207,51 @@ bassMusic = \relative c {
   a4 a |
   d2
 }
-bassWords = \lyricmode {
-  \repeat unfold 28 { \skip 1 }
-  And heav’n and na -- ture sing,
-  And heav’n and na -- ture sing.
-}
-bassWordsII = \lyricmode {
-  \repeat unfold 28 { \skip 1 }
-  Re -- peat the sound -- ing joy,
-  Re -- peat the sound -- ing joy.
-}
-bassWordsIII = \lyricmode {
-  \repeat unfold 28 { \skip 1 }
-  And won -- ders of His love,
-  And won -- ders of His love.
-}
 
 \bookpart {
 \score {
-  <<
-   \new ChoirStaff <<
-    \new Staff = women <<
-      \new Voice = "sopranos" { \voiceOne << \global \sopMusic >> }
-      \new Voice = "altos" { \voiceTwo << \global \altoMusic >> }
+    <<
+        \new ChoirStaff <<
+            \new Staff <<
+                \new Voice = "sopranos" { \global \sopMusic }
+                \new Lyrics \lyricsto "sopranos" \altoLyricsA
+                \new Lyrics \lyricsto "sopranos" \altoLyricsB
+                \new Lyrics \lyricsto "sopranos" \altoLyricsC
+            >>
+            \new Staff <<
+                \new Voice = "altos" { \global \altoMusic }
+                \new Lyrics \lyricsto "altos" \altoLyricsA
+                \new Lyrics \lyricsto "altos" \altoLyricsB
+                \new Lyrics \lyricsto "altos" \altoLyricsC
+            >>
+            \new Staff <<
+                \clef bass
+                \new Voice = "tenors" { \global \tenorMusic }
+                \new Lyrics \lyricsto "tenors" \tenorLyricsA
+                \new Lyrics \lyricsto "tenors" \tenorLyricsB
+                \new Lyrics \lyricsto "tenors" \tenorLyricsC
+            >>
+            \new Staff <<
+                \clef bass
+                \new Voice = "basses" { \global \bassMusic }
+                \new Lyrics \lyricsto "basses" \bassLyricsA
+                \new Lyrics \lyricsto "basses" \bassLyricsB
+                \new Lyrics \lyricsto "basses" \bassLyricsC
+            >>
+
+        >>
     >>
-    \new Lyrics \with { alignAboveContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "sopranos" \sopWords
-    \new Lyrics = "altosIV"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIV
-    \new Lyrics = "altosIII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsIII
-    \new Lyrics = "altosII"  \with { alignBelowContext = #"women" } \lyricsto "altos" \altoWordsII
-    \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWords
-   \new Staff = men <<
-      \clef bass
-      \new Voice = "tenors" { \voiceOne << \global \tenorMusic >> }
-      \new Voice = "basses" { \voiceTwo << \global \bassMusic >> }
-    >>
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWordsII
-%    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWordsIII
-%    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWordsIII
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWordsII
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
-  >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
-  >>
+
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

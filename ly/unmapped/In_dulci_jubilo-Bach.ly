@@ -11,7 +11,7 @@
 global = {
     \key f \major
     \time 6/4
-    \tempo 4 = 180
+    \tempo 4 = 160
 }
 
 sopMusic = \relative c' {
@@ -35,7 +35,7 @@ sopMusic = \relative c' {
   a2 a4 g2 g4 |
   f2.~ f2 \bar "|."
 }
-  
+
 
 altoMusic = \relative c' {
   \partial 4 c4 |
@@ -57,73 +57,71 @@ altoMusic = \relative c' {
   d2 d4~ d c8[ d] e4~ |
   e d2( c2.) |
   c4( f8[ e]) f4 f2 e4 |
-  f8 [ ees d c d bes] c2 \bar "|."
-
+  f8 [ ees d c d bes] c2 \bar "|." 
 }
-altoWords = \lyricmode {
-  
+
+altoWords = \lyricmode { 
   \set stanza = #"1. "
-  \markup\italic In \markup\italic dul -- \markup\italic ci \markup\italic ju -- \markup\italic bi -- \markup\italic lo __
-  Nun sing -- et und seid froh! __ ""
+  In dul -- ci ju -- bi -- lo __
+  Nun sing -- et und seid froh! __ _
   Al -- le un -- ser Won -- ne
-  Liegt \markup\italic in \markup\italic præ -- \markup\italic se -- \markup\italic pi -- \markup\italic o, __
+  Liegt in præ -- se -- pi -- o, __
   Sie leuch -- tet wie \set associatedVoice = "altos" 
   die Son --
   \unset associatedVoice
   ne
-  \markup\italic Ma -- \markup\italic tris \markup\italic in \markup\italic gre -- \markup\italic mi -- \markup\italic o __
-  \markup\italic Al -- \markup\italic pha \markup\italic es \markup\italic et \markup\italic O! __
-  \markup\italic Al -- \markup\italic pha \markup\italic es 
+  Ma -- tris in gre -- mi -- o __
+  Al -- pha es et O! __
+  Al -- pha es 
   \set associatedVoice = "altos"
-  \markup\italic et \markup\italic O! __
-
+  et O! __ 
 }
-altoWordsII = \lyricmode {
-  
+
+altoWordsII = \lyricmode { 
   \set stanza = #"2. "
-  \markup\italic O \markup\italic Je -- \markup\italic su, \markup\italic par -- \markup\italic vu -- \markup\italic le, __
-  Nach Dir ist mir so weh. __ ""
-  Tröst mir mein Ge -- mü -- te, ""
-  \markup\italic O \markup\italic Puer \markup\italic op -- \markup\italic ti -- \markup\italic me, __ ""
+  O Je -- su, par -- vu -- le, __
+  Nach Dir ist mir so weh. __ _
+  Tröst mir mein Ge -- mü -- te, _
+  O Puer op -- ti -- me, __ _
   Durch all Dei -- \set associatedVoice = "altos" 
   ne Gü --
   \unset associatedVoice
   te,
-  \markup\italic O \markup\italic Prin -- \markup\italic ceps \markup\italic glo -- \markup\italic ri -- \markup\italic æ. __
-  \markup\italic Tra -- \markup\italic he \markup\italic me \markup\italic post \markup\italic Te! __
-  \markup\italic Tra -- \markup\italic he \markup\italic me 
+  O Prin -- ceps glo -- ri -- æ. __
+  Tra -- he me post Te! __
+  Tra -- he me 
   \set associatedVoice = "altos"
-  \markup\italic post \markup\italic Te! __
+  post Te! __
 }
-altoWordsIII = \lyricmode {
-  
+
+altoWordsIII = \lyricmode { 
   \set stanza = #"3. "
-  \markup\italic O \markup\italic Pa -- \markup\italic tris \markup\italic ca -- \markup\italic ri -- \markup\italic tas! __
-  \markup\italic O \markup\italic na -- \markup\italic ti \markup\italic lem -- \markup\italic i -- \markup\italic tas! __
+  O Pa -- tris ca -- ri -- tas! __
+  O na -- ti lem -- i -- tas! __
   Wir wär -- en all ver -- lor -- en,
-  \markup\italic Per \markup\italic nos -- \markup\italic tra \markup\italic cri -- \markup\italic mi -- \markup\italic na; __
+  Per nos -- tra cri -- mi -- na; __
   So hat er uns \set associatedVoice = "altos" 
   er -- wor --
   \unset associatedVoice
   ben
-  \markup\italic Cœ -- \markup\italic lo -- \markup\italic rum \markup\italic gau -- \markup\italic di -- \markup\italic a. __
-  \markup\italic Quan -- \markup\italic ta \markup\italic gra -- \markup\italic ti -- \markup\italic a! __
-  \markup\italic Quan -- \markup\italic ta \markup\italic gra -- 
+  Cœ -- lo -- rum gau -- di -- a. __
+  Quan -- ta gra -- ti -- a! __
+  Quan -- ta gra -- 
   \set associatedVoice = "altos"
-  \markup\italic ti -- \markup\italic a! __
+  ti -- a! __
 }
-altoWordsIV = \lyricmode {
-  
+
+altoWordsIV = \lyricmode { 
   \set stanza = #"4. "
-  \markup\italic U -- \markup\italic bi \markup\italic sunt \markup\italic gau -- \markup\italic di -- \markup\italic a __ ""
-  Nir -- gend mehr denn da, __ ""
-  Wo die Eng -- el sing -- en ""
-  \markup\italic No -- \markup\italic va \markup\italic can -- \markup\italic ti -- \markup\italic ca __ ""
+  U -- bi sunt gau -- di -- a __ _
+  Nir -- gend mehr denn da, __ _
+  Wo die Eng -- el sing -- en _
+  No -- va can -- ti -- ca __ _
   Und die Har -- \set associatedVoice = "altos" 
   fen kling --
   \unset associatedVoice
   en
-  \markup\italic In \markup\italic Re -- \markup\italic gis \markup\italic cu -- \markup\italic ri -- \markup\italic a __
+  In Re -- gis cu -- ri -- a __
   E -- ia, wär’n wir da! __
   E -- ia, wär’n
   \set associatedVoice = "altos"
@@ -199,11 +197,16 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

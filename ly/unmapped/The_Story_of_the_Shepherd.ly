@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Story of the Shepherd"
-  poet = \markup{\italic{Gongora}, a Spanish Carol}
-  translator = "Translated by Archdeacon Churton"
-  composer = "Joseph Barnby (1838–1896)"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "The Story of the Shepherd"
+songPoet = \markup{\italic{Gongora}, a Spanish Carol}
+songTranslator = "tr. by Archdeacon Churton"
+tuneComposer = "Joseph Barnby (1838–1896)"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key f \major
@@ -355,13 +353,18 @@ bassMusic = \relative c {
   
   g2.
 }
-bassWords = \lyricmode {
-
-}
 
   
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  translator = \songTranslator
+  composer = \tuneComposer
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -383,7 +386,6 @@ bassWords = \lyricmode {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "tenors" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.9))} \lyricsto "tenors" \altoWords
    \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
   >>
   \layout { }

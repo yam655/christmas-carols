@@ -3,7 +3,7 @@
 songTitle = "A Christmas Round"
 songPoet = \markup \null
 tuneComposer = "Denis Mason"
-tuneSource = \markup { "from" \italic "cpdl.org"}
+tuneSource = \markup \null % { "from" \italic "cpdl.org"}
 
 global = {
     \key d \major

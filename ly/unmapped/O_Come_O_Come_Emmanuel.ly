@@ -1,12 +1,11 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "O Come, O Come, Emmanuel"
-    poet = "Translated by John Mason Neale (1818–1866)"
-    composer = "15th Century French"
-    %source = \markup ""
-    section = "Advent"
-}
+songTitle = "O Come, O Come, Emmanuel"
+songPoet = "tr. by John Mason Neale (1818–1866)"
+songSection = "Advent"
+tuneComposer = "15th Century French"
+tuneSource = \markup \null
+
 
 global = {
     \key g \major
@@ -227,7 +226,15 @@ bassMusic = \relative c {
   g,2.
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    poet = \songPoet 
+    composer = \tuneComposer 
+    source = \tuneSource
+    section = \songSection 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -246,9 +253,15 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  }
-} 
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
+}
 }
 

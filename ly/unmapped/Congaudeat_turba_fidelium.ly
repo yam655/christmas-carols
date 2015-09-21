@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "Congaudeat turba fidelium"
-    poet = "from an 11th Century Manuscript"
-    composer = "Old Melody in Hypo-Dorian Mode"
-    arranger = "Arranged by G. H. Palmer"
-  }
+songTitle = "Congaudeat turba fidelium"
+songPoet = "from an 11th Century Manuscript"
+tuneComposer = "Old Melody in Hypo-Dorian Mode"
+tuneArranger = "arr. by G. H. Palmer"
 
 global = {
     \key f \major
@@ -118,7 +116,14 @@ bassMusic = \relative c' {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    poet = \songPoet 
+    composer = \tuneComposer 
+    arranger = \tuneArranger 
+  }
+
 \score {
   <<
    \new ChoirStaff <<

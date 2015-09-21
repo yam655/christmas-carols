@@ -1,12 +1,9 @@
 ﻿\version "2.14.2"
 
-
-\header {
-  title = "The Twelve Days of Christmas"
-  poet = "Traditional"
-  composer = "Traditional"
-  source = ""
-}
+tuneTitle = "The Twelve Days of Christmas"
+tunePoet = "Traditional"
+songComposer = "Traditional"
+songSource = \markup \null
 
 global = {
     \key g \major
@@ -274,7 +271,14 @@ bassMusic = \relative c {
   g,2~ g8 d'\rest |
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \tuneTitle
+  poet = \tunePoet
+  composer = \songComposer
+  source = \songSource
+}
+
 \score {
     <<
         \new ChoirStaff <<

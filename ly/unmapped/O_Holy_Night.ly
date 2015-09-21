@@ -1,13 +1,12 @@
 ﻿\version "2.14.2"
-\include "util.ly"
-\header {
-  title = "O Holy Night"
-  subtitle = "(Cantique de Noël)"
-  composer = "Adolphe Adam (1803–1856)"
-  %tagline = \markup { "from" \concat{\italic "Christmas Carols and Hymns for School and Choir" ", 1910"}}
-  poet = "Placide Cappeau (1808–1877)"
-  meter = "Translated by John Sullivan Dwight (1813–1893)"
-}
+
+songTitle = "O Holy Night"
+songSubtitle = "(Cantique de Noël)"
+songPoet = "Placide Cappeau (1808–1877)"
+songTranslator = "tr. by John Sullivan Dwight (1813–1893)"
+tuneComposer = "Adolphe Adam (1803–1856)"
+tuneSource = \markup {from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
+
 
 global = {
     \key des \major
@@ -427,11 +426,19 @@ pianoLH = \relative c {
   <des des,>2. r4 \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  subtitle = \songSubtitle
+  composer = \tuneComposer 
+  source = \tuneSource 
+  poet = \songPoet 
+  translator = \songTranslator
+}
+
 \score {
-   <<
-   \new ChoirStaff <<
-%    \new Lyrics = sopranos { s1 }
+    <<
+    \new ChoirStaff <<
     \new Staff = women {
       \set Staff.explicitKeySignatureVisibility = #end-of-line-invisible
       \new Voice = "sopranos" {
@@ -498,10 +505,15 @@ pianoLH = \relative c {
          (stretchability . 2))
     }
   }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

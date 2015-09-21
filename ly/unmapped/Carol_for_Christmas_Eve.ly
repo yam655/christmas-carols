@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Carol for Christmas Eve"
-  poet = "Rev. H. R. Bramley (1833–1917)"
-  composer = "Sir Frederick A. G. Ouseley (1825–1889)"
-  %source = \markup { "from" \italic {Christmas Carols, New and Old}}
-}
+songTitle = "Carol for Christmas Eve"
+songPoet = "Rev. H. R. Bramley (1833–1917)"
+tuneComposer = "Sir Frederick A. G. Ouseley (1825–1889)"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key c \major
@@ -209,7 +207,14 @@ bassMusic = \relative c {
   f c g8. c16 c4 d\rest
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<

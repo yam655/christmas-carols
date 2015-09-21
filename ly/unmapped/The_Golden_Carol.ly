@@ -1,13 +1,11 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Golden Carol"
-  subtitle = "of Melchior, Casper and Balthazar"
-  poet = "Traditional"
-  composer = "English"
-  arranger = "Arranged by Sir John Stainer (1840–1901)"
-  %source = \markup{from \italic{Carols Old and Carols New}, 1916, via \italic{HymnsAndCarolsOfChristmas.com}}
-}
+songTitle = "The Golden Carol"
+songSubtitle = "of Melchior, Casper and Balthazar"
+songPoet = "Traditional"
+tuneComposer = "English"
+tuneArranger = "Arranged by Sir John Stainer (1840–1901)"
+tuneSource = \markup{from \italic{Carols Old and Carols New}, 1916} % via \italic{HymnsAndCarolsOfChristmas.com}}
 
 global = {
     \key f \major
@@ -130,7 +128,16 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  subtitle = \songSubtitle
+  poet = \songPoet
+  composer = \tuneComposer
+  arranger = \tuneArranger
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<

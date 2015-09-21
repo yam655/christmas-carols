@@ -12,7 +12,7 @@ global = {
   \key f \major
   \time 6/8
   \autoBeamOff
-  \tempo "Andante" 4 = 120
+  \tempo "Andante" 4 = 130
 }
 
 sopMusic = \relative c' {
@@ -81,6 +81,7 @@ altoMusic = \relative c' {
     }
   }
 }
+
 altoWords = {
   
   \lyricmode {
@@ -103,8 +104,8 @@ altoWords = {
     And cast a -- down the proud.
   }
 }
-altoWordsII = \lyricmode {
-  
+
+altoWordsII = \lyricmode { 
 %\markup\italic
   \set stanza = #"2. "
   This is Christ, the Lord, __
@@ -128,6 +129,7 @@ altoWordsVI = \lyricmode {
   \set stanza = #"6. "
   \set ignoreMelismata = ##t
 }
+
 tenorMusic = \relative c {
   f4 a8 a4 a8 |
   a4.( c) |
@@ -219,11 +221,17 @@ bassMusic = \relative c{
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+  \layout { }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

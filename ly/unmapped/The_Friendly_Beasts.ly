@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "The Friendly Beasts"
-    poet = "Robert Davis (1881–1950)"
-    composer = \markup{Adapted from \italic{Orientis Partibus}, 12th Century French}
-    %source = \markup { "from" \italic {HymnsAndCarolsOfChristmas.com}}
-  }
+songTitle = "The Friendly Beasts"
+songPoet = "Robert Davis (1881–1950)"
+tuneComposer = \markup{Adapted from \italic{Orientis Partibus}, 12th Century French}
+tuneSource = \markup \null % {from \italic {HymnsAndCarolsOfChristmas.com}}
 
 global = {
     \key f \major
@@ -273,7 +271,14 @@ bassWords = \lyricmode {
 
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+    source = \tuneSource
+  }
+
 \score {
   <<
    \new ChoirStaff <<
@@ -306,11 +311,16 @@ bassWords = \lyricmode {
       \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
     }
   }
-  
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

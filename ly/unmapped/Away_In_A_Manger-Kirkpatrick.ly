@@ -9,6 +9,7 @@ global = {
   \key f \major
   \time 3/4
   \autoBeamOff
+    \tempo 4 = 100
 }
 
 sopMusic = \relative c' {
@@ -171,22 +172,16 @@ bassMusic = \relative c {
   >>
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
-  \layout {
-    \context {
-      \Score
-      \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
-      \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
+  \layout { }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
     }
-  }
-  
-  \midi {
-    \tempo 4 = 100
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
-    }
-  }
 }
 }
+

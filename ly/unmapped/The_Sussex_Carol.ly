@@ -1,11 +1,8 @@
 ﻿\version "2.14.2"
 
-
-\header {
-  title = "The Sussex Carol"
-  poet = "Traditional English (17th century or earlier)"
-  source = ""
-}
+songTitle = "The Sussex Carol"
+songPoet = "Traditional English (17th century or earlier)"
+tuneSource = \markup \null
 
 global = {
     \key f \major
@@ -231,7 +228,13 @@ bassMusic = \relative c {
   <f f,>2. \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet 
+  source = \tuneSource
+}
+
 \score {
   \unfoldRepeats
 

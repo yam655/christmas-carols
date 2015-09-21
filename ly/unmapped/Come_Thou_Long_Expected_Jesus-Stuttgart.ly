@@ -1,14 +1,12 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "Come Thou Long Expected Jesus"
-    poet = "Charles Wesley (1707–1788)"
-    composer = \markup{\italic{Stuttgart}, Christian F. Witt (c. 1660–1716)}
-    arranger = "Adapted by Henry J. Gauntlett (1805–1876)"
+songTitle = "Come Thou Long Expected Jesus"
+songPoet = "Charles Wesley (1707–1788)"
+songSection = "Advent"
+tuneComposer = \markup{\italic{Stuttgart}, Christian F. Witt (c. 1660–1716)}
+tuneArranger = "Adapted by Henry J. Gauntlett (1805–1876)"
+tuneSource = \markup{from \italic{The Church Hymnary}, 1902} %, via \italic{HymnsAndCarolsOfChristmas.com}}
     %source = \markup { "from" \italic "CyberHymnal.org"}
-    %\markup{from \italic{The Church Hymnary}, 1902, via \italic{HymnsAndCarolsOfChristmas.com}}
-    section = "Advent"
-}
 
 global = {
     \key g \major
@@ -91,7 +89,16 @@ bassMusic = \relative c {
   d4 d g,2 \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    poet = \songPoet 
+    composer = \tuneComposer 
+    arranger = \tuneArranger 
+    source = \tuneSource
+    section = \songSection 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -111,14 +118,15 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
     }
-  }
 }
 }
+

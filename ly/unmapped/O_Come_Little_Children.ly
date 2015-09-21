@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "O Come, Little Children"
-  poet = \markup{\italic{Ihr Kinderlein kommet}, by Christoph von Schmid (1768–1854)}
-  composer = "Johann A. P. Schulz (1747–1800)"
-  %source = \markup{from \italic"HymnsAndCarolsOfChristmas.com"}
-}
+songTitle = "O Come, Little Children"
+songPoet = \markup{\italic{Ihr Kinderlein kommet}, by Christoph von Schmid (1768–1854)}
+tuneComposer = "Johann A. P. Schulz (1747–1800)"
+tuneSource = \markup \null % {from \italic"HymnsAndCarolsOfChristmas.com"}
 
 global = {
     \key ees \major
@@ -141,7 +139,14 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -161,10 +166,16 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

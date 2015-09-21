@@ -1,12 +1,13 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "God Loved the World"
-  subtitle = "(Also hat Gott die Welt geliebt)"
-  poet = "from the Trier Gesangbuch, 1871"
-  composer = "Arranged by B. Luard Selby (1853–1918)"
-  %source = \markup { from \italic "The Cowley Carol Book" ", 1919"}
-}
+tuneTitle = "Also hat Gott die Welt geliebt"
+tuneComposer = \markup \null
+tuneArranger = "arr. by B. Luard Selby (1853–1918)"
+tuneSource = \markup {from \italic {The Cowley Carol Book}, 1919}
+
+songTitle = "God Loved the World"
+songSubtitle = \markup{(\tuneTitle)}
+songPoet = "from the Trier Gesangbuch, 1871"
 
 global = {
     \key c \major
@@ -263,7 +264,16 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  subtitle = \songSubtitle
+  poet = \songPoet
+  tuneComposer = \tuneComposer
+  arranger = \tuneArranger
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -287,11 +297,19 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+
+
+
 

@@ -13,7 +13,7 @@ global = {
     \key bes \major
     \time 2/4
     \autoBeamOff
-    \tempo 4 = 120
+    \tempo 4 = 70
 }
 
 sopMusic = \relative c' {
@@ -224,12 +224,16 @@ g,2 \bar "|."
   >>
   >>
   \layout { }
-  
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Christmas Day"
-  poet = "Translated by Rev. H.R. Bramley (1833–1917) from Latin"
-  composer = "Sir John Stainer (1840–1901)"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "Christmas Day"
+songPoet = "tr. by Rev. H.R. Bramley (1833–1917) from Latin"
+tuneComposer = "Sir John Stainer (1840–1901)"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key e \major
@@ -224,7 +222,14 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -248,11 +253,18 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+
+
 

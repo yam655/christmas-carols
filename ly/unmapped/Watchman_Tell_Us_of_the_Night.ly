@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Watchman, Tell Us of the Night"
-  poet = "John Bowring (1792–1872)"
-  composer = \markup{\italic {Aberystwyth}, Joseph Parry (1841–1903)}
-  %source = \markup { "from" \italic {ChristmasCarolMusic.org}}
-}
+songTitle = "Watchman, Tell Us of the Night"
+songPoet = "John Bowring (1792–1872)"
+tuneComposer = \markup{\italic {Aberystwyth}, Joseph Parry (1841–1903)}
+tuneSource = \markup { "from" \italic {ChristmasCarolMusic.org}}
 
 global = {
   \key f \major
@@ -160,7 +158,14 @@ bassWords = \lyricmode {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  composer = \tuneComposer
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -185,10 +190,16 @@ bassWords = \lyricmode {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+
 

@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "The First Noël"
-    poet = "Traditional"
-    composer = "18th Century French Melody"
-    %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "The First Noël"
+songPoet = "Traditional"
+tuneComposer = "18th Century French Melody"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key d \major
@@ -246,7 +244,14 @@ bassMusic = \relative c {
   d2 \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle
+    poet = \songPoet
+    composer = \tuneComposer
+    source = \tuneSource
+}
+
 \score {
     <<
         \new ChoirStaff <<
@@ -270,7 +275,12 @@ bassMusic = \relative c {
     \layout { }
     \midi {
         \set Staff.midiInstrument = "flute" 
-        %\context { \Voice \remove "Dynamic_performer" }
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
     }
 }
 }

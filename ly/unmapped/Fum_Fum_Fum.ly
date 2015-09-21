@@ -16,7 +16,6 @@ global = {
 
 sopMusic = \relative c' {
   \slurDotted
-  \tempo 4 = 88
   a'8. gis16 a8 c b a |
   gis( e) a b8\rest gis b\rest
   \time 2/4 a2 \bar "||" 
@@ -264,11 +263,17 @@ bassWords = \lyricmode {
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 0) (padding . -0.5)) } \lyricsto "basses" \bassWords
   >>
   >>
-  
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+
 

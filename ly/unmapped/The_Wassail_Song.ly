@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Wassail Song"
-  poet = "17th Century English"
-  composer = "17th Century English"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "The Wassail Song"
+songPoet = "17th Century English"
+tuneComposer = "17th Century English"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key e \major
@@ -201,7 +199,14 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -224,10 +229,16 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
 

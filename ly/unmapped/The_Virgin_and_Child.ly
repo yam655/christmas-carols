@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Virgin and Child"
-  poet = \markup{Adapted from \italic{Thys endris nyzth}, 15th Century}
-  composer = "Charles Steggall (1826–1905)"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "The Virgin and Child"
+songPoet = \markup{Adapted from \italic{Thys endris nyzth}, 15th Century}
+tuneComposer = "Charles Steggall (1826–1905)"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key c \major
@@ -308,14 +306,16 @@ bassWords = \lyricmode {
   lul -- lay, lul -- lay,
 }
 
-pianoRH = \relative c' {
   
-}
-pianoLH = \relative c' {
-  
+
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  composer = \tuneComposer
+  source = \tuneSource
 }
 
-\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -338,7 +338,6 @@ pianoLH = \relative c' {
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)(padding . 0.1)) } \lyricsto "tenors" \tenorWords
     \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1) (padding . 0)) } \lyricsto "basses" \bassWords
   >>
-%    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
   \midi {
@@ -347,3 +346,4 @@ pianoLH = \relative c' {
   }
 }
 }
+

@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "The Incarnation"
-  poet = "Rev. H. R. Bramley (1833–1917)"
-  composer = "Traditional"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "The Incarnation"
+songPoet = "Rev. H. R. Bramley (1833–1917)"
+tuneComposer = "Traditional"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key g \major
@@ -239,7 +237,14 @@ bassWords = \lyricmode {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  poet = \songPoet
+  composer = \tuneComposer
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<

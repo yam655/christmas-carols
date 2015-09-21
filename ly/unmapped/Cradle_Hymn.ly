@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Cradle Hymn"
-  poet = "Isaac Watts (1674–1748)"
-  composer = \markup{from \italic{Repository of Sacred Music, Part Second}, 1813}
-  source = ""
-}
+songTitle = "Cradle Hymn"
+songPoet = "Isaac Watts (1674–1748)"
+tuneComposer = \markup{from \italic{Repository of Sacred Music, Part Second}, 1813}
+tuneSource = \markup \null
 
 global = {
     \key d \major
@@ -235,7 +233,14 @@ bassMusic = \relative c' {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource
+}
+
 \score {
 <<
    \new ChoirStaff <<

@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Christians, Awake, Salute the Happy Morn"
-  poet = "John Byrom (1692–1763)"
-  composer = "John Wainwright (1723–1768)"
-  %source = \markup { "from " \italic "The English Hymnal" ", 1906"}
-}
+songTitle = "Christians, Awake, Salute the Happy Morn"
+songPoet = "John Byrom (1692–1763)"
+tuneComposer = "John Wainwright (1723–1768)"
+tuneSource = \markup {from \italic {The English Hymnal}, 1906}
 
 global = {
     \key c \major
@@ -212,7 +210,14 @@ bassMusic = \relative c {
   c,1
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -249,14 +254,16 @@ bassMusic = \relative c {
 %    \new PianoStaff << \new Staff { \new Voice { \pianoRH } } \new Staff { \clef "bass" \pianoLH } >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
     }
-  }
 }
 }
 

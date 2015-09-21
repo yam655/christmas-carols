@@ -1,12 +1,9 @@
 ﻿\version "2.14.2"
 
-
-\header {
-  title = "Chrystmasse of Olde"
-  poet = "Eugene Field (1850–1895)"
-  composer = \markup{\italic {Swiss Air}}
-  %source = \markup \concat{ "from " \italic "Favorite Songs and Hymns for School and Home" ", 1899, via " \italic"books.google.com"}
-}
+songTitle = "Chrystmasse of Olde"
+songPoet = "Eugene Field (1850–1895)"
+tuneComposer = \markup{\italic {Swiss Air}}
+tuneSource = \markup {from \italic {Favorite Songs and Hymns for School and Home}, 1899} %, via \italic{books.google.com}}
 
 global = {
     \key d \major
@@ -170,7 +167,14 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -190,9 +194,16 @@ bassMusic = \relative c {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+

@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Away In A Manger"
-  poet = "Anonymous"
-  composer = "Jonathan E. Spilman (1812–1896)"
-  %source = \markup { "from" \concat{\italic "Christmas Carols and Hymns for School and Choir" ", 1910"}}
-}
+songTitle = "Away In A Manger"
+songPoet = "Anonymous"
+tuneComposer = "Jonathan E. Spilman (1812–1896)"
+tuneSource = \markup {from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
 
 global = {
     \key a \major
@@ -216,7 +214,14 @@ bassMusic = \relative c {
   a,2 \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
     <<
         \new ChoirStaff <<
@@ -233,13 +238,7 @@ bassMusic = \relative c {
             >>
         >>
     >>
-    \layout {
-    % \context {
-    %   \Score
-    %   \override SpacingSpanner #'base-shortest-duration = #(ly:make-moment 1 2)
-    %   \override SpacingSpanner #'common-shortest-duration = #(ly:make-moment 1 2)
-    % }
-    }
+    \layout { }
     \midi {
         \set Staff.midiInstrument = "flute" 
         %\context { \Voice \remove "Dynamic_performer" }

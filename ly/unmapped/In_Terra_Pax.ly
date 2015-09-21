@@ -607,10 +607,16 @@ bassWordsII = \lyricmode {
       \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
     }
   }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
-}  
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
+}
 }
 

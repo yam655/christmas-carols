@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "Orientis Partibus"
-    poet = "Attributed to Pierre de Corbeil, Bishop of Sens (d. 1222)"
-    composer = "12th Century French"
-    %source = \markup { Words from \italic{HymnsAndCarolsOfChristmas.com}, Music from \italic{CyberHymnal.org}}
-  }
+songTitle = "Orientis Partibus"
+songPoet = "Attributed to Pierre de Corbeil, Bishop of Sens (d. 1222)"
+tuneComposer = "12th Century French"
+tuneSource = \markup \null % {Words from \italic{HymnsAndCarolsOfChristmas.com}, Music from \italic{CyberHymnal.org}}
 
 global = {
     \key f \major
@@ -121,11 +119,16 @@ bassMusic = \relative c {
   a4. bes8 c4 d |
   bes c f2 
 }
-bassWords = \lyricmode {
 
-}
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle 
+    poet = \songPoet 
+    composer = \tuneComposer 
+    source = \tuneSource 
+  }
+
 \score {
   <<
    \new ChoirStaff <<
@@ -147,7 +150,6 @@ bassWords = \lyricmode {
       \new Voice = "basses" { \voiceTwo << \global \repeat unfold2\bassMusic >> }
     >>
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
   >>
   

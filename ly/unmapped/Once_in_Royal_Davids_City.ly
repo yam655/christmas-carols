@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Once in Royal David’s City"
-  poet = "Cecil Frances Alexander (1818–1895)"
-  composer = "Henry J. Gauntlett (1805–1876)"
-  %source = \markup { from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
-}
+songTitle = "Once in Royal David’s City"
+songPoet = "Cecil Frances Alexander (1818–1895)"
+tuneComposer = "Henry J. Gauntlett (1805–1876)"
+tuneSource = \markup {from \italic {Christmas Carols and Hymns for School and Choir}, 1910}
 
 global = {
   \key g \major
@@ -152,7 +150,14 @@ bassMusic = \relative c {
   g,( g) \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<

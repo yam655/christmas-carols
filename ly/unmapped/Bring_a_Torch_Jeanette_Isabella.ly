@@ -1,13 +1,11 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Bring a Torch, Jeanette, Isabella!"
-  poet = \markup{\italic{Un flambeau, Jeannette, Isabelle}, by Émile Blémont (1839–1927)}
-  translator = "English by Edward Cuthbert Nunn (1868–1914)"
-  composer = "16th Century French Carol"
-  arranger = "Arranged by Edward Cuthbert Nunn (1868–1914)"
-  %source = \markup{from \italic{The Home and Community Song-Book}, 1922}
-}
+songTitle = "Bring a Torch, Jeanette, Isabella!"
+songPoet = \markup{\italic{Un flambeau, Jeannette, Isabelle}, by Émile Blémont (1839–1927)}
+songTranslator = "English by Edward Cuthbert Nunn (1868–1914)"
+tuneComposer = "16th Century French Carol"
+tuneArranger = "arr. by Edward Cuthbert Nunn (1868–1914)"
+tuneSource = \markup{from \italic{The Home and Community Song-Book}, 1922}
 
 global = {
     \key g \major
@@ -230,7 +228,16 @@ bassMusic = \relative c' {
   g8 d\rest d\rest \bar "|."
 }
 
-\bookpart{
+\bookpart{ 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  translator = \songTranslator 
+  composer = \tuneComposer 
+  arranger = \tuneArranger 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<
@@ -260,9 +267,16 @@ bassMusic = \relative c' {
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute" 
-    %\context { \Voice \remove "Dynamic_performer" }
-  }
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
+    }
 }
 }
+

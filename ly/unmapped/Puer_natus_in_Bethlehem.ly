@@ -1,18 +1,16 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Puer natus in Bethlehem"
-  subtitle = "(A Babe is Born in Bethlehem)"
-  poet = "14th century or earlier"
-  composer = \markup {From \italic {Piæ Cantiones} ", 1582"}
-% source = \markup {
-%       \line {from \italic {The Cowley Carol Book}, 1919}
-%       *In \italic{Piæ Cantiones} only a tenor and bass part were given,
-%       and in \italic{The Cowley Carol Book} (and here), the bass line
-%       from \italic{Piæ Cantiones} is found in the soprano, while the
-%       tenor is retained as the tenor.}
-%   }
-}
+songTitle = "Puer natus in Bethlehem"
+songSubtitle = "(A Babe is Born in Bethlehem)"
+songPoet = "14th century or earlier"
+tuneComposer = \markup {from \italic {Piæ Cantiones}, 1582
+                and \italic {The Cowley Carol Book}, 1919}
+tuneSource = \markup {
+       In \italic{Piæ Cantiones} only a tenor and bass part were given,
+       and in \italic{The Cowley Carol Book} (and here), the bass line
+       from \italic{Piæ Cantiones} is found in the soprano, while the
+       tenor is retained as the tenor.}
+   }
 
 global = {
     \key f \major
@@ -239,7 +237,15 @@ bassMusic = \relative c {
 }
 
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle
+  subtitle = \songSubtitle 
+  poet = \songPoet 
+  composer = \tuneComposer 
+  source = \tuneSource 
+}
+
 \score {
   <<
    \new ChoirStaff <<

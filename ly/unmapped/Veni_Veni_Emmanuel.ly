@@ -1,10 +1,8 @@
 ﻿\version "2.14.2"
 
-\header {
-    title = "Veni, Veni, Emmanuel"
-    composer = "Gregorian"
-    section = "Advent"
-}
+songTitle = "Veni, Veni, Emmanuel"
+tuneComposer = "Gregorian"
+songSection = "Advent"
 
 global = {
     \key g \major
@@ -243,7 +241,13 @@ bassMusic = \relative c {
   g,2. 
 }
 
-\bookpart {
+\bookpart { 
+\header {
+    title = \songTitle
+    composer = \tuneComposer
+    section = \songSection
+}
+
 \score {
   <<
    \new ChoirStaff <<

@@ -1,11 +1,9 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "O Christmas Tree"
-  poet = "Traditional"
-  composer = "German Folk Song"
-  source = ""
-}
+songTitle = "O Christmas Tree"
+songPoet = "Traditional"
+tuneComposer = "German Folk Song"
+tuneSource = \markup \null
 
 global = {
   \key g \major
@@ -141,7 +139,14 @@ bassMusic = \relative c {
   d g d8\rest \bar "|."
 }
 
-\bookpart {
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  composer = \tuneComposer
+  source = \tuneSource
+}
+
 \score {
   <<
    \new ChoirStaff <<

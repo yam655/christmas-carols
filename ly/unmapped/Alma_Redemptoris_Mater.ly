@@ -10,6 +10,7 @@ global = {
   \dynamicUp
   \autoBeamOff
   %\override DynamicTextSpanner #'style = #'none
+  \tempo 4 = 120
 }
 
 sopMusic = \relative c' {
@@ -319,16 +320,16 @@ bassWords = \lyricmode {
       \Staff \RemoveEmptyStaves \override VerticalAxisGroup #'remove-first = ##t
     }
   }
-  \midi {
-    \tempo 4 = 120
-    \set Staff.midiInstrument = "flute"
-    %\set Staff.midiInstrument = "recorder"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
     }
-  }
 }
 }
 

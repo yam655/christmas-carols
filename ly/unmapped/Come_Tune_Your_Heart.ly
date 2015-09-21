@@ -1,12 +1,10 @@
 ﻿\version "2.14.2"
 
-\header {
-  title = "Come! Tune Your Heart"
-  poet = \markup{\italic{Auf, schicke dich}, by Christian Fürchtegott Gellert (1715–1769)}
-  translator = "Translated by Frances E. Cox (1812–1897)"
-  composer = "Sir Frederick A. G. Ouseley (1825–1889)"
-  %source = \markup { from \italic {Christmas Carols, New and Old}}
-}
+songTitle = "Come! Tune Your Heart"
+songPoet = \markup{\italic{Auf, schicke dich}, by Christian Fürchtegott Gellert (1715–1769)}
+songTranslator = "trans. by Frances E. Cox (1812–1897)"
+tuneComposer = "Sir Frederick A. G. Ouseley (1825–1889)"
+tuneSource = \markup {from \italic {Christmas Carols, New and Old}}
 
 global = {
     \key ees \major
@@ -229,12 +227,18 @@ bassMusic = \relative c {
   bes1 |
   ees2 \bar "|."
 }
-bassWords = \lyricmode {
 
+
+
+\bookpart { 
+\header {
+  title = \songTitle 
+  poet = \songPoet 
+  translator = \songTranslator 
+  composer = \tuneComposer
+  source = \tuneSource 
 }
 
-
-\bookpart {
 \score {
   <<
    \new ChoirStaff <<
@@ -254,18 +258,19 @@ bassWords = \lyricmode {
     \new Lyrics = "altosII"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1))} \lyricsto "altos" \altoWordsII
     \new Lyrics = "altos"  \with { alignBelowContext = #"women" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((padding . -0.5))} \lyricsto "altos" \altoWords
     \new Lyrics \with { alignAboveContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "tenors" \tenorWords
-    \new Lyrics \with { alignBelowContext = #"men" \override VerticalAxisGroup #'nonstaff-relatedstaff-spacing = #'((basic-distance . 1)) } \lyricsto "basses" \bassWords
   >>
   >>
   \layout { }
-  \midi {
-    \set Staff.midiInstrument = "flute"
-  
-    \context {
-      \Voice
-      \remove "Dynamic_performer"
+
+    \midi {
+        \set Staff.midiInstrument = "flute" 
+        \context {
+            \Staff \remove "Staff_performer"
+        }
+        \context {
+            \Voice \consists "Staff_performer"
+        }
     }
-  }
 }
 }
 
